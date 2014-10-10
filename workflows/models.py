@@ -537,7 +537,7 @@ class Widget(models.Model):
     def run(self,offline):
         """ This is only a hack, to make this work on windows """
         try: 
-            if self.abstract_widget.windows_queue:
+            if False: #self.abstract_widget.windows_queue:
                 t = runWidget.apply_async([self,offline],queue="windows")
                 t.wait()
             else:
