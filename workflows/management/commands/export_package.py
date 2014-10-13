@@ -60,7 +60,7 @@ def export_package_string(writeFunc, packages, newuid, updateuid, all, verbosity
     for topCat in Category.objects.filter(parent = None):
         objs.extend(get_package_objs_in_category(topCat, packages, all))
 
-    if len(objs) == 0:
+    if len(objs) == 0 and not all:
         raise CommandError('Selected package(s) were not found!')
 
     #be careful uid is only changed on these instances and is not written to the database
