@@ -254,7 +254,54 @@ def ToNetObj(data):
                 except:
                     pass
             return System.Object()
+    if isinstance(data,Document): #name,text,annotations,features
+        d=Latino.Workflows.TextMining.Document(data.name,data.text)
+        latino_object_set_feature_values(d,data.features)
+        d.AddAnnotations(ToNetObj(data.annotations))
+
+        return d
+    elif isinstance(data,Annotation):
+        a=Latino.Workflows.TextMining.Annotation(data.span_start,data.span_end,data.type)
+        latino_object_set_feature_values(a,data.features)
+        return a
+    elif isinstance(data,DocumentCorpus):
+        d=LatinoClowdFlows.DocumentCorpus()
+        d.AddRange(ToNetObj(data.documents))
+        latino_object_set_feature_values(d,data.features)
+        return d
     return data
+
+def latino_object_set_feature_values(latinoObj,features):
+    for k,v in features.items():
+        latinoObj.Features.SetFeatureValue(k,v)
+    return None
+
+
+class DocumentCorpus:
+    def __init__(self, documents,features):
+        self.documents=documents
+        self.features=features
+    def __unicode__(self):
+        #for i in itemDir:
+        return 'Documents; {0}' % (self.documents)
+class Document:
+    def __init__(self, name,text,annotations,features):
+        self.annotations=annotations
+        self.features=features
+        self.name=name
+        self.text=text
+
+    def __unicode__(self):
+        #for i in itemDir:
+        return 'Name; {0}\nText: {1}' % (self.name, self.text)
+
+class Annotation:
+    def __init__(self, features,spanStart,spanEnd,type1):
+        self.features=features
+        self.span_start=spanStart
+        self.span_end=spanEnd
+        self.type=type1
+
 def ToPyObj(data):
     if hasattr(data, "GetType") and data.GetType().IsGenericType:
         genType = data.GetType().GetGenericTypeDefinition()
@@ -275,6 +322,25 @@ def ToPyObj(data):
             for val in data:
                 l.append(ToPyObj(val))
             return tuple(l)
+    if hasattr(data, "GetType"):
+        if data.GetType().Equals(LatinoClowdFlows.DocumentCorpus):
+            return DocumentCorpus([ToPyObj(el) for el in data.Documents],ToPyObj(data.Features))
+        if data.GetType().Equals(Latino.Workflows.TextMining.Document):
+            return Document(data.Name,data.Text,[ToPyObj(el) for el in data.Annotations],ToPyObj(data.Features))
+        if data.GetType().Equals(Latino.Workflows.TextMining.Annotation):
+            return Annotation(ToPyObj(data.Features),data.SpanStart,data.SpanEnd,data.Type)
+        if data.GetType().Equals(Latino.Workflows.TextMining.Features):
+            d = {}
+            for keyVal in data:
+                k = keyVal.Key
+                v = keyVal.Value
+                d[k] = v
+
+            return d
+
+
+
+
     if hasattr(data, "GetType"):
         type = data.GetType()
         if type.IsArray:

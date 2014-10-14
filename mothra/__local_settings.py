@@ -21,12 +21,12 @@ FILES_FOLDER = os.path.join(PUBLIC_DIR, 'files/')
 
 INSTALLED_APPS_WORKFLOWS_SUB = (
     'workflows.base',
-    #'workflows.latino',
+    'workflows.latino',
     #'workflows.decision_support',
     #'workflows.segmine',
     #'workflows.subgroup_discovery',
-    #'workflows.nlp',
-    #'workflows.nl_toolkit',
+    'workflows.nlp',
+    'workflows.nl_toolkit',
     #'workflows.ilp',
     #'workflows.weka',
     #'workflows.cforange',
@@ -35,13 +35,11 @@ INSTALLED_APPS_WORKFLOWS_SUB = (
     #'workflows.lemmagen',
     #'workflows.crossbee',
     #'workflows.scikitAlgorithms',
-    #'workflows.lemmagen',
-    #'workflows.crossbee',
     #'workflows.streaming',
     #'workflows.bio3graph',
     #'workflows.noise',
     #'workflows.vipercharts',
-    #'workflows.MUSE',
+    'workflows.MUSE',
     )
 
 BROKER_URL = 'django://'
