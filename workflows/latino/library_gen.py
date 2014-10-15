@@ -2,8 +2,14 @@
 # WARNING: THIS IS AUTOMATICALLY GENERATED FILE, DO NOT EDIT IT MANUALLY AS YOU MAY LOOSE YOUR CHANGES!
 # -----------------------------------------------------------------------------------------------------
 
-from import_dotnet import *
-from serialization_utils import *
+from workflows.textflows_dot_net.import_dotnet import *
+from workflows.textflows_dot_net.serialization_utils import *
+
+import Latino
+import LatinoClowdFlows
+print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+from LatinoClowdFlows import LatinoCF
+print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
 def latino_flatten_object_to_string_array(inputDict):
     _data = ToNetObj(inputDict['data'])

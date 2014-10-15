@@ -2,8 +2,11 @@
 # WARNING: THIS IS AUTOMATICALLY GENERATED FILE, DO NOT EDIT IT MANUALLY AS YOU MAY LOOSE YOUR CHANGES!
 # -----------------------------------------------------------------------------------------------------
 
-from import_dotnet import *
-from serialization_utils import *
+from workflows.textflows_dot_net.import_dotnet import *
+from workflows.textflows_dot_net.serialization_utils import *
+
+import LemmaSharp
+from LemmaSharpInterfaces import *
 
 def lemmagen_load_example_list_from_string(inputDict):
     _tabDelim = ToString(inputDict['tabDelim'])

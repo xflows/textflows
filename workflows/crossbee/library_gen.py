@@ -2,8 +2,11 @@
 # WARNING: THIS IS AUTOMATICALLY GENERATED FILE, DO NOT EDIT IT MANUALLY AS YOU MAY LOOSE YOUR CHANGES!
 # -----------------------------------------------------------------------------------------------------
 
-from import_dotnet import *
-from serialization_utils import *
+from workflows.textflows_dot_net.import_dotnet import *
+from workflows.textflows_dot_net.serialization_utils import *
+
+import CrossBeeInterfaces
+from CrossBeeInterfaces import *
 
 def crossbee_construct_standard_heurisitc(inputDict):
     _name = ToString(inputDict['name'])

@@ -1,9 +1,9 @@
 # helperji, context stvari
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
 
 # modeli
-from workflows.latino.serialization_utils import ToNetObj
+from workflows.textflows_dot_net.serialization_utils import ToNetObj
 from workflows.models import *
 # auth fore
 from django.contrib.auth.decorators import login_required

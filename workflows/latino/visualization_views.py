@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from serialization_utils import *
 import django.template.loader
 
 def show_adc(request,input_dict,output_dict,widget):

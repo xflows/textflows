@@ -1,4 +1,5 @@
-from serialization_utils import *
+from workflows.textflows_dot_net import objectPprint as opp
+from workflows.textflows_dot_net.serialization_utils import *
 
 #------------------------------------------------------------------------------
 # VISUALISATIONS
@@ -21,7 +22,6 @@ def show_table(input_dict):
     return {}
 
 def advanced_object_converter(input_dict):
-    import objectPprint as opp
     obj = input_dict['obj']
     maxStringLen = ToInt(input_dict['maxStringLen'])
     objstr = ""
