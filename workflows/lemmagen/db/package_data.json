@@ -1883,7 +1883,7 @@
     "fields": {
       "widget": 285, 
       "name": "Skip Empty Lines", 
-      "short_name": "bool", 
+      "short_name": "bol", 
       "uid": "e959b4ca-d7f2-12cf-8d9e-a3ddc6f79372", 
       "default": "true", 
       "required": true, 
@@ -2013,7 +2013,7 @@
     "fields": {
       "widget": 286, 
       "name": "Skip Empty Lines", 
-      "short_name": "bool", 
+      "short_name": "bol", 
       "uid": "e5259cf5-51c5-bf17-034b-baefae53b3b1", 
       "default": "true", 
       "required": true, 
