@@ -186,7 +186,11 @@ def import_package_string(writeFunc, string, replace, verbosity=1):
             statDict['add:'+str(type(objFile.object))]+=1
             objFile.object.id = None
 
-        objFile.save() #actual saving to the DB, if object is new then id is assigend at this point
+        try:
+            objFile.save() #actual saving to the DB, if object is new then id is assigend at this point
+        except:
+            writeFunc('\n\nProblem saving object with uid "%s" to the database!\n\n'%objFile.object.uid)
+            raise
 
         #dictionary bookkeeping
         idMappingDict[objFileTypeId] = objFile.object.id
