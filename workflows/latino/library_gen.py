@@ -7,9 +7,7 @@ from workflows.textflows_dot_net.serialization_utils import *
 
 import Latino
 import LatinoClowdFlows
-print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 from LatinoClowdFlows import LatinoCF
-print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
 def latino_flatten_object_to_string_array(inputDict):
     _data = ToNetObj(inputDict['data'])
