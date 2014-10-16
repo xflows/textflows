@@ -10,7 +10,6 @@ logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 from import_dotnet import *
 import Latino
 import LatinoClowdFlows
-from LatinoClowdFlows import LatinoCF
 
 #check if .net object and wrap it accordingly
 def GetBaseOrLSO(obj):
@@ -64,14 +63,14 @@ class LatinoSerializableObject(SerializableObject):
     def __getstate__(self):
         logging.info('Serialize {0} with latino serializer (start)'.format(self.netObj.__class__.__name__))
         start = time.clock()
-        byteData = LatinoCF.Save(self.netObj)
+        byteData = LatinoClowdFlows.LatinoCF.Save(self.netObj)
         elapsed = (time.clock() - start)
         logging.info('Serialize {0} with latino serializer (end, size: {1:,} chars) in {2} ms'.format(self.netObj.__class__.__name__, len(byteData),elapsed))
         return {'byteData': byteData}
     def __setstate__(self, dict):
         logging.info('Deserialize {0} with latino deserializer (start)'.format("<LatinoObject>"))
         start = time.clock()
-        self.netObj = LatinoCF.Load(dict['byteData'])
+        self.netObj = LatinoClowdFlows.LatinoCF.Load(dict['byteData'])
         self.copyAttributes()
         elapsed = (time.clock() - start)
         logging.info('Deserialize {0} with latino deserializer (end, size: {1:,} chars) in {2} ms'.format(self.netObj.__class__.__name__, len(dict['byteData']),elapsed))
@@ -171,7 +170,7 @@ def ToBool(s):
 def ToString(s):
     return s
 def ToEnum(typ, s,defaultValue):
-    return LatinoCF.ParseEnum[typ](s, defaultValue)
+    return LatinoClowdFlows.LatinoCF.ParseEnum[typ](s, defaultValue)
 def ToIntList(s):
     il = []
     for i in s:
@@ -200,6 +199,8 @@ def Flatten(l, ltypes=(list, tuple)):
                 l[i:i + 1] = l[i]
         i += 1
     return ltype(l)
+
+MAP_TO_PYTHON_OBJECTS=True
 
 def ToNetObj(data):
     if hasattr(data, "netObj"):
@@ -258,21 +259,24 @@ def ToNetObj(data):
                 except:
                     pass
             return System.Object()
-    if isinstance(data,Document): #name,text,annotations,features
-        d=Latino.Workflows.TextMining.Document(data.name,data.text)
-        latino_object_set_feature_values(d,data.features)
-        d.AddAnnotations(ToNetObj(data.annotations))
+    if MAP_TO_PYTHON_OBJECTS:
+        if isinstance(data,Document): #name,text,annotations,features
+            d=Latino.Workflows.TextMining.Document(data.name,data.text)
+            latino_object_set_feature_values(d,data.features)
+            da=data.annotations
+            a=ToNetObj(data.annotations)
+            d.AddAnnotations(ToNetObj(data.annotations))
 
-        return d
-    elif isinstance(data,Annotation):
-        a=Latino.Workflows.TextMining.Annotation(data.span_start,data.span_end,data.type)
-        latino_object_set_feature_values(a,data.features)
-        return a
-    elif isinstance(data,DocumentCorpus):
-        d=LatinoClowdFlows.DocumentCorpus()
-        d.AddRange(ToNetObj(data.documents))
-        latino_object_set_feature_values(d,data.features)
-        return d
+            return d
+        elif isinstance(data,Annotation):
+            a=Latino.Workflows.TextMining.Annotation(data.span_start,data.span_end,data.type)
+            latino_object_set_feature_values(a,data.features)
+            return a
+        elif isinstance(data,DocumentCorpus):
+            d=LatinoClowdFlows.DocumentCorpus()
+            d.AddRange(ToNetObj(data.documents))
+            latino_object_set_feature_values(d,data.features)
+            return d
     return data
 
 def latino_object_set_feature_values(latinoObj,features):
@@ -299,12 +303,20 @@ class Document:
         #for i in itemDir:
         return 'Name; {0}\nText: {1}' % (self.name, self.text)
 
+    def select_annotations(self, selector):
+        return [a for a in self.annotations if a.type== selector]  #self.text ???
+    def get_annotated_blocks(self,selector):
+        annotations=self.select_annotations(selector)
+
+
+
 class Annotation:
-    def __init__(self, features,spanStart,spanEnd,type1):
+    def __init__(self, spanStart,spanEnd,type1,features={}):
         self.features=features
         self.span_start=spanStart
         self.span_end=spanEnd
         self.type=type1
+
 
 def ToPyObj(data):
     if hasattr(data, "GetType") and data.GetType().IsGenericType:
@@ -326,13 +338,13 @@ def ToPyObj(data):
             for val in data:
                 l.append(ToPyObj(val))
             return tuple(l)
-    if hasattr(data, "GetType"):
+    if MAP_TO_PYTHON_OBJECTS and hasattr(data, "GetType"):
         if data.GetType().Equals(LatinoClowdFlows.DocumentCorpus):
             return DocumentCorpus([ToPyObj(el) for el in data.Documents],ToPyObj(data.Features))
         if data.GetType().Equals(Latino.Workflows.TextMining.Document):
             return Document(data.Name,data.Text,[ToPyObj(el) for el in data.Annotations],ToPyObj(data.Features))
         if data.GetType().Equals(Latino.Workflows.TextMining.Annotation):
-            return Annotation(ToPyObj(data.Features),data.SpanStart,data.SpanEnd,data.Type)
+            return Annotation(data.SpanStart,data.SpanEnd,data.Type,ToPyObj(data.Features))
         if data.GetType().Equals(Latino.Workflows.TextMining.Features):
             d = {}
             for keyVal in data:

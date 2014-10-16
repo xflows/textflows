@@ -23,7 +23,7 @@ try:
         if os.path.isfile(os.path.join(dllPath, f)) and (f.endswith(".dll") or f.endswith(".exe")):
             logging.info("Loading .NET library '%s'", f)
             try:
-                System.Reflection.Assembly.LoadFile(os.path.join(dllPath, f))
+                System.Reflection.Assembly.LoadFile(os.path.join(dllPath, f).replace('\\','/'))
             except System.BadImageFormatException, e:
                 pass
 
