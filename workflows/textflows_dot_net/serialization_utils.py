@@ -10,6 +10,7 @@ logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 from import_dotnet import *
 import Latino
 import LatinoClowdFlows
+from LatinoClowdFlows import LatinoCF
 
 #check if .net object and wrap it accordingly
 def GetBaseOrLSO(obj):
