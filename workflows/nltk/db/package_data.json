@@ -1,6 +1,6 @@
 [
   {
-    "pk": 31, 
+    "pk": 25, 
     "model": "workflows.category", 
     "fields": {
       "uid": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
@@ -12,10 +12,104 @@
     }
   }, 
   {
-    "pk": 171, 
+    "pk": 154, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 31, 
+      "category": 25, 
+      "treeview_image": "", 
+      "name": "Load Document Corpus From String", 
+      "is_streaming": false, 
+      "uid": "6a3db55b-a30c-4bad-8665-550eb6e26ffe", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "load_adcfrom_string", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "This widges processes raw text file and loads the texts into ADC (Annotated Document Corpus) structure. The input file contains one document per line - the whole line represents text from the body of a document. In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure."
+    }
+  }, 
+  {
+    "pk": 400, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 154, 
+      "name": "String", 
+      "short_name": "str", 
+      "uid": "29b01919-6756-4ba5-b796-15f00879e228", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "plainString", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Input Text String: Contains one document per line - the whole line represents text from the body of a document."
+    }
+  }, 
+  {
+    "pk": 401, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 154, 
+      "name": "Text before the first tabulator [/t] represents the title of a document", 
+      "short_name": "bol", 
+      "uid": "a84b5c10-8283-4e51-bf2b-1ab5463c09be", 
+      "default": "false", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "tabSeparatedTitle", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "System.Boolean"
+    }
+  }, 
+  {
+    "pk": 402, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 154, 
+      "name": "First words in a line (after optional title) with preceding exclamation (!) present labels", 
+      "short_name": "bol", 
+      "uid": "917a7c25-695a-4cdb-a578-659ba5ed7cf2", 
+      "default": "false", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "leadingLabels", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "System.Boolean"
+    }
+  }, 
+  {
+    "pk": 160, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 154, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "variable": "adc", 
+      "uid": "23bd7cd5-2928-4efa-bb6f-a6403d7939c6", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 144, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 25, 
       "treeview_image": "", 
       "name": "Load Document Corpus From File", 
       "is_streaming": false, 
@@ -39,10 +133,10 @@
     }
   }, 
   {
-    "pk": 419, 
+    "pk": 371, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 171, 
+      "widget": 144, 
       "name": "Raw Text File", 
       "short_name": "fil", 
       "uid": "4f703f50-06e9-4595-835f-4bb8b826754b", 
@@ -57,10 +151,10 @@
     }
   }, 
   {
-    "pk": 420, 
+    "pk": 372, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 171, 
+      "widget": 144, 
       "name": "Text before the first tabulator [/t] represents the title of a document", 
       "short_name": "bol", 
       "uid": "b9ec0a50-99fe-4ee3-bceb-ec6320331aa1", 
@@ -75,10 +169,10 @@
     }
   }, 
   {
-    "pk": 421, 
+    "pk": 373, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 171, 
+      "widget": 144, 
       "name": "First words in a line (after optional title) with preceding exclamation (!) present labels", 
       "short_name": "bol", 
       "uid": "1d0aad77-783b-4cc5-a81f-584a1e4d5b25", 
@@ -93,10 +187,10 @@
     }
   }, 
   {
-    "pk": 171, 
+    "pk": 150, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 171, 
+      "widget": 144, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "variable": "adc", 
@@ -106,7 +200,7 @@
     }
   }, 
   {
-    "pk": 32, 
+    "pk": 26, 
     "model": "workflows.category", 
     "fields": {
       "uid": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
@@ -118,10 +212,10 @@
     }
   }, 
   {
-    "pk": 177, 
+    "pk": 145, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 32, 
+      "category": 26, 
       "treeview_image": "", 
       "name": "Display Document Corpus", 
       "is_streaming": false, 
@@ -145,10 +239,10 @@
     }
   }, 
   {
-    "pk": 444, 
+    "pk": 374, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 177, 
+      "widget": 145, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "uid": "d4ffbff2-8055-454b-99db-254a9f6264b6", 
@@ -163,7 +257,7 @@
     }
   }, 
   {
-    "pk": 33, 
+    "pk": 27, 
     "model": "workflows.category", 
     "fields": {
       "uid": "bb196a4d-7235-475d-bb4a-8210564f9c37", 
@@ -175,10 +269,10 @@
     }
   }, 
   {
-    "pk": 170, 
+    "pk": 146, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 33, 
+      "category": 27, 
       "treeview_image": "", 
       "name": "Tokenizer Hub", 
       "is_streaming": false, 
@@ -202,10 +296,10 @@
     }
   }, 
   {
-    "pk": 415, 
+    "pk": 375, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 170, 
+      "widget": 146, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "uid": "5e0eedbe-5d93-4fb2-abf6-4f9deeb555a5", 
@@ -220,10 +314,10 @@
     }
   }, 
   {
-    "pk": 416, 
+    "pk": 376, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 170, 
+      "widget": 146, 
       "name": "Tokenizer", 
       "short_name": "tkn", 
       "uid": "15bf0ab2-491e-4c44-aaf9-53206cc3a54f", 
@@ -238,10 +332,10 @@
     }
   }, 
   {
-    "pk": 417, 
+    "pk": 377, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 170, 
+      "widget": 146, 
       "name": "Annotation to be tokenized", 
       "short_name": "ann", 
       "uid": "83118f55-9ef7-4710-9217-627ccbd52df3", 
@@ -256,10 +350,10 @@
     }
   }, 
   {
-    "pk": 418, 
+    "pk": 378, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 170, 
+      "widget": 146, 
       "name": "Annotation to be produced", 
       "short_name": "ann", 
       "uid": "73e438f5-8d6f-43a3-a3d4-1df23c496a98", 
@@ -274,10 +368,10 @@
     }
   }, 
   {
-    "pk": 170, 
+    "pk": 151, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 170, 
+      "widget": 146, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "variable": "adc", 
@@ -287,11 +381,11 @@
     }
   }, 
   {
-    "pk": 41, 
+    "pk": 28, 
     "model": "workflows.category", 
     "fields": {
       "uid": "b0ce2ce4-16e8-4f9c-9874-238066c20fea", 
-      "parent": 33, 
+      "parent": 27, 
       "workflow": null, 
       "user": null, 
       "order": 1, 
@@ -299,10 +393,10 @@
     }
   }, 
   {
-    "pk": 169, 
+    "pk": 147, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 41, 
+      "category": 28, 
       "treeview_image": "", 
       "name": "Punkt Sentence Tokenizer", 
       "is_streaming": false, 
@@ -326,10 +420,10 @@
     }
   }, 
   {
-    "pk": 169, 
+    "pk": 152, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 169, 
+      "widget": 147, 
       "name": "Tokenizer", 
       "short_name": "tkn", 
       "variable": "tokenizer", 
@@ -339,10 +433,10 @@
     }
   }, 
   {
-    "pk": 168, 
+    "pk": 148, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 41, 
+      "category": 28, 
       "treeview_image": "", 
       "name": "Treebank Word Tokenizer", 
       "is_streaming": false, 
@@ -366,10 +460,10 @@
     }
   }, 
   {
-    "pk": 414, 
+    "pk": 379, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 168, 
+      "widget": 148, 
       "name": "Type", 
       "short_name": "typ", 
       "uid": "39bda283-65a9-4d87-bc12-5f62fd43b38c", 
@@ -384,10 +478,10 @@
     }
   }, 
   {
-    "pk": 168, 
+    "pk": 153, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 168, 
+      "widget": 148, 
       "name": "Tokenizer", 
       "short_name": "tkn", 
       "variable": "tokenizer", 
@@ -397,7 +491,7 @@
     }
   }, 
   {
-    "pk": 36, 
+    "pk": 29, 
     "model": "workflows.category", 
     "fields": {
       "uid": "6091637f-b3cd-4559-b525-18357b02dbc2", 
@@ -409,10 +503,10 @@
     }
   }, 
   {
-    "pk": 172, 
+    "pk": 149, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 36, 
+      "category": 29, 
       "treeview_image": "", 
       "name": "BOW Model and Dataset", 
       "is_streaming": false, 
@@ -436,10 +530,10 @@
     }
   }, 
   {
-    "pk": 422, 
+    "pk": 380, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "uid": "7cb2daa0-2a41-4fd1-9784-b5ce800984f2", 
@@ -454,10 +548,10 @@
     }
   }, 
   {
-    "pk": 423, 
+    "pk": 381, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Token Annotation", 
       "short_name": "str", 
       "uid": "f40410c6-6121-46b4-bd00-46a4a83730b0", 
@@ -472,10 +566,10 @@
     }
   }, 
   {
-    "pk": 424, 
+    "pk": 382, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Stem Feature Name", 
       "short_name": "str", 
       "uid": "686e457b-9e5d-4a64-aa0a-f82b554fa977", 
@@ -490,10 +584,10 @@
     }
   }, 
   {
-    "pk": 425, 
+    "pk": 383, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Stopword Feature Name", 
       "short_name": "str", 
       "uid": "b5ca48ce-85e7-4192-b175-f12e506e4dbc", 
@@ -508,10 +602,10 @@
     }
   }, 
   {
-    "pk": 426, 
+    "pk": 384, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Label Document Feature Name", 
       "short_name": "str", 
       "uid": "1116208b-cf40-4de9-9253-2eeb99eed1f7", 
@@ -526,10 +620,10 @@
     }
   }, 
   {
-    "pk": 427, 
+    "pk": 385, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Maximum N-Gram Length", 
       "short_name": "int", 
       "uid": "f67756f7-6e1d-419c-b766-75ee38a766d1", 
@@ -544,10 +638,10 @@
     }
   }, 
   {
-    "pk": 428, 
+    "pk": 386, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Minimum Word Freqency", 
       "short_name": "dbl", 
       "uid": "c3f73c01-adc5-4c1b-b70f-b302dba2faf3", 
@@ -562,10 +656,10 @@
     }
   }, 
   {
-    "pk": 429, 
+    "pk": 387, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Word Weighting Type", 
       "short_name": "wwt", 
       "uid": "2b646850-585b-4ed7-aa70-ea0f6050e207", 
@@ -580,10 +674,10 @@
     }
   }, 
   {
-    "pk": 430, 
+    "pk": 388, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Cut Low Weights Percentage", 
       "short_name": "dbl", 
       "uid": "06b45eac-4346-4167-8dd6-041e483d2be4", 
@@ -598,10 +692,10 @@
     }
   }, 
   {
-    "pk": 431, 
+    "pk": 389, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Normalize Vectors", 
       "short_name": "bol", 
       "uid": "c864e2cd-665d-4cda-bbb7-a2b63885371c", 
@@ -616,10 +710,10 @@
     }
   }, 
   {
-    "pk": 172, 
+    "pk": 154, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Bag of Words Model", 
       "short_name": "bow", 
       "variable": "bow", 
@@ -629,10 +723,10 @@
     }
   }, 
   {
-    "pk": 173, 
+    "pk": 155, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 172, 
+      "widget": 149, 
       "name": "Dataset", 
       "short_name": "ds", 
       "variable": "ds", 
@@ -642,7 +736,7 @@
     }
   }, 
   {
-    "pk": 37, 
+    "pk": 30, 
     "model": "workflows.category", 
     "fields": {
       "uid": "57cfe571-165d-4575-90d9-28daf794e773", 
@@ -654,10 +748,10 @@
     }
   }, 
   {
-    "pk": 178, 
+    "pk": 150, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 37, 
+      "category": 30, 
       "treeview_image": "", 
       "name": "Add Labels", 
       "is_streaming": false, 
@@ -681,10 +775,10 @@
     }
   }, 
   {
-    "pk": 445, 
+    "pk": 390, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 178, 
+      "widget": 150, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "9f466a6e-1a73-4cd5-8ae5-1bf634daaefc", 
@@ -699,10 +793,10 @@
     }
   }, 
   {
-    "pk": 446, 
+    "pk": 391, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 178, 
+      "widget": 150, 
       "name": "Labeles (Array of Strings)", 
       "short_name": "str", 
       "uid": "eb8485af-ea8c-4feb-ae41-dbb76a52a807", 
@@ -717,10 +811,10 @@
     }
   }, 
   {
-    "pk": 178, 
+    "pk": 156, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 178, 
+      "widget": 150, 
       "name": "Dataset", 
       "short_name": "ds", 
       "variable": "ds", 
@@ -730,7 +824,7 @@
     }
   }, 
   {
-    "pk": 38, 
+    "pk": 31, 
     "model": "workflows.category", 
     "fields": {
       "uid": "5a2a3054-1e34-4e51-851e-85baaee020d4", 
@@ -742,10 +836,10 @@
     }
   }, 
   {
-    "pk": 176, 
+    "pk": 151, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 38, 
+      "category": 31, 
       "treeview_image": "", 
       "name": "Calculate Similarity Matrix", 
       "is_streaming": false, 
@@ -769,10 +863,10 @@
     }
   }, 
   {
-    "pk": 440, 
+    "pk": 392, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 176, 
+      "widget": 151, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "835ffa43-4cfc-48e4-a2d7-71cc01c47205", 
@@ -787,10 +881,10 @@
     }
   }, 
   {
-    "pk": 441, 
+    "pk": 393, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 176, 
+      "widget": 151, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "507a7bad-c956-49c6-9deb-c9cfd4a6b471", 
@@ -805,10 +899,10 @@
     }
   }, 
   {
-    "pk": 442, 
+    "pk": 394, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 176, 
+      "widget": 151, 
       "name": "Similarity Threshold", 
       "short_name": "dbl", 
       "uid": "f31d1331-576c-4b39-940f-4ecb4395c83b", 
@@ -823,10 +917,10 @@
     }
   }, 
   {
-    "pk": 443, 
+    "pk": 395, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 176, 
+      "widget": 151, 
       "name": "Full Matrix (not only Lower Triangular)", 
       "short_name": "bol", 
       "uid": "7125b9d7-c961-4fa1-8acf-4c99207f641b", 
@@ -841,10 +935,10 @@
     }
   }, 
   {
-    "pk": 177, 
+    "pk": 157, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 176, 
+      "widget": 151, 
       "name": "Similarity Matrix", 
       "short_name": "smx", 
       "variable": "smx", 
@@ -854,7 +948,7 @@
     }
   }, 
   {
-    "pk": 39, 
+    "pk": 32, 
     "model": "workflows.category", 
     "fields": {
       "uid": "9571d766-09a1-4e85-9f13-974c76c15f9e", 
@@ -866,10 +960,10 @@
     }
   }, 
   {
-    "pk": 174, 
+    "pk": 152, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 39, 
+      "category": 32, 
       "treeview_image": "", 
       "name": "Clustering Hub", 
       "is_streaming": false, 
@@ -893,10 +987,10 @@
     }
   }, 
   {
-    "pk": 436, 
+    "pk": 396, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 152, 
       "name": "Clusterer", 
       "short_name": "cls", 
       "uid": "9b362e6d-4db5-4a4b-aa6e-a13300733ca4", 
@@ -911,10 +1005,10 @@
     }
   }, 
   {
-    "pk": 437, 
+    "pk": 397, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 152, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "110f77eb-23f5-428a-86f5-e3ad0065af64", 
@@ -929,10 +1023,10 @@
     }
   }, 
   {
-    "pk": 175, 
+    "pk": 158, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 174, 
+      "widget": 152, 
       "name": "Clustering Results", 
       "short_name": "cr", 
       "variable": "clustRes", 
@@ -942,7 +1036,7 @@
     }
   }, 
   {
-    "pk": 40, 
+    "pk": 33, 
     "model": "workflows.category", 
     "fields": {
       "uid": "46050a99-188d-40e1-90e5-0c1912059fa7", 
@@ -954,10 +1048,10 @@
     }
   }, 
   {
-    "pk": 175, 
+    "pk": 153, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 40, 
+      "category": 33, 
       "treeview_image": "", 
       "name": "Train Classifier Hub", 
       "is_streaming": false, 
@@ -981,10 +1075,10 @@
     }
   }, 
   {
-    "pk": 438, 
+    "pk": 398, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 153, 
       "name": "Classifier", 
       "short_name": "csf", 
       "uid": "d483dc98-f0a1-4e60-af44-2ab085741966", 
@@ -999,10 +1093,10 @@
     }
   }, 
   {
-    "pk": 439, 
+    "pk": 399, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 153, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "a1d6b382-7850-423d-8bdd-8f4fad43c9ec", 
@@ -1017,10 +1111,10 @@
     }
   }, 
   {
-    "pk": 176, 
+    "pk": 159, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 175, 
+      "widget": 153, 
       "name": "Classifier", 
       "short_name": "csf", 
       "variable": "csf", 

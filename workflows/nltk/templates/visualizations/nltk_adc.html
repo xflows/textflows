@@ -1,0 +1,20 @@
+{% load url from future %}
+
+<div id="widgetvisualization-{{widget.pk}}" rel="{{widget.pk}}" class="widgetvisualizationdialog" title="dsfgdfg" width="800px" height="600px">
+
+    widgetvisualization-{{widget.pk}}
+    <div id="corpusFeatures">
+        <h2>Features</h2>
+        <b>Source</b> = football.txt <br/><br/><b>CorpusCreateDate</b> = 7.11.2014 18:58:53 <br/><br/><b>SourceDate</b> = 7.11.2014 18:15:22 <br/><br/>
+    </div>
+
+    <div id="documentList">
+    {% for document in input_dict.adc.documents %}
+
+        <h1><a href=Document{0}.html>{{ document.name }}</a></h1>
+        <p class='documentText'>{{ document.text }}</p>
+    {% endfor %}
+
+    </div>
+
+</div>
