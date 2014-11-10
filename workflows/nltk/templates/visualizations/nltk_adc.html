@@ -1,18 +1,27 @@
 {% load url from future %}
 
-<div id="widgetvisualization-{{widget.pk}}" rel="{{widget.pk}}" class="widgetvisualizationdialog" title="dsfgdfg" width="800px" height="600px">
+<div id="widgetvisualization-{{widget.pk}}" class="widgetvisualizationdialog" title="{{widget.name}} visualization" width="800px" height="600px">
 
-    widgetvisualization-{{widget.pk}}
-    <div id="corpusFeatures">
+    <div style="position:absolute;left:10px;top:0px;padding-top:0em;width:200px;height:auto;z-index:1;word-wrap:break-word;font-size:0.9em;">
         <h2>Features</h2>
-        <b>Source</b> = football.txt <br/><br/><b>CorpusCreateDate</b> = 7.11.2014 18:58:53 <br/><br/><b>SourceDate</b> = 7.11.2014 18:15:22 <br/><br/>
+        <b>Source</b> = {{input_dict.adc.features.Source}} <br/><br/>
+        <b>CorpusCreateDate</b> = {{input_dict.adc.features.CorpusCreateDate}}<br/><br/>
+        <b>SourceDate</b> = {{input_dict.adc.features.SourceDate}}<br/><br/>
     </div>
 
-    <div id="documentList">
-    {% for document in input_dict.adc.documents %}
+    <div style="position:absolute;top:10px;width:470px;left:220px;height:auto;border-left:1px #3C64B6 solid;padding-left:2em;z-index:2;">
 
-        <h1><a href=Document{0}.html>{{ document.name }}</a></h1>
-        <p class='documentText'>{{ document.text }}</p>
+        {% for document in input_dict.adc.documents %}
+        <h1><a href={% url 'nltk get adc page' widget_id=widget.pk document_id=forloop.counter narrow_doc='n' %}>{{ document.name }}</a></h1>
+        <p>
+            {%  if document.text|length > 400 %}
+                {{ document.text|slice:":400"|add:"..."}}
+            {% else %}
+                {{ document.text}}
+        {% endif %}
+
+
+        </p>
     {% endfor %}
 
     </div>
