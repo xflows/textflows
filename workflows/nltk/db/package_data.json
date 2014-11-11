@@ -1,6 +1,6 @@
 [
   {
-    "pk": 25, 
+    "pk": 31, 
     "model": "workflows.category", 
     "fields": {
       "uid": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
@@ -12,10 +12,10 @@
     }
   }, 
   {
-    "pk": 154, 
+    "pk": 190, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 25, 
+      "category": 31, 
       "treeview_image": "", 
       "name": "Load Document Corpus From String", 
       "is_streaming": false, 
@@ -39,10 +39,10 @@
     }
   }, 
   {
-    "pk": 400, 
+    "pk": 480, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 154, 
+      "widget": 190, 
       "name": "String", 
       "short_name": "str", 
       "uid": "29b01919-6756-4ba5-b796-15f00879e228", 
@@ -57,10 +57,10 @@
     }
   }, 
   {
-    "pk": 401, 
+    "pk": 481, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 154, 
+      "widget": 190, 
       "name": "Text before the first tabulator [/t] represents the title of a document", 
       "short_name": "bol", 
       "uid": "a84b5c10-8283-4e51-bf2b-1ab5463c09be", 
@@ -75,10 +75,10 @@
     }
   }, 
   {
-    "pk": 402, 
+    "pk": 482, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 154, 
+      "widget": 190, 
       "name": "First words in a line (after optional title) with preceding exclamation (!) present labels", 
       "short_name": "bol", 
       "uid": "917a7c25-695a-4cdb-a578-659ba5ed7cf2", 
@@ -93,10 +93,10 @@
     }
   }, 
   {
-    "pk": 160, 
+    "pk": 190, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 154, 
+      "widget": 190, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "variable": "adc", 
@@ -106,10 +106,10 @@
     }
   }, 
   {
-    "pk": 144, 
+    "pk": 171, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 25, 
+      "category": 31, 
       "treeview_image": "", 
       "name": "Load Document Corpus From File", 
       "is_streaming": false, 
@@ -133,10 +133,10 @@
     }
   }, 
   {
-    "pk": 371, 
+    "pk": 419, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 144, 
+      "widget": 171, 
       "name": "Raw Text File", 
       "short_name": "fil", 
       "uid": "4f703f50-06e9-4595-835f-4bb8b826754b", 
@@ -151,10 +151,10 @@
     }
   }, 
   {
-    "pk": 372, 
+    "pk": 420, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 144, 
+      "widget": 171, 
       "name": "Text before the first tabulator [/t] represents the title of a document", 
       "short_name": "bol", 
       "uid": "b9ec0a50-99fe-4ee3-bceb-ec6320331aa1", 
@@ -169,10 +169,10 @@
     }
   }, 
   {
-    "pk": 373, 
+    "pk": 421, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 144, 
+      "widget": 171, 
       "name": "First words in a line (after optional title) with preceding exclamation (!) present labels", 
       "short_name": "bol", 
       "uid": "1d0aad77-783b-4cc5-a81f-584a1e4d5b25", 
@@ -187,10 +187,10 @@
     }
   }, 
   {
-    "pk": 150, 
+    "pk": 171, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 144, 
+      "widget": 171, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "variable": "adc", 
@@ -200,7 +200,7 @@
     }
   }, 
   {
-    "pk": 26, 
+    "pk": 32, 
     "model": "workflows.category", 
     "fields": {
       "uid": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
@@ -212,10 +212,10 @@
     }
   }, 
   {
-    "pk": 145, 
+    "pk": 177, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 26, 
+      "category": 32, 
       "treeview_image": "", 
       "name": "Display Document Corpus", 
       "is_streaming": false, 
@@ -239,10 +239,10 @@
     }
   }, 
   {
-    "pk": 374, 
+    "pk": 444, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 145, 
+      "widget": 177, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "uid": "d4ffbff2-8055-454b-99db-254a9f6264b6", 
@@ -257,7 +257,105 @@
     }
   }, 
   {
-    "pk": 27, 
+    "pk": 184, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 32, 
+      "treeview_image": "", 
+      "name": "NLTK Document Corpus", 
+      "is_streaming": false, 
+      "uid": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_corpus", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "NLTK corpus readers. The modules in this package provide functions that can be used to read corpus files in a variety of formats. These functions can be used to read both the corpus files that are distributed in the NLTK corpus package, and corpus files that are part of external corpora.\r\n\r\nPlease see http://nltk.googlecode.com/svn/trunk/nltk_data/index.xml for a complete list. Install corpora using nltk.download().\r\n\r\nCorpus has the following available functions:\r\nwords(): list of str\r\nsents(): list of (list of str)\r\nparas(): list of (list of (list of str))\r\ntagged_words(): list of (str,str) tuple\r\ntagged_sents(): list of (list of (str,str))\r\ntagged_paras(): list of (list of (list of (str,str)))\r\nchunked_sents(): list of (Tree w/ (str,str) leaves)\r\nparsed_sents(): list of (Tree with str leaves)\r\nparsed_paras(): list of (list of (Tree with str leaves))\r\nxml(): A single xml ElementTree\r\nraw(): unprocessed corpus contents"
+    }
+  }, 
+  {
+    "pk": 458, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 184, 
+      "name": "NLTK Document Corpus Name", 
+      "short_name": "str", 
+      "uid": "9e3c98c0-69f9-40ee-b11d-cc86c0531606", 
+      "default": "brown", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "corpus_name", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "NTLK Document Corpus Name"
+    }
+  }, 
+  {
+    "pk": 127, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "fcf19171-2a06-450f-8e5a-5a40b9cb3370", 
+      "abstract_input": 458, 
+      "value": "brown", 
+      "name": "Brown"
+    }
+  }, 
+  {
+    "pk": 129, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "d9a7ece8-fb57-4ff3-8e7f-233a1dd989b9", 
+      "abstract_input": 458, 
+      "value": "cess_esp", 
+      "name": "Cess Esp (spanish)"
+    }
+  }, 
+  {
+    "pk": 130, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "51464033-9252-455a-8024-9d14893789ff", 
+      "abstract_input": 458, 
+      "value": "floresta", 
+      "name": "Floresta"
+    }
+  }, 
+  {
+    "pk": 128, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "045fac92-ea05-4699-b8aa-99cb33966b03", 
+      "abstract_input": 458, 
+      "value": "treebank", 
+      "name": "Treebank"
+    }
+  }, 
+  {
+    "pk": 184, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 184, 
+      "name": "NTLK document corpus", 
+      "short_name": "cor", 
+      "variable": "corpus", 
+      "uid": "c2fce52f-e6c4-4074-9b75-49a3ebcac8bf", 
+      "order": 1, 
+      "description": "NLTK document corpus"
+    }
+  }, 
+  {
+    "pk": 33, 
     "model": "workflows.category", 
     "fields": {
       "uid": "bb196a4d-7235-475d-bb4a-8210564f9c37", 
@@ -269,10 +367,10 @@
     }
   }, 
   {
-    "pk": 146, 
+    "pk": 170, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 27, 
+      "category": 33, 
       "treeview_image": "", 
       "name": "Tokenizer Hub", 
       "is_streaming": false, 
@@ -296,10 +394,10 @@
     }
   }, 
   {
-    "pk": 375, 
+    "pk": 415, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 146, 
+      "widget": 170, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "uid": "5e0eedbe-5d93-4fb2-abf6-4f9deeb555a5", 
@@ -314,10 +412,10 @@
     }
   }, 
   {
-    "pk": 376, 
+    "pk": 416, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 146, 
+      "widget": 170, 
       "name": "Tokenizer", 
       "short_name": "tkn", 
       "uid": "15bf0ab2-491e-4c44-aaf9-53206cc3a54f", 
@@ -332,10 +430,10 @@
     }
   }, 
   {
-    "pk": 377, 
+    "pk": 417, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 146, 
+      "widget": 170, 
       "name": "Annotation to be tokenized", 
       "short_name": "ann", 
       "uid": "83118f55-9ef7-4710-9217-627ccbd52df3", 
@@ -350,10 +448,10 @@
     }
   }, 
   {
-    "pk": 378, 
+    "pk": 418, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 146, 
+      "widget": 170, 
       "name": "Annotation to be produced", 
       "short_name": "ann", 
       "uid": "73e438f5-8d6f-43a3-a3d4-1df23c496a98", 
@@ -368,10 +466,10 @@
     }
   }, 
   {
-    "pk": 151, 
+    "pk": 170, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 146, 
+      "widget": 170, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "variable": "adc", 
@@ -381,11 +479,11 @@
     }
   }, 
   {
-    "pk": 28, 
+    "pk": 41, 
     "model": "workflows.category", 
     "fields": {
       "uid": "b0ce2ce4-16e8-4f9c-9874-238066c20fea", 
-      "parent": 27, 
+      "parent": 33, 
       "workflow": null, 
       "user": null, 
       "order": 1, 
@@ -393,10 +491,10 @@
     }
   }, 
   {
-    "pk": 147, 
+    "pk": 169, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 28, 
+      "category": 41, 
       "treeview_image": "", 
       "name": "Punkt Sentence Tokenizer", 
       "is_streaming": false, 
@@ -420,10 +518,10 @@
     }
   }, 
   {
-    "pk": 152, 
+    "pk": 169, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 147, 
+      "widget": 169, 
       "name": "Tokenizer", 
       "short_name": "tkn", 
       "variable": "tokenizer", 
@@ -433,10 +531,10 @@
     }
   }, 
   {
-    "pk": 148, 
+    "pk": 168, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 28, 
+      "category": 41, 
       "treeview_image": "", 
       "name": "Treebank Word Tokenizer", 
       "is_streaming": false, 
@@ -460,10 +558,10 @@
     }
   }, 
   {
-    "pk": 379, 
+    "pk": 414, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 148, 
+      "widget": 168, 
       "name": "Type", 
       "short_name": "typ", 
       "uid": "39bda283-65a9-4d87-bc12-5f62fd43b38c", 
@@ -478,10 +576,10 @@
     }
   }, 
   {
-    "pk": 153, 
+    "pk": 168, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 148, 
+      "widget": 168, 
       "name": "Tokenizer", 
       "short_name": "tkn", 
       "variable": "tokenizer", 
@@ -491,7 +589,1065 @@
     }
   }, 
   {
-    "pk": 29, 
+    "pk": 35, 
+    "model": "workflows.category", 
+    "fields": {
+      "uid": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
+      "parent": null, 
+      "workflow": null, 
+      "user": null, 
+      "order": 4, 
+      "name": "Tagging"
+    }
+  }, 
+  {
+    "pk": 183, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 35, 
+      "treeview_image": "", 
+      "name": "POS Tagger Hub", 
+      "is_streaming": false, 
+      "uid": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_pos_do_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "pos_tagger_hub", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 2, 
+      "description": "Automatically generated widget from function PosTag in package latino. The original function signature: PosTag."
+    }
+  }, 
+  {
+    "pk": 453, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 183, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "f769fea1-3600-4c01-817e-3cbf6214c4df", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "LatinoClowdFlows.DocumentCorpus"
+    }
+  }, 
+  {
+    "pk": 454, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 183, 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "uid": "6f5f601d-d89c-4578-a6cc-f91750013c78", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger"
+    }
+  }, 
+  {
+    "pk": 455, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 183, 
+      "name": "Sentence's Annotation", 
+      "short_name": "str", 
+      "uid": "575212d6-fabc-4eb4-b725-f2f095538c7a", 
+      "default": "Sentence", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "group_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "pk": 456, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 183, 
+      "name": "Element's Annotation", 
+      "short_name": "str", 
+      "uid": "5efe8312-301e-4fe9-aef8-d39762594584", 
+      "default": "Token", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "pk": 457, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 183, 
+      "name": "Output Feature Name", 
+      "short_name": "str", 
+      "uid": "42602fdc-7094-465b-8c8c-0ab19fd9ef44", 
+      "default": "POS Tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_feature", 
+      "parameter": true, 
+      "order": 5, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "pk": 183, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 183, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "variable": "adc", 
+      "uid": "cded8ae2-2518-420a-a8ff-662ca07c57bc", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 179, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 35, 
+      "treeview_image": "", 
+      "name": "Stem/Lemma Tagger Hub", 
+      "is_streaming": false, 
+      "uid": "8710e976-8020-45c3-bbeb-5e523871525c", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_stem_do_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "stem_lemma_tagger_hub", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 5, 
+      "description": "Taggs the given annotated document corpus with the given tagger."
+    }
+  }, 
+  {
+    "pk": 447, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 179, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "786e1f2b-8e77-4732-9f6d-e9757dd36564", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "LatinoClowdFlows.DocumentCorpus"
+    }
+  }, 
+  {
+    "pk": 448, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 179, 
+      "name": "Token Tagger", 
+      "short_name": "tgr", 
+      "uid": "07d4636f-5ec1-4cdb-8ea0-2a35930c2499", 
+      "default": "Output feature name specifies how the token will be tagged (assigend the feature to)\r\nIf multiple taggers are used then one line per tagger must be specified.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "Token Annotation of the token to be tagged. If also the feature name is used than the feature value of selected token will be tagged.\r\nUsage: \r\n1. TokenName\r\n2. TokenName/FeatureName\r\nIf multiple taggers are used then one line per tagger must be specified."
+    }
+  }, 
+  {
+    "pk": 449, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 179, 
+      "name": "Token Annotation", 
+      "short_name": "str", 
+      "uid": "72232775-edbc-4748-8b7f-77eb5023048c", 
+      "default": "Token", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "pk": 450, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 179, 
+      "name": "Output Feature Name", 
+      "short_name": "str", 
+      "uid": "a7946246-3719-4f0e-b915-1512183aa472", 
+      "default": "Stem", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_feature", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "pk": 179, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 179, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "variable": "adc", 
+      "uid": "2882c119-5077-49a0-80dc-466cf30c5eb6", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 173, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 35, 
+      "treeview_image": "", 
+      "name": "Stopword Tagger Hub", 
+      "is_streaming": false, 
+      "uid": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_stop_do_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "stopword_tagger_hub", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 8, 
+      "description": "Automatically generated widget from function TagADCStopwords in package latino. The original function signature: TagADCStopwords."
+    }
+  }, 
+  {
+    "pk": 432, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 173, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "c5745036-078d-44ef-881c-9dbc43be9bb6", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "LatinoClowdFlows.DocumentCorpus"
+    }
+  }, 
+  {
+    "pk": 433, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 173, 
+      "name": "Token Tagger", 
+      "short_name": "tgr", 
+      "uid": "b1d8d6e9-43c8-4a67-8ea6-dd62c5e5aa67", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "System.Object"
+    }
+  }, 
+  {
+    "pk": 434, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 173, 
+      "name": "Token Annotation", 
+      "short_name": "str", 
+      "uid": "245dd339-85de-4ddf-a39b-d3bb47881711", 
+      "default": "Token", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "pk": 435, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 173, 
+      "name": "Output Feature Name", 
+      "short_name": "str", 
+      "uid": "623a2684-0327-45e3-be7a-6f9c8d320c16", 
+      "default": "stopword", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_feature", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "System.String"
+    }
+  }, 
+  {
+    "pk": 174, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 173, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "variable": "adc", 
+      "uid": "d858ac7b-0e3c-4ce6-a942-60d9d63caaa9", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "workflows.category", 
+    "fields": {
+      "uid": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "parent": 35, 
+      "workflow": null, 
+      "user": null, 
+      "order": 1, 
+      "name": "Nltk"
+    }
+  }, 
+  {
+    "pk": 181, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "Lancaster Stemmer", 
+      "is_streaming": false, 
+      "uid": "c0e1ddea-5164-428b-ba4b-cdf790f387e4", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_stem_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_lancaster_stemmer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 4, 
+      "description": "A word stemmer based on the Lancaster stemming algorithm.\r\n\r\n        >>> from nltk.stem.lancaster import LancasterStemmer\r\n        >>> st = LancasterStemmer()\r\n        >>> st.stem('maximum')     # Remove \"-um\" when word is intact\r\n        'maxim'\r\n        >>> st.stem('presumably')  # Don't remove \"-um\" when word is not intact\r\n        'presum'\r\n        >>> st.stem('multiply')    # No action taken if word ends with \"-ply\"\r\n        'multiply'\r\n        >>> st.stem('provision')   # Replace \"-sion\" with \"-j\" to trigger \"j\" set of rules\r\n        'provid'\r\n        >>> st.stem('owed')        # Word starting with vowel must contain at least 2 letters\r\n        'ow'\r\n        >>> st.stem('ear')         # ditto\r\n        'ear'\r\n        >>> st.stem('saying')      # Words starting with consonant must contain at least 3\r\n        'say'\r\n        >>> st.stem('crying')      #     letters and one of those letters must be a vowel\r\n        'cry'\r\n        >>> st.stem('string')      # ditto\r\n        'string'\r\n        >>> st.stem('meant')       # ditto\r\n        'meant'\r\n        >>> st.stem('cement')      # ditto\r\n        'cem'"
+    }
+  }, 
+  {
+    "pk": 181, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 181, 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "23346ed8-bfe2-4c2e-84c6-106d7f7a7f3e", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 182, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "Porter Stemmer", 
+      "is_streaming": false, 
+      "uid": "5746f13a-5cb8-4472-adcd-9e7deb7b540c", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_stem_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_porter_stemmer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 4, 
+      "description": "This is the Porter stemming algorithm, ported to Python from the version coded up in ANSI C by the author. It follows the algorithm presented in \r\n\r\nPorter, M. \"An algorithm for suffix stripping.\" Program 14.3 (1980): 130-137.\r\n\r\nonly differing from it at the points marked --DEPARTURE-- and --NEW--\r\nbelow.\r\n\r\nFor a more faithful version of the Porter algorithm, see\r\nhttp://www.tartarus.org/~martin/PorterStemmer/\r\n"
+    }
+  }, 
+  {
+    "pk": 182, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 182, 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "30a0c173-06ee-4726-a1d7-110f0ec84ed4", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 180, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "Stopwords Tagger", 
+      "is_streaming": false, 
+      "uid": "fcf93056-8fa3-444b-a203-f58a85157a93", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_stop_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_stop_words_tagger", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 7, 
+      "description": "Automatically generated widget from function ConstructStopWordsTagger in package latino. The original function signature: ConstructStopWordsTagger."
+    }
+  }, 
+  {
+    "pk": 451, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 180, 
+      "name": "Stopwords", 
+      "short_name": "str", 
+      "uid": "0572bb02-0fb7-4b83-b759-680bdf8cacb7", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "stop_words", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "List of stopwords"
+    }
+  }, 
+  {
+    "pk": 452, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 180, 
+      "name": "Ignore Case", 
+      "short_name": "bol", 
+      "uid": "aced5810-e09d-4bb8-b307-83d32049e9cf", 
+      "default": "true", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "ignore_case", 
+      "parameter": true, 
+      "order": 2, 
+      "description": "If true than words are marked stopword regardless of their casing."
+    }
+  }, 
+  {
+    "pk": 180, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 180, 
+      "name": "StopWords Tagger", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "a9b43282-d68a-4e51-9ced-825ef97cec61", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 187, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "POS Affix Tagger", 
+      "is_streaming": false, 
+      "uid": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_pos_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_affix_pos_tagger", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 100, 
+      "description": "A tagger that chooses a token's tag based on a leading or trailing\r\nsubstring of its word string.  (It is important to note that these\r\nsubstrings are not necessarily \"true\" morphological affixes).  In\r\nparticular, a fixed-length substring of the word is looked up in a\r\ntable, and the corresponding tag is returned.  Affix taggers are\r\ntypically constructed by training them on a tagged corpus."
+    }
+  }, 
+  {
+    "pk": 467, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 187, 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "uid": "6d8fe8de-2d18-49db-a0fd-9bde3859dc72", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
+    }
+  }, 
+  {
+    "pk": 468, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 187, 
+      "name": "Backoff Tagger", 
+      "short_name": "tgr", 
+      "uid": "d02b5b26-b436-4a4a-ab95-fa24df0d3105", 
+      "default": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "backoff_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "A backoff tagger, to be used by the new tagger if it encounters an unknown context."
+    }
+  }, 
+  {
+    "pk": 469, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 187, 
+      "name": "Affix Length", 
+      "short_name": "nnn", 
+      "uid": "fc504a68-f45f-4c41-9e08-56550aa17031", 
+      "default": "-3", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "affix_length", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "The length of the affixes that should be considered during training and tagging.  Use negative numbers for suffixes."
+    }
+  }, 
+  {
+    "pk": 470, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 187, 
+      "name": "Cutoff", 
+      "short_name": "cut", 
+      "uid": "c071c373-5adc-40e8-9268-90155dfb1dfc", 
+      "default": "0", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "cutoff", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "If the most likely tag for a context occurs fewer than *cutoff* times, then exclude it from the context-to-tag table for the new tagger."
+    }
+  }, 
+  {
+    "pk": 471, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 187, 
+      "name": "Minimum Stem Length", 
+      "short_name": "msl", 
+      "uid": "84dc7d2f-05a0-4f66-8f72-0ec3c386ecb6", 
+      "default": "2", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "min_stem_length", 
+      "parameter": true, 
+      "order": 5, 
+      "description": "Any words whose length is less than min_stem_length+abs(affix_length) will be assigned a tag of None by this tagger."
+    }
+  }, 
+  {
+    "pk": 187, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 187, 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "5062a84a-cf3b-457d-a898-33e463561591", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 189, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "POS Brill's rule-based Tagger", 
+      "is_streaming": false, 
+      "uid": "e8702601-7728-4719-a7ae-bbfb9aea1434", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_pos_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_brill_pos_tagger", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 100, 
+      "description": "\"\"\"Brill's transformational rule-based tagger.  Brill taggers use an\r\ninitial tagger (such as ``tag.DefaultTagger``) to assign an initial\r\ntag sequence to a text; and then apply an ordered list of\r\ntransformational rules to correct the tags of individual tokens.\r\nThese transformation rules are specified by the ``BrillRule``\r\ninterface.\r\n\r\nBrill taggers can be created directly, from an initial tagger and\r\na list of transformational rules; but more often, Brill taggers\r\nare created by learning rules from a training corpus, using either\r\n``BrillTaggerTrainer`` or ``FastBrillTaggerTrainer``."
+    }
+  }, 
+  {
+    "pk": 476, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 189, 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "uid": "bd881e97-4c22-4643-9da2-d065e9de0723", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
+    }
+  }, 
+  {
+    "pk": 477, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 189, 
+      "name": "Initial Tagger", 
+      "short_name": "tgr", 
+      "uid": "93594713-d320-4902-b456-92176ed502f4", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "initial_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "The initial tagger. Brill taggers use an initial tagger (such as ``DefaultTagger``) to assign an initial tag sequence to a text."
+    }
+  }, 
+  {
+    "pk": 478, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 189, 
+      "name": "Max Rules", 
+      "short_name": "mru", 
+      "uid": "000d3e76-901f-4ee2-9efe-34ffb4633fb0", 
+      "default": "200", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "max_rules", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "The maximum number of transformations to be created"
+    }
+  }, 
+  {
+    "pk": 479, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 189, 
+      "name": "Min Score", 
+      "short_name": "msc", 
+      "uid": "cd670e97-68b0-48b0-8ae9-e1fa75d01cf8", 
+      "default": "2", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "min_score", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "The minimum acceptable net error reduction that each transformation must produce in the corpus."
+    }
+  }, 
+  {
+    "pk": 189, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 189, 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "99f7cda3-3303-49f2-a895-e562dec52de6", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 188, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "POS Classifier-based Tagger", 
+      "is_streaming": false, 
+      "uid": "dcc5dc6c-9d35-4556-9698-4024f5cf7d0a", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_pos_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_classifier_based_pos_tagger", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 100, 
+      "description": "A sequential tagger that uses a classifier to choose the tag for\r\neach token in a sentence.  The featureset input for the classifier\r\nis generated by a feature detector function::\r\n\r\n    feature_detector(tokens, index, history) -> featureset\r\n\r\nWhere tokens is the list of unlabeled tokens in the sentence;\r\nindex is the index of the token for which feature detection\r\nshould be performed; and history is list of the tags for all\r\ntokens before index.\r\n\r\nConstruct a new classifier-based sequential tagger."
+    }
+  }, 
+  {
+    "pk": 472, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 188, 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "uid": "068e9777-c614-4176-8109-fc36df9059b1", 
+      "default": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
+    }
+  }, 
+  {
+    "pk": 473, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 188, 
+      "name": "Backoff Tagger", 
+      "short_name": "tgr", 
+      "uid": "1e2aa1a2-4d7e-4174-8b8f-1b9c79b202db", 
+      "default": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "backoff_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "A backoff tagger, to be used by the new tagger if it encounters an unknown context."
+    }
+  }, 
+  {
+    "pk": 474, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 188, 
+      "name": "Classifier", 
+      "short_name": "csf", 
+      "uid": "25e5184d-bce4-4d22-b6dd-8ee71a358386", 
+      "default": "1", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "classifier", 
+      "parameter": false, 
+      "order": 3, 
+      "description": "The classifier that should be used by the tagger.  This is useful if you want to use a manually constructed classifier for POS tagging."
+    }
+  }, 
+  {
+    "pk": 475, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 188, 
+      "name": "Cutoff Probability", 
+      "short_name": "cut", 
+      "uid": "1e8d6b5d-94f0-437d-b304-f43a273f36b1", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "cutoff_prob", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "If specified, then this tagger will fall back on its backoff tagger if the probability of the most likely tag is less than *cutoff_prob*."
+    }
+  }, 
+  {
+    "pk": 188, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 188, 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "202d176a-1790-4d69-bd94-808f50ae0b93", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 185, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "POS Default Tagger", 
+      "is_streaming": false, 
+      "uid": "a3009803-8b80-455d-994e-3fb43618efb1", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_pos_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_default_pos_tagger", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 100, 
+      "description": "A tagger that assigns the same tag to every token.\r\n\r\n    >>> from nltk.tag.sequential import DefaultTagger\r\n    >>> default_tagger = DefaultTagger('NN')\r\n    >>> default_tagger.tag('This is a test'.split())\r\n    [('This', 'NN'), ('is', 'NN'), ('a', 'NN'), ('test', 'NN')]\r\n\r\nThis tagger is recommended as a backoff tagger, in cases where\r\na more powerful tagger is unable to assign a tag to the word\r\n(e.g. because the word was not seen during training)."
+    }
+  }, 
+  {
+    "pk": 459, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 185, 
+      "name": "Default tag", 
+      "short_name": "tag", 
+      "uid": "fc98d2c8-102c-4796-a88c-cd20c1e49ac6", 
+      "default": "-None-", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "default_tag", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "The default tag \"-None-\". Set this to a different tag, such as \"NN\", to change the default tag."
+    }
+  }, 
+  {
+    "pk": 185, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 185, 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "21d7b641-701b-42fa-8a14-feb556cae89d", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 186, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 42, 
+      "treeview_image": "", 
+      "name": "POS N-gram Tagger", 
+      "is_streaming": false, 
+      "uid": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltk", 
+      "static_image": "tag_pos_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_ngram_pos_tagger", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 100, 
+      "description": "A tagger that chooses a token's tag based on its word string and\r\non the preceding n word's tags.  In particular, a tuple\r\n(tags[i-n:i-1], words[i]) is looked up in a table, and the\r\ncorresponding tag is returned.  N-gram taggers are typically\r\ntrained on a tagged corpus.\r\n\r\nTrain a new NgramTagger using the given training data or\r\nthe supplied model.  In particular, construct a new tagger\r\nwhose table maps from each context (tag[i-n:i-1], word[i])\r\nto the most frequent tag for that context.  But exclude any\r\ncontexts that are already tagged perfectly by the backoff\r\ntagger."
+    }
+  }, 
+  {
+    "pk": 463, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 186, 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "uid": "c311d6f1-b046-4198-8edd-a7436bf77d39", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format"
+    }
+  }, 
+  {
+    "pk": 464, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 186, 
+      "name": "Backoff Tagger", 
+      "short_name": "tgr", 
+      "uid": "53e45047-3542-458b-8461-9862de456282", 
+      "default": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "backoff_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "A backoff tagger, to be used by the new tagger if it encounters an unknown context."
+    }
+  }, 
+  {
+    "pk": 465, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 186, 
+      "name": "N-gram", 
+      "short_name": "nnn", 
+      "uid": "ad727689-89fa-411f-a68f-e7ae50f4fbc9", 
+      "default": "1", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "n", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "N-gram is a contiguous sequence of n items from a given sequence of text or speech."
+    }
+  }, 
+  {
+    "pk": 466, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 186, 
+      "name": "Cutoff", 
+      "short_name": "cut", 
+      "uid": "9a3fa49e-3e9a-444c-bd58-3eac0ed73edf", 
+      "default": "0", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "cutoff", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "If the most likely tag for a context occurs fewer than *cutoff* times, then exclude it from the context-to-tag table for the new tagger."
+    }
+  }, 
+  {
+    "pk": 186, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 186, 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "variable": "tagger", 
+      "uid": "ac04c915-bba0-4d21-b532-ad3e56df361d", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 36, 
     "model": "workflows.category", 
     "fields": {
       "uid": "6091637f-b3cd-4559-b525-18357b02dbc2", 
@@ -503,10 +1659,10 @@
     }
   }, 
   {
-    "pk": 149, 
+    "pk": 172, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 29, 
+      "category": 36, 
       "treeview_image": "", 
       "name": "BOW Model and Dataset", 
       "is_streaming": false, 
@@ -530,10 +1686,10 @@
     }
   }, 
   {
-    "pk": 380, 
+    "pk": 422, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "uid": "7cb2daa0-2a41-4fd1-9784-b5ce800984f2", 
@@ -548,10 +1704,10 @@
     }
   }, 
   {
-    "pk": 381, 
+    "pk": 423, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Token Annotation", 
       "short_name": "str", 
       "uid": "f40410c6-6121-46b4-bd00-46a4a83730b0", 
@@ -566,10 +1722,10 @@
     }
   }, 
   {
-    "pk": 382, 
+    "pk": 424, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Stem Feature Name", 
       "short_name": "str", 
       "uid": "686e457b-9e5d-4a64-aa0a-f82b554fa977", 
@@ -584,10 +1740,10 @@
     }
   }, 
   {
-    "pk": 383, 
+    "pk": 425, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Stopword Feature Name", 
       "short_name": "str", 
       "uid": "b5ca48ce-85e7-4192-b175-f12e506e4dbc", 
@@ -602,10 +1758,10 @@
     }
   }, 
   {
-    "pk": 384, 
+    "pk": 426, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Label Document Feature Name", 
       "short_name": "str", 
       "uid": "1116208b-cf40-4de9-9253-2eeb99eed1f7", 
@@ -620,10 +1776,10 @@
     }
   }, 
   {
-    "pk": 385, 
+    "pk": 427, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Maximum N-Gram Length", 
       "short_name": "int", 
       "uid": "f67756f7-6e1d-419c-b766-75ee38a766d1", 
@@ -638,10 +1794,10 @@
     }
   }, 
   {
-    "pk": 386, 
+    "pk": 428, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Minimum Word Freqency", 
       "short_name": "dbl", 
       "uid": "c3f73c01-adc5-4c1b-b70f-b302dba2faf3", 
@@ -656,10 +1812,10 @@
     }
   }, 
   {
-    "pk": 387, 
+    "pk": 429, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Word Weighting Type", 
       "short_name": "wwt", 
       "uid": "2b646850-585b-4ed7-aa70-ea0f6050e207", 
@@ -674,10 +1830,10 @@
     }
   }, 
   {
-    "pk": 388, 
+    "pk": 430, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Cut Low Weights Percentage", 
       "short_name": "dbl", 
       "uid": "06b45eac-4346-4167-8dd6-041e483d2be4", 
@@ -692,10 +1848,10 @@
     }
   }, 
   {
-    "pk": 389, 
+    "pk": 431, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Normalize Vectors", 
       "short_name": "bol", 
       "uid": "c864e2cd-665d-4cda-bbb7-a2b63885371c", 
@@ -710,10 +1866,10 @@
     }
   }, 
   {
-    "pk": 154, 
+    "pk": 172, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Bag of Words Model", 
       "short_name": "bow", 
       "variable": "bow", 
@@ -723,10 +1879,10 @@
     }
   }, 
   {
-    "pk": 155, 
+    "pk": 173, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 149, 
+      "widget": 172, 
       "name": "Dataset", 
       "short_name": "ds", 
       "variable": "ds", 
@@ -736,7 +1892,7 @@
     }
   }, 
   {
-    "pk": 30, 
+    "pk": 37, 
     "model": "workflows.category", 
     "fields": {
       "uid": "57cfe571-165d-4575-90d9-28daf794e773", 
@@ -748,10 +1904,10 @@
     }
   }, 
   {
-    "pk": 150, 
+    "pk": 178, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 30, 
+      "category": 37, 
       "treeview_image": "", 
       "name": "Add Labels", 
       "is_streaming": false, 
@@ -775,10 +1931,10 @@
     }
   }, 
   {
-    "pk": 390, 
+    "pk": 445, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 150, 
+      "widget": 178, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "9f466a6e-1a73-4cd5-8ae5-1bf634daaefc", 
@@ -793,10 +1949,10 @@
     }
   }, 
   {
-    "pk": 391, 
+    "pk": 446, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 150, 
+      "widget": 178, 
       "name": "Labeles (Array of Strings)", 
       "short_name": "str", 
       "uid": "eb8485af-ea8c-4feb-ae41-dbb76a52a807", 
@@ -811,10 +1967,10 @@
     }
   }, 
   {
-    "pk": 156, 
+    "pk": 178, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 150, 
+      "widget": 178, 
       "name": "Dataset", 
       "short_name": "ds", 
       "variable": "ds", 
@@ -824,7 +1980,7 @@
     }
   }, 
   {
-    "pk": 31, 
+    "pk": 38, 
     "model": "workflows.category", 
     "fields": {
       "uid": "5a2a3054-1e34-4e51-851e-85baaee020d4", 
@@ -836,10 +1992,10 @@
     }
   }, 
   {
-    "pk": 151, 
+    "pk": 176, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 31, 
+      "category": 38, 
       "treeview_image": "", 
       "name": "Calculate Similarity Matrix", 
       "is_streaming": false, 
@@ -863,10 +2019,10 @@
     }
   }, 
   {
-    "pk": 392, 
+    "pk": 440, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 151, 
+      "widget": 176, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "835ffa43-4cfc-48e4-a2d7-71cc01c47205", 
@@ -881,10 +2037,10 @@
     }
   }, 
   {
-    "pk": 393, 
+    "pk": 441, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 151, 
+      "widget": 176, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "507a7bad-c956-49c6-9deb-c9cfd4a6b471", 
@@ -899,10 +2055,10 @@
     }
   }, 
   {
-    "pk": 394, 
+    "pk": 442, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 151, 
+      "widget": 176, 
       "name": "Similarity Threshold", 
       "short_name": "dbl", 
       "uid": "f31d1331-576c-4b39-940f-4ecb4395c83b", 
@@ -917,10 +2073,10 @@
     }
   }, 
   {
-    "pk": 395, 
+    "pk": 443, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 151, 
+      "widget": 176, 
       "name": "Full Matrix (not only Lower Triangular)", 
       "short_name": "bol", 
       "uid": "7125b9d7-c961-4fa1-8acf-4c99207f641b", 
@@ -935,10 +2091,10 @@
     }
   }, 
   {
-    "pk": 157, 
+    "pk": 177, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 151, 
+      "widget": 176, 
       "name": "Similarity Matrix", 
       "short_name": "smx", 
       "variable": "smx", 
@@ -948,7 +2104,7 @@
     }
   }, 
   {
-    "pk": 32, 
+    "pk": 39, 
     "model": "workflows.category", 
     "fields": {
       "uid": "9571d766-09a1-4e85-9f13-974c76c15f9e", 
@@ -960,10 +2116,10 @@
     }
   }, 
   {
-    "pk": 152, 
+    "pk": 174, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 32, 
+      "category": 39, 
       "treeview_image": "", 
       "name": "Clustering Hub", 
       "is_streaming": false, 
@@ -987,10 +2143,10 @@
     }
   }, 
   {
-    "pk": 396, 
+    "pk": 436, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 152, 
+      "widget": 174, 
       "name": "Clusterer", 
       "short_name": "cls", 
       "uid": "9b362e6d-4db5-4a4b-aa6e-a13300733ca4", 
@@ -1005,10 +2161,10 @@
     }
   }, 
   {
-    "pk": 397, 
+    "pk": 437, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 152, 
+      "widget": 174, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "110f77eb-23f5-428a-86f5-e3ad0065af64", 
@@ -1023,10 +2179,10 @@
     }
   }, 
   {
-    "pk": 158, 
+    "pk": 175, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 152, 
+      "widget": 174, 
       "name": "Clustering Results", 
       "short_name": "cr", 
       "variable": "clustRes", 
@@ -1036,7 +2192,7 @@
     }
   }, 
   {
-    "pk": 33, 
+    "pk": 40, 
     "model": "workflows.category", 
     "fields": {
       "uid": "46050a99-188d-40e1-90e5-0c1912059fa7", 
@@ -1048,10 +2204,10 @@
     }
   }, 
   {
-    "pk": 153, 
+    "pk": 175, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 33, 
+      "category": 40, 
       "treeview_image": "", 
       "name": "Train Classifier Hub", 
       "is_streaming": false, 
@@ -1075,10 +2231,10 @@
     }
   }, 
   {
-    "pk": 398, 
+    "pk": 438, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 153, 
+      "widget": 175, 
       "name": "Classifier", 
       "short_name": "csf", 
       "uid": "d483dc98-f0a1-4e60-af44-2ab085741966", 
@@ -1093,10 +2249,10 @@
     }
   }, 
   {
-    "pk": 399, 
+    "pk": 439, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 153, 
+      "widget": 175, 
       "name": "Dataset", 
       "short_name": "ds", 
       "uid": "a1d6b382-7850-423d-8bdd-8f4fad43c9ec", 
@@ -1111,10 +2267,10 @@
     }
   }, 
   {
-    "pk": 159, 
+    "pk": 176, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 153, 
+      "widget": 175, 
       "name": "Classifier", 
       "short_name": "csf", 
       "variable": "csf", 

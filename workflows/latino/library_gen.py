@@ -304,15 +304,15 @@ def latino_construct_english_maximum_entropy_pos_tagger(inputDict):
     execResult = LatinoCF.ConstructEnglishMaximumEntropyPosTagger(_beamSize)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['posTagger'] = execResultPy
+    outputDict['tagger'] = execResultPy
     return outputDict
 
 def latino_pos_tag(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _posTagger = ToNetObj(inputDict['posTagger'])
-    _groupAnnotation = ToString(inputDict['groupAnnotation'])
-    _elementAnnotation = ToString(inputDict['elementAnnotation'])
-    _outputFeature = ToString(inputDict['outputFeature'])
+    _posTagger = ToNetObj(inputDict['tagger'])
+    _groupAnnotation = ToString(inputDict['group_annotation'])
+    _elementAnnotation = ToString(inputDict['element_annotation'])
+    _outputFeature = ToString(inputDict['output_feature'])
     execResult = LatinoCF.PosTag(_adc, _posTagger, _groupAnnotation, _elementAnnotation, _outputFeature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
@@ -386,8 +386,8 @@ def latino_tag_adcstem_lemma(inputDict):
 def latino_tag_adcstopwords(inputDict):
     _adc = ToNetObj(inputDict['adc'])
     _tagger = ToNetObj(inputDict['tagger'])
-    _elementAnnotation = ToString(inputDict['elementAnnotation'])
-    _outputFeature = ToString(inputDict['outputFeature'])
+    _elementAnnotation = ToString(inputDict['element_annotation'])
+    _outputFeature = ToString(inputDict['output_feature'])
     execResult = LatinoCF.TagADCStopwords(_adc, _tagger, _elementAnnotation, _outputFeature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}

@@ -24,8 +24,15 @@ class Document:
 
 
 class Annotation:
-    def __init__(self, spanStart,spanEnd,type1,features={}):
+    def __init__(self, span_start,span_end,type1,features={}):
         self.features=features
-        self.span_start=spanStart
-        self.span_end=spanEnd
+        self.span_start=span_start
+        self.span_end=span_end
         self.type=type1
+    def __repr__(self):
+        return '<Annotation span_start:%d span_ned:%d>' % (self.span_start, self.span_end)
+
+    def __unicode__(self):
+        return 'span_start; %d\tspan_ned: %d' % (self.span_start, self.span_end)
+    def __str__(self):
+        return unicode(self).encode('utf-8')

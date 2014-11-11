@@ -40,6 +40,7 @@ def dynamic_import_globals(name, package, localSetAttrFunc):
         import sys, traceback
         print "Exception in user code:"
         print '-'*60
+        print name
         traceback.print_exc(file=sys.stdout)
         print '-'*60
         return
