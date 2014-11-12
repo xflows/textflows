@@ -25,7 +25,7 @@ INSTALLED_APPS_WORKFLOWS_SUB = (
     #'workflows.decision_support',
     #'workflows.segmine',
     #'workflows.subgroup_discovery',
-    'workflows.nlp',
+    #'workflows.nlp',
     'workflows.nl_toolkit',
     'workflows.nltk'
     #'workflows.ilp',
