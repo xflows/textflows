@@ -1,7 +1,7 @@
 from itertools import izip
 from workflows.textflows import *
-from tagging_lib.part_of_speech import *
-#POS TAGGERS
+from tagging_lib.part_of_speech import * #POS TAGGERS
+from tagging_lib.stemming import * #STEMMERS
 
 # HUBS
 def pos_tagger_hub(input_dict):
@@ -11,71 +11,56 @@ def pos_tagger_hub(input_dict):
     else:
         return universal_sentence_tagger_hub(input_dict)
 
-def stopword_tagger_hub(input_dict):
-    if type(input_dict['tagger'])!=dict: #check if this is a latino object
+def stop_word_tagger_hub(input_dict):
+    """
+    Apply the *stop_word_tagger* object on the Annotated Document Corpus (*adc*):
+
+    1. first select only annotations of type Token Annotation *element_annotation*,
+    2. apply the stop_word tagger
+    3. create new annotations *output_feature* with the outputs of the stop word tagger.
+
+    :param adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
+    :param stop_word_tagger: A python dictionary containing the stop word tagger object and its arguments.
+    :param element_annotation: Which annotated part of document to be searched for stopwords.
+    :param output_features: How to annotate the newly discovered stop word features.
+    """
+
+    if type(input_dict['stop_word_tagger'])!=dict: #check if this is a latino object
         from ...latino.library_gen import latino_tag_adcstopwords
+        input_dict['tagger']=input_dict['stop_word_tagger']  #TODO temporary
         return latino_tag_adcstopwords(input_dict)
     else:
-        return universal_word_tagger_hub(input_dict)
+        adc = input_dict['adc']
+        tagger_dict = input_dict['stop_word_tagger']
+        input_annotation = input_dict['element_annotation']
+        output_annotation = input_dict['output_feature']
+        return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
 
 def stem_lemma_tagger_hub(input_dict):
+    raise NotImplementedError
     if type(input_dict['tagger'])!=dict: #check if this is a latino object
         from ...latino.library_gen import latino_tag_adcstem_lemma
         return latino_tag_adcstem_lemma(input_dict)
     else:
         return universal_word_tagger_hub(input_dict)
 
-def universal_word_tagger_hub(input_dict):
-    tagger_dict = input_dict['tagger']
+def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation):
     tagger=tagger_dict['object']
     tagger_function=tagger_dict['function']
     args=tagger_dict.get('args',[])
     kwargs=tagger_dict.get('kargs',{})
 
-    input_annotation = input_dict['element_annotation']
-    output_annotation = input_dict['output_feature']
-    adc = input_dict['adc']
-
-    #TODO
-    #     outputFeature = outputFeature.Trim();
-    #     TextBlockAnnotationService tba;
-    #     if (tagger is ITagger)
-    #         tba = ((ITagger)tagger).GetTextBlockAnnotationService(elementAnnotation);
-    #     else
-    #         tba = new TextBlockAnnotationService(elementAnnotation, null);
-
-
     for document in adc.documents:
         if document.features['contentType'] == "Text":
             if not document.text:
                 pass
-            for annotation in document.select_annotations(input_annotation): #all annotations of this type
-                subtext = document.text[annotation.span_start:annotation.span_end+1]
-
-                new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
-                if new_feature!=None:
-                    annotation.features[output_annotation]=new_feature
-
-
+            for annotation,subtext in document.get_annotations_with_text(input_annotation): #all annotations of this type
+                if subtext:
+                    new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
+                    if new_feature!=None:
+                        annotation.features[output_annotation]=new_feature
     return {'adc': adc }
 
-        #
-        #     foreach (Document document in adcNew.Documents) {
-        #         string contentType = document.Features.GetFeatureValue(documentFeature);
-        #         if (contentType == documetnFeatureValue) {
-        #             TextBlock[] textBlocks = document.GetAnnotatedBlocks(tba.Annotation);
-        #             foreach (TextBlock textBlock in textBlocks) {
-        #                 string word = tba.GetText(textBlock);
-        #                 string tag = null;
-        #                 if (word != null)
-        #                     tag = tagFunct(word);
-        #                 if (tag != null)
-        #                     textBlock.Annotation.Features.SetFeatureValue(outputFeature, tag);
-        #             }
-        #         }
-        #     }
-        #     return adcNew;
-        # }
 
 def universal_sentence_tagger_hub(input_dict):
     tagger_dict = input_dict['tagger']
@@ -90,24 +75,25 @@ def universal_sentence_tagger_hub(input_dict):
     adc = input_dict['adc']
 
 
-    for document in adc.documents:
-        if document.features['contentType'] == "Text":
-            if not document.text:
+    for doc in adc.documents:
+        if doc.features['contentType'] == "Text":
+            if not doc.text:
                 pass
-            group_annotations=sorted(document.select_annotations(group_annotation_name),key=lambda x: x.span_start)
-            element_annotations=sorted(document.select_annotations(element_annotation_name),key=lambda x: x.span_start)
+            group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0].span_start)
+            element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0].span_start)
 
             text_grouped=[] #text_groups= [['First','sentence',['Second','sentance']]
             annotations_grouped=[] #annotations_grouped= [[<Annotation span_start:0 span_ned:4>, <Annotation span_start:6 span_ned:11>],[...
 
             i=0
-            for group_annotation in group_annotations:
+            for group_annotation,_ in group_annotations:
                 elements=[]
                 sentence_annotations=[]
                 #find elementary annotations 'contained' in the group_annotation
-                while i<len(element_annotations) and element_annotations[i].span_end<=group_annotation.span_end:
-                    annotation=element_annotations[i]
-                    elements.append(document.text[annotation.span_start:annotation.span_end+1])
+                while i<len(element_annotations) and element_annotations[i][0].span_end<=group_annotation.span_end:
+                    annotation=element_annotations[i][0]
+                    text_block=element_annotations[i][1]
+                    elements.append(text_block)
                     sentence_annotations.append(annotation)
                     i+=1
                 text_grouped.append(elements)
@@ -136,12 +122,17 @@ class StopWordTagger:
         return "true" if (token.lower() if self.ignore_case else token) in self.stop_words else None
 
 
-def nltk_stop_words_tagger(input_dict):
-    return {'tagger':
+def nltk_stop_word_tagger(input_dict):
+    """
+    Constructs a python stop word tagger object.
+
+    :param stop_words: A list or string (stop words separated by new lines) of stop words.
+    :param ignore_case: If true than words are marked as stop word regardless of their casing.
+    """
+
+    return {'stop_word_tagger':
                 {'object':StopWordTagger(input_dict.get('stop_words',''),input_dict.get('ignore_case',True)),
                  'function':'tag',
-                 #'args': [stop_words],
-                 #'kargs':{'ignore_case':ignore_case}
                 }
     }
 # import nltk
@@ -187,22 +178,3 @@ def nltk_stop_words_tagger(input_dict):
 # # Print unique entity names
 # print set(entity_names)
 
-
-
-
-#STEMMERS
-def nltk_lancaster_stemmer(input_dict):
-    from nltk.stem.lancaster import LancasterStemmer
-    return {'tagger':
-                {'object':LancasterStemmer(),
-                 'function':'stem',
-                }
-    }
-
-def nltk_porter_stemmer(input_dict):
-    from nltk.stem.porter import PorterStemmer
-    return {'tagger':
-                {'object':PorterStemmer(),
-                 'function':'stem',
-                }
-    }

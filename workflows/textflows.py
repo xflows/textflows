@@ -13,22 +13,39 @@ class Document:
         self.text=text
 
     def __unicode__(self):
-        #for i in itemDir:
         return 'Name; {0}\nText: {1}' % (self.name, self.text)
 
-    def select_annotations(self, selector):
-        return [a for a in self.annotations if a.type== selector]  #self.text ???
-    def get_annotated_blocks(self,selector):
-        annotations=self.select_annotations(selector)
+    def get_annotations_with_text(self, selector):
+        """
+        :param selector: textual string in one of the following formats:
+           a) annotation_name
+           b) annotation_name/feature_name       so you can do for instance stopword tagging on lemmas
+        :return: list of selected (annotation,text) tuples
+        """
+        annotations_with_text=[]
+        selector_split=selector.split("/")
+        element_annotation=selector_split[0].strip()
+        element_feature=False if len(selector_split)==1 else selector_split[1].strip()
 
+        for a in self.annotations:
+            if a.type== element_annotation:
+                if element_feature:
+                    try:
+                        text=a.features[element_feature]
+                    except KeyError:
+                        text='Feature does not exist!'
+                else:
+                    text=self.text[a.span_start:a.span_end+1]
+                annotations_with_text.append((a, text))
+        return annotations_with_text
 
 
 class Annotation:
-    def __init__(self, span_start,span_end,type1,features={}):
+    def __init__(self, span_start,span_end,type,features={}):
         self.features=features
         self.span_start=span_start
         self.span_end=span_end
-        self.type=type1
+        self.type=type
     def __repr__(self):
         return '<Annotation span_start:%d span_ned:%d>' % (self.span_start, self.span_end)
 
