@@ -390,7 +390,7 @@
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 7, 
-      "description": "TODO"
+      "description": "Apply the *tokenizer* object on the Annotated Document Corpus (*adc*):\r\n\r\n1. first select only annotations of type *input_annotation*,\r\n2. apply the tokenizer\r\n3. create new annotations *output_annotation* with the outputs of the tokenizer."
     }
   }, 
   {
@@ -408,7 +408,7 @@
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "description": "LatinoClowdFlows.DocumentCorpus"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }, 
   {
@@ -426,7 +426,7 @@
       "variable": "tokenizer", 
       "parameter": false, 
       "order": 2, 
-      "description": "Latino.TextMining.ITokenizer"
+      "description": " python dictionary containing the Tokenizer object and its arguments."
     }
   }, 
   {
@@ -441,10 +441,10 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "inputAnnotation", 
+      "variable": "input_annotation", 
       "parameter": true, 
       "order": 3, 
-      "description": "Which annotated part of document to be splited"
+      "description": "Which annotated part of document to be splitted."
     }
   }, 
   {
@@ -459,10 +459,10 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "outputAnnotation", 
+      "variable": "output_annotation", 
       "parameter": true, 
       "order": 4, 
-      "description": "How to annotate found sentences"
+      "description": "How to annotate the newly discovered tokens."
     }
   }, 
   {
@@ -475,7 +475,7 @@
       "variable": "adc", 
       "uid": "313ad85a-aa64-4212-a870-0d010df62695", 
       "order": 1, 
-      "description": ""
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }, 
   {
@@ -527,7 +527,7 @@
       "variable": "tokenizer", 
       "uid": "afe78641-95a9-4169-a94f-8856e201f6b1", 
       "order": 1, 
-      "description": ""
+      "description": "A python dictionary containing the Tokenizer object and its arguments."
     }
   }, 
   {
@@ -624,7 +624,7 @@
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 2, 
-      "description": "Automatically generated widget from function PosTag in package latino. The original function signature: PosTag."
+      "description": "TODO"
     }
   }, 
   {
@@ -657,7 +657,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "tagger", 
+      "variable": "pos_tagger", 
       "parameter": false, 
       "order": 2, 
       "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger"
@@ -848,7 +848,7 @@
     "fields": {
       "category": 35, 
       "treeview_image": "", 
-      "name": "Stopword Tagger Hub", 
+      "name": "Stop Word Tagger Hub", 
       "is_streaming": false, 
       "uid": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
       "interaction_view": "", 
@@ -860,13 +860,13 @@
       "user": null, 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "action": "stopword_tagger_hub", 
+      "action": "stop_word_tagger_hub", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 8, 
-      "description": "Automatically generated widget from function TagADCStopwords in package latino. The original function signature: TagADCStopwords."
+      "description": "Apply the *stop_word_tagger* object on the Annotated Document Corpus (*adc*):\r\n\r\n1. first select only annotations of type Token Annotation *element_annotation*,\r\n2. apply the stop_word tagger\r\n3. create new annotations *output_feature* with the outputs of the stop word tagger.\r\n"
     }
   }, 
   {
@@ -884,7 +884,7 @@
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "description": "LatinoClowdFlows.DocumentCorpus"
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }, 
   {
@@ -892,17 +892,17 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": 173, 
-      "name": "Token Tagger", 
+      "name": "Stop Word Tagger", 
       "short_name": "tgr", 
       "uid": "b1d8d6e9-43c8-4a67-8ea6-dd62c5e5aa67", 
       "default": "", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "tagger", 
+      "variable": "stop_word_tagger", 
       "parameter": false, 
       "order": 2, 
-      "description": "System.Object"
+      "description": "A python dictionary containing the stop word tagger object and its arguments."
     }
   }, 
   {
@@ -920,7 +920,7 @@
       "variable": "element_annotation", 
       "parameter": true, 
       "order": 3, 
-      "description": "System.String"
+      "description": "Which annotated part of document to be searched for stopwords."
     }
   }, 
   {
@@ -931,14 +931,14 @@
       "name": "Output Feature Name", 
       "short_name": "str", 
       "uid": "623a2684-0327-45e3-be7a-6f9c8d320c16", 
-      "default": "stopword", 
+      "default": "StopWord", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "output_feature", 
       "parameter": true, 
       "order": 4, 
-      "description": "System.String"
+      "description": "How to annotate the newly discovered stop word features."
     }
   }, 
   {
@@ -951,7 +951,7 @@
       "variable": "adc", 
       "uid": "d858ac7b-0e3c-4ce6-a942-60d9d63caaa9", 
       "order": 1, 
-      "description": ""
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
     }
   }, 
   {
@@ -1064,13 +1064,13 @@
       "user": null, 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "action": "nltk_stop_words_tagger", 
+      "action": "nltk_stop_word_tagger", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 7, 
-      "description": "Automatically generated widget from function ConstructStopWordsTagger in package latino. The original function signature: ConstructStopWordsTagger."
+      "description": "Constructs a python stop word tagger object.\r\n"
     }
   }, 
   {
@@ -1078,7 +1078,7 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": 180, 
-      "name": "Stopwords", 
+      "name": "Stop Words", 
       "short_name": "str", 
       "uid": "0572bb02-0fb7-4b83-b759-680bdf8cacb7", 
       "default": "", 
@@ -1088,7 +1088,7 @@
       "variable": "stop_words", 
       "parameter": false, 
       "order": 1, 
-      "description": "List of stopwords"
+      "description": "A list or string (stop words separated by new lines) of stop words."
     }
   }, 
   {
@@ -1106,7 +1106,7 @@
       "variable": "ignore_case", 
       "parameter": true, 
       "order": 2, 
-      "description": "If true than words are marked stopword regardless of their casing."
+      "description": "If true than words are marked as stop word regardless of their casing."
     }
   }, 
   {
@@ -1114,12 +1114,12 @@
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": 180, 
-      "name": "StopWords Tagger", 
+      "name": "Stop Word Tagger", 
       "short_name": "tgr", 
-      "variable": "tagger", 
+      "variable": "stop_word_tagger", 
       "uid": "a9b43282-d68a-4e51-9ced-825ef97cec61", 
       "order": 1, 
-      "description": ""
+      "description": "A python dictionary containing the StopWordTagger object and its arguments."
     }
   }, 
   {
@@ -1246,10 +1246,10 @@
       "widget": 187, 
       "name": "POS Tagger", 
       "short_name": "tgr", 
-      "variable": "tagger", 
+      "variable": "pos_tagger", 
       "uid": "5062a84a-cf3b-457d-a898-33e463561591", 
       "order": 1, 
-      "description": ""
+      "description": "A python dictionary containing the POS tagger object and its arguments."
     }
   }, 
   {
@@ -1358,10 +1358,10 @@
       "widget": 189, 
       "name": "POS Tagger", 
       "short_name": "tgr", 
-      "variable": "tagger", 
+      "variable": "pos_tagger", 
       "uid": "99f7cda3-3303-49f2-a895-e562dec52de6", 
       "order": 1, 
-      "description": ""
+      "description": "A python dictionary containing the POS tagger object and its arguments."
     }
   }, 
   {
@@ -1470,10 +1470,10 @@
       "widget": 188, 
       "name": "POS Tagger", 
       "short_name": "tgr", 
-      "variable": "tagger", 
+      "variable": "pos_tagger", 
       "uid": "202d176a-1790-4d69-bd94-808f50ae0b93", 
       "order": 1, 
-      "description": ""
+      "description": "A python dictionary containing the POS tagger object and its arguments."
     }
   }, 
   {
@@ -1528,10 +1528,10 @@
       "widget": 185, 
       "name": "POS Tagger", 
       "short_name": "tgr", 
-      "variable": "tagger", 
+      "variable": "pos_tagger", 
       "uid": "21d7b641-701b-42fa-8a14-feb556cae89d", 
       "order": 1, 
-      "description": ""
+      "description": "A python dictionary containing the POS tagger object and its arguments."
     }
   }, 
   {
@@ -1640,10 +1640,10 @@
       "widget": 186, 
       "name": "POS Tagger", 
       "short_name": "tgr", 
-      "variable": "tagger", 
+      "variable": "pos_tagger", 
       "uid": "ac04c915-bba0-4d21-b532-ad3e56df361d", 
       "order": 1, 
-      "description": ""
+      "description": "A python dictionary containing the POS tagger object and its arguments."
     }
   }, 
   {

@@ -5,7 +5,7 @@ from tagging_lib.stemming import * #STEMMERS
 
 # HUBS
 def pos_tagger_hub(input_dict):
-    if type(input_dict['tagger'])!=dict: #check if this is a latino object
+    if type(input_dict['pos_tagger'])!=dict: #check if this is a latino object
         from ...latino.library_gen import latino_pos_tag
         return latino_pos_tag(input_dict)
     else:
@@ -23,6 +23,8 @@ def stop_word_tagger_hub(input_dict):
     :param stop_word_tagger: A python dictionary containing the stop word tagger object and its arguments.
     :param element_annotation: Which annotated part of document to be searched for stopwords.
     :param output_features: How to annotate the newly discovered stop word features.
+
+    :returns adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
 
     if type(input_dict['stop_word_tagger'])!=dict: #check if this is a latino object
@@ -63,7 +65,7 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
 
 
 def universal_sentence_tagger_hub(input_dict):
-    tagger_dict = input_dict['tagger']
+    tagger_dict = input_dict['pos_tagger']
     tagger=tagger_dict['object']
     tagger_function=tagger_dict['function']
     args=tagger_dict.get('args',[])
@@ -128,6 +130,8 @@ def nltk_stop_word_tagger(input_dict):
 
     :param stop_words: A list or string (stop words separated by new lines) of stop words.
     :param ignore_case: If true than words are marked as stop word regardless of their casing.
+
+    :returns stop_word_tagger: A python dictionary containing the StopWordTagger object and its arguments.
     """
 
     return {'stop_word_tagger':

@@ -10,8 +10,10 @@ def tokenizer_hub(input_dict):
 
     :param adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     :param tokenizer: A python dictionary containing the Tokenizer object and its arguments.
-    :param input_annotation: Which annotated part of document to be splited
-    :param output_annotation: How to annotate the newly discovered tokens
+    :param input_annotation: Which annotated part of document to be splitted.
+    :param output_annotation: How to annotate the newly discovered tokens.
+
+    :returns adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
 
     tokenizer_dict = input_dict['tokenizer']
@@ -47,6 +49,15 @@ def nltk_treebank_word_tokenizer(input_dict):
 
 
 def nltk_punkt_sentence_tokenizer(input_dict):
+    """
+    A sentence tokenizer which uses an unsupervised algorithm to build
+    a model for abbreviation words, collocations, and words that start
+    sentences; and then uses that model to find sentence boundaries.
+    This approach has been shown to work well for many European
+    languages.
+
+    :returns tokenizer: A python dictionary containing the Tokenizer object and its arguments.
+    """
     import nltk
     return {'tokenizer': {'object': nltk.PunktSentenceTokenizer()}}
 

@@ -262,8 +262,8 @@ def latino_tokenize_sentences(inputDict):
 def latino_tokenize_words(inputDict):
     _adc = ToNetObj(inputDict['adc'])
     _tokenizer = ToNetObj(inputDict['tokenizer'])
-    _inputAnnotation = ToString(inputDict['inputAnnotation'])
-    _outputAnnotation = ToString(inputDict['outputAnnotation'])
+    _inputAnnotation = ToString(inputDict['input_annotation'])
+    _outputAnnotation = ToString(inputDict['output_annotation'])
     execResult = LatinoCF.TokenizeWords(_adc, _tokenizer, _inputAnnotation, _outputAnnotation)
     execResultPy = ToPyObj(execResult)
     outputDict = {}

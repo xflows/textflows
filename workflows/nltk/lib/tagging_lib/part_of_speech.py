@@ -5,7 +5,7 @@ from nltk.tag.util       import str2tuple, tuple2str, untag
 from nltk.tag.sequential import (DefaultTagger, NgramTagger, AffixTagger,
                                  RegexpTagger, #<--TODO
                                  ClassifierBasedPOSTagger)
-from nltk.tag.brill      import FastBrillTaggerTrainer, ProximateWordsRule, ProximateTagsRule,\
+from nltk.tag.brill import FastBrillTaggerTrainer, ProximateWordsRule, ProximateTagsRule,\
                                 SymmetricProximateTokensTemplate,ProximateTokensTemplate
 #from nltk.tag.brill      import BrillTagger, BrillTaggerTrainer, #<-- TODO?!
 from nltk.tag.tnt        import TnT
@@ -38,9 +38,12 @@ def nltk_default_pos_tagger(input_dict):
 
     :param default_tag: The default tag "%(default)s". Set this to a different tag, such as "NN",
             to change the default tag.
+
+    :returns pos_tagger: A python dictionary containing the POS tagger
+        object and its arguments.
     """
     from nltk.tag import DefaultTagger
-    return {'tagger': {
+    return {'pos_tagger': {
         'function':'batch_tag',
         'object': DefaultTagger(input_dict.get('default_tag','-None-'))
         }
@@ -66,6 +69,8 @@ def nltk_affix_pos_tagger(input_dict):
     :param min_stem_length: Any words whose length is less than
         min_stem_length+abs(affix_length) will be assigned a
         tag of None by this tagger.
+
+    :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
 
     from nltk.tag import DefaultTagger,AffixTagger
@@ -76,7 +81,7 @@ def nltk_affix_pos_tagger(input_dict):
     cutoff=int(input_dict['cutoff']) #default 0
 
 
-    return {'tagger': {
+    return {'pos_tagger': {
                 'function':'batch_tag',
                 'object': AffixTagger(tagged_corpus, affix_length=affix_length, cutoff=cutoff,
                          min_stem_length=min(min_stem_length, 2), backoff=backoff_tagger)
@@ -108,6 +113,8 @@ def nltk_ngram_pos_tagger(input_dict):
         fewer than *cutoff* times, then exclude it from the
         context-to-tag table for the new tagger.
     :param n:  N-gram is a contiguous sequence of n items from a given sequence of text or speech.
+
+    :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
 
     training_corpus=corpus_reader(input_dict['training_corpus'])
@@ -115,7 +122,7 @@ def nltk_ngram_pos_tagger(input_dict):
     n=int(input_dict['n']) #default 2
     cutoff=int(input_dict['cutoff']) #default 0
 
-    return {'tagger': {
+    return {'pos_tagger': {
                 'function':'batch_tag',
                 'object': NgramTagger(n, train=training_corpus, model=None,
                  backoff=backoff_tagger, cutoff=cutoff)
@@ -162,6 +169,9 @@ TODO: odloci se katerega se obdrzi od naslednjih dveh
     :param cutoff_prob: If specified, then this tagger will fall
         back on its backoff tagger if the probability of the most
         likely tag is less than *cutoff_prob*.
+
+    :returns pos_tagger: A python dictionary containing the POS tagger
+        object and its arguments.
     """
     #training_corpus=corpus_reader(input_dict['training_corpus']) #TODO: should it stay or should it go
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
@@ -171,7 +181,7 @@ TODO: odloci se katerega se obdrzi od naslednjih dveh
     import nltk
     tagger_object=ClassifierBasedPOSTagger(train=nltk.corpus.brown.tagged_sents()[:5], classifier=classifier,
                  backoff=backoff_tagger, cutoff_prob=cutoff_prob)
-    return {'tagger': {
+    return {'pos_tagger': {
                 'function':'batch_tag',
                 'object': tagger_object
             }
@@ -193,15 +203,12 @@ def nltk_brill_pos_tagger(input_dict):
 
     :param training_corpus: A tagged corpus consisting of a list of tagged
         sentences, where each sentence is a list of (word, tag) tuples.
-
     :param initial_tagger: The initial tagger. Brill taggers use an initial
         tagger (such as ``DefaultTagger``) to assign an initial tag
         sequence to a text.
-
     :param max_rules: The maximum number of transformations to be created
     :param min_score: The minimum acceptable net error reduction
         that each transformation must produce in the corpus.
-
     :param deterministic: If true, then choose between rules that
         have the same score by picking the one whose __repr__
         is lexicographically smaller.  If false, then just pick the
@@ -209,6 +216,9 @@ def nltk_brill_pos_tagger(input_dict):
         on the order in which keys are returned from dictionaries,
         and so may not be the same from one run to the next.  If
         not specified, treat as true iff trace > 0.
+
+    :returns pos_tagger: A python dictionary containing the POS tagger
+        object and its arguments.
     """
     training_corpus=corpus_reader(input_dict['training_corpus'])[:1000]
 
@@ -244,7 +254,7 @@ def nltk_brill_pos_tagger(input_dict):
         for rule in brill_tagger.rules():
             print(str(rule))
 
-    return {'tagger': {
+    return {'pos_tagger': {
                 'function':'batch_tag',
                 'object': brill_tagger
             }
