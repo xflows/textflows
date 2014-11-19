@@ -53,3 +53,23 @@ class Annotation:
         return 'span_start; %d\tspan_ned: %d' % (self.span_start, self.span_end)
     def __str__(self):
         return unicode(self).encode('utf-8')
+
+
+import nltk
+class NltkCorpus(object):
+    corpus_name=""
+    corpus=None
+    def __init__(self,name):
+        self.corpus_name=name
+
+    def _corpus(self):
+        self.corpus = self.corpus or getattr(nltk.corpus,self.corpus_name)
+        return self.corpus
+
+    def __getattr__(self, name):
+        if name.startswith("__"):
+            raise AttributeError
+        else:
+            def method():
+                return getattr(self._corpus(),name)()
+            return method

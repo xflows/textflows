@@ -5,13 +5,14 @@ from nltk.tag.util       import str2tuple, tuple2str, untag
 from nltk.tag.sequential import (DefaultTagger, NgramTagger, AffixTagger,
                                  RegexpTagger, #<--TODO
                                  ClassifierBasedPOSTagger)
-from nltk.tag.brill import FastBrillTaggerTrainer, ProximateWordsRule, ProximateTagsRule,\
-                                SymmetricProximateTokensTemplate,ProximateTokensTemplate
-#from nltk.tag.brill      import BrillTagger, BrillTaggerTrainer, #<-- TODO?!
+import nltk.tag.brill
+from nltk.tag.brill      import BrillTagger
+from nltk.tag.brill_trainer import BrillTaggerTrainer
+
 from nltk.tag.tnt        import TnT
 from nltk.tag.hunpos     import HunposTagger
 from nltk.tag.stanford   import StanfordTagger
-from nltk.tag.crf        import MalletCRF
+#from nltk.tag.crf        import MalletCRF
 from django.conf import settings
 
 from workflows.textflows import DocumentCorpus
@@ -216,39 +217,21 @@ def nltk_brill_pos_tagger(input_dict):
         on the order in which keys are returned from dictionaries,
         and so may not be the same from one run to the next.  If
         not specified, treat as true iff trace > 0.
+    :param templates: templates to be used in training
 
     :returns pos_tagger: A python dictionary containing the POS tagger
         object and its arguments.
     """
     training_corpus=corpus_reader(input_dict['training_corpus'])[:1000]
-
-    #initial_tagger, train_sents, end, trace=0, **kwargs):
     initial_tagger=input_dict['initial_tagger']['object'] if input_dict['initial_tagger'] else DefaultTagger('-None-')
     max_rules=int(input_dict['max_rules']) #default 200
     min_score=int(input_dict['min_score']) #default 2
-
     deterministic=True
 
-    template_bounds=1  #Choose the max bounds for Brill Templates to train a Brill Tagger.
-    bounds = [(1, template_bounds)]
-    #TODO: kaj so teji boundi
+    templates = getattr(nltk.tag.brill.nltk,input_dict['templates'])()
 
-
-    templates = [
-      SymmetricProximateTokensTemplate(ProximateTagsRule, (1,1)),
-      SymmetricProximateTokensTemplate(ProximateTagsRule, (2,2)),
-      SymmetricProximateTokensTemplate(ProximateTagsRule, (1,2)),
-      SymmetricProximateTokensTemplate(ProximateTagsRule, (1,3)),
-      SymmetricProximateTokensTemplate(ProximateWordsRule, (1,1)),
-      SymmetricProximateTokensTemplate(ProximateWordsRule, (2,2)),
-      SymmetricProximateTokensTemplate(ProximateWordsRule, (1,2)),
-      SymmetricProximateTokensTemplate(ProximateWordsRule, (1,3)),
-      ProximateTokensTemplate(ProximateTagsRule, (-1, -1), (1,1)),
-      ProximateTokensTemplate(ProximateWordsRule, (-1, -1), (1,1)),
-    ]
-
-    trainer = FastBrillTaggerTrainer(initial_tagger, templates, deterministic=deterministic, trace=settings.DEBUG)
-    brill_tagger = trainer.train(training_corpus, max_rules, min_score) #return BrillTagger(self._initial_tagger, rules)
+    trainer = BrillTaggerTrainer(initial_tagger, templates, deterministic=deterministic, trace=settings.DEBUG)
+    brill_tagger = trainer.train(training_corpus, max_rules=max_rules, min_score=min_score) #return BrillTagger(self._initial_tagger, rules)
 
     if settings.DEBUG:
         for rule in brill_tagger.rules():

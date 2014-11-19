@@ -346,12 +346,12 @@
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": 184, 
-      "name": "NTLK document corpus", 
+      "name": "NTLK document corpus name", 
       "short_name": "cor", 
-      "variable": "corpus", 
+      "variable": "corpus_name", 
       "uid": "c2fce52f-e6c4-4074-9b75-49a3ebcac8bf", 
       "order": 1, 
-      "description": "NLTK document corpus"
+      "description": "NLTK document corpus name"
     }
   }, 
   {
@@ -1349,6 +1349,64 @@
       "parameter": true, 
       "order": 4, 
       "description": "The minimum acceptable net error reduction that each transformation must produce in the corpus."
+    }
+  }, 
+  {
+    "pk": 483, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 189, 
+      "name": "Templates", 
+      "short_name": "tmp", 
+      "uid": "bd7e8b4f-cd7b-45fe-9e0f-908bb859ec6f", 
+      "default": "brill24", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "templates", 
+      "parameter": true, 
+      "order": 5, 
+      "description": "Templates to be used in training TODO: meaning?!\r\n\r\nOptions:\r\n- nltkdemo18:\r\n    Return 18 templates, from the original nltk demo, in multi-feature syntax\r\n- nltkdemo18plus:\r\n    Return 18 templates, from the original nltk demo, and additionally a few\r\n    multi-feature ones (the motivation is easy comparison with nltkdemo18)\r\n- brill24:\r\n    Return 24 templates of the seminal TBL paper, Brill (1995)\r\n- fntbl37:\r\n    Return 37 templates taken from the postagging task of the\r\n    fntbl distribution http://www.cs.jhu.edu/~rflorian/fntbl/\r\n    (37 is after excluding a handful which do not condition on Pos[0];\r\n    fntbl can do that but the current nltk implementation cannot.)"
+    }
+  }, 
+  {
+    "pk": 131, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "dcf226b2-89e5-4341-887a-c4296ad730fe", 
+      "abstract_input": 483, 
+      "value": "brill24", 
+      "name": "brill24"
+    }
+  }, 
+  {
+    "pk": 134, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "088f4113-6844-42fa-8270-2c892bea3a57", 
+      "abstract_input": 483, 
+      "value": "fntbl37", 
+      "name": "fntbl37"
+    }
+  }, 
+  {
+    "pk": 132, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "8c9864a5-2961-440e-be5a-a709efae1b17", 
+      "abstract_input": 483, 
+      "value": "nltkdemo18", 
+      "name": "nltkdemo18"
+    }
+  }, 
+  {
+    "pk": 133, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "d5b8cd7d-ba38-4978-a783-ff0dbf79f7f5", 
+      "abstract_input": 483, 
+      "value": "nltkdemo18plus", 
+      "name": "nltkdemo18plus"
     }
   }, 
   {
