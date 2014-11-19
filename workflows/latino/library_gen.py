@@ -385,7 +385,7 @@ def latino_tag_adcstem_lemma(inputDict):
 
 def latino_tag_adcstopwords(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _tagger = ToNetObj(inputDict['tagger'])
+    _tagger = ToNetObj(inputDict['stop_word_tagger'])
     _elementAnnotation = ToString(inputDict['element_annotation'])
     _outputFeature = ToString(inputDict['output_feature'])
     execResult = LatinoCF.TagADCStopwords(_adc, _tagger, _elementAnnotation, _outputFeature)
