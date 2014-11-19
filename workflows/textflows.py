@@ -41,7 +41,7 @@ class Document:
 
 
 class Annotation:
-    def __init__(self, span_start,span_end,type,features={}):
+    def __init__(self, span_start, span_end, type, features={}):
         self.features=features
         self.span_start=span_start
         self.span_end=span_end

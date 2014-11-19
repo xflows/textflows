@@ -56,9 +56,10 @@ def load_adc(texts,  tab_separated_title, leading_labels):
                                   text=unicode(text),
                                   annotations=[Annotation(span_start=0,
                                                           span_end=max(0, len(unicode(text)) - 1),
-                                                          type1=u"TextBlock",
+                                                          type=u"TextBlock",
                                                           features={})]))
     return documents
 
-def nltk_show_adc(input_dict):
+
+def display_document_corpus(input_dict):
     return {}

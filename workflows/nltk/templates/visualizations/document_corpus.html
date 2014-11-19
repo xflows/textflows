@@ -1,0 +1,53 @@
+{% load url from future %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/document_corpus_style.css' %}">
+
+
+<div style="position:absolute;left:10px;top:0px;padding-top:0em;width:200px;height:auto;z-index:1;word-wrap:break-word;font-size:0.9em;">
+    <h2>Features</h2>
+    <b>Source</b> = {{features.Source}} <br/><br/>
+    <b>CorpusCreateDate</b> = {{features.CorpusCreateDate}}<br/><br/>
+    <b>SourceDate</b> = {{features.SourceDate}}<br/><br/>
+</div>
+
+<div style="position:absolute;top:10px;width:470px;left:220px;height:auto;border-left:1px #3C64B6 solid;padding-left:2em;z-index:2;">
+
+    {% for document in documents %}
+        <h1><a href={% url 'nltk get adc page' widget_id=widget_id document_id=forloop.counter narrow_doc='' %}>{{ document.name }}</a></h1>
+
+        <p>
+        {%  if document.text|length > 400 %}
+            {{ document.text|slice:":400"|add:"..."}}
+        {% else %}
+             {{ document.text}}
+        {% endif %}
+
+        </br>
+        Contains {{ document.annotations|length }}
+        {%  if document.annotations|length > 1 %}
+             annotations
+        {% else %}
+             annotation
+        {% endif %}
+
+        of {{document.features.basic_types }} basic
+        {%  if document.features.basic_types  > 1%}
+            types.
+        {% else %}
+            type.
+        {% endif %}
+
+        Described with  {{document.features|length}}
+        {%  if document.features|length > 1 %}
+            features.
+        {% else %}
+            feature.
+        {% endif %}
+
+
+        </p>
+
+    {% endfor %}
+
+</div>
+
