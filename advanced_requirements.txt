@@ -17,5 +17,5 @@ scipy==0.13.0
 feedparser==5.1.2
 networkx==1.8.1
 unidecode==0.04.13
-nltk==2.0.4
+nltk==3.0.0
 

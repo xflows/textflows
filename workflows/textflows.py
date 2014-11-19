@@ -73,3 +73,15 @@ class NltkCorpus(object):
             def method():
                 return getattr(self._corpus(),name)()
             return method
+
+
+# print "000"
+# from workflows.models import AbstractWidget
+#
+# print "123"
+# for a in AbstractWidget.objects.filter(package='nltk'):
+#     a.package = 'nltoolkit'
+#     print a
+#     a.save()
+#
+# print "456"
