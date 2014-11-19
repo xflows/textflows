@@ -1051,6 +1051,7 @@ function updateWidgetListeners() {
     });
 
     $(".canvas div.widget").draggable({
+        multiple: true,
         handle: "div.widgetcenter, img.widgetimage",
         drag: function() {
             // this function exectues every time the mouse moves and the user is holding down the left mouse button
@@ -1089,22 +1090,45 @@ function updateWidgetListeners() {
                     $(this).css('top','0px');
                 }
 
-                var y = parseInt($(this).css('top'));
-                var x = parseInt($(this).css('left'));
 
                 //alert($(this).attr('rel'));
 
-               $.post(url['save-position'], { "widget_id": $(this).attr('rel'), "x": x, "y": y } );
+               //get all selected widgets and save positions
+               $(".ui-selected").each(function () {
+                var y = parseInt($(this).css('top'));
+                var x = parseInt($(this).css('left'));
+                $.post(url['save-position'], { "widget_id": $(this).attr('rel'), "x": x, "y": y } );
 
+                
+               })
+
+
+               if ($(".ui-selected").size()==0) {
+                var y = parseInt($(this).css('top'));
+                var x = parseInt($(this).css('left'));
+                $.post(url['save-position'], { "widget_id": $(this).attr('rel'), "x": x, "y": y } );
+               }
+               
                 redrawLines();
 
         }}
     );
 
-    $(".canvas div.widget").click(function() {
+    $(".canvas div.widget").click(function(e) {
         selectedWidget = $(this).attr('rel');
-        $(".widgetcenter").removeClass("ui-state-highlight");
+        if (!(e.ctrlKey || e.metaKey || e.shiftKey))
+        {
+            $(".widgetcenter").removeClass("ui-state-highlight");
+            $(".widget").removeClass("ui-selected");
+        } else {
+            if ($(this).hasClass("ui-selected")) {
+                $(this).removeClass("ui-selected");
+                $(this).find(".widgetcenter").removeClass("ui-state-highlight");
+                return;
+            }
+        }
         $(this).find(".widgetcenter").addClass("ui-state-highlight");
+        $(this).addClass("ui-selected");
         selectedConnection=-1;
 
         //clicking on a widget selects it and deselects any connection
@@ -1532,6 +1556,28 @@ $(function(){
 
     $("#widgets a.forloop").click(function() {
          $.post(url['add-for'], {'active_workflow' : activeCanvasId, 'scrollTop':	activeCanvas.scrollTop(), 'scrollLeft':activeCanvas.scrollLeft()}, function(data) {
+            try {
+                jsonData = $.parseJSON(data)
+                if (jsonData.success==false) {
+                    reportError(jsonData.message)
+                }
+            }
+            catch (err)
+            {
+                activeCanvas.append(data);
+                var outer_widget_id = $(data).find(".outer-widget-link").attr('rel');
+                var outer_widget_workflow_id = $(data).find(".outer-widget-workflow").attr('rel');
+                $("#widget"+outer_widget_id).remove();
+                refreshWidget(outer_widget_id,outer_widget_workflow_id);
+                updateWidgetListeners();
+                resizeWidgets();
+            }
+        },'html');
+
+    });
+
+    $("#widgets a.crossvalidation").click(function() {
+         $.post(url['add-cv'], {'active_workflow' : activeCanvasId, 'scrollTop':   activeCanvas.scrollTop(), 'scrollLeft':activeCanvas.scrollLeft()}, function(data) {
             try {
                 jsonData = $.parseJSON(data)
                 if (jsonData.success==false) {
