@@ -3,14 +3,20 @@
 
 <link rel="stylesheet" href="{% static 'css/document_corpus_style.css' %}" xmlns="http://www.w3.org/1999/html"/>
 <script type="text/javascript" src="{% static  'js/jquery.js' %}"></script>
+<!--link type="text/css" href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet" />
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.tipsy.js"></script-->
+
+
 
 <script>
-var text =  htmlDecode("{{document.text }}");
+var htmlText =  htmlDecode("{{document.text }}");
 
 
 
 $(document).ready(function () {
-    $("#DocumentText")[0].innerHTML=text;
+    $("#DocumentText").html(htmlText);
+    var text=$("#DocumentText").text();
+
     $('input[name="annotationTypeList"]').click(function () {
         refreshPage(text);
     });
@@ -86,7 +92,6 @@ $(document).ready(function () {
 
 
         var i;
-
         var htmlResult = htmlEncode(text);
 
         if (colorArray.length > 0)
@@ -147,21 +152,12 @@ $(document).ready(function () {
 
 });
 function htmlEncode(str) {
-    return String(str)
-        .replace(/&/g, '&amp;')
+    //return str;
+    return String(str).replace(/&/g, '&amp;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
-}
-
-function htmlDecode(str) {
-    return String(str)
-        .replace('&amp;',"&")
-        .replace('&quot;',"\"")
-        .replace('&#39;',"'")
-        .replace('&lt;',"<")
-        .replace('&gt;',">");
 }
 </script>
 
