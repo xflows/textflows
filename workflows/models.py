@@ -423,6 +423,9 @@ class AbstractWidget(models.Model):
     def __unicode__(self):
         return unicode(self.name)
 
+    #def html_formatted_description(self):
+    #    return self.description.replace("/n",'aaaaaa<br/>')
+
 class AbstractInput(models.Model):
     name = models.CharField(max_length=200)
     short_name = models.CharField(max_length=3)

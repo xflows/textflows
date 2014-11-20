@@ -56,18 +56,20 @@ class Annotation:
 
 
 import nltk
-class NltkCorpus(object):
+class NltkCorpus():
     corpus_name=""
     corpus=None
+    _corpus_methods=[]
     def __init__(self,name):
         self.corpus_name=name
+        self._corpus_methods=dir(getattr(nltk.corpus,self.corpus_name))
 
     def _corpus(self):
         self.corpus = self.corpus or getattr(nltk.corpus,self.corpus_name)
         return self.corpus
 
     def __getattr__(self, name):
-        if name.startswith("__"):
+        if not name in self._corpus_methods:
             raise AttributeError
         else:
             def method():
@@ -75,13 +77,12 @@ class NltkCorpus(object):
             return method
 
 
-# print "000"
-# from workflows.models import AbstractWidget
-#
-# print "123"
-# for a in AbstractWidget.objects.filter(package='nltk'):
-#     a.package = 'nltoolkit'
-#     print a
-#     a.save()
-#
-# print "456"
+def simulate_cf_pickling(obj_to_pickle,compress_object=False):
+    from base64 import b64encode, b64decode
+    from zlib import compress, decompress
+    from cPickle import dumps,loads
+
+    if not compress_object:
+        return loads(b64decode(b64encode(dumps(obj_to_pickle))))
+    else:
+        return loads(decompress(b64decode(b64encode(compress(dumps(obj_to_pickle))))))

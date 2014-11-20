@@ -3,13 +3,13 @@
 
 <link rel="stylesheet" href="{% static 'css/document_corpus_style.css' %}" xmlns="http://www.w3.org/1999/html"/>
 <script type="text/javascript" src="{% static  'js/jquery.js' %}"></script>
-<!--link type="text/css" href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet" />
-<script type="text/javascript" src="{{STATIC_URL}}js/jquery.tipsy.js"></script-->
+<link type="text/css" href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet" />
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.tipsy.js"></script>
 
 
 
 <script>
-var htmlText =  htmlDecode("{{document.text }}");
+var htmlText = "{{document.text }}";
 
 
 
@@ -97,10 +97,12 @@ $(document).ready(function () {
         if (colorArray.length > 0)
         {
             htmlResult = "";
+
+            //ali je tole odvec za char 0
             if (colorArray[0] != undefined)
             {
-                if (featureArray[0] == undefined || featureArray[0] == "") { htmlResult += "<span style='background-color:" + colorArray[0] + "; border: 1px solid white;'>"; }
-                else { htmlResult += "<span style='background-color:" + colorArray[0] + ";' class='text' title='Features: &lt;br/&gt; " + featureArray[0] + "'>"; }
+                if (featureArray[0] == undefined || featureArray[0] == "") { htmlResult += "<span original-title='aaaaa' style='background-color:" + colorArray[0] + "; border: 1px solid white;'>"; }
+                else { htmlResult += "<span style='background-color:" + colorArray[0] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[0] + "'>"; }
             }
             htmlResult += htmlEncode(text.charAt(0));
 
@@ -111,8 +113,8 @@ $(document).ready(function () {
                     if (colorArray[i] != undefined) { htmlResult += "</span>"; }
                     if (colorArray[i + 1] != undefined)
                     {
-                        if (featureArray[i + 1] == undefined || featureArray[i + 1] == "") { htmlResult += "<span style='background-color:" + colorArray[i + 1] + "; border: 1px solid white;'>"; }
-                        else { htmlResult += "<span style='background-color:" + colorArray[i + 1] + ";' class='text' title='Features: &lt;br/&gt; " + featureArray[i + 1] + "'>"; }
+                        if (featureArray[i + 1] == undefined || featureArray[i + 1] == "") { htmlResult += "<span original-title='bbbb' style='background-color:" + colorArray[i + 1] + "; border: 1px solid white;'>"; }
+                        else { htmlResult += "<span style='background-color:" + colorArray[i + 1] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[i + 1] + "'>"; }
                     }
                     htmlResult += htmlEncode(text.charAt(i + 1));
                 }
@@ -130,24 +132,22 @@ $(document).ready(function () {
 
 
         $("#DocumentText")[0].innerHTML = htmlResult;
-        /*
-        $('span[class="text"]').tooltip({
 
+        //$('span[class="text"]').tipsy({
+        $('span').tipsy({ //zasacno
+            gravity: 's'
             // place tooltip on the right edge
             //position: "center left",
 
             // a little tweaking of the position
-            offset: [-10, -10],
+            //offset: [-10, -10],
 
             // use the built-in fadeIn/fadeOut effect
             //effect: "fade",
 
             // custom opacity setting
-            opacity: 0.95
-
+            //opacity: 0.95
         });
-        */
-
     }
 
 });

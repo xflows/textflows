@@ -1,6 +1,6 @@
 from itertools import izip
 from workflows.textflows import *
-#from tagging_lib.part_of_speech import * #POS TAGGERS
+from tagging_lib.part_of_speech import * #POS TAGGERS
 from tagging_lib.stemming import * #STEMMERS
 
 # HUBS
