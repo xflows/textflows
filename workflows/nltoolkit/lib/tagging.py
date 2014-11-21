@@ -182,3 +182,4 @@ def nltk_stop_word_tagger(input_dict):
 # # Print unique entity names
 # print set(entity_names)
 
+nltk.classify.scikitlearn

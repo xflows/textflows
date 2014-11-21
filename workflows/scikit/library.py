@@ -5,14 +5,14 @@ import re
 # CLASSIFICATION ALGORITHMS
 #
 
-def scikitAlgorithms_naiveBayes(input_dict):
+def scikit_naiveBayes(input_dict):
     from sklearn.naive_bayes import GaussianNB 
     y_pred = GaussianNB()
     output_dict={}
     output_dict['bayesout'] = y_pred
     return output_dict
 
-def scikitAlgorithms_J48(input_dict):
+def scikit_J48(input_dict):
     from sklearn import tree
     #parse input and determin its type
     try:
@@ -24,28 +24,28 @@ def scikitAlgorithms_J48(input_dict):
     output_dict['treeOut'] = clf
     return output_dict
 
-def scikitAlgorithms_linearSVC(input_dict):
+def scikit_linearSVC(input_dict):
     from sklearn.svm import LinearSVC
     clf = LinearSVC(C=float(input_dict["penaltyIn"]),loss=input_dict["lossIn"],penalty=input_dict["normIn"], multi_class=input_dict["classIn"])
     output_dict={}
     output_dict['SVCout'] = clf
     return output_dict
 
-def scikitAlgorithms_SVC(input_dict):
+def scikit_SVC(input_dict):
     from sklearn.svm import SVC
     clf = SVC(C=float(input_dict["penaltyIn"]), kernel=str(input_dict["kernelIn"]), degree=int(input_dict["degIn"]))
     output_dict={}
     output_dict['SVCout'] = clf
     return output_dict
 
-def scikitAlgorithms_kNearestNeighbors(input_dict):
+def scikit_kNearestNeighbors(input_dict):
     from sklearn.neighbors import KNeighborsClassifier
     knn = KNeighborsClassifier(n_neighbors=int(input_dict['numNeib']), weights=input_dict['wgIn'], algorithm=input_dict['algIn'])
     output_dict={}
     output_dict['KNNout'] = knn
     return output_dict
 
-def scikitAlgorithms_logiscticRegression(input_dict):
+def scikit_logiscticRegression(input_dict):
     from sklearn.linear_model import LogisticRegression
     clf = LogisticRegression(penalty=str(input_dict["penIn"]), C=float(input_dict["cIn"]))
     output_dict={}
@@ -56,42 +56,42 @@ def scikitAlgorithms_logiscticRegression(input_dict):
 #   REGRESSION
 #
 
-def scikitAlgorithms_Ridge(input_dict):
+def scikit_Ridge(input_dict):
     from sklearn.linear_model import Ridge
     clf = Ridge()
     output_dict={}
     output_dict['out'] = clf
     return output_dict
 
-def scikitAlgorithms_ElasticNet(input_dict):
+def scikit_ElasticNet(input_dict):
     from sklearn.linear_model import ElasticNet
     clf = ElasticNet()
     output_dict={}
     output_dict['out'] = clf
     return output_dict
 
-def scikitAlgorithms_LassoLARS(input_dict):
+def scikit_LassoLARS(input_dict):
     from sklearn.linear_model import LassoLars
     clf = LassoLars(alpha=float(input_dict["authIn"]))
     output_dict={}
     output_dict['out'] = clf
     return output_dict
 
-def scikitAlgorithms_SGDRegressor(input_dict):
+def scikit_SGDRegressor(input_dict):
     from sklearn.linear_model import SGDRegressor
     clf = SGDRegressor()
     output_dict={}
     output_dict['out'] = clf
     return output_dict
 
-def scikitAlgorithms_ARDRegression(input_dict):
+def scikit_ARDRegression(input_dict):
     from sklearn.linear_model import ARDRegression
     clf = ARDRegression(n_iter=int(input_dict["iterIn"]))
     output_dict={}
     output_dict['out'] = clf
     return output_dict
 
-def scikitAlgorithms_SVR(input_dict):
+def scikit_SVR(input_dict):
     from sklearn.svm import SVR 
     clf = SVR()
     output_dict={}
@@ -102,7 +102,7 @@ def scikitAlgorithms_SVR(input_dict):
 #   CLUSTERING
 #
 
-def scikitAlgorithms_KMeans(input_dict):
+def scikit_KMeans(input_dict):
     from sklearn import cluster
     k_means = cluster.KMeans(input_dict['clustersNum']) #number of clusters
     output_dict={}
@@ -114,7 +114,7 @@ def scikitAlgorithms_KMeans(input_dict):
 #   UTILITIES
 #
 
-def scikitAlgorithms_UCIDataset(input_dict):
+def scikit_UCIDataset(input_dict):
     from sklearn import datasets
     allDSets = {"iris":datasets.load_iris(), "boston":datasets.load_boston(), "diabetes":datasets.load_diabetes(), " linnerud":datasets.load_linnerud()}
     dataset = allDSets[input_dict['dsIn']]
@@ -122,7 +122,7 @@ def scikitAlgorithms_UCIDataset(input_dict):
     output_dict['dtsOut'] = dataset#(dataset.data, dataset.target)
     return output_dict
 
-def scikitAlgorithms_CSVtoNumpy(input_dict):
+def scikit_CSVtoNumpy(input_dict):
     # the targer value must be in the last colum of the CSV file
     output_dict={}
     # this code converts data from the csv file into scikit learn dataset and returns it as a tuple
@@ -140,14 +140,14 @@ def scikitAlgorithms_CSVtoNumpy(input_dict):
     return output_dict # returns a touple consiting of n_samples x n_features numpy array X and an array of length n_samples containing the targets y
 
 
-def scikitAlgorithms_SVMtoScikitDataset(input_dict):
+def scikit_SVMtoScikitDataset(input_dict):
     output_dict={}
     from sklearn.datasets import load_svmlight_file
     X_train, y_train = load_svmlight_file(input_dict['fileIn'])
     output_dict['datasetOut'] = (X_train, y_train)
     return output_dict # returns a touple consiting of n_samples x n_features numpy array X and an array of length n_samples containing the targets y
 
-def scikitAlgorithms_buildClassifier(input_dict):
+def scikit_buildClassifier(input_dict):
     learner = input_dict['learner']
     data = input_dict['instances']
     n_sample = data["data"]
@@ -158,7 +158,7 @@ def scikitAlgorithms_buildClassifier(input_dict):
     output_dict = {'classifier': classifier}
     return output_dict
 
-def scikitAlgorithms_applyClassifier(input_dict):
+def scikit_applyClassifier(input_dict):
 
     classifier = input_dict['classifier']
     data = input_dict['data']
@@ -169,7 +169,7 @@ def scikitAlgorithms_applyClassifier(input_dict):
     output_dict = {'classes':data}
     return output_dict
 
-def scikitAlgorithms_scikitDatasetToCSV(input_dict):
+def scikit_scikitDatasetToCSV(input_dict):
     output_dict={}
     dataset= input_dict['scikitDataset']
     n_sample = dataset[0]
@@ -184,17 +184,17 @@ def scikitAlgorithms_scikitDatasetToCSV(input_dict):
     output_dict['CSVout'] = csv
     return output_dict
 
-def scikitAlgorithms_CSVtoOrange(input_dict):
+def scikit_CSVtoOrange(input_dict):
     import orange
     output_dict = {}
     output_dict['dataset'] = orange.ExampleTable(input_dict['file'])
     return output_dict
 
-def scikitAlgorithms_displayDS(input_dict):
+def scikit_displayDS(input_dict):
     return {}
 
 
-def scikitAlgorithms_displayDecisionTree(input_dict):
+def scikit_displayDecisionTree(input_dict):
     from sklearn import tree
     from StringIO import StringIO
     out = StringIO()
@@ -219,7 +219,7 @@ def scikitAlgorithms_displayDecisionTree(input_dict):
 #         count+=1
 #     #numpy.savetxt("foo.tab", csv, delimiter="   ")
 
-# def scikitAlgorithms_scikitDatasetToOrange(input_dict):
+# def scikit_scikitDatasetToOrange(input_dict):
 #     import orange
 #     output_dict = {}
 #     output_dict['dataset'] = orange.ExampleTable(input_dict['file'])
