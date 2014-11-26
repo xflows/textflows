@@ -7,7 +7,7 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="ui-widget-content {% ifequal widget.type 'for_input' %}ui-state-green{% endifequal %} {% ifequal widget.type 'for_output' %}ui-state-green{% endifequal %} ui-corner-all widgetcenter" style="padding-left:10px;padding-right:10px;">
+        <div original-title="<b>{{ widget.abstract_widget.package }}: {{ widget.abstract_widget.name }}</b><br/><br/>{{ widget.abstract_widget.description }}" class="ui-widget-content {% ifequal widget.type 'for_input' %}ui-state-green{% endifequal %} {% ifequal widget.type 'for_output' %}ui-state-green{% endifequal %} ui-corner-all widgetcenter" style="padding-left:10px;padding-right:10px;">
         <div style="width:34px;height:34px;background-size:100%;background-repeat:no-repeat;background-position:center center;background-image:url('{% if widget.abstract_widget.static_image %}{{STATIC_URL}}{{widget.abstract_widget.package}}/icons/widget/{{widget.abstract_widget.static_image}}{% else %}{% if widget.abstract_widget.image %}{{STATIC_URL}}{{widget.abstract_widget.image}}{% else %}{% if widget.abstract_widget.wsdl %}{{STATIC_URL}}widget-icons/ws.png{% else %}{% if widget.workflow_link %}{{STATIC_URL}}images/120px-Gears_icon.png{% else %}{% ifequal widget.type 'input' %}{{STATIC_URL}}images/forward-arrow.png{% else %}{% ifequal widget.type 'output' %}{{STATIC_URL}}images/forward-arrow.png{% else %}{% ifequal widget.type 'for_output' %}{{STATIC_URL}}images/Toolbar_-_Loop.png{% else %}{% ifequal widget.type 'for_input' %}{{STATIC_URL}}images/Toolbar_-_Loop.png{% else %}{{STATIC_URL}}widget-icons/question-mark.png{% endifequal %}{% endifequal %}{% endifequal %}{% endifequal %}{% endif %}{% endif %}{% endif %}{% endif %}')">
         </div></div>
         <div class="outputs" style="width:40px;min-height:1px;">
@@ -30,3 +30,7 @@
         {% if widget.workflow_link %}<div class="workflow_link" style="display:none;" rel="{{ widget.workflow_link.pk }}"></div>{% endif %}
     </div>
 {% endfor %}
+<script>
+        //$('.ui-widget-content').tipsy({html: true,fade: false, gravity: 's'});
+
+</script>

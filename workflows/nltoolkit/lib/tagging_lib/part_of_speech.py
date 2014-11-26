@@ -74,7 +74,6 @@ def nltk_affix_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
 
-    from nltk.tag import DefaultTagger,AffixTagger
     tagged_corpus=corpus_reader(input_dict['training_corpus'])
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     affix_length=int(input_dict['affix_length'])
@@ -228,7 +227,7 @@ def nltk_brill_pos_tagger(input_dict):
     min_score=int(input_dict['min_score']) #default 2
     deterministic=True
 
-    templates = getattr(nltk.tag.brill.nltk,input_dict['templates'])()
+    templates = getattr(nltk.tag.brill,input_dict['templates'])()
 
     trainer = BrillTaggerTrainer(initial_tagger, templates, deterministic=deterministic, trace=settings.DEBUG)
     brill_tagger = trainer.train(training_corpus, max_rules=max_rules, min_score=min_score) #return BrillTagger(self._initial_tagger, rules)

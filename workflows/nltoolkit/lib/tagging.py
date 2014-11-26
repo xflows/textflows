@@ -1,6 +1,6 @@
 from itertools import izip
 from workflows.textflows import *
-#from tagging_lib.part_of_speech import * #POS TAGGERS
+from tagging_lib.part_of_speech import * #POS TAGGERS
 from tagging_lib.stemming import * #STEMMERS
 
 # HUBS
@@ -182,3 +182,4 @@ def nltk_stop_word_tagger(input_dict):
 # # Print unique entity names
 # print set(entity_names)
 
+nltk.classify.scikitlearn
