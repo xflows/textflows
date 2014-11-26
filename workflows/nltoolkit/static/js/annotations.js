@@ -1,16 +1,12 @@
 
 
 $(document).ready(function () {
+    $("#DocumentText").html(htmlText);
+    var text=$("#DocumentText").text();
 
-    $("#DocumentText")[0].innerHTML = htmlEncode(text);
-
-    $('input[name="{$annotation_type_list_name}"]').click(function () {
-        console.log("docuemnt ready function");
+    $('input[name="annotationTypeList"]').click(function () {
         refreshPage(text);
-
-
     });
-
 
     function selectChildren(selector, colorArray, featureArray, color) {
 
@@ -58,10 +54,12 @@ $(document).ready(function () {
         var featureArray = new Array();
         var feature;
 
-        $("input:checked").each(function () {
 
+        $("input:checked").each(function () {
             elements = $(this).attr("elements");
             color = $(this).parent().next().attr('bgcolor');
+
+
             //update colorArray and featureArray
             var tmp = elements.split(':');
             for (var i = 0; i < tmp.length - 1; i++) {
@@ -73,7 +71,6 @@ $(document).ready(function () {
                     featureArray[parseInt(tmp2[0]) + j] = tmp2[2];
                 }
             }
-
             if ($(this).parent().parent().parent().parent().parent().children("ul").children().length > 0) {
                 selectChildren($(this).parent().parent().parent().parent().parent(), colorArray, featureArray, color);
             }
@@ -82,7 +79,6 @@ $(document).ready(function () {
 
 
         var i;
-
         var htmlResult = htmlEncode(text);
 
         if (colorArray.length > 0)
@@ -121,7 +117,7 @@ $(document).ready(function () {
 
 
         $("#DocumentText")[0].innerHTML = htmlResult;
-
+        /*
         $('span[class="text"]').tooltip({
 
             // place tooltip on the right edge
@@ -137,17 +133,16 @@ $(document).ready(function () {
             opacity: 0.95
 
         });
+        */
 
     }
 
 });
-
 function htmlEncode(str) {
-    return String(str)
-        .replace(/&/g, '&amp;')
+    //return str;
+    return String(str).replace(/&/g, '&amp;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 }
-
