@@ -85,5 +85,56 @@ def load_adc(texts,  tab_separated_title, leading_labels):
     return documents
 
 
+def get_plain_texts(input_dict):
+    """
+    Widget transforms Annotated Document Corpus to string.
+
+    :param adc: Annotated Document Corpus.
+    :param element_annotation: Token Annotation.
+    :param element_feature_conditions: Which tokens to include based on their features.
+    :param delimiter: Delimiter for token concatenation.
+    :param include_doc_id: Include Document Identifier.
+    :return: String with all documents in Annotated Document Corpus.
+
+    """
+
+    adc = input_dict['adc']
+    element_annotation = input_dict['element_annotation']
+    element_feature_conditions = input_dict['element_feature_conditions']
+    delimiter = input_dict['delimiter']
+    includeDocId = input_dict['include_doc_id'] == "true"
+
+    output_dict = {}
+    if includeDocId:
+        output_dict["strings"] = {}
+        for document in adc.documents:
+            output_dict["strings"][document.name] = document.text
+    else:
+        output_dict["strings"] = []
+        for document in adc.documents:
+            output_dict["strings"].append(document.text)
+
+    return output_dict
+
+
+def statistics(input_dict):
+    """
+    Statistics of Annotated Document Corpus.
+
+    :param adc: Annotated Document Corpus.
+    :return doc_count (int): Number of Documents.
+    :return feature_count (int): Number of Features.
+    :return description (string): Statistics.
+    """
+
+    output_dict = {}
+    output_dict["doc_count"] = len(input_dict["adc"].documents)
+    output_dict["feature_count"] = len(input_dict["adc"].features)
+    output_dict["description"] = "Number of documents is " + str(output_dict["doc_count"]) + \
+                                 ", number of corpus features is " + str(output_dict["feature_count"]) + "."
+    return output_dict
+
+
 def display_document_corpus(input_dict):
+    #implemented in visualization_views.py
     return {}

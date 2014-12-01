@@ -7,16 +7,15 @@ $(document).ready(function () {
     $('input[name="annotationTypeList"]').click(function () {
         refreshPage(text);
     });
-
+    /*
     function selectChildren(selector, colorArray, featureArray, color) {
 
         var originalColor = color;
-
         if ($(selector).children("ul").children().length > 0) {
 
             $(selector).children("ul").children().each(function () {
 
-                var elements = $(this).children("table").children("tbody").children("tr").children("td").eq(0).children("input").attr("elements")
+                var elements = $(this).children("table").children("tbody").children("tr").children("td").eq(0).children("input").attr("elements");
 
                 if ($(this).children("table").children("tbody").children("tr").children("td").eq(0).children("input").is(":checked")) {
                     color = $(this).children("table").children("tbody").children("tr").children("td").eq(1).attr('bgcolor');
@@ -43,7 +42,7 @@ $(document).ready(function () {
 
         }
     }
-
+    */
     function refreshPage(text) {
 
         var elements;
@@ -57,8 +56,10 @@ $(document).ready(function () {
 
         $("input:checked").each(function () {
             elements = $(this).attr("elements");
-            color = $(this).parent().next().attr('bgcolor');
+            features = $(this).attr("features").split(":");
 
+            //console.log(features);
+            color = $(this).parent().next().attr('bgcolor');
 
             //update colorArray and featureArray
             var tmp = elements.split(':');
@@ -68,12 +69,15 @@ $(document).ready(function () {
 
                 for (var j = 0; j < annLength + 1; j++) {
                     colorArray[parseInt(tmp2[0]) + j] = color;
-                    featureArray[parseInt(tmp2[0]) + j] = tmp2[2];
+                    //featureArray[parseInt(tmp2[0]) + j] = tmp2[2];
                 }
             }
+            //console.log(featureArray)
+            /*
             if ($(this).parent().parent().parent().parent().parent().children("ul").children().length > 0) {
                 selectChildren($(this).parent().parent().parent().parent().parent(), colorArray, featureArray, color);
             }
+            */
 
         });
 
@@ -84,23 +88,41 @@ $(document).ready(function () {
         if (colorArray.length > 0)
         {
             htmlResult = "";
-            //ali je tole odvec za char 0
-            if (colorArray[0] != undefined)
-            {
-                if (featureArray[0] == undefined || featureArray[0] == "") { htmlResult += "<span original-title='aaaaa' style='background-color:" + colorArray[0] + "; border: 1px solid white;'>"; }
-                else { htmlResult += "<span style='background-color:" + colorArray[0] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[0] + "'>"; }
+            //if (colorArray[0] != undefined)
+            //{
+            if (featureArray[0] == undefined || featureArray[0] == "") {
+                console.log(featureArray[0]);
+                htmlResult += "<span original-title='aaaaa' style='background-color:" + colorArray[0] + "; border: 1px solid white;'>";
             }
+                /*
+                else {
+                    console.log(featureArray[0]);
+                    htmlResult += "<span style='background-color:" + colorArray[0] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[0] + "'>";
+                }
+                */
+            //}
             htmlResult += htmlEncode(text.charAt(0));
 
             for (i = 0; i < text.length - 1; i++)
             {
                 if (colorArray[i] != colorArray[i + 1] || featureArray[i] != featureArray[i + 1])
                 {
-                    if (colorArray[i] != undefined) { htmlResult += "</span>"; }
+                    if (colorArray[i] != undefined) {
+                        htmlResult += "</span>";
+                    }
+
                     if (colorArray[i + 1] != undefined)
                     {
-                        if (featureArray[i + 1] == undefined || featureArray[i + 1] == "") { htmlResult += "<span original-title='bbbb' style='background-color:" + colorArray[i + 1] + "; border: 1px solid white;'>"; }
-                        else { htmlResult += "<span style='background-color:" + colorArray[i + 1] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[i + 1] + "'>"; }
+                        if (featureArray[i + 1] == undefined || featureArray[i + 1] == "") {
+                            console.log(featureArray[i + 1]);
+                            htmlResult += "<span original-title='bbbb' style='background-color:" + colorArray[i + 1] + "; border: 1px solid white;'>";
+                        }
+                        /*
+                        else {
+                            console.log(featureArray[i + 1]);
+                            htmlResult += "<span style='background-color:" + colorArray[i + 1] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[i + 1] + "'>";
+                        }
+                        */
                     }
                     htmlResult += htmlEncode(text.charAt(i + 1));
                 }

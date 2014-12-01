@@ -17,16 +17,13 @@
     {# if there is more than 100 documents, display a back link #}
     {% if back_url_catalog != "" %}
         <a id="backlinkA" href={{back_url_catalog}}> << Back to document catalog </a>
-
-        <!--script type="text/javascript" src="{% static  'js/jquery.js' %}"></script-->
-        <!--a href="javascript:history.go(-1);">  << Back to document catalog </a-->
         <br/>
     {% endif %}
 
     <h2>Features</h2>
     <b>Source</b> = {{features.Source}} <br/><br/>
-    <b>CorpusCreateDate</b> = {{features.CorpusCreateDate}}<br/><br/>
-    <b>SourceDate</b> = {{features.SourceDate}}<br/><br/>
+    <b>Corpus create date</b> = {{features.CorpusCreateDate}}<br/><br/>
+    <b>Source date</b> = {{features.SourceDate}}<br/><br/>
 </div>
 
 <div id="documentList">
@@ -50,15 +47,15 @@
                  annotation
             {% endif %}
 
-            of {{document.features.basic_types }} basic
-            {%  if document.features.basic_types  > 1%}
+            of {{document.additions.basic_types}} basic
+            {%  if document.additions.basic_types  > 1%}
                 types.
             {% else %}
                 type.
             {% endif %}
 
-            Described with  {{document.additions.basic_types}}
-            {%  if document.additions.basic_types > 1 %}
+            Described with  {{document.features|length}}
+            {%  if document.features|length > 1 %}
                 features.
             {% else %}
                 feature.

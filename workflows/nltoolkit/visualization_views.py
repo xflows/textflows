@@ -6,6 +6,9 @@ from workflows.models import Widget
 @login_required
 def display_document_corpus(request, input_dict, output_dict, widget, narrow_doc='n'):
     """
+    Display Document Corpus widget displays ADC (Annotated Document Corpus) structure.
+    It shows a detail view for selected document with annotations.
+
     user runs a display corpus widget. We return index template, which calls a document_corpus function.
     """
     view = django.shortcuts.render(request, 'visualizations/document_corpus_index_page.html', {'widget': widget,
@@ -75,19 +78,21 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
     """
     import random_colors
     w = get_object_or_404(Widget, pk=widget_id)
-    document = w.inputs.all()[0].value.documents[int(document_id) - 1]
+    document = w.inputs.all()[0].value.documents[int(document_id)]
     back_url = request.environ["HTTP_REFERER"]
 
     #create a new data structure for annotations that is more appropriate for django template language
     annotations = {}
+    features = {}
     for annotation in document.annotations:
         annotations[annotation.type] = annotations.get(annotation.type, "") + str(annotation.span_start) + "," + str(
             annotation.span_end) + ",:"
+        features[annotation.type] = features.get(annotation.type, "") + str(annotation.features) + ","
 
     #create a color for each annotation
     annotation_colors = random_colors.get_colors(len(annotations))
     for i, (k, v) in enumerate(annotations.iteritems()):
-        annotations[k] = [v, annotation_colors[i]]
+        annotations[k] = [v, features[k], annotation_colors[i]]
 
     view = django.shortcuts.render(request, 'visualizations/document_page.html', {'widget_id': widget_id,
                                                                                   'document': document,

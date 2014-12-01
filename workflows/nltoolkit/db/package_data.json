@@ -12,6 +12,136 @@
     }
   }, 
   {
+    "pk": 191, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 36, 
+      "treeview_image": "", 
+      "name": "Get Plain Texts", 
+      "is_streaming": false, 
+      "uid": "c5954f01-1eb5-40e9-bf46-56c3daaead07", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "get_plain_texts", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "Widget transforms Annotated Document Corpus to string."
+    }
+  }, 
+  {
+    "pk": 506, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 191, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "94805894-c5cd-468f-a36e-b0eed3ad7fb1", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Annotated Document Corpus."
+    }
+  }, 
+  {
+    "pk": 507, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 191, 
+      "name": "Token Annotation", 
+      "short_name": "str", 
+      "uid": "ad25b232-2937-4009-8773-6e710989a861", 
+      "default": "TextBlock", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 2, 
+      "description": "Token Annotation."
+    }
+  }, 
+  {
+    "pk": 508, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 191, 
+      "name": "Feature Condition", 
+      "short_name": "str", 
+      "uid": "f02bcdf3-cb15-4d4b-a9b0-7edff0029388", 
+      "default": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_feature_conditions", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "Which tokens to include based on their features.\r\n\r\nFormat examples:\r\n- Feature1 (don't include tokens with Feature1 set at any value),\r\n- Feature1=Value1 (don't include tokens with Feature1 set to the value Value1),\r\n- Feature1 + Feature2 (don't include tokens with Feature1 set, unless it has also Feature2 set).\r\n- Feature1=Value1 + Feature2 (don't include tokens with Feature1 set to Value1, unless it has also Feature2 set to any value)."
+    }
+  }, 
+  {
+    "pk": 509, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 191, 
+      "name": "Delimiter for token concatenation", 
+      "short_name": "str", 
+      "uid": "866aa635-8027-4e85-afda-fa2ac39becd2", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "delimiter", 
+      "parameter": true, 
+      "order": 4, 
+      "description": "Delimiter for token concatenation."
+    }
+  }, 
+  {
+    "pk": 510, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 191, 
+      "name": "Include Document Identifier", 
+      "short_name": "bol", 
+      "uid": "140d997c-f946-414c-89a7-da6c7286351c", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "include_doc_id", 
+      "parameter": true, 
+      "order": 5, 
+      "description": "Include Document Identifier."
+    }
+  }, 
+  {
+    "pk": 196, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 191, 
+      "name": "Texts", 
+      "short_name": "str", 
+      "variable": "strings", 
+      "uid": "a8504aaa-081d-48db-90c1-613b26410e58", 
+      "order": 1, 
+      "description": "String with all documents in Annotated Document Corpus."
+    }
+  }, 
+  {
     "pk": 167, 
     "model": "workflows.abstractwidget", 
     "fields": {
@@ -71,7 +201,7 @@
       "variable": "tab_separated_title", 
       "parameter": true, 
       "order": 2, 
-      "description": "System.Boolean"
+      "description": "Text before the first tabulator [/t] represents the title of a document."
     }
   }, 
   {
@@ -89,7 +219,7 @@
       "variable": "leading_labels", 
       "parameter": true, 
       "order": 3, 
-      "description": "System.Boolean"
+      "description": "First words in a line (after optional title) with preceding exclamation (!) present labels."
     }
   }, 
   {
@@ -102,7 +232,7 @@
       "variable": "adc", 
       "uid": "23bd7cd5-2928-4efa-bb6f-a6403d7939c6", 
       "order": 1, 
-      "description": ""
+      "description": "Annotated Document Corpus."
     }
   }, 
   {
@@ -165,7 +295,7 @@
       "variable": "tab_separated_title", 
       "parameter": true, 
       "order": 2, 
-      "description": "System.Boolean"
+      "description": "Text before the first tabulator [/t] represents the title of a document."
     }
   }, 
   {
@@ -183,7 +313,7 @@
       "variable": "leading_labels", 
       "parameter": true, 
       "order": 3, 
-      "description": "System.Boolean"
+      "description": "First words in a line (after optional title) with preceding exclamation (!) present labels."
     }
   }, 
   {
@@ -196,7 +326,7 @@
       "variable": "adc", 
       "uid": "864d3185-cea3-408e-83d4-6890bfdb523e", 
       "order": 1, 
-      "description": ""
+      "description": "Annotated Document Corpus."
     }
   }, 
   {
@@ -235,7 +365,7 @@
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 1, 
-      "description": "Automatically generated widget from function DisplayDocumentCorpus_PYTHON in package latino. The original function signature: DisplayDocumentCorpus_PYTHON."
+      "description": "Display Document Corpus widget displays ADC (Annotated Document Corpus) structure. It shows a detail view for selected document with annotations."
     }
   }, 
   {
@@ -253,7 +383,7 @@
       "variable": "adc", 
       "parameter": false, 
       "order": 1, 
-      "description": "LatinoClowdFlows.DocumentCorpus"
+      "description": "Annotated Document Corpus."
     }
   }, 
   {
@@ -352,6 +482,90 @@
       "uid": "c2fce52f-e6c4-4074-9b75-49a3ebcac8bf", 
       "order": 1, 
       "description": "NLTK document corpus name"
+    }
+  }, 
+  {
+    "pk": 192, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 37, 
+      "treeview_image": "", 
+      "name": "Statistics", 
+      "is_streaming": false, 
+      "uid": "18ca239d-90c1-4a53-bdc0-a874eff0efe5", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "statistics", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "Statistics of Annotated Document Corpus."
+    }
+  }, 
+  {
+    "pk": 511, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 192, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "165819b1-9720-429e-b4ec-0aaec5d5fd07", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Annotated Document Corpus"
+    }
+  }, 
+  {
+    "pk": 197, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 192, 
+      "name": "Number of Documents", 
+      "short_name": "int", 
+      "variable": "doc_count", 
+      "uid": "cb53b12d-6ed2-491b-8c2a-af7726c5498d", 
+      "order": 1, 
+      "description": "Number of Documents."
+    }
+  }, 
+  {
+    "pk": 198, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 192, 
+      "name": "Number of Features", 
+      "short_name": "int", 
+      "variable": "feature_count", 
+      "uid": "b975213e-5241-4f6b-909c-6bf7989d8fbe", 
+      "order": 2, 
+      "description": "Number of Features."
+    }
+  }, 
+  {
+    "pk": 199, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 192, 
+      "name": "Statistics", 
+      "short_name": "str", 
+      "variable": "description", 
+      "uid": "fac4b436-5a90-4b2f-b3aa-d3d1be2b6424", 
+      "order": 3, 
+      "description": "Statistics."
     }
   }, 
   {
