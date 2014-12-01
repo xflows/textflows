@@ -84,10 +84,11 @@ $(document).ready(function () {
         if (colorArray.length > 0)
         {
             htmlResult = "";
+            //ali je tole odvec za char 0
             if (colorArray[0] != undefined)
             {
-                if (featureArray[0] == undefined || featureArray[0] == "") { htmlResult += "<span style='background-color:" + colorArray[0] + "; border: 1px solid white;'>"; }
-                else { htmlResult += "<span style='background-color:" + colorArray[0] + ";' class='text' title='Features: &lt;br/&gt; " + featureArray[0] + "'>"; }
+                if (featureArray[0] == undefined || featureArray[0] == "") { htmlResult += "<span original-title='aaaaa' style='background-color:" + colorArray[0] + "; border: 1px solid white;'>"; }
+                else { htmlResult += "<span style='background-color:" + colorArray[0] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[0] + "'>"; }
             }
             htmlResult += htmlEncode(text.charAt(0));
 
@@ -98,8 +99,8 @@ $(document).ready(function () {
                     if (colorArray[i] != undefined) { htmlResult += "</span>"; }
                     if (colorArray[i + 1] != undefined)
                     {
-                        if (featureArray[i + 1] == undefined || featureArray[i + 1] == "") { htmlResult += "<span style='background-color:" + colorArray[i + 1] + "; border: 1px solid white;'>"; }
-                        else { htmlResult += "<span style='background-color:" + colorArray[i + 1] + ";' class='text' title='Features: &lt;br/&gt; " + featureArray[i + 1] + "'>"; }
+                        if (featureArray[i + 1] == undefined || featureArray[i + 1] == "") { htmlResult += "<span original-title='bbbb' style='background-color:" + colorArray[i + 1] + "; border: 1px solid white;'>"; }
+                        else { htmlResult += "<span style='background-color:" + colorArray[i + 1] + ";' class='text' original-title='Features: &lt;br/&gt; " + featureArray[i + 1] + "'>"; }
                     }
                     htmlResult += htmlEncode(text.charAt(i + 1));
                 }
@@ -117,6 +118,9 @@ $(document).ready(function () {
 
 
         $("#DocumentText")[0].innerHTML = htmlResult;
+
+        $('span').tipsy({ //zasacno
+        gravity: 's'
         /*
         $('span[class="text"]').tooltip({
 
@@ -131,15 +135,14 @@ $(document).ready(function () {
 
             // custom opacity setting
             opacity: 0.95
-
-        });
         */
+        });
+
 
     }
 
 });
 function htmlEncode(str) {
-    //return str;
     return String(str).replace(/&/g, '&amp;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#39;')

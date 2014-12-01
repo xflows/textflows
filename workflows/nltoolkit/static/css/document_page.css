@@ -5,7 +5,7 @@ body {font-family:helvetica;}
 #DocumentFeaturesLayer {position:absolute;left:50px;width:300px;height:auto;padding-left:2.1em;padding-top:1.5em;z-index:1;word-wrap:break-word;}
 #h3Tree {padding-left:4.5em;}
 #backlink {text-align:right;width:95%;}
-#backlinkA {}
+#backlinkA {color:Gray}
 ul, li, ul li a {list-style: none;width:100%;}
 
 h3 {color: #3C64B6; font-weight:bold;}

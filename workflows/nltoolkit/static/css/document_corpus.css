@@ -4,3 +4,7 @@ body {margin-left: 15%; margin-right: 10%; margin-top: 5%; font-family:helvetica
 .documentTitle {font-weight:bold; font-size:1.2em; margin-top: 1.5em; margin-bottom: 0.5em; }
 .statistics {margin-top: 0.3em; margin-bottom: 0em; width: 50em; font-size:0.8em; color:#CD3700;}
 .documentText {margin-top: 0em; margin-bottom: 0em; width: 50em; font-size:1em;}
+h2 {color: #004D99; font-weight:bold}
+
+#backlinkA {color:Gray}
+#ListLayer {position:relative;left:50px;top:60px;width:30%;height:auto;z-index:1;}

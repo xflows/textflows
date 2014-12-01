@@ -5,6 +5,14 @@ import re
 
 
 def load_adc_from_file(input_dict):
+    """
+    This widges processes raw text file and loads the texts into ADC (Annotated Document Corpus) structure.
+    The input file contains one document per line - the whole line represents text from the body of a document.
+    In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure.
+
+    :param file: file path
+    :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
+    """
     file_path = input_dict['file']
     file_name = unicode(os.path.basename(file_path))
     texts = re.split("[\r\n]", open(file_path, "r").read())
@@ -21,6 +29,14 @@ def load_adc_from_file(input_dict):
 
 
 def load_adc_from_string(input_dict):
+    """
+    This widges processes input text and loads it into ADC (Annotated Document Corpus) structure.
+    The input text contains one document per line - the whole line represents text from the body of a document.
+    In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure.
+
+    :param plain_string: documents text
+    :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
+    """
     source_date = unicode("unknown")
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     texts = re.split("[\r\n]", input_dict['plain_string'])
@@ -33,6 +49,14 @@ def load_adc_from_string(input_dict):
 
 
 def load_adc(texts,  tab_separated_title, leading_labels):
+    """
+    function parses title and labels for documents from text and it sets annnotation for each document.
+
+    :param texts: list of documents
+    :param tab_separated_title: document title is separated from the text with \t. Example: title \t start of text
+    :param leading_labels: documents has labels infront of the text. Example: !LB1 !Lb2 !LBL \t start of text
+    :return: list of documents
+    """
     documents = []
     for i, text in enumerate(texts):
         title = u"Document" + unicode(i + 1)
