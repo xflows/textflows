@@ -27,25 +27,26 @@ def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  
 
     if document_id_to == -1:  # if there is default value for document_id_to
         documents = w.inputs.all()[0].value.documents  # get all documents
+        back_url = ""
     else:
         #get interval of documents. document_id_from has -1, because we start counting documents from 1 and not 0.
         #document_id_to does not have -1, because we output documents to document x, with document x included.
-        documents = w.inputs.all()[0].value.documents[int(document_id_from)-1:int(document_id_to)]
+        documents = w.inputs.all()[0].value.documents[int(document_id_from):int(document_id_to)]
+        back_url = request.environ["HTTP_REFERER"]
 
     if len(documents) <= 100:
         #display 100 documents or less
 
         for i, document in enumerate(documents):
-            document.additions = {"id": i+int(document_id_from)} #add document ids to document object
+            document.additions = {"id": i+int(document_id_from)} #add document ids to the document object
             #count annotations for a document
             document.additions["basic_types"] = len(set([annotation.type for annotation in document.annotations]))
 
-        #if prior to this view was document corpus catalog view, then add a back link.
-        back_url_catalog = "" if document_id_to == -1 else request.environ["HTTP_REFERER"]
+
         view = django.shortcuts.render(request, 'visualizations/document_corpus.html', {'widget_id': widget_id,
                                                                                         'documents': documents,
                                                                                         "features": features,
-                                                                                        'back_url_catalog': back_url_catalog,
+                                                                                        'back_url': back_url,
                                                                                         'narrow_doc': narrow_doc})
     else:
         #group documents in groups of 100 documents
@@ -53,7 +54,7 @@ def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  
         for i in range(len(documents)):
             if i % 100 == 0:
                 interval = i+100 if i+100 < len(documents) else len(documents)
-                last_index = interval if i+100 < len(documents) else interval-1
+                last_index = interval-1 if i+100 < len(documents) else interval-1
 
                 sum_features = sum([len(documents[j].features) for j in range(i, interval)])
                 sum_annotations = sum([len(documents[j].annotations) for j in range(i, interval)])
@@ -67,6 +68,7 @@ def document_corpus(request, widget_id, document_id_from=0, document_id_to=-1,  
         view = django.shortcuts.render(request, 'visualizations/document_corpus_catalog.html', {'widget_id': widget_id,
                                                                                                 'document_catalog': document_catalog,
                                                                                                 "features": features,
+                                                                                                'back_url': back_url,
                                                                                                 'narrow_doc': narrow_doc})
 
     return view
@@ -83,16 +85,18 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
 
     #create a new data structure for annotations that is more appropriate for django template language
     annotations = {}
-    features = {}
     for annotation in document.annotations:
-        annotations[annotation.type] = annotations.get(annotation.type, "") + str(annotation.span_start) + "," + str(
-            annotation.span_end) + ",:"
-        features[annotation.type] = features.get(annotation.type, "") + str(annotation.features) + ","
+
+        annotations[annotation.type] = annotations.get(annotation.type, "") + \
+                                       str(annotation.span_start) + "," + \
+                                       str(annotation.span_end) + "," + \
+            str(annotation.features)[1:-1].replace(",", "<br/>").replace(":", " =").replace("u'", "").replace("'", "").replace("u\"", "").replace("\"", "") \
+            + ":"  # annotations for tipsy. We format string, so that tipsy shows it correcly
 
     #create a color for each annotation
     annotation_colors = random_colors.get_colors(len(annotations))
     for i, (k, v) in enumerate(annotations.iteritems()):
-        annotations[k] = [v, features[k], annotation_colors[i]]
+        annotations[k] = [v, annotation_colors[i]]
 
     view = django.shortcuts.render(request, 'visualizations/document_page.html', {'widget_id': widget_id,
                                                                                   'document': document,

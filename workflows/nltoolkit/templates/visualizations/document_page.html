@@ -26,10 +26,10 @@ var htmlText = "{{document.text }}";
                 <li> <table>
                     <tr>
                         <td name="annotation" style='padding-right:10px' >
-                            <input type="checkbox"  name="annotationTypeList" class ="{{ annotation_name}}" elements="{{ annotation_el.0 }}" features="{{annotation_el.1}}"/>
+                            <input type="checkbox"  name="annotationTypeList" class ="{{ annotation_name}}" elements="{{ annotation_el.0 }}"/>
                                {{ annotation_name}}
                         </td>
-                        <td bgcolor={{annotation_el.2}} style="border:solid black 1px">&nbsp; &nbsp; &nbsp; </td>
+                        <td bgcolor={{annotation_el.1}} style="border:solid black 1px">&nbsp; &nbsp; &nbsp; </td>
                     </tr>
                 </table></li>
         {% endfor  %}

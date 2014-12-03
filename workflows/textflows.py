@@ -10,6 +10,7 @@ class Document:
         self.annotations=annotations
         self.features=features
         self.name=name
+
         self.text=text
 
     def __unicode__(self):

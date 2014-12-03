@@ -20,7 +20,7 @@
 <div id="documentList">
     {% for documents in document_catalog %}
         <p class='documentTitle'>
-            <a href={% url 'nltk get adc index' widget_id=widget_id document_id_from=documents.first.1 document_id_to=documents.last.1  narrow_doc=narrow_doc %}>
+            <a href={% url 'nltk get adc index' widget_id=widget_id document_id_from=documents.first.1|add:"-1" document_id_to=documents.last.1  narrow_doc=narrow_doc %}>
            {{ documents.length}} Documents (from {{ documents.first.1 }} to {{ documents.last.1 }})</a>
         </p>
 
