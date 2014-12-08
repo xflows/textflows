@@ -1684,8 +1684,8 @@ $(function(){
         });
     }
 
-    $('.widgetTipsy').tipsy({fade: true, gravity: 'w',opacity: 0.95,live: true});
-    $('.ui-widget-content').tipsy({fade: true,html: true, gravity: 's',opacity: 0.95,live: true});
+    $('.widgetTipsy').tipsy({delayIn: 1000, fade: true, gravity: 'w',opacity: 0.95,live: true});
+    $('.ui-widget-content').tipsy({delayIn: 1000,fade: true,html: true, gravity: 's',opacity: 0.95,live: true});
 
 });
 

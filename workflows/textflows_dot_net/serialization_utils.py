@@ -1,157 +1,12 @@
 import time
-from workflows.textflows import *
+from scipy.sparse.csr import csr_matrix
+from ..textflows import *
 import logging
 logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO)
 
 
-#------------------------------supposed----------------------------------------
-# Generic interfaces for pickling .net or standard objects
 #------------------------------------------------------------------------------
-
-from import_dotnet import *
-import Latino
-import LatinoClowdFlows
-
-#check if .net object and wrap it accordingly
-def GetBaseOrLSO(obj):
-    #print "----------------------------------------------------------------------------------"
-    #print hasattr(obj, "GetType")
-    if (hasattr(obj, "GetType")):
-        #print System.Object().GetType().IsAssignableFrom(obj.GetType())
-        #print "----------------------------------------------------------------------------------"
-        if System.Object().GetType().IsAssignableFrom(obj.GetType()):
-            try:
-                srlz = Latino.ISerializable(obj)
-                return LSO(srlz)
-            except:
-                return obj
-        else:
-            return obj
-    else:
-        #print "----------------------------------------------------------------------------------"
-        return obj
-
-#------------------------------supposed------------------------------------------------
-# Generic interfaces for pickling .net objects
-#------------------------------------------------------------------------------
-class SerializableObject:
-    netObj = None
-    constructor = '<constructor_func_name>'
-    def __init__(self, object = None):
-        self.netObj = object
-        self.copyAttributes()
-    def createInstance(self, dict):
-        constr = eval(self.constructor)
-        args = self.getConstructorArgs(dict)
-        self.netObj = constr(*args)
-        self.copyAttributes()
-    def getConstructorArgs(self, dict):
-        if dict.has_key('constructorArgs'):
-            return tuple([val for key,val in dict['constructorArgs'].items()])
-        return ()
-    def copyAttributes(self): #copy all attributes from wrapped object to the wrapper
-        pass
-        #for attr in dir(self.netObj):
-        #    if hasattr(self.netObj, attr) and not hasattr(self, attr):
-        #        setattr(self, attr, getattr(self.netObj, attr))
-    def __repr__(self):
-        #return "<" + self.netObj.__str__() + " wrapped in "+self.__class__.__name__+">"
-        return "<" + self.netObj.__str__() + ">"
-    def netObj(self):
-        return self.netObj
-
-class LatinoSerializableObject(SerializableObject):
-    def __getstate__(self):
-        logging.info('Serialize {0} with latino serializer (start)'.format(self.netObj.__class__.__name__))
-        start = time.clock()
-        byteData = LatinoClowdFlows.LatinoCF.Save(self.netObj)
-        elapsed = (time.clock() - start)
-        logging.info('Serialize {0} with latino serializer (end, size: {1:,} chars) in {2} ms'.format(self.netObj.__class__.__name__, len(byteData),elapsed))
-        return {'byteData': byteData}
-    def __setstate__(self, dict):
-        logging.info('Deserialize {0} with latino deserializer (start)'.format("<LatinoObject>"))
-        start = time.clock()
-        self.netObj = LatinoClowdFlows.LatinoCF.Load(dict['byteData'])
-        self.copyAttributes()
-        elapsed = (time.clock() - start)
-        logging.info('Deserialize {0} with latino deserializer (end, size: {1:,} chars) in {2} ms'.format(self.netObj.__class__.__name__, len(dict['byteData']),elapsed))
-    def __repr__(self):
-        return "<LSO: " + self.netObj.__str__() + ">"
-
-LSO = LatinoSerializableObject
-
-class ObjectFunctionSerializableObject(SerializableObject):
-    save = '<save_data_func_name>'
-    load = '<load_data_func_name>'
-    def __getstate__(self):
-        logging.info('Serialize {0} with obj.function {1} (start)'.format(self.__class__.__name__, self.save))
-        saveFunc = getattr(self.netObj, self.save)
-        data = saveFunc()
-        logging.info('Serialize {0} with obj.function {1} (end, size: {2:,} chars)'.format(self.__class__.__name__, self.save, len(data)))
-        return {'data': data}
-    def __setstate__(self, dict):
-        logging.info('Deserialize {0} with obj.function {1} (start)'.format(self.__class__.__name__, self.load))
-        self.createInstance(dict)
-        loadFunc = getattr(self.netObj, self.load)
-        loadFunc(dict['data'])
-        logging.info('Deserialize {0} with obj.function {1} (end, size: {2:,} chars)'.format(self.__class__.__name__, self.load, len(dict['data'])))
-
-class ExternalFunctionSerializableObject(SerializableObject):
-    save = '<save_data_func_name>'
-    load = '<load_data_func_name>'
-    def __getstate__(self):
-        logging.info('Serialize {0} with ext.function {1} (start)'.format(self.__class__.__name__, self.save))
-        saveFunc = eval(self.save)
-        data = saveFunc(self.netObj)
-        logging.info('Serialize {0} with ext.function {1} (end, size: {2:,} chars)'.format(self.__class__.__name__, self.save, len(data)))
-        return {'data': data}
-    def __setstate__(self, dict):
-        logging.info('Deserialize {0} with ext.function {1} (start)'.format(self.__class__.__name__, self.load))
-        loadFunc = eval(self.load)
-        self.netObj = loadFunc(dict['data'])
-        self.copyAttributes()
-        logging.info('Deserialize {0} with ext.function {1} (end, size: {2:,} chars)'.format(self.__class__.__name__, self.load, len(dict['data'])))
-
-class PropertySerializableObject(SerializableObject):
-    constructorArgs = []
-    props = []
-    def __getstate__(self):
-        logging.info('Serialize {0} properties (start)'.format(self.__class__.__name__))
-        dictToSave = {'props':{},'constructorArgs':{}}
-        for prop in self.props:
-            if hasattr(self.netObj, prop):
-                dictToSave['props'][prop] = getattr(self.netObj, prop)
-        for constructorArg in self.constructorArgs:
-            if hasattr(self.netObj, constructorArg):
-                dictToSave['constructorArgs'][constructorArg] = getattr(self.netObj, constructorArg)
-        logging.info('Serialize {0} properties (end {1:,} properties)'.format(self.__class__.__name__, len(dictToSave['props'])+len(dictToSave['constructorArgs'])))
-        return dictToSave
-    def __setstate__(self, dict):
-        logging.info('Deserialize {0} properties (start)'.format(self.__class__.__name__))
-        self.createInstance(dict)
-        for prop in dict:
-            if hasattr(self.netObj, prop):
-                setattr(self.netObj, prop, dict[prop])
-        logging.info('Deserialize {0} properties (end {1:,} properties)'.format(self.__class__.__name__, len(dict['props'])+len(dict['constructorArgs'])))
-
-class ManuallySerializableObject(SerializableObject):
-    def __getstate__(self):
-        logging.info('Serialize {0} manually (start)'.format(self.__class__.__name__))
-        dictToSave = self.getstate()
-        logging.info('Serialize {0} manually ({1:,} properties)'.format(self.__class__.__name__, len(dictToSave)))
-        return dictToSave
-    def __setstate__(self, dict):
-        logging.info('Deserialize {0} manually start)'.format(self.__class__.__name__))
-        self.createInstance(dict)
-        self.setstate(dict)
-        logging.info('Deserialize {0} manually ({1:,} properties)'.format(self.__class__.__name__, len(dict)))
-    def getstate(self):
-        return {}
-    def setstate(self, dict):
-        pass
-
-#------------------------------------------------------------------------------
-# Helper functions
+# Conversion functions
 #------------------------------------------------------------------------------
 def ToInt(s):
     try:
@@ -171,6 +26,7 @@ def ToBool(s):
 def ToString(s):
     return s
 def ToEnum(typ, s,defaultValue):
+    import LatinoClowdFlows
     return LatinoClowdFlows.LatinoCF.ParseEnum[typ](s, defaultValue)
 def ToIntList(s):
     il = []
@@ -180,6 +36,7 @@ def ToIntList(s):
 def ToPyList(l):
     return [x for x in l]
 def ToNetList(Type,l):
+    import System
     a = System.Array[Type](l)
     return a
 def IsSequence(arg):
@@ -204,8 +61,13 @@ def Flatten(l, ltypes=(list, tuple)):
 MAP_TO_PYTHON_OBJECTS=True
 
 def ToNetObj(data):
-    if hasattr(data, "netObj"):
-        return data.netObj
+    import System
+    import Latino
+    import LatinoClowdFlows
+    #if hasattr(data, "netObj"):
+    #    return data.netObj
+    if isinstance(data,LatinoObject):
+        return data.load()
     if isinstance(data, dict):
         if not len(data):
             return System.Collections.Generic.Dictionary[System.Object,System.Object]()
@@ -264,8 +126,6 @@ def ToNetObj(data):
         if isinstance(data,Document): #name,text,annotations,features
             d=Latino.Workflows.TextMining.Document(data.name,data.text)
             latino_object_set_feature_values(d,data.features)
-            da=data.annotations
-            a=ToNetObj(data.annotations)
             d.AddAnnotations(ToNetObj(data.annotations))
 
             return d
@@ -278,6 +138,22 @@ def ToNetObj(data):
             d.AddRange(ToNetObj(data.documents))
             latino_object_set_feature_values(d,data.features)
             return d
+        elif isinstance(data,BowDataset):
+            cx=data.sparse_bow_matrix.tocoo() #A sparse matrix in COOrdinate format.
+
+            if data.labels and cx.shape[0]!=len(data.labels):
+                raise Exception("Nekaj gnilega je v dezeli Danski, sporoci maticu.")
+            sparse_vectors=[ Latino.SparseVector[System.Double]() for _ in range(cx.shape[0])] #empty SparseVectors
+
+            for (i,j,v) in izip(cx.row, cx.col, cx.data):
+                sparse_vectors[i][j]=v
+
+            ds=Latino.Model.LabeledDataset[System.String,Latino.SparseVector[System.Double]]()
+            for i,ex in enumerate(sparse_vectors):
+                label=data.labels[i] if data.labels else ''
+                ds.Add(label,ex)
+
+            return ds
     return data
 
 def latino_object_set_feature_values(latinoObj,features):
@@ -289,6 +165,9 @@ def latino_object_set_feature_values(latinoObj,features):
 
 
 def ToPyObj(data):
+    import System
+    import Latino
+    import LatinoClowdFlows
     if hasattr(data, "GetType") and data.GetType().IsGenericType:
         genType = data.GetType().GetGenericTypeDefinition()
         if genType.Equals(System.Collections.Generic.Dictionary):
@@ -308,6 +187,23 @@ def ToPyObj(data):
             for val in data:
                 l.append(ToPyObj(val))
             return tuple(l)
+        if MAP_TO_PYTHON_OBJECTS and genType.Equals(Latino.Model.LabeledDataset):
+            labels=[]
+            row=[]
+            col=[]
+            values=[]
+            for i,labeled_example in enumerate(data): #if genType.Equals(Latino.Model.LabeledExample)
+                labels.append(labeled_example.get_Label())
+                sparse_vector=labeled_example.get_Example()
+
+                for el in sparse_vector:
+                    row.append(i)
+                    col.append(el.get_Idx())
+                    values.append(el.get_Dat())
+
+            bow_matrix=csr_matrix((values,(row,col)))
+            return BowDataset(bow_matrix,labels)
+
     if MAP_TO_PYTHON_OBJECTS and hasattr(data, "GetType"):
         if data.GetType().Equals(LatinoClowdFlows.DocumentCorpus):
             return DocumentCorpus([ToPyObj(el) for el in data.Documents],ToPyObj(data.Features))
@@ -324,14 +220,11 @@ def ToPyObj(data):
 
             return d
 
-
-
-
     if hasattr(data, "GetType"):
         type = data.GetType()
         if type.IsArray:
             return [ToPyObj(x) for x in data]
         for interface in type.GetInterfaces():
             if interface.Name == u'ISerializable':
-                return LSO(data)
-    return data
+                return LatinoObject(data) #if other type of latino object
+    return data #usually types like string, list which are converted from c# objects

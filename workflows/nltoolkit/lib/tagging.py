@@ -27,7 +27,7 @@ def stop_word_tagger_hub(input_dict):
     :returns adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
 
-    if type(input_dict['stop_word_tagger'])!=dict: #check if this is a latino object
+    if isinstance(input_dict['stop_word_tagger'],LatinoObject):
         from ...latino.library_gen import latino_tag_adcstopwords
         input_dict['tagger']=input_dict['stop_word_tagger']  #TODO temporary
         return latino_tag_adcstopwords(input_dict)
@@ -181,5 +181,3 @@ def nltk_stop_word_tagger(input_dict):
 #
 # # Print unique entity names
 # print set(entity_names)
-
-nltk.classify.scikitlearn
