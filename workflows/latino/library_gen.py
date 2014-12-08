@@ -760,22 +760,22 @@ def latino_construct_knn_classifier_fast(inputDict):
     return outputDict
 
 def latino_train_classifier(inputDict):
-    _csf = ToNetObj(inputDict['csf'])
-    _ds = ToNetObj(inputDict['ds'])
+    _csf = ToNetObj(inputDict['classifier'])
+    _ds = ToNetObj(inputDict['training_data'])
     execResult = LatinoCF.TrainClassifier(_csf, _ds)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['csf'] = execResultPy
+    outputDict['trained_classifier'] = execResultPy
     return outputDict
 
 def latino_predict_classification(inputDict):
-    _csf = ToNetObj(inputDict['csf'])
-    _ds = ToNetObj(inputDict['ds'])
+    _csf = ToNetObj(inputDict['trained_classifier'])
+    _ds = ToNetObj(inputDict['testing_dataset'])
     execResult = LatinoCF.PredictClassification(_csf, _ds)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['predictions'] = execResultPy['predictions']
-    outputDict['ds'] = execResultPy['ds']
+    outputDict['labeled_dataset'] = execResultPy['ds']
     return outputDict
 
 def latino_prediction_info(inputDict):

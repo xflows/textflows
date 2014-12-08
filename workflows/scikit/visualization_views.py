@@ -1,16 +1,16 @@
 from django.shortcuts import render
 
-# def scikitAlgorithms_display_summation(request,input_dict,output_dict,widget):
+# def scikit_display_summation(request,input_dict,output_dict,widget):
 #     if sum(input_dict['intList']) == input_dict['sum']:
 #         check = 'The calculation appears correct.'
 #     else:
 #         check = 'The calculation appears incorrect!'
-#     return render(request, 'visualizations/scikitAlgorithms_display_integers.html',{'widget':widget,'input_dict':input_dict, 'output_dict':output_dict, 'check':check})
+#     return render(request, 'visualizations/scikit_display_integers.html',{'widget':widget,'input_dict':input_dict, 'output_dict':output_dict, 'check':check})
 
 
-def scikitAlgorithms_displayDS(request,input_dict,output_dict,widget):
+def scikit_displayDS(request,input_dict,output_dict,widget):
     data = input_dict['data']
-    return render(request, 'visualizations/scikitAlgorithms_displayDS.html',{'widget':widget,'input_dict':input_dict,'output_dict':helperDisplayDS(output_dict)})
+    return render(request, 'visualizations/scikit_displayDS.html',{'widget':widget,'input_dict':input_dict,'output_dict':helperDisplayDS(output_dict)})
 
 def scikitDataset_table_to_dict(data):
     attrs, metas, data_new = [], [], []

@@ -1936,7 +1936,7 @@
     "fields": {
       "category": 42, 
       "treeview_image": "", 
-      "name": "BOW Model and Dataset", 
+      "name": "Construct BOW Model and Dataset", 
       "is_streaming": false, 
       "uid": "c745f516-55b3-498b-97f5-841b63b90ea8", 
       "interaction_view": "", 
@@ -1948,13 +1948,13 @@
       "user": null, 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "action": "construct_bow_space", 
+      "action": "construct_bow_model", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 1, 
-      "description": "Automatically generated widget from function ConstructBowSpace in package latino. The original function signature: ConstructBowSpace."
+      "description": "TODO"
     }
   }, 
   {
@@ -1987,7 +1987,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "tokenId", 
+      "variable": "token_annotation", 
       "parameter": true, 
       "order": 2, 
       "description": "System.String"
@@ -2005,7 +2005,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "stemId", 
+      "variable": "stem_feature_name", 
       "parameter": true, 
       "order": 3, 
       "description": "System.String"
@@ -2019,11 +2019,11 @@
       "name": "Stopword Feature Name", 
       "short_name": "str", 
       "uid": "b5ca48ce-85e7-4192-b175-f12e506e4dbc", 
-      "default": "stopword", 
+      "default": "StopWord", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "stopwordId", 
+      "variable": "stop_word_feature_name", 
       "parameter": true, 
       "order": 4, 
       "description": "System.String"
@@ -2037,11 +2037,11 @@
       "name": "Label Document Feature Name", 
       "short_name": "str", 
       "uid": "1116208b-cf40-4de9-9253-2eeb99eed1f7", 
-      "default": "label", 
+      "default": "", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "labelId", 
+      "variable": "label_doc_feature_name", 
       "parameter": true, 
       "order": 5, 
       "description": "System.String"
@@ -2143,8 +2143,8 @@
     "fields": {
       "widget": 185, 
       "name": "Bag of Words Model", 
-      "short_name": "bow", 
-      "variable": "bow", 
+      "short_name": "bwm", 
+      "variable": "bow_model", 
       "uid": "ab156b78-7b84-4aae-a530-ca0400608e0d", 
       "order": 1, 
       "description": ""
@@ -2157,7 +2157,7 @@
       "widget": 185, 
       "name": "Dataset", 
       "short_name": "ds", 
-      "variable": "ds", 
+      "variable": "bow_dataset", 
       "uid": "df4f880a-cbaf-408f-a985-0cfa29fa6a6e", 
       "order": 2, 
       "description": ""
@@ -2476,7 +2476,96 @@
     }
   }, 
   {
-    "pk": 189, 
+    "pk": 214, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 40, 
+      "treeview_image": "", 
+      "name": "Apply Classifier", 
+      "is_streaming": false, 
+      "uid": "8d22e7f2-0bc4-41ce-9ad2-a733fe53179a", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "classification_predict_image.png", 
+      "windows_queue": true, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "apply_bow_classifier", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 13, 
+      "description": "TODO"
+    }
+  }, 
+  {
+    "pk": 515, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 214, 
+      "name": "Classifier", 
+      "short_name": "csf", 
+      "uid": "a9a32803-fe99-4d9e-9715-2b253b25dec5", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "trained_classifier", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Latino.Model.IModel`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
+    }
+  }, 
+  {
+    "pk": 516, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 214, 
+      "name": "Dataset", 
+      "short_name": "ds", 
+      "uid": "a6740aae-5afd-4702-bd2a-cb48887d7a97", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "testing_dataset", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "Latino.Model.LabeledDataset`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Latino.SparseVector`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Latino, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+    }
+  }, 
+  {
+    "pk": 211, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 214, 
+      "name": "Prediction(s)", 
+      "short_name": "prd", 
+      "variable": "predictions", 
+      "uid": "55efced0-8cab-4cd8-90b6-e9884c54d9db", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 212, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 214, 
+      "name": "Labeled dataset", 
+      "short_name": "ds", 
+      "variable": "labeled_dataset", 
+      "uid": "f9093319-b662-4ef3-9649-09c31dfc5559", 
+      "order": 2, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 175, 
     "model": "workflows.abstractwidget", 
     "fields": {
       "category": 46, 
@@ -2514,7 +2603,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "csf", 
+      "variable": "classifier", 
       "parameter": false, 
       "order": 1, 
       "description": "Latino.Model.IModel`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
@@ -2532,7 +2621,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "ds", 
+      "variable": "training_data", 
       "parameter": false, 
       "order": 2, 
       "description": "Latino.Model.LabeledDataset`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Latino.SparseVector`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Latino, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
@@ -2545,8 +2634,96 @@
       "widget": 189, 
       "name": "Classifier", 
       "short_name": "csf", 
-      "variable": "csf", 
+      "variable": "trained_classifier", 
       "uid": "a2b2903a-3ca6-4854-9f1b-dc10fe353273", 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "workflows.category", 
+    "fields": {
+      "uid": "a797f6a3-02a7-4eee-ab65-075c8c35455c", 
+      "parent": 40, 
+      "workflow": null, 
+      "user": null, 
+      "order": 1, 
+      "name": "Nltk"
+    }
+  }, 
+  {
+    "pk": 213, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 50, 
+      "treeview_image": "", 
+      "name": "Naive Bayes Classifier", 
+      "is_streaming": false, 
+      "uid": "12cf0104-c867-45b2-84f4-b57711378801", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "classifier_naive_bayes_image.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_naive_bayes_classifier", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 2, 
+      "description": "A classifier based on the Naive Bayes algorithm.  In order to find the\r\nprobability for a label, this algorithm first uses the Bayes rule to\r\nexpress P(label|features) in terms of P(label) and P(features|label):\r\n\r\n|                       P(label) * P(features|label)\r\n|  P(label|features) = ------------------------------\r\n|                              P(features)\r\n\r\nThe algorithm then makes the 'naive' assumption that all features are\r\nindependent, given the label:\r\n\r\n|                       P(label) * P(f1|label) * ... * P(fn|label)\r\n|  P(label|features) = --------------------------------------------\r\n|                                         P(features)\r\n\r\nRather than computing P(featues) explicitly, the algorithm just\r\ncalculates the denominator for each label, and normalizes them so they\r\nsum to one:\r\n\r\n|                       P(label) * P(f1|label) * ... * P(fn|label)\r\n|  P(label|features) = --------------------------------------------\r\n|                        SUM[l]( P(l) * P(f1|l) * ... * P(fn|l) )"
+    }
+  }, 
+  {
+    "pk": 513, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 213, 
+      "name": "Normalize", 
+      "short_name": "bol", 
+      "uid": "f46f63d3-e77b-454a-a82d-0d7798bcd9e1", 
+      "default": "false", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "normalize", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "System.Boolean"
+    }
+  }, 
+  {
+    "pk": 514, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 213, 
+      "name": "Log Sum Exp Trick", 
+      "short_name": "bol", 
+      "uid": "51880889-342d-4bcd-a794-56c24a2f4c88", 
+      "default": "true", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "logSumExpTrick", 
+      "parameter": true, 
+      "order": 2, 
+      "description": "System.Boolean"
+    }
+  }, 
+  {
+    "pk": 210, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 213, 
+      "name": "Classifier", 
+      "short_name": "csf", 
+      "variable": "classifier", 
+      "uid": "71a80e38-d2ca-4262-8e69-8ed112c515f1", 
       "order": 1, 
       "description": ""
     }
