@@ -23,20 +23,20 @@ class Document:
            b) annotation_name/feature_name       so you can do for instance stopword tagging on lemmas
         :return: list of selected (annotation,text) tuples
         """
-        annotations_with_text=[]
-        selector_split=selector.split("/")
-        element_annotation=selector_split[0].strip()
-        element_feature=False if len(selector_split)==1 else selector_split[1].strip()
+        annotations_with_text = []
+        selector_split = selector.split("/")
+        element_annotation = selector_split[0].strip()
+        element_feature = False if len(selector_split) == 1 else selector_split[1].strip()
 
         for a in self.annotations:
-            if a.type== element_annotation:
+            if a.type == element_annotation:
                 if element_feature:
                     try:
-                        text=a.features[element_feature]
+                        text = a.features[element_feature]
                     except KeyError:
-                        text='Feature does not exist!'
+                        text = 'Feature does not exist!'
                 else:
-                    text=self.text[a.span_start:a.span_end+1]
+                    text = self.text[a.span_start:a.span_end+1]
                 annotations_with_text.append((a, text))
         return annotations_with_text
 

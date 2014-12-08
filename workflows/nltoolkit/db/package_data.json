@@ -57,39 +57,21 @@
     }
   }, 
   {
-    "pk": 507, 
-    "model": "workflows.abstractinput", 
-    "fields": {
-      "widget": 191, 
-      "name": "Token Annotation", 
-      "short_name": "str", 
-      "uid": "ad25b232-2937-4009-8773-6e710989a861", 
-      "default": "TextBlock", 
-      "required": true, 
-      "multi": false, 
-      "parameter_type": null, 
-      "variable": "element_annotation", 
-      "parameter": true, 
-      "order": 2, 
-      "description": "Token Annotation."
-    }
-  }, 
-  {
     "pk": 508, 
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": 191, 
-      "name": "Feature Condition", 
+      "name": "Feature Annotation", 
       "short_name": "str", 
       "uid": "f02bcdf3-cb15-4d4b-a9b0-7edff0029388", 
-      "default": "", 
+      "default": "TextBlock", 
       "required": false, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "element_feature_conditions", 
+      "variable": "feature_annotation", 
       "parameter": true, 
-      "order": 3, 
-      "description": "Which tokens to include based on their features.\r\n\r\nFormat examples:\r\n- Feature1 (don't include tokens with Feature1 set at any value),\r\n- Feature1=Value1 (don't include tokens with Feature1 set to the value Value1),\r\n- Feature1 + Feature2 (don't include tokens with Feature1 set, unless it has also Feature2 set).\r\n- Feature1=Value1 + Feature2 (don't include tokens with Feature1 set to Value1, unless it has also Feature2 set to any value)."
+      "order": 2, 
+      "description": "Select a feature annotation."
     }
   }, 
   {
@@ -106,7 +88,7 @@
       "parameter_type": "text", 
       "variable": "delimiter", 
       "parameter": true, 
-      "order": 4, 
+      "order": 3, 
       "description": "Delimiter for token concatenation."
     }
   }, 
@@ -124,7 +106,7 @@
       "parameter_type": "checkbox", 
       "variable": "include_doc_id", 
       "parameter": true, 
-      "order": 5, 
+      "order": 4, 
       "description": "Include Document Identifier."
     }
   }, 
@@ -702,6 +684,392 @@
       "user": null, 
       "order": 1, 
       "name": "Nltk"
+    }
+  }, 
+  {
+    "pk": 196, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 39, 
+      "treeview_image": "", 
+      "name": "Line Tokenizer", 
+      "is_streaming": false, 
+      "uid": "90d1e604-c3a5-452a-939e-067331c3e502", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_line_tokenizer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "Tokenize a string into its lines, optionally discarding blank lines."
+    }
+  }, 
+  {
+    "pk": 529, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 196, 
+      "name": "Blank Lines", 
+      "short_name": "bln", 
+      "uid": "e68b25ab-30f2-468b-b4f4-1eda4b22bca3", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "blanklines", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "blanklines: Indicates how blank lines should be handled.  Options are:\r\n        - discard: strip blank lines out of the token list before returning it.\r\n           A line is considered blank if it contains only whitespace characters.\r\n        - keep: leave all blank lines in the token list.\r\n        - discard-eof: if the string ends with a newline, then do not generate\r\n           a corresponding token ``''`` after that newline."
+    }
+  }, 
+  {
+    "pk": 112, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "9ddcd23f-6e73-4e71-8a06-6de7007b4500", 
+      "abstract_input": 529, 
+      "value": "discard", 
+      "name": "discard"
+    }
+  }, 
+  {
+    "pk": 114, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "770b5df2-d493-4e91-9b9b-d3c35949ee40", 
+      "abstract_input": 529, 
+      "value": "discard-eof", 
+      "name": "discard-eof"
+    }
+  }, 
+  {
+    "pk": 113, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "f3a99f3b-07a8-400f-acde-1ca663664b45", 
+      "abstract_input": 529, 
+      "value": "keep", 
+      "name": "keep"
+    }
+  }, 
+  {
+    "pk": 203, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 196, 
+      "name": "Tokenizer", 
+      "short_name": "tkn", 
+      "variable": "tokenizer", 
+      "uid": "51f31143-2d1e-4605-8b62-c9895dc85bfe", 
+      "order": 1, 
+      "description": "A python dictionary containing the Tokenizer object and its arguments."
+    }
+  }, 
+  {
+    "pk": 193, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 39, 
+      "treeview_image": "", 
+      "name": "Regex Tokenizer", 
+      "is_streaming": false, 
+      "uid": "fb07c5c1-0aee-4850-aa80-ca0e0040aeff", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_regex_tokenizer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "The Regex Tokenizer splits a string into substrings using a regular expression."
+    }
+  }, 
+  {
+    "pk": 512, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 193, 
+      "name": "Regular Expression", 
+      "short_name": "rgx", 
+      "uid": "721ff51b-6bc2-4999-b561-3cacfb44560b", 
+      "default": "\\p{L}+(-\\p{L}+)*", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "pattern", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "The pattern used to build this tokenizer.\r\n        (This pattern may safely contain capturing parentheses.)"
+    }
+  }, 
+  {
+    "pk": 523, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 193, 
+      "name": "Gaps", 
+      "short_name": "gsp", 
+      "uid": "9adea0e8-2983-4006-940a-938cfeb7d716", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "gaps", 
+      "parameter": true, 
+      "order": 2, 
+      "description": "True if this tokenizer's pattern should be used\r\n        to find separators between tokens; False if this\r\n        tokenizer's pattern should be used to find the tokens\r\n        themselves."
+    }
+  }, 
+  {
+    "pk": 524, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 193, 
+      "name": "Discard empty", 
+      "short_name": "dse", 
+      "uid": "6101d30a-6ea2-48de-8c46-012f30a08f83", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "discard_empty", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "True if any empty tokens `''`\r\n        generated by the tokenizer should be discarded.  Empty\r\n        tokens can only be generated if  Gaps is set."
+    }
+  }, 
+  {
+    "pk": 200, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 193, 
+      "name": "Tokenizer", 
+      "short_name": "tkn", 
+      "variable": "tokenizer", 
+      "uid": "dbbb06d2-98d0-41e3-8395-9b66c912bf78", 
+      "order": 1, 
+      "description": "A python dictionary containing the Tokenizer object and its arguments."
+    }
+  }, 
+  {
+    "pk": 194, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 39, 
+      "treeview_image": "", 
+      "name": "S-Expression Tokenizer", 
+      "is_streaming": false, 
+      "uid": "a91b6254-144a-4e92-8c63-4add4a6b15b6", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_sexpression_tokenizer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "S-Expression Tokenizer is used to find parenthesized expressions in a\r\nstring.  In particular, it divides a string into a sequence of\r\nsubstrings that are either parenthesized expressions (including any\r\nnested parenthesized expressions), or other whitespace-separated\r\ntokens"
+    }
+  }, 
+  {
+    "pk": 525, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 194, 
+      "name": "Parentheses", 
+      "short_name": "prt", 
+      "uid": "4c0e34c4-49a1-463b-b89b-9367b0fdbe8d", 
+      "default": "()", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "parens", 
+      "parameter": true, 
+      "order": 1, 
+      "description": " A two-element sequence specifying the open and close parentheses\r\n        that should be used to find sexprs.  This will typically be either a\r\n        two-character string, or a list of two strings."
+    }
+  }, 
+  {
+    "pk": 526, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 194, 
+      "name": "Strict", 
+      "short_name": "stc", 
+      "uid": "a1835ae4-7b53-4e8e-a220-c6ad6f3078c4", 
+      "default": "true", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "strict", 
+      "parameter": true, 
+      "order": 2, 
+      "description": "If true, then raise an exception when tokenizing an ill-formed sexpr."
+    }
+  }, 
+  {
+    "pk": 201, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 194, 
+      "name": "Tokenizer", 
+      "short_name": "tkn", 
+      "variable": "tokenizer", 
+      "uid": "bae22568-9a6a-4d9e-b973-0533356e86a2", 
+      "order": 1, 
+      "description": "A python dictionary containing the Tokenizer object and its arguments."
+    }
+  }, 
+  {
+    "pk": 195, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 39, 
+      "treeview_image": "", 
+      "name": "Simple Tokenizer", 
+      "is_streaming": false, 
+      "uid": "97e51e6b-74de-45b1-9539-784b300b1ac6", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_simple_tokenizer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "These tokenizers divide strings into substrings using the string\r\n``split()`` method. When tokenizing using a particular delimiter string, use\r\nthe string ``split()`` method directly, as this is more efficient."
+    }
+  }, 
+  {
+    "pk": 528, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 195, 
+      "name": "Type", 
+      "short_name": "typ", 
+      "uid": "18cb69d5-ebd5-41ed-98fb-4fb815ab7908", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "type", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "Select a tokenizer."
+    }
+  }, 
+  {
+    "pk": 111, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "f463391e-5b1c-4cd4-a6e6-7edb08e75cfb", 
+      "abstract_input": 528, 
+      "value": "char_tokenizer", 
+      "name": "Char Tokenizer"
+    }
+  }, 
+  {
+    "pk": 109, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "c802dac6-9f9d-418a-ab7f-e45274d5ff78", 
+      "abstract_input": 528, 
+      "value": "space_tokenizer", 
+      "name": "Space Tokenizer"
+    }
+  }, 
+  {
+    "pk": 110, 
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "uid": "157bf7c8-8c88-43b4-a68c-d87d0df86894", 
+      "abstract_input": 528, 
+      "value": "tab_tokenizer", 
+      "name": "Tab Tokenizer"
+    }
+  }, 
+  {
+    "pk": 202, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 195, 
+      "name": "Tokenizer", 
+      "short_name": "tkn", 
+      "variable": "tokenizer", 
+      "uid": "7250fda2-a8d3-489f-8b98-2f018e17d5ae", 
+      "order": 1, 
+      "description": "A python dictionary containing the Tokenizer object and its arguments."
+    }
+  }, 
+  {
+    "pk": 197, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 39, 
+      "treeview_image": "", 
+      "name": "Stanford Tokenizer", 
+      "is_streaming": false, 
+      "uid": "ca0d352b-51e6-4c35-b9ae-605325ce0c3b", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "nltoolkit", 
+      "static_image": "", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "nltk_stanford_tokenizer", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "A tokenizer divides text into a sequence of tokens, which roughly correspond to \"words\"."
+    }
+  }, 
+  {
+    "pk": 204, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 197, 
+      "name": "Tokenizer", 
+      "short_name": "tkn", 
+      "variable": "tokenizer", 
+      "uid": "5a3b3fdc-f9d4-47e6-bc9d-d09082f7c177", 
+      "order": 1, 
+      "description": "A python dictionary containing the Tokenizer object and its arguments."
     }
   }, 
   {

@@ -91,7 +91,7 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
                                        str(annotation.span_start) + "," + \
                                        str(annotation.span_end) + "," + \
             str(annotation.features)[1:-1].replace(",", "<br/>").replace(":", " =").replace("u'", "").replace("'", "").replace("u\"", "").replace("\"", "") \
-            + ":"  # annotations for tipsy. We format string, so that tipsy shows it correcly
+            + ":"  # annotations for tipsy. We format string, so that tipsy shows it correctly
 
     #create a color for each annotation
     annotation_colors = random_colors.get_colors(len(annotations))

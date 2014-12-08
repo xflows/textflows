@@ -90,8 +90,7 @@ def get_plain_texts(input_dict):
     Widget transforms Annotated Document Corpus to string.
 
     :param adc: Annotated Document Corpus.
-    :param element_annotation: Token Annotation.
-    :param element_feature_conditions: Which tokens to include based on their features.
+    :param feature_annotation: Select a feature annotation.
     :param delimiter: Delimiter for token concatenation.
     :param include_doc_id: Include Document Identifier.
     :return: String with all documents in Annotated Document Corpus.
@@ -99,8 +98,7 @@ def get_plain_texts(input_dict):
     """
 
     adc = input_dict['adc']
-    element_annotation = input_dict['element_annotation']
-    element_feature_conditions = input_dict['element_feature_conditions']
+    feature_annotation = input_dict['feature_annotation']
     delimiter = input_dict['delimiter']
     includeDocId = input_dict['include_doc_id'] == "true"
 
@@ -108,11 +106,11 @@ def get_plain_texts(input_dict):
     if includeDocId:
         output_dict["strings"] = {}
         for document in adc.documents:
-            output_dict["strings"][document.name] = document.text
+            output_dict["strings"][document.name] = delimiter.join([t[1] for t in document.get_annotations_with_text(feature_annotation)])
     else:
         output_dict["strings"] = []
         for document in adc.documents:
-            output_dict["strings"].append(document.text)
+            output_dict["strings"].append(delimiter.join([t[1] for t in document.get_annotations_with_text(feature_annotation)]))
 
     return output_dict
 
