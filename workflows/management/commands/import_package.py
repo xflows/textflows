@@ -54,12 +54,27 @@ def import_package_string(writeFunc, string, replace, verbosity=1):
                   ' assign them random UIDs then use the "-n" option when exporting models with the "export_package"'
                   ' command. Afterwards, you will be able to import them.\n' % len(objsFileNoUid))
     if len(Counter([x.object.uid for x in objsFile])) != len(objsFile):
-        a = sorted([x.object.uid for x in objsFile])
-        for x in a:
-            print x
-        raise CommandError('Input process terminated without any changes to the database. There were multiple equal '
-                           'UIDs defined on different models in the given input file. The input procedure can not continue '
-                           'from safety reasons. Please resolve manually!')
+        #a = sorted([x.object for x in objsFile])
+        #for x in a:
+        #    print x, x.uid
+        #raise CommandError('Input process terminated without any changes to the database. There were multiple equal '
+        #                   'UIDs defined on different models in the given input file. The input procedure can not continue '
+        #                   'from safety reasons. Please resolve manually!')
+        error_txt=  'Input process terminated without any changes to the database. There were multiple equal ' \
+                    'UIDs defined on different models in the database. The input procedure can not continue ' \
+                    'from safety reasons. Please resolve manually! UIDs with multiple models:'
+        #count objects per uid
+        from collections import defaultdict
+        objs_per_uid=defaultdict(list)
+        for x in objsFile:
+            if x.object.uid:
+                objs_per_uid[x].append(x.object)
+
+        for uid,objs in objs_per_uid.items():
+            if len(objs)>1:
+                print objs[1]==objs[0]
+                error_txt+="\n\nUID:     "+str(uid.object.uid)+"\nobjects: "+str(objs)
+        raise CommandError(error_txt)
 
     #divide new objects by type
     wids = [x for x in objsFile if isinstance(x.object, AbstractWidget)]
@@ -234,6 +249,9 @@ def import_package_string(writeFunc, string, replace, verbosity=1):
 def order_objects_hier_top(objsFile):
     objsFileOrdered = []
     for topCat in [x for x in objsFile if (isinstance(x.object, Category) and x.object.parent_id is None)]:
+        print topCat
+        print set(objsFileOrdered) & set(order_objects_hier(topCat, objsFile))
+
         objsFileOrdered.extend(order_objects_hier(topCat, objsFile))
     return objsFileOrdered
 
@@ -244,15 +262,24 @@ def order_objects_hier(cat, objsFile):
 
     objsFileOrdered.append(cat)
     for wid in [x for x in objsFile if (isinstance(x.object, AbstractWidget) and x.object.category_id == cat.object.id)]:
+        if wid in objsFileOrdered:
+            print wid,"a"
         objsFileOrdered.append(wid)
         for inp in [x for x in objsFile if (isinstance(x.object, AbstractInput) and x.object.widget_id == wid.object.id)]:
+            if inp in objsFileOrdered:
+                print inp,"b"
             objsFileOrdered.append(inp)
             for opt in [x for x in objsFile if (isinstance(x.object, AbstractOption) and x.object.abstract_input_id == inp.object.id)]:
+                if opt in objsFileOrdered:
+                    print opt,"opt"
                 objsFileOrdered.append(opt)
         for outp in [x for x in objsFile if (isinstance(x.object, AbstractOutput) and x.object.widget_id == wid.object.id)]:
+            if outp in objsFileOrdered:
+                print outp,"outp"
             objsFileOrdered.append(outp)
 
     for subCat in [x for x in objsFile if (isinstance(x.object, Category) and x.object.parent_id == cat.object.id)]:
+        print set(objsFileOrdered) & set(order_objects_hier(subCat,objsFile))
         objsFileOrdered.extend(order_objects_hier(subCat,objsFile))
 
     return objsFileOrdered
