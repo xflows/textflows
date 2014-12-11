@@ -236,4 +236,5 @@ def simulate_cf_pickling(obj_to_pickle,compress_object=False):
     else:
         return loads(decompress(b64decode(b64encode(compress(dumps(obj_to_pickle))))))
 
-#>python manage.py export_package workflows/nltoolkit/db/package_data.json nltoolkit
+#python manage.py export_package workflows/nltoolkit/db/package_data.json nltoolkit
+#python manage.py celery worker -l info

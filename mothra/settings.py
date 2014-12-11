@@ -180,8 +180,6 @@ INSTALLED_APPS_WORKFLOWS_SUB = ()
 
 TEST_RUNNER = 'discover_runner.DiscoverRunner'
 
-import djcelery
-djcelery.setup_loader()
 
 try:
     LOCAL_SETTINGS
@@ -215,5 +213,5 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_DOC_ROOT = os.path.join(os.getcwd(), 'mothra/public/media')
 
-CELERY_RESULT_BACKEND = 'amqp'
-CELERY_TASK_RESULT_EXPIRES = 18000
+#CELERY_RESULT_BACKEND = 'amqp'
+#CELERY_TASK_RESULT_EXPIRES = 18000
