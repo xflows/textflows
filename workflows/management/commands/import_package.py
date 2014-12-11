@@ -249,9 +249,6 @@ def import_package_string(writeFunc, string, replace, verbosity=1):
 def order_objects_hier_top(objsFile):
     objsFileOrdered = []
     for topCat in [x for x in objsFile if (isinstance(x.object, Category) and x.object.parent_id is None)]:
-        print topCat
-        print set(objsFileOrdered) & set(order_objects_hier(topCat, objsFile))
-
         objsFileOrdered.extend(order_objects_hier(topCat, objsFile))
     return objsFileOrdered
 
@@ -262,24 +259,15 @@ def order_objects_hier(cat, objsFile):
 
     objsFileOrdered.append(cat)
     for wid in [x for x in objsFile if (isinstance(x.object, AbstractWidget) and x.object.category_id == cat.object.id)]:
-        if wid in objsFileOrdered:
-            print wid,"a"
         objsFileOrdered.append(wid)
         for inp in [x for x in objsFile if (isinstance(x.object, AbstractInput) and x.object.widget_id == wid.object.id)]:
-            if inp in objsFileOrdered:
-                print inp,"b"
             objsFileOrdered.append(inp)
             for opt in [x for x in objsFile if (isinstance(x.object, AbstractOption) and x.object.abstract_input_id == inp.object.id)]:
-                if opt in objsFileOrdered:
-                    print opt,"opt"
                 objsFileOrdered.append(opt)
         for outp in [x for x in objsFile if (isinstance(x.object, AbstractOutput) and x.object.widget_id == wid.object.id)]:
-            if outp in objsFileOrdered:
-                print outp,"outp"
             objsFileOrdered.append(outp)
 
     for subCat in [x for x in objsFile if (isinstance(x.object, Category) and x.object.parent_id == cat.object.id)]:
-        print set(objsFileOrdered) & set(order_objects_hier(subCat,objsFile))
         objsFileOrdered.extend(order_objects_hier(subCat,objsFile))
 
     return objsFileOrdered
