@@ -1874,6 +1874,418 @@
     }
   },
   {
+    "pk": 201,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 41,
+      "treeview_image": "",
+      "name": "ISRI Stemmer",
+      "is_streaming": false,
+      "uid": "56d7d244-4969-4b33-a884-f1ac539beda6",
+      "interaction_view": "",
+      "image": "",
+      "package": "nltoolkit",
+      "static_image": "",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "nltk_isri_stemmer",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "ISRI Arabic stemmer based on algorithm: Arabic Stemming without a root dictionary. Information Science Research Institute. University of Nevada, Las Vegas, USA. A few minor modifications have been made to ISRI basic algorithm.\r\n\r\nSee the source code of this module for more information. isri.stem(token) returns Arabic root for the given token. The ISRI Stemmer requires that all tokens have Unicode string types. If you use Python IDLE on Arabic Windows you have to decode text first using Arabic '1256' coding."
+    }
+  },
+  {
+    "pk": 209,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 201,
+      "name": "Stemmer (Tagger)",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "ab7dc86a-b65e-498f-a419-f8c33af1e30b",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 202,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 41,
+      "treeview_image": "",
+      "name": "Regex Stemmer",
+      "is_streaming": false,
+      "uid": "c05b63df-4278-4ce0-ba4a-8d0869243a93",
+      "interaction_view": "",
+      "image": "",
+      "package": "nltoolkit",
+      "static_image": "",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "nltk_regexp_stemmer",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "A stemmer that uses regular expressions to identify morphological affixes.  Any substrings that match the regular expressions will be removed."
+    }
+  },
+  {
+    "pk": 541,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 202,
+      "name": "Pattern",
+      "short_name": "ptr",
+      "uid": "6214f97f-4266-43a9-8a9a-626b97f81c91",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "regexp",
+      "parameter": true,
+      "order": 1,
+      "description": "The regular expression that should be used to\r\n        identify morphological affixes."
+    }
+  },
+  {
+    "pk": 542,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 202,
+      "name": "Minimum length of string",
+      "short_name": "mls",
+      "uid": "e464c794-ce32-4ffd-8019-ce3a62d85433",
+      "default": "0",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "min",
+      "parameter": true,
+      "order": 1,
+      "description": "The minimum length of string to stem."
+    }
+  },
+  {
+    "pk": 210,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 202,
+      "name": "Stemmer (Tagger)",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "fdc65fdb-438e-4a38-b5c0-a40d55bd60cc",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 203,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 41,
+      "treeview_image": "",
+      "name": "RSLP Stemmer",
+      "is_streaming": false,
+      "uid": "61ac4b4f-a290-406b-9557-976681393b87",
+      "interaction_view": "",
+      "image": "",
+      "package": "nltoolkit",
+      "static_image": "",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "nltk_rslp_stemmer",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "A stemmer for Portuguese."
+    }
+  },
+  {
+    "pk": 211,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 203,
+      "name": "Stemmer (Tagger)",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "8312467d-da3e-48f3-be07-5f5d4a52778d",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 204,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 41,
+      "treeview_image": "",
+      "name": "Snowball Stemmer",
+      "is_streaming": false,
+      "uid": "7041d151-cb4b-482f-be06-06666612a8b6",
+      "interaction_view": "",
+      "image": "",
+      "package": "nltoolkit",
+      "static_image": "",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "nltk_snowball_stemmer",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "    The following languages are supported:\r\n    Danish, Dutch, English, Finnish, French, German,\r\n    Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian,\r\n    Spanish and Swedish.\r\n\r\n    The algorithm for English is documented here:\r\n    Porter, M. \\\"An algorithm for suffix stripping.\\\"\r\n    Program 14.3 (1980): 130-137.\r\n\r\n    The algorithms have been developed by Martin Porter.\r\n    These stemmers are called Snowball, because Porter created\r\n    a programming language with this name for creating\r\n    new stemming algorithms. There is more information available\r\n    at http://snowball.tartarus.org/"
+    }
+  },
+  {
+    "pk": 544,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 204,
+      "name": "Language",
+      "short_name": "lan",
+      "uid": "ed2262cb-070c-4590-b1f7-aafdbd2082ad",
+      "default": "danish",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "language",
+      "parameter": true,
+      "order": 1,
+      "description": "The following languages are supported: Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish and Swedish."
+    }
+  },
+  {
+    "pk": 122,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "b49e5936-7d63-46d9-a644-00b69950cc61",
+      "abstract_input": 544,
+      "value": "danish",
+      "name": "Danish"
+    }
+  },
+  {
+    "pk": 123,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "14866d14-78d8-4fb3-8f02-b8fda106c131",
+      "abstract_input": 544,
+      "value": "dutch",
+      "name": "Dutch"
+    }
+  },
+  {
+    "pk": 124,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "f129a27d-0b08-4612-8f5b-c384a5502027",
+      "abstract_input": 544,
+      "value": "english",
+      "name": "English"
+    }
+  },
+  {
+    "pk": 125,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "c26174ab-5ec4-4814-97cc-b5d1a328c8e2",
+      "abstract_input": 544,
+      "value": "finnish",
+      "name": "Finnish"
+    }
+  },
+  {
+    "pk": 126,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "d51452df-cf42-4869-91f5-57f24b265b8a",
+      "abstract_input": 544,
+      "value": "french",
+      "name": "French"
+    }
+  },
+  {
+    "pk": 127,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "44ac354c-bb46-46bb-82a8-6c40a65da27a",
+      "abstract_input": 544,
+      "value": "german",
+      "name": "German"
+    }
+  },
+  {
+    "pk": 128,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "733f20e9-b007-47b8-9c7f-7b6aa12f525d",
+      "abstract_input": 544,
+      "value": "hungarian",
+      "name": "Hungarian"
+    }
+  },
+  {
+    "pk": 129,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "f42cb6e7-34cb-4cd8-992d-e2ae0f16479a",
+      "abstract_input": 544,
+      "value": "italian",
+      "name": "Italian"
+    }
+  },
+  {
+    "pk": 130,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "62cdf8e7-6602-4cc0-b0d4-a539643710d2",
+      "abstract_input": 544,
+      "value": "norwegian",
+      "name": "Norwegian"
+    }
+  },
+  {
+    "pk": 131,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "81294d1b-8858-4644-a6fb-cb98933eeb82",
+      "abstract_input": 544,
+      "value": "portuguese",
+      "name": "Portuguese"
+    }
+  },
+  {
+    "pk": 132,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "c7828efb-1efb-481a-8831-d833d056d65a",
+      "abstract_input": 544,
+      "value": "romanian",
+      "name": "Romanian"
+    }
+  },
+  {
+    "pk": 133,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "8f61b91e-e86c-4735-bdd3-b318fc1ea756",
+      "abstract_input": 544,
+      "value": "russian",
+      "name": "Russian"
+    }
+  },
+  {
+    "pk": 134,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "2997bb11-a917-44f8-969a-76534341755f",
+      "abstract_input": 544,
+      "value": "spanish",
+      "name": "Spanish"
+    }
+  },
+  {
+    "pk": 135,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "5fd0975a-f2e1-4608-8cf4-878576be3767",
+      "abstract_input": 544,
+      "value": "swedish",
+      "name": "Swedish"
+    }
+  },
+  {
+    "pk": 543,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 204,
+      "name": "Ignore stopwords",
+      "short_name": "isw",
+      "uid": "b5a82783-a46b-4de4-bc18-9246894252cf",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": "checkbox",
+      "variable": "ignore_stopwords",
+      "parameter": true,
+      "order": 2,
+      "description": "If set to True, stopwords are\r\n                         not stemmed and returned unchanged.\r\n                         Set to False by default."
+    }
+  },
+  {
+    "pk": 212,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 204,
+      "name": "Stemmer (Tagger)",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "b1cbc77a-10d4-4e81-9c89-4c09500bccf9",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 205,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 41,
+      "treeview_image": "",
+      "name": "WordNet Lemmatizer",
+      "is_streaming": false,
+      "uid": "c8472428-1050-4f54-9a5e-e910c692415d",
+      "interaction_view": "",
+      "image": "",
+      "package": "nltoolkit",
+      "static_image": "",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "nltk_wordnet_lemmatizer",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "WordNet Lemmatizer\r\n    \r\nLemmatize using WordNet's built-in morphy function. Returns the input word unchanged if it cannot be found in WordNet."
+    }
+  },
+  {
+    "pk": 213,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 205,
+      "name": "Stemmer (Tagger)",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "cdd6ed1a-d7b0-4959-85de-f07be993444d",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
     "pk": 177,
     "model": "workflows.abstractwidget",
     "fields": {
