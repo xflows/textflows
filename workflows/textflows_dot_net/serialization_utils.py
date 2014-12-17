@@ -26,8 +26,8 @@ def ToBool(s):
 def ToString(s):
     return s
 def ToEnum(typ, s,defaultValue):
-    import LatinoClowdFlows
-    return LatinoClowdFlows.LatinoCF.ParseEnum[typ](s, defaultValue)
+    import LatinoInterfaces
+    return LatinoInterfaces.LatinoCF.ParseEnum[typ](s, defaultValue)
 def ToIntList(s):
     il = []
     for i in s:
@@ -63,7 +63,7 @@ MAP_TO_PYTHON_OBJECTS=True
 def ToNetObj(data):
     import System
     import Latino
-    import LatinoClowdFlows
+    import LatinoInterfaces
     #if hasattr(data, "netObj"):
     #    return data.netObj
     if isinstance(data,LatinoObject):
@@ -134,7 +134,7 @@ def ToNetObj(data):
             latino_object_set_feature_values(a,data.features)
             return a
         elif isinstance(data,DocumentCorpus):
-            d=LatinoClowdFlows.DocumentCorpus()
+            d=LatinoInterfaces.DocumentCorpus()
             d.AddRange(ToNetObj(data.documents))
             latino_object_set_feature_values(d,data.features)
             return d
@@ -167,7 +167,7 @@ def latino_object_set_feature_values(latinoObj,features):
 def ToPyObj(data):
     import System
     import Latino
-    import LatinoClowdFlows
+    import LatinoInterfaces
     if hasattr(data, "GetType") and data.GetType().IsGenericType:
         genType = data.GetType().GetGenericTypeDefinition()
         if genType.Equals(System.Collections.Generic.Dictionary):
@@ -205,7 +205,7 @@ def ToPyObj(data):
             return BowDataset(bow_matrix,labels)
 
     if MAP_TO_PYTHON_OBJECTS and hasattr(data, "GetType"):
-        if data.GetType().Equals(LatinoClowdFlows.DocumentCorpus):
+        if data.GetType().Equals(LatinoInterfaces.DocumentCorpus):
             return DocumentCorpus([ToPyObj(el) for el in data.Documents],ToPyObj(data.Features))
         if data.GetType().Equals(Latino.Workflows.TextMining.Document):
             return Document(data.Name,data.Text,[ToPyObj(el) for el in data.Annotations],ToPyObj(data.Features))

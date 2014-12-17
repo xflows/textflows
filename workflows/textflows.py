@@ -213,16 +213,16 @@ class NltkClassifier():
 
 class LatinoObject:
     def __init__(self,latino_object):
-        import LatinoClowdFlows
-        self.serialized_object = LatinoClowdFlows.LatinoCF.Save(latino_object)
+        import LatinoInterfaces
+        self.serialized_object = LatinoInterfaces.LatinoCF.Save(latino_object)
         self.name=latino_object.__str__()
 
     def __repr__(self):
         return "<LatinoObject: " + self.name + ">"
 
     def load(self):
-        import LatinoClowdFlows
-        return LatinoClowdFlows.LatinoCF.Load(self.serialized_object)
+        import LatinoInterfaces
+        return LatinoInterfaces.LatinoCF.Load(self.serialized_object)
 
 
 

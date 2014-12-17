@@ -6,8 +6,8 @@ from workflows.textflows_dot_net.import_dotnet import *
 from workflows.textflows_dot_net.serialization_utils import *
 
 import Latino
-import LatinoClowdFlows
-from LatinoClowdFlows import LatinoCF
+import LatinoInterfaces
+from LatinoInterfaces import LatinoCF
 
 def latino_flatten_object_to_string_array(inputDict):
     _data = ToNetObj(inputDict['data'])

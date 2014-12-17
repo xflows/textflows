@@ -12,6 +12,6 @@ if __name__ == '__main__':
     if os.getenv("COMPUTERNAME") == "HIPHOP-PC":
         import clr
         sys.path.append("C:\\Users\\Roman\\PycharmProjects\\textflows\\workflows\\textflows_dot_net\\bin")
-        import LatinoClowdFlows
+        import LatinoInterfaces
 
     execute_from_command_line(sys.argv)
