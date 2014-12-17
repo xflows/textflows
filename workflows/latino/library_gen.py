@@ -14,7 +14,7 @@ def latino_flatten_object_to_string_array(inputDict):
     execResult = LatinoCF.FlattenObjectToStringArray(_data)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['flatData'] = execResultPy
+    outputDict['flat_data'] = execResultPy
     return outputDict
 
 def latino_generate_integer_range(inputDict):
@@ -29,35 +29,35 @@ def latino_generate_integer_range(inputDict):
 
 def latino_load_adc(inputDict):
     _file = ToString(inputDict['file'])
-    _tabSeparatedTitle = ToBool(inputDict['tabSeparatedTitle'])
-    _leadingLabels = ToBool(inputDict['leadingLabels'])
-    execResult = LatinoCF.LoadADC(_file, _tabSeparatedTitle, _leadingLabels)
+    _tab_separated_title = ToBool(inputDict['tab_separated_title'])
+    _leading_labels = ToBool(inputDict['leading_labels'])
+    execResult = LatinoCF.LoadADC(_file, _tab_separated_title, _leading_labels)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
     return outputDict
 
-def latino_load_adcfrom_string(inputDict):
-    _plainString = ToString(inputDict['plainString'])
-    _tabSeparatedTitle = ToBool(inputDict['tabSeparatedTitle'])
-    _leadingLabels = ToBool(inputDict['leadingLabels'])
-    execResult = LatinoCF.LoadADCFromString(_plainString, _tabSeparatedTitle, _leadingLabels)
+def latino_load_adc_from_string(inputDict):
+    _plain_string = ToString(inputDict['plain_string'])
+    _tab_separated_title = ToBool(inputDict['tab_separated_title'])
+    _leading_labels = ToBool(inputDict['leading_labels'])
+    execResult = LatinoCF.LoadADCFromString(_plain_string, _tab_separated_title, _leading_labels)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
     return outputDict
 
-def latino_save_adcto_xml(inputDict):
+def latino_save_adc_to_xml(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    execResult = LatinoCF.SaveADCtoXml(_adc)
+    execResult = LatinoCF.SaveADCToXml(_adc)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['string'] = execResultPy
     return outputDict
 
-def latino_load_adcfrom_xml(inputDict):
+def latino_load_adc_from_xml(inputDict):
     _xml = ToString(inputDict['xml'])
-    execResult = LatinoCF.LoadADCfromXml(_xml)
+    execResult = LatinoCF.LoadADCFromXml(_xml)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -65,11 +65,11 @@ def latino_load_adcfrom_xml(inputDict):
 
 def latino_get_doc_strings(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _elementAnnotation = ToString(inputDict['elementAnnotation'])
-    _elementFeatureConditions = ToString(inputDict['elementFeatureConditions'])
+    _element_annotation = ToString(inputDict['element_annotation'])
+    _element_feature_conditions = ToString(inputDict['element_feature_conditions'])
     _delimiter = ToString(inputDict['delimiter'])
-    _includeDocId = ToBool(inputDict['includeDocId'])
-    execResult = LatinoCF.GetDocStrings(_adc, _elementAnnotation, _elementFeatureConditions, _delimiter, _includeDocId)
+    _include_doc_id = ToBool(inputDict['include_doc_id'])
+    execResult = LatinoCF.GetDocStrings(_adc, _element_annotation, _element_feature_conditions, _delimiter, _include_doc_id)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['strings'] = execResultPy
@@ -77,8 +77,8 @@ def latino_get_doc_strings(inputDict):
 
 def latino_extract_documents_features(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _featureName = ToString(inputDict['featureName'])
-    execResult = LatinoCF.ExtractDocumentsFeatures(_adc, _featureName)
+    _feature_name = ToString(inputDict['feature_name'])
+    execResult = LatinoCF.ExtractDocumentsFeatures(_adc, _feature_name)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['strings'] = execResultPy
@@ -86,10 +86,10 @@ def latino_extract_documents_features(inputDict):
 
 def latino_add_documents_features(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _featureValues = ToNetObj(inputDict['featureValues'])
-    _featureName = ToString(inputDict['featureName'])
-    _featureValuePrefix = ToString(inputDict['featureValuePrefix'])
-    execResult = LatinoCF.AddDocumentsFeatures(_adc, _featureValues, _featureName, _featureValuePrefix)
+    _feature_values = ToNetObj(inputDict['feature_values'])
+    _feature_name = ToString(inputDict['feature_name'])
+    _feature_value_prefix = ToString(inputDict['feature_value_prefix'])
+    execResult = LatinoCF.AddDocumentsFeatures(_adc, _feature_values, _feature_name, _feature_value_prefix)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -97,10 +97,10 @@ def latino_add_documents_features(inputDict):
 
 def latino_add_computed_features(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _featureName = ToString(inputDict['featureName'])
-    _featureComputataion = ToString(inputDict['featureComputataion'])
-    _featureSpec = ToString(inputDict['featureSpec'])
-    execResult = LatinoCF.AddComputedFeatures(_adc, _featureName, _featureComputataion, _featureSpec)
+    _feature_name = ToString(inputDict['feature_name'])
+    _feature_computataion = ToString(inputDict['feature_computataion'])
+    _feature_spec = ToString(inputDict['feature_spec'])
+    execResult = LatinoCF.AddComputedFeatures(_adc, _feature_name, _feature_computataion, _feature_spec)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -108,24 +108,24 @@ def latino_add_computed_features(inputDict):
 
 def latino_split_documents_by_feature_value(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _featureCondition = ToString(inputDict['featureCondition'])
-    _discardFilteredOut = ToBool(inputDict['discardFilteredOut'])
-    execResult = LatinoCF.SplitDocumentsByFeatureValue(_adc, _featureCondition, _discardFilteredOut)
+    _feature_condition = ToString(inputDict['feature_condition'])
+    _discard_filtered_out = ToBool(inputDict['discard_filtered_out'])
+    execResult = LatinoCF.SplitDocumentsByFeatureValue(_adc, _feature_condition, _discard_filtered_out)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['adcFiltered'] = execResultPy['adcFiltered']
-    outputDict['adcRest'] = execResultPy['adcRest']
+    outputDict['adc_filtered'] = execResultPy['adc_filtered']
+    outputDict['adc_rest'] = execResultPy['adc_rest']
     return outputDict
 
 def latino_extract_documents(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _indexList = ToNetObj(inputDict['indexList'])
-    _discardFilteredOut = ToBool(inputDict['discardFilteredOut'])
-    execResult = LatinoCF.ExtractDocuments(_adc, _indexList, _discardFilteredOut)
+    _index_list = ToNetObj(inputDict['index_list'])
+    _discard_filtered_out = ToBool(inputDict['discard_filtered_out'])
+    execResult = LatinoCF.ExtractDocuments(_adc, _index_list, _discard_filtered_out)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['adcFiltered'] = execResultPy['adcFiltered']
-    outputDict['adcRest'] = execResultPy['adcRest']
+    outputDict['adc_filtered'] = execResultPy['adc_filtered']
+    outputDict['adc_rest'] = execResultPy['adc_rest']
     return outputDict
 
 def latino_join_documents_corpora(inputDict):
@@ -138,13 +138,13 @@ def latino_join_documents_corpora(inputDict):
 
 def latino_mark_documents_with_set_feature(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _featureName = ToString(inputDict['featureName'])
-    _featureValuePrefix = ToString(inputDict['featureValuePrefix'])
-    _numOfSets = ToInt(inputDict['numOfSets'])
+    _feature_name = ToString(inputDict['feature_name'])
+    _feature_value_prefix = ToString(inputDict['feature_value_prefix'])
+    _num_of_sets = ToInt(inputDict['num_of_sets'])
     _random = ToBool(inputDict['random'])
-    _useSeed = ToBool(inputDict['useSeed'])
-    _randomSeed = ToInt(inputDict['randomSeed'])
-    execResult = LatinoCF.MarkDocumentsWithSetFeature(_adc, _featureName, _featureValuePrefix, _numOfSets, _random, _useSeed, _randomSeed)
+    _use_seed = ToBool(inputDict['use_seed'])
+    _random_seed = ToInt(inputDict['random_seed'])
+    execResult = LatinoCF.MarkDocumentsWithSetFeature(_adc, _feature_name, _feature_value_prefix, _num_of_sets, _random, _use_seed, _random_seed)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -155,35 +155,35 @@ def latino_corpus_statistics(inputDict):
     execResult = LatinoCF.CorpusStatistics(_adc)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['docCount'] = execResultPy['docCount']
-    outputDict['featureCount'] = execResultPy['featureCount']
+    outputDict['doc_count'] = execResultPy['doc_count']
+    outputDict['feature_count'] = execResultPy['feature_count']
     outputDict['description'] = execResultPy['description']
     return outputDict
 
 def latino_random_cross_validation_sets(inputDict):
-    _numOfSets = ToInt(inputDict['numOfSets'])
-    _numOfExamples = ToInt(inputDict['numOfExamples'])
+    _num_of_sets = ToInt(inputDict['num_of_sets'])
+    _num_of_examples = ToInt(inputDict['num_of_examples'])
     _random = ToBool(inputDict['random'])
-    _useSeed = ToBool(inputDict['useSeed'])
-    _randomSeed = ToInt(inputDict['randomSeed'])
+    _use_seed = ToBool(inputDict['use_seed'])
+    _random_seed = ToInt(inputDict['random_seed'])
     _examples = ToNetObj(inputDict['examples'])
-    execResult = LatinoCF.RandomCrossValidationSets(_numOfSets, _numOfExamples, _random, _useSeed, _randomSeed, _examples)
+    execResult = LatinoCF.RandomCrossValidationSets(_num_of_sets, _num_of_examples, _random, _use_seed, _random_seed, _examples)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['exampleSetId'] = execResultPy
+    outputDict['example_set_id'] = execResultPy
     return outputDict
 
 def latino_random_sequential_validation_sets(inputDict):
-    _numOfSets = ToInt(inputDict['numOfSets'])
-    _numOfExamples = ToInt(inputDict['numOfExamples'])
+    _num_of_sets = ToInt(inputDict['num_of_sets'])
+    _num_of_examples = ToInt(inputDict['num_of_examples'])
     _random = ToBool(inputDict['random'])
-    _useSeed = ToBool(inputDict['useSeed'])
-    _randomSeed = ToInt(inputDict['randomSeed'])
-    _trainSize = ToString(inputDict['trainSize'])
-    _testSize = ToString(inputDict['testSize'])
-    _trainTestDelay = ToString(inputDict['trainTestDelay'])
+    _use_seed = ToBool(inputDict['use_seed'])
+    _random_seed = ToInt(inputDict['random_seed'])
+    _train_size = ToString(inputDict['train_size'])
+    _test_size = ToString(inputDict['test_size'])
+    _train_test_delay = ToString(inputDict['train_test_delay'])
     _examples = ToNetObj(inputDict['examples'])
-    execResult = LatinoCF.RandomSequentialValidationSets(_numOfSets, _numOfExamples, _random, _useSeed, _randomSeed, _trainSize, _testSize, _trainTestDelay, _examples)
+    execResult = LatinoCF.RandomSequentialValidationSets(_num_of_sets, _num_of_examples, _random, _use_seed, _random_seed, _train_size, _test_size, _train_test_delay, _examples)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['dict'] = execResultPy
@@ -205,8 +205,8 @@ def latino_construct_english_maximum_entropy_sentence_detector(inputDict):
     return outputDict
 
 def latino_construct_english_maximum_entropy_tokenizer(inputDict):
-    _alphaNumericOptimization = ToBool(inputDict['alphaNumericOptimization'])
-    execResult = LatinoCF.ConstructEnglishMaximumEntropyTokenizer(_alphaNumericOptimization)
+    _alpha_numeric_optimization = ToBool(inputDict['alpha_numeric_optimization'])
+    execResult = LatinoCF.ConstructEnglishMaximumEntropyTokenizer(_alpha_numeric_optimization)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['tokenizer'] = execResultPy
@@ -214,8 +214,8 @@ def latino_construct_english_maximum_entropy_tokenizer(inputDict):
 
 def latino_construct_unicode_tokenizer(inputDict):
     _filter = ToEnum(Latino.TextMining.TokenizerFilter, inputDict['filter'], Latino.TextMining.TokenizerFilter.None)
-    _minTokenLen = ToInt(inputDict['minTokenLen'])
-    execResult = LatinoCF.ConstructUnicodeTokenizer(_filter, _minTokenLen)
+    _min_token_len = ToInt(inputDict['min_token_len'])
+    execResult = LatinoCF.ConstructUnicodeTokenizer(_filter, _min_token_len)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['tokenizer'] = execResultPy
@@ -223,26 +223,26 @@ def latino_construct_unicode_tokenizer(inputDict):
 
 def latino_construct_simple_tokenizer(inputDict):
     _type = ToEnum(Latino.TextMining.TokenizerType, inputDict['type'], Latino.TextMining.TokenizerType.AllChars)
-    _minTokenLen = ToInt(inputDict['minTokenLen'])
-    execResult = LatinoCF.ConstructSimpleTokenizer(_type, _minTokenLen)
+    _min_token_len = ToInt(inputDict['min_token_len'])
+    execResult = LatinoCF.ConstructSimpleTokenizer(_type, _min_token_len)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['tokenizer'] = execResultPy
     return outputDict
 
 def latino_construct_regex_tokenizer(inputDict):
-    _tokenRegex = ToString(inputDict['tokenRegex'])
-    _ignoreUnknownTokens = ToBool(inputDict['ignoreUnknownTokens'])
-    _regexOptionsIgnoreCase = ToBool(inputDict['regexOptionsIgnoreCase'])
-    _regexOptionsMultiline = ToBool(inputDict['regexOptionsMultiline'])
-    _regexOptionsExplicitCapture = ToBool(inputDict['regexOptionsExplicitCapture'])
-    _regexOptionsCompiled = ToBool(inputDict['regexOptionsCompiled'])
-    _regexOptionsSingleline = ToBool(inputDict['regexOptionsSingleline'])
-    _regexOptionsIgnorePatternWhitespace = ToBool(inputDict['regexOptionsIgnorePatternWhitespace'])
-    _regexOptionsRightToLeft = ToBool(inputDict['regexOptionsRightToLeft'])
-    _regexOptionsECMAScript = ToBool(inputDict['regexOptionsECMAScript'])
-    _regexOptionsCultureInvariant = ToBool(inputDict['regexOptionsCultureInvariant'])
-    execResult = LatinoCF.ConstructRegexTokenizer(_tokenRegex, _ignoreUnknownTokens, _regexOptionsIgnoreCase, _regexOptionsMultiline, _regexOptionsExplicitCapture, _regexOptionsCompiled, _regexOptionsSingleline, _regexOptionsIgnorePatternWhitespace, _regexOptionsRightToLeft, _regexOptionsECMAScript, _regexOptionsCultureInvariant)
+    _token_regex = ToString(inputDict['token_regex'])
+    _ignore_unknown_tokens = ToBool(inputDict['ignore_unknown_tokens'])
+    _regex_options_ignore_case = ToBool(inputDict['regex_options_ignore_case'])
+    _regex_options_multiline = ToBool(inputDict['regex_options_multiline'])
+    _regex_options_explicit_capture = ToBool(inputDict['regex_options_explicit_capture'])
+    _regex_options_compiled = ToBool(inputDict['regex_options_compiled'])
+    _regex_options_singleline = ToBool(inputDict['regex_options_singleline'])
+    _regex_options_ignore_pattern_whitespace = ToBool(inputDict['regex_options_ignore_pattern_whitespace'])
+    _regex_options_right_to_left = ToBool(inputDict['regex_options_right_to_left'])
+    _regex_options_ecma_script = ToBool(inputDict['regex_options_ecma_script'])
+    _regex_options_culture_invariant = ToBool(inputDict['regex_options_culture_invariant'])
+    execResult = LatinoCF.ConstructRegexTokenizer(_token_regex, _ignore_unknown_tokens, _regex_options_ignore_case, _regex_options_multiline, _regex_options_explicit_capture, _regex_options_compiled, _regex_options_singleline, _regex_options_ignore_pattern_whitespace, _regex_options_right_to_left, _regex_options_ecma_script, _regex_options_culture_invariant)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['tokenizer'] = execResultPy
@@ -251,9 +251,9 @@ def latino_construct_regex_tokenizer(inputDict):
 def latino_tokenize_sentences(inputDict):
     _adc = ToNetObj(inputDict['adc'])
     _tokenizer = ToNetObj(inputDict['tokenizer'])
-    _inputAnnotation = ToString(inputDict['inputAnnotation'])
-    _outputAnnotation = ToString(inputDict['outputAnnotation'])
-    execResult = LatinoCF.TokenizeSentences(_adc, _tokenizer, _inputAnnotation, _outputAnnotation)
+    _input_annotation = ToString(inputDict['input_annotation'])
+    _output_annotation = ToString(inputDict['output_annotation'])
+    execResult = LatinoCF.TokenizeSentences(_adc, _tokenizer, _input_annotation, _output_annotation)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -262,9 +262,9 @@ def latino_tokenize_sentences(inputDict):
 def latino_tokenize_words(inputDict):
     _adc = ToNetObj(inputDict['adc'])
     _tokenizer = ToNetObj(inputDict['tokenizer'])
-    _inputAnnotation = ToString(inputDict['input_annotation'])
-    _outputAnnotation = ToString(inputDict['output_annotation'])
-    execResult = LatinoCF.TokenizeWords(_adc, _tokenizer, _inputAnnotation, _outputAnnotation)
+    _input_annotation = ToString(inputDict['input_annotation'])
+    _output_annotation = ToString(inputDict['output_annotation'])
+    execResult = LatinoCF.TokenizeWords(_adc, _tokenizer, _input_annotation, _output_annotation)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -273,9 +273,9 @@ def latino_tokenize_words(inputDict):
 def latino_tokenize_multiple(inputDict):
     _adc = ToNetObj(inputDict['adc'])
     _tokenizers = ToNetObj(inputDict['tokenizers'])
-    _inputAnnotations = ToString(inputDict['inputAnnotations'])
-    _outputAnnotations = ToString(inputDict['outputAnnotations'])
-    execResult = LatinoCF.TokenizeMultiple(_adc, _tokenizers, _inputAnnotations, _outputAnnotations)
+    _input_annotations = ToString(inputDict['input_annotations'])
+    _output_annotations = ToString(inputDict['output_annotations'])
+    execResult = LatinoCF.TokenizeMultiple(_adc, _tokenizers, _input_annotations, _output_annotations)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -300,20 +300,20 @@ def latino_tokenize_string_words(inputDict):
     return outputDict
 
 def latino_construct_english_maximum_entropy_pos_tagger(inputDict):
-    _beamSize = ToInt(inputDict['beamSize'])
-    execResult = LatinoCF.ConstructEnglishMaximumEntropyPosTagger(_beamSize)
+    _beam_size = ToInt(inputDict['beam_size'])
+    execResult = LatinoCF.ConstructEnglishMaximumEntropyPosTagger(_beam_size)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['tagger'] = execResultPy
+    outputDict['pos_tagger'] = execResultPy
     return outputDict
 
 def latino_pos_tag(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _posTagger = ToNetObj(inputDict['tagger'])
-    _groupAnnotation = ToString(inputDict['group_annotation'])
-    _elementAnnotation = ToString(inputDict['element_annotation'])
-    _outputFeature = ToString(inputDict['output_feature'])
-    execResult = LatinoCF.PosTag(_adc, _posTagger, _groupAnnotation, _elementAnnotation, _outputFeature)
+    _pos_tagger = ToNetObj(inputDict['pos_tagger'])
+    _group_annotation = ToString(inputDict['group_annotation'])
+    _element_annotation = ToString(inputDict['element_annotation'])
+    _output_feature = ToString(inputDict['output_feature'])
+    execResult = LatinoCF.PosTag(_adc, _pos_tagger, _group_annotation, _element_annotation, _output_feature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -321,9 +321,9 @@ def latino_pos_tag(inputDict):
 
 def latino_pos_tag_string(inputDict):
     _text = ToNetObj(inputDict['text'])
-    _posTagger = ToNetObj(inputDict['posTagger'])
-    _outputFeature = ToString(inputDict['outputFeature'])
-    execResult = LatinoCF.PosTagString(_text, _posTagger, _outputFeature)
+    _pos_tagger = ToNetObj(inputDict['pos_tagger'])
+    _output_feature = ToString(inputDict['output_feature'])
+    execResult = LatinoCF.PosTagString(_text, _pos_tagger, _output_feature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['string'] = execResultPy
@@ -354,52 +354,52 @@ def latino_construct_snowball_stemmer(inputDict):
     return outputDict
 
 def latino_construct_stop_words_tagger(inputDict):
-    _stopWords = ToNetObj(inputDict['stopWords'])
-    _ignoreCase = ToBool(inputDict['ignoreCase'])
-    execResult = LatinoCF.ConstructStopWordsTagger(_stopWords, _ignoreCase)
+    _stop_words = ToNetObj(inputDict['stop_words'])
+    _ignore_case = ToBool(inputDict['ignore_case'])
+    execResult = LatinoCF.ConstructStopWordsTagger(_stop_words, _ignore_case)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['tagger'] = execResultPy
     return outputDict
 
 def latino_construct_condition_tagger(inputDict):
-    _featureCondition = ToString(inputDict['featureCondition'])
-    _outputFeatureValue = ToString(inputDict['outputFeatureValue'])
-    _elementsTextToFeatureValue = ToBool(inputDict['elementsTextToFeatureValue'])
-    execResult = LatinoCF.ConstructConditionTagger(_featureCondition, _outputFeatureValue, _elementsTextToFeatureValue)
+    _feature_condition = ToString(inputDict['feature_condition'])
+    _output_feature_value = ToString(inputDict['output_feature_value'])
+    _elements_text_to_feature_value = ToBool(inputDict['elements_text_to_feature_value'])
+    execResult = LatinoCF.ConstructConditionTagger(_feature_condition, _output_feature_value, _elements_text_to_feature_value)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['tagger'] = execResultPy
     return outputDict
 
-def latino_tag_adcstem_lemma(inputDict):
+def latino_tag_adc_stem_lemma(inputDict):
     _adc = ToNetObj(inputDict['adc'])
     _tagger = ToNetObj(inputDict['tagger'])
-    _elementAnnotation = ToString(inputDict['elementAnnotation'])
-    _outputFeature = ToString(inputDict['outputFeature'])
-    execResult = LatinoCF.TagADCStemLemma(_adc, _tagger, _elementAnnotation, _outputFeature)
+    _element_annotation = ToString(inputDict['element_annotation'])
+    _output_feature = ToString(inputDict['output_feature'])
+    execResult = LatinoCF.TagADCStemLemma(_adc, _tagger, _element_annotation, _output_feature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
     return outputDict
 
-def latino_tag_adcstopwords(inputDict):
+def latino_tag_adc_stopwords(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _tagger = ToNetObj(inputDict['stop_word_tagger'])
-    _elementAnnotation = ToString(inputDict['element_annotation'])
-    _outputFeature = ToString(inputDict['output_feature'])
-    execResult = LatinoCF.TagADCStopwords(_adc, _tagger, _elementAnnotation, _outputFeature)
+    _tagger = ToNetObj(inputDict['tagger'])
+    _element_annotation = ToString(inputDict['element_annotation'])
+    _output_feature = ToString(inputDict['output_feature'])
+    execResult = LatinoCF.TagADCStopwords(_adc, _tagger, _element_annotation, _output_feature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
     return outputDict
 
-def latino_tag_adcmultiple(inputDict):
+def latino_tag_adc_multiple(inputDict):
     _adc = ToNetObj(inputDict['adc'])
     _taggers = ToNetObj(inputDict['taggers'])
-    _elementAnnotations = ToString(inputDict['elementAnnotations'])
-    _outputFeatures = ToString(inputDict['outputFeatures'])
-    execResult = LatinoCF.TagADCMultiple(_adc, _taggers, _elementAnnotations, _outputFeatures)
+    _element_annotations = ToString(inputDict['element_annotations'])
+    _output_features = ToString(inputDict['output_features'])
+    execResult = LatinoCF.TagADCMultiple(_adc, _taggers, _element_annotations, _output_features)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['adc'] = execResultPy
@@ -408,8 +408,8 @@ def latino_tag_adcmultiple(inputDict):
 def latino_tag_string_stem_lemma(inputDict):
     _text = ToNetObj(inputDict['text'])
     _tagger = ToNetObj(inputDict['tagger'])
-    _outputFeature = ToString(inputDict['outputFeature'])
-    execResult = LatinoCF.TagStringStemLemma(_text, _tagger, _outputFeature)
+    _output_feature = ToString(inputDict['output_feature'])
+    execResult = LatinoCF.TagStringStemLemma(_text, _tagger, _output_feature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['string'] = execResultPy
@@ -418,8 +418,8 @@ def latino_tag_string_stem_lemma(inputDict):
 def latino_tag_string_stopwords(inputDict):
     _text = ToNetObj(inputDict['text'])
     _tagger = ToNetObj(inputDict['tagger'])
-    _outputFeature = ToString(inputDict['outputFeature'])
-    execResult = LatinoCF.TagStringStopwords(_text, _tagger, _outputFeature)
+    _output_feature = ToString(inputDict['output_feature'])
+    execResult = LatinoCF.TagStringStopwords(_text, _tagger, _output_feature)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['string'] = execResultPy
@@ -430,12 +430,12 @@ def latino_construct_bow_space_1(inputDict):
     _tokenizer = ToNetObj(inputDict['tokenizer'])
     _stemmer = ToNetObj(inputDict['stemmer'])
     _stopwords = ToNetObj(inputDict['stopwords'])
-    _maxNGramLen = ToInt(inputDict['maxNGramLen'])
-    _minWordFreq = ToInt(inputDict['minWordFreq'])
-    _wordWeightType = ToEnum(Latino.TextMining.WordWeightType, inputDict['wordWeightType'], Latino.TextMining.WordWeightType.TfIdf)
-    _cutLowWeightsPerc = ToFloat(inputDict['cutLowWeightsPerc'])
-    _normalizeVectors = ToBool(inputDict['normalizeVectors'])
-    execResult = LatinoCF.ConstructBowSpace(_documents, _tokenizer, _stemmer, _stopwords, _maxNGramLen, _minWordFreq, _wordWeightType, _cutLowWeightsPerc, _normalizeVectors)
+    _max_n_gram_len = ToInt(inputDict['max_n_gram_len'])
+    _min_word_freq = ToInt(inputDict['min_word_freq'])
+    _word_weight_type = ToEnum(Latino.TextMining.WordWeightType, inputDict['word_weight_type'], Latino.TextMining.WordWeightType.TfIdf)
+    _cut_low_weights_perc = ToFloat(inputDict['cut_low_weights_perc'])
+    _normalize_vectors = ToBool(inputDict['normalize_vectors'])
+    execResult = LatinoCF.ConstructBowSpace(_documents, _tokenizer, _stemmer, _stopwords, _max_n_gram_len, _min_word_freq, _word_weight_type, _cut_low_weights_perc, _normalize_vectors)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['bow'] = execResultPy['bow']
@@ -444,16 +444,16 @@ def latino_construct_bow_space_1(inputDict):
 
 def latino_construct_bow_space_2(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _tokenId = ToString(inputDict['tokenId'])
-    _stemId = ToString(inputDict['stemId'])
-    _stopwordId = ToString(inputDict['stopwordId'])
-    _labelId = ToString(inputDict['labelId'])
-    _maxNGramLen = ToInt(inputDict['maxNGramLen'])
-    _minWordFreq = ToInt(inputDict['minWordFreq'])
-    _wordWeightType = ToEnum(Latino.TextMining.WordWeightType, inputDict['wordWeightType'], Latino.TextMining.WordWeightType.TfIdf)
-    _cutLowWeightsPerc = ToFloat(inputDict['cutLowWeightsPerc'])
-    _normalizeVectors = ToBool(inputDict['normalizeVectors'])
-    execResult = LatinoCF.ConstructBowSpace(_adc, _tokenId, _stemId, _stopwordId, _labelId, _maxNGramLen, _minWordFreq, _wordWeightType, _cutLowWeightsPerc, _normalizeVectors)
+    _token_id = ToString(inputDict['token_id'])
+    _stem_id = ToString(inputDict['stem_id'])
+    _stopword_id = ToString(inputDict['stopword_id'])
+    _label_id = ToString(inputDict['label_id'])
+    _max_n_gram_len = ToInt(inputDict['max_n_gram_len'])
+    _min_word_freq = ToInt(inputDict['min_word_freq'])
+    _word_weight_type = ToEnum(Latino.TextMining.WordWeightType, inputDict['word_weight_type'], Latino.TextMining.WordWeightType.TfIdf)
+    _cut_low_weights_perc = ToFloat(inputDict['cut_low_weights_perc'])
+    _normalize_vectors = ToBool(inputDict['normalize_vectors'])
+    execResult = LatinoCF.ConstructBowSpace(_adc, _token_id, _stem_id, _stopword_id, _label_id, _max_n_gram_len, _min_word_freq, _word_weight_type, _cut_low_weights_perc, _normalize_vectors)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['bow'] = execResultPy['bow']
@@ -462,16 +462,16 @@ def latino_construct_bow_space_2(inputDict):
 
 def latino_construct_bow_model(inputDict):
     _adc = ToNetObj(inputDict['adc'])
-    _tokenId = ToString(inputDict['tokenId'])
-    _stemId = ToString(inputDict['stemId'])
-    _stopwordId = ToString(inputDict['stopwordId'])
-    _labelId = ToString(inputDict['labelId'])
-    _maxNGramLen = ToInt(inputDict['maxNGramLen'])
-    _minWordFreq = ToInt(inputDict['minWordFreq'])
-    _wordWeightType = ToEnum(Latino.TextMining.WordWeightType, inputDict['wordWeightType'], Latino.TextMining.WordWeightType.TfIdf)
-    _cutLowWeightsPerc = ToFloat(inputDict['cutLowWeightsPerc'])
-    _normalizeVectors = ToBool(inputDict['normalizeVectors'])
-    execResult = LatinoCF.ConstructBowModel(_adc, _tokenId, _stemId, _stopwordId, _labelId, _maxNGramLen, _minWordFreq, _wordWeightType, _cutLowWeightsPerc, _normalizeVectors)
+    _token_id = ToString(inputDict['token_id'])
+    _stem_id = ToString(inputDict['stem_id'])
+    _stopword_id = ToString(inputDict['stopword_id'])
+    _label_id = ToString(inputDict['label_id'])
+    _max_n_gram_len = ToInt(inputDict['max_n_gram_len'])
+    _min_word_freq = ToInt(inputDict['min_word_freq'])
+    _word_weight_type = ToEnum(Latino.TextMining.WordWeightType, inputDict['word_weight_type'], Latino.TextMining.WordWeightType.TfIdf)
+    _cut_low_weights_perc = ToFloat(inputDict['cut_low_weights_perc'])
+    _normalize_vectors = ToBool(inputDict['normalize_vectors'])
+    execResult = LatinoCF.ConstructBowModel(_adc, _token_id, _stem_id, _stopword_id, _label_id, _max_n_gram_len, _min_word_freq, _word_weight_type, _cut_low_weights_perc, _normalize_vectors)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['bow'] = execResultPy
@@ -488,9 +488,9 @@ def latino_parse_documents(inputDict):
 
 def latino_get_vocabulary_table(inputDict):
     _bow = ToNetObj(inputDict['bow'])
-    _startIndex = ToInt(inputDict['startIndex'])
-    _maxWords = ToInt(inputDict['maxWords'])
-    execResult = LatinoCF.GetVocabularyTable(_bow, _startIndex, _maxWords)
+    _start_index = ToInt(inputDict['start_index'])
+    _max_words = ToInt(inputDict['max_words'])
+    execResult = LatinoCF.GetVocabularyTable(_bow, _start_index, _max_words)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['vocabulary'] = execResultPy
@@ -516,9 +516,9 @@ def latino_process_new_documents_from_string(inputDict):
 
 def latino_get_vocabulary(inputDict):
     _bow = ToNetObj(inputDict['bow'])
-    _startIndex = ToInt(inputDict['startIndex'])
-    _maxWords = ToInt(inputDict['maxWords'])
-    execResult = LatinoCF.GetVocabulary(_bow, _startIndex, _maxWords)
+    _start_index = ToInt(inputDict['start_index'])
+    _max_words = ToInt(inputDict['max_words'])
+    execResult = LatinoCF.GetVocabulary(_bow, _start_index, _max_words)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['terms'] = execResultPy
@@ -530,7 +530,7 @@ def latino_create_term_dataset_from_adc(inputDict):
     execResult = LatinoCF.CreateTermDatasetFromAdc(_adc, _bow)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['termDataset'] = execResultPy
+    outputDict['term_dataset'] = execResultPy
     return outputDict
 
 def latino_add_labels_to_document_vectors(inputDict):
@@ -561,8 +561,8 @@ def latino_extract_dataset_labels(inputDict):
 def latino_dataset_split_simple(inputDict):
     _ds = ToNetObj(inputDict['ds'])
     _percentage = ToFloat(inputDict['percentage'])
-    _randomSeed = ToInt(inputDict['randomSeed'])
-    execResult = LatinoCF.DatasetSplitSimple(_ds, _percentage, _randomSeed)
+    _random_seed = ToInt(inputDict['random_seed'])
+    execResult = LatinoCF.DatasetSplitSimple(_ds, _percentage, _random_seed)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['ds1'] = execResultPy['ds1']
@@ -572,8 +572,8 @@ def latino_dataset_split_simple(inputDict):
 def latino_dataset_split_predefined(inputDict):
     _ds = ToNetObj(inputDict['ds'])
     _sets = ToNetObj(inputDict['sets'])
-    _setId = ToInt(inputDict['setId'])
-    execResult = LatinoCF.DatasetSplitPredefined(_ds, _sets, _setId)
+    _set_id = ToInt(inputDict['set_id'])
+    execResult = LatinoCF.DatasetSplitPredefined(_ds, _sets, _set_id)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['ds1'] = execResultPy['ds1']
@@ -600,8 +600,8 @@ def latino_calculate_similarity_matrix(inputDict):
     _ds1 = ToNetObj(inputDict['ds1'])
     _ds2 = ToNetObj(inputDict['ds2'])
     _thresh = ToFloat(inputDict['thresh'])
-    _fullMatrix = ToBool(inputDict['fullMatrix'])
-    execResult = LatinoCF.CalculateSimilarityMatrix(_ds1, _ds2, _thresh, _fullMatrix)
+    _full_matrix = ToBool(inputDict['full_matrix'])
+    execResult = LatinoCF.CalculateSimilarityMatrix(_ds1, _ds2, _thresh, _full_matrix)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['smx'] = execResultPy
@@ -615,33 +615,33 @@ def latino_sparse_matrix_to_table(inputDict):
     outputDict['tbl'] = execResultPy
     return outputDict
 
-def latino_construct_kmeans_clusterer(inputDict):
+def latino_construct_k_means_clusterer(inputDict):
     _k = ToInt(inputDict['k'])
-    _centroidType = ToEnum(Latino.Model.CentroidType, inputDict['centroidType'], Latino.Model.CentroidType.NrmL2)
-    _similarityModel = ToEnum(LatinoClowdFlows.SimilarityModel, inputDict['similarityModel'], LatinoClowdFlows.SimilarityModel.Cosine)
-    _randomSeed = ToInt(inputDict['randomSeed'])
+    _centroid_type = ToEnum(Latino.Model.CentroidType, inputDict['centroid_type'], Latino.Model.CentroidType.NrmL2)
+    _similarity_model = ToEnum(LatinoInterfaces.SimilarityModel, inputDict['similarity_model'], LatinoInterfaces.SimilarityModel.Cosine)
+    _random_seed = ToInt(inputDict['random_seed'])
     _eps = ToFloat(inputDict['eps'])
     _trials = ToInt(inputDict['trials'])
-    execResult = LatinoCF.ConstructKMeansClusterer(_k, _centroidType, _similarityModel, _randomSeed, _eps, _trials)
+    execResult = LatinoCF.ConstructKMeansClusterer(_k, _centroid_type, _similarity_model, _random_seed, _eps, _trials)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['clusterer'] = execResultPy
     return outputDict
 
-def latino_construct_kmeans_fast_clusterer(inputDict):
+def latino_construct_k_means_fast_clusterer(inputDict):
     _k = ToInt(inputDict['k'])
-    _randomSeed = ToInt(inputDict['randomSeed'])
+    _random_seed = ToInt(inputDict['random_seed'])
     _eps = ToFloat(inputDict['eps'])
     _trials = ToInt(inputDict['trials'])
-    execResult = LatinoCF.ConstructKMeansFastClusterer(_k, _randomSeed, _eps, _trials)
+    execResult = LatinoCF.ConstructKMeansFastClusterer(_k, _random_seed, _eps, _trials)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['clusterer'] = execResultPy
     return outputDict
 
 def latino_construct_hierarchical_bisecting_clusterer(inputDict):
-    _minQuality = ToFloat(inputDict['minQuality'])
-    execResult = LatinoCF.ConstructHierarchicalBisectingClusterer(_minQuality)
+    _min_quality = ToFloat(inputDict['min_quality'])
+    execResult = LatinoCF.ConstructHierarchicalBisectingClusterer(_min_quality)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['clusterer'] = execResultPy
@@ -653,22 +653,22 @@ def latino_cluster_document_vectors(inputDict):
     execResult = LatinoCF.ClusterDocumentVectors(_clusterer, _dataset)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['clustRes'] = execResultPy
+    outputDict['clust_res'] = execResultPy
     return outputDict
 
 def latino_clustering_results_info(inputDict):
-    _clustRes = ToNetObj(inputDict['clustRes'])
-    execResult = LatinoCF.ClusteringResultsInfo(_clustRes)
+    _clust_res = ToNetObj(inputDict['clust_res'])
+    execResult = LatinoCF.ClusteringResultsInfo(_clust_res)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['docLabels'] = execResultPy['docLabels']
-    outputDict['clustTree'] = execResultPy['clustTree']
+    outputDict['doc_labels'] = execResultPy['doc_labels']
+    outputDict['clust_tree'] = execResultPy['clust_tree']
     return outputDict
 
 def latino_construct_centroid_classifier(inputDict):
-    _similarityModel = ToEnum(LatinoClowdFlows.SimilarityModel, inputDict['similarityModel'], LatinoClowdFlows.SimilarityModel.Cosine)
-    _normalizeCentorids = ToBool(inputDict['normalizeCentorids'])
-    execResult = LatinoCF.ConstructCentroidClassifier(_similarityModel, _normalizeCentorids)
+    _similarity_model = ToEnum(LatinoInterfaces.SimilarityModel, inputDict['similarity_model'], LatinoInterfaces.SimilarityModel.Cosine)
+    _normalize_centorids = ToBool(inputDict['normalize_centorids'])
+    execResult = LatinoCF.ConstructCentroidClassifier(_similarity_model, _normalize_centorids)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['classifier'] = execResultPy
@@ -676,8 +676,8 @@ def latino_construct_centroid_classifier(inputDict):
 
 def latino_construct_naive_bayes_classifier(inputDict):
     _normalize = ToBool(inputDict['normalize'])
-    _logSumExpTrick = ToBool(inputDict['logSumExpTrick'])
-    execResult = LatinoCF.ConstructNaiveBayesClassifier(_normalize, _logSumExpTrick)
+    _log_sum_exp_trick = ToBool(inputDict['log_sum_exp_trick'])
+    execResult = LatinoCF.ConstructNaiveBayesClassifier(_normalize, _log_sum_exp_trick)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['classifier'] = execResultPy
@@ -685,16 +685,16 @@ def latino_construct_naive_bayes_classifier(inputDict):
 
 def latino_construct_svm_binary_classifier(inputDict):
     _c = ToFloat(inputDict['c'])
-    _biasedHyperplane = ToBool(inputDict['biasedHyperplane'])
-    _kernelType = ToEnum(Latino.Model.SvmLightKernelType, inputDict['kernelType'], Latino.Model.SvmLightKernelType.Linear)
-    _kernelParamGamma = ToFloat(inputDict['kernelParamGamma'])
-    _kernelParamD = ToFloat(inputDict['kernelParamD'])
-    _kernelParamS = ToFloat(inputDict['kernelParamS'])
-    _kernelParamC = ToFloat(inputDict['kernelParamC'])
+    _biased_hyperplane = ToBool(inputDict['biased_hyperplane'])
+    _kernel_type = ToEnum(Latino.Model.SvmLightKernelType, inputDict['kernel_type'], Latino.Model.SvmLightKernelType.Linear)
+    _kernel_param_gamma = ToFloat(inputDict['kernel_param_gamma'])
+    _kernel_param_d = ToFloat(inputDict['kernel_param_d'])
+    _kernel_param_s = ToFloat(inputDict['kernel_param_s'])
+    _kernel_param_c = ToFloat(inputDict['kernel_param_c'])
     _eps = ToFloat(inputDict['eps'])
-    _maxIter = ToInt(inputDict['maxIter'])
-    _customParams = ToString(inputDict['customParams'])
-    execResult = LatinoCF.ConstructSvmBinaryClassifier(_c, _biasedHyperplane, _kernelType, _kernelParamGamma, _kernelParamD, _kernelParamS, _kernelParamC, _eps, _maxIter, _customParams)
+    _max_iter = ToInt(inputDict['max_iter'])
+    _custom_params = ToString(inputDict['custom_params'])
+    execResult = LatinoCF.ConstructSvmBinaryClassifier(_c, _biased_hyperplane, _kernel_type, _kernel_param_gamma, _kernel_param_d, _kernel_param_s, _kernel_param_c, _eps, _max_iter, _custom_params)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['classifier'] = execResultPy
@@ -717,34 +717,34 @@ def latino_construct_majority_classifier(inputDict):
     return outputDict
 
 def latino_construct_maximum_entropy_classifier(inputDict):
-    _moveData = ToBool(inputDict['moveData'])
-    _numIter = ToInt(inputDict['numIter'])
-    _cutOff = ToInt(inputDict['cutOff'])
-    _numThreads = ToInt(inputDict['numThreads'])
+    _move_data = ToBool(inputDict['move_data'])
+    _num_iter = ToInt(inputDict['num_iter'])
+    _cut_off = ToInt(inputDict['cut_off'])
+    _num_threads = ToInt(inputDict['num_threads'])
     _normalize = ToBool(inputDict['normalize'])
-    execResult = LatinoCF.ConstructMaximumEntropyClassifier(_moveData, _numIter, _cutOff, _numThreads, _normalize)
+    execResult = LatinoCF.ConstructMaximumEntropyClassifier(_move_data, _num_iter, _cut_off, _num_threads, _normalize)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['classifier'] = execResultPy
     return outputDict
 
 def latino_construct_maximum_entropy_classifier_fast(inputDict):
-    _moveData = ToBool(inputDict['moveData'])
-    _numIter = ToInt(inputDict['numIter'])
-    _cutOff = ToInt(inputDict['cutOff'])
-    _numThreads = ToInt(inputDict['numThreads'])
+    _move_data = ToBool(inputDict['move_data'])
+    _num_iter = ToInt(inputDict['num_iter'])
+    _cut_off = ToInt(inputDict['cut_off'])
+    _num_threads = ToInt(inputDict['num_threads'])
     _normalize = ToBool(inputDict['normalize'])
-    execResult = LatinoCF.ConstructMaximumEntropyClassifierFast(_moveData, _numIter, _cutOff, _numThreads, _normalize)
+    execResult = LatinoCF.ConstructMaximumEntropyClassifierFast(_move_data, _num_iter, _cut_off, _num_threads, _normalize)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['classifier'] = execResultPy
     return outputDict
 
 def latino_construct_knn_classifier(inputDict):
-    _similarityModel = ToEnum(LatinoClowdFlows.SimilarityModel, inputDict['similarityModel'], LatinoClowdFlows.SimilarityModel.Cosine)
+    _similarity_model = ToEnum(LatinoInterfaces.SimilarityModel, inputDict['similarity_model'], LatinoInterfaces.SimilarityModel.Cosine)
     _k = ToInt(inputDict['k'])
-    _softVoting = ToBool(inputDict['softVoting'])
-    execResult = LatinoCF.ConstructKnnClassifier(_similarityModel, _k, _softVoting)
+    _soft_voting = ToBool(inputDict['soft_voting'])
+    execResult = LatinoCF.ConstructKnnClassifier(_similarity_model, _k, _soft_voting)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['classifier'] = execResultPy
@@ -752,30 +752,30 @@ def latino_construct_knn_classifier(inputDict):
 
 def latino_construct_knn_classifier_fast(inputDict):
     _k = ToInt(inputDict['k'])
-    _softVoting = ToBool(inputDict['softVoting'])
-    execResult = LatinoCF.ConstructKnnClassifierFast(_k, _softVoting)
+    _soft_voting = ToBool(inputDict['soft_voting'])
+    execResult = LatinoCF.ConstructKnnClassifierFast(_k, _soft_voting)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['classifier'] = execResultPy
     return outputDict
 
 def latino_train_classifier(inputDict):
-    _csf = ToNetObj(inputDict['classifier'])
-    _ds = ToNetObj(inputDict['training_data'])
-    execResult = LatinoCF.TrainClassifier(_csf, _ds)
+    _classifier = ToNetObj(inputDict['classifier'])
+    _training_data = ToNetObj(inputDict['training_data'])
+    execResult = LatinoCF.TrainClassifier(_classifier, _training_data)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['trained_classifier'] = execResultPy
     return outputDict
 
 def latino_predict_classification(inputDict):
-    _csf = ToNetObj(inputDict['trained_classifier'])
-    _ds = ToNetObj(inputDict['testing_dataset'])
+    _csf = ToNetObj(inputDict['csf'])
+    _ds = ToNetObj(inputDict['ds'])
     execResult = LatinoCF.PredictClassification(_csf, _ds)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['predictions'] = execResultPy['predictions']
-    outputDict['labeled_dataset'] = execResultPy['ds']
+    outputDict['ds'] = execResultPy['ds']
     return outputDict
 
 def latino_prediction_info(inputDict):
@@ -784,17 +784,17 @@ def latino_prediction_info(inputDict):
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['labels'] = execResultPy['labels']
-    outputDict['predictInfos'] = execResultPy['predictInfos']
+    outputDict['predict_infos'] = execResultPy['predict_infos']
     return outputDict
 
 def latino_cross_validation(inputDict):
     _csf = ToNetObj(inputDict['csf'])
     _ds = ToNetObj(inputDict['ds'])
-    _numOfSets = ToInt(inputDict['numOfSets'])
+    _num_of_sets = ToInt(inputDict['num_of_sets'])
     _random = ToBool(inputDict['random'])
-    _useSeed = ToBool(inputDict['useSeed'])
-    _randomSeed = ToInt(inputDict['randomSeed'])
-    execResult = LatinoCF.CrossValidation(_csf, _ds, _numOfSets, _random, _useSeed, _randomSeed)
+    _use_seed = ToBool(inputDict['use_seed'])
+    _random_seed = ToInt(inputDict['random_seed'])
+    execResult = LatinoCF.CrossValidation(_csf, _ds, _num_of_sets, _random, _use_seed, _random_seed)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['obj'] = execResultPy
@@ -813,8 +813,8 @@ def latino_cross_validation_predef_splits(inputDict):
 def latino_cross_validation_predef_multi_splits(inputDict):
     _csf = ToNetObj(inputDict['csf'])
     _ds = ToNetObj(inputDict['ds'])
-    _multiSets = ToNetObj(inputDict['multiSets'])
-    execResult = LatinoCF.CrossValidationPredefMultiSplits(_csf, _ds, _multiSets)
+    _multi_sets = ToNetObj(inputDict['multi_sets'])
+    execResult = LatinoCF.CrossValidationPredefMultiSplits(_csf, _ds, _multi_sets)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['obj'] = execResultPy
@@ -830,16 +830,16 @@ def latino_accuracy_claculation(inputDict):
     outputDict['statistics'] = execResultPy['statistics']
     return outputDict
 
-def latino_run_csharp_snippet(inputDict):
-    _snippetParams = ToNetObj(inputDict['snippetParams'])
-    _snippetCode = ToString(inputDict['snippetCode'])
-    _aditionalReferences = ToString(inputDict['aditionalReferences'])
+def latino_run_c_sharp_snippet(inputDict):
+    _snippet_params = ToNetObj(inputDict['snippet_params'])
+    _snippet_code = ToString(inputDict['snippet_code'])
+    _aditional_references = ToString(inputDict['aditional_references'])
     _usings = ToString(inputDict['usings'])
-    execResult = LatinoCF.RunCSharpSnippet(_snippetParams, _snippetCode, _aditionalReferences, _usings)
+    execResult = LatinoCF.RunCSharpSnippet(_snippet_params, _snippet_code, _aditional_references, _usings)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['out'] = execResultPy['out']
-    outputDict['consoleOut'] = execResultPy['consoleOut']
+    outputDict['console_out'] = execResultPy['console_out']
     outputDict['error'] = execResultPy['error']
     outputDict['code'] = execResultPy['code']
     return outputDict
