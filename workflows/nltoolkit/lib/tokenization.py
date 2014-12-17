@@ -1,4 +1,5 @@
 from workflows.textflows import *
+import nltk
 
 
 def tokenizer_hub(input_dict):
@@ -17,7 +18,6 @@ def tokenizer_hub(input_dict):
     :returns adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
     tokenizer_dict = input_dict['tokenizer']
-
 
     if type(tokenizer_dict)!=dict:
         from ...latino.library_gen import latino_tokenize_words
@@ -45,7 +45,6 @@ def tokenizer_hub(input_dict):
 def nltk_treebank_word_tokenizer(input_dict):
     raise NotImplementedError() #span_tokenize not implemented in this class
 
-    import nltk
     return {'tokenizer': {'object': nltk.TreebankWordTokenizer()}}
 
 
@@ -59,7 +58,7 @@ def nltk_punkt_sentence_tokenizer(input_dict):
 
     :returns tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
-    import nltk
+
     return {'tokenizer': {'object': nltk.PunktSentenceTokenizer()}}
 
 
@@ -83,9 +82,7 @@ def nltk_regex_tokenizer(input_dict):
     pattern = input_dict[u'pattern']
     gaps = input_dict[u'gaps'] == "true"
     discard_empty = input_dict[u'discard_empty'] == "true"
-    #print pattern, gaps, discard_empty
 
-    import nltk
     return {'tokenizer': {'object': nltk.RegexpTokenizer(pattern=pattern, gaps=gaps, discard_empty=discard_empty)}}
 
 
@@ -106,9 +103,7 @@ def nltk_sexpression_tokenizer(input_dict):
     """
     parens = input_dict[u'parens']
     strict = input_dict[u'strict'] == "true"
-    #print parens, strict
 
-    import nltk
     return {'tokenizer': {'object': nltk.SExprTokenizer(parens=parens, strict=strict)}}
 
 
@@ -126,14 +121,20 @@ def nltk_simple_tokenizer(input_dict):
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
 
-    import nltk
     if input_dict["type"] == u"char_tokenizer":
         tokenizer = nltk.tokenize.simple.CharTokenizer()
     elif input_dict["type"] == u"space_tokenizer":
         tokenizer = nltk.SpaceTokenizer()
     elif input_dict["type"] == u"tab_tokenizer":
         tokenizer = nltk.TabTokenizer()
+    elif input_dict["type"] == u"whitespace_tokenizer":
+        tokenizer = nltk.WhitespaceTokenizer()
+    elif input_dict["type"] == u"blankline_tokenizer":
+        tokenizer = nltk.BlanklineTokenizer()
+    elif input_dict["type"] == u"wordpunct_tokenizer":
+        tokenizer = nltk.WordPunctTokenizer()
 
+    print tokenizer
     return {'tokenizer': {'object': tokenizer}}
 
 
@@ -146,7 +147,6 @@ def nltk_line_tokenizer(input_dict):
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
 
-    import nltk
     blanklines = input_dict[u"blanklines"]
     return {'tokenizer': {'object': nltk.LineTokenizer(blanklines=blanklines)}}
 
@@ -158,8 +158,78 @@ def nltk_stanford_tokenizer(input_dict):
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
 
+    #it does not work without this kind of import
     from nltk.tokenize.stanford import StanfordTokenizer
     return {'tokenizer': {'object': StanfordTokenizer()}}
+
+def nltk_text_tiling_tokenizer(input_dict):
+    """
+    Tokenize a document into topical sections using the TextTiling algorithm.
+    This algorithm detects subtopic shifts based on the analysis of lexical
+    co-occurrence patterns.
+
+    :param w: Pseudosentence size
+    :type w: int
+    :param k: Size (in sentences) of the block used in the block comparison method
+    :type k: int
+    :param similarity_method: The method used for determining similarity scores:
+       `BLOCK_COMPARISON` (default) or `VOCABULARY_INTRODUCTION`.
+    :type similarity_method: constant
+    :param stopwords: A list of stopwords that are filtered out (defaults to NLTK's stopwords corpus)
+    :type stopwords: list(str)
+    :param smoothing_width: The width of the window used by the smoothing method
+    :type smoothing_width: int
+    :param smoothing_rounds: The number of smoothing passes
+    :type smoothing_rounds: int
+    :param cutoff_policy: The policy used to determine the number of boundaries:
+      `HC` (default) or `LC`
+    :type cutoff_policy: constant
+    """
+
+    w = int(input_dict["w"])
+    k = int(input_dict["k"])
+    similarity_method = input_dict["similarity_method"]
+    stopwords = None if input_dict["stopwords"] == "None" else [word.strip() for word in input_dict["stopwords"].split(",")]
+    smoothing_width = int(input_dict["smoothing_width"])
+    smoothing_rounds = int(input_dict["smoothing_rounds"])
+    cutoff_policy = input_dict["cutoff_policy"]
+
+    print w, k, similarity_method, stopwords, smoothing_width, smoothing_rounds, cutoff_policy
+
+    return {'tokenizer': {'object': nltk.tokenize.TextTilingTokenizer(w=w,
+                                                                      k=k,
+                                                                      similarity_method = similarity_method,
+                                                                      stopwords=stopwords,
+                                                                      smoothing_width=smoothing_width,
+                                                                      smoothing_rounds=smoothing_rounds,
+                                                                      cutoff_policy=cutoff_policy)}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
