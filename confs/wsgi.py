@@ -20,7 +20,7 @@ import site
 import djcelery
 djcelery.setup_loader()
 
-project_path = '/var/www/textflows/textflows'
+project_path = '/var/www/textflows'
 if project_path not in sys.path:
         sys.path.append(project_path)
 
