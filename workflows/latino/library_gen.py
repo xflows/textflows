@@ -113,8 +113,8 @@ def latino_split_documents_by_feature_value(inputDict):
     execResult = LatinoCF.SplitDocumentsByFeatureValue(_adc, _feature_condition, _discard_filtered_out)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['adc_filtered'] = execResultPy['adc_filtered']
-    outputDict['adc_rest'] = execResultPy['adc_rest']
+    outputDict['adc_filtered'] = execResultPy['adcFiltered']
+    outputDict['adc_rest'] = execResultPy['adcRest']
     return outputDict
 
 def latino_extract_documents(inputDict):
@@ -124,8 +124,8 @@ def latino_extract_documents(inputDict):
     execResult = LatinoCF.ExtractDocuments(_adc, _index_list, _discard_filtered_out)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['adc_filtered'] = execResultPy['adc_filtered']
-    outputDict['adc_rest'] = execResultPy['adc_rest']
+    outputDict['adc_filtered'] = execResultPy['adcFiltered']
+    outputDict['adc_rest'] = execResultPy['adcRest']
     return outputDict
 
 def latino_join_documents_corpora(inputDict):
@@ -155,8 +155,8 @@ def latino_corpus_statistics(inputDict):
     execResult = LatinoCF.CorpusStatistics(_adc)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['doc_count'] = execResultPy['doc_count']
-    outputDict['feature_count'] = execResultPy['feature_count']
+    outputDict['doc_count'] = execResultPy['docCount']
+    outputDict['feature_count'] = execResultPy['featureCount']
     outputDict['description'] = execResultPy['description']
     return outputDict
 
@@ -661,8 +661,8 @@ def latino_clustering_results_info(inputDict):
     execResult = LatinoCF.ClusteringResultsInfo(_clust_res)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
-    outputDict['doc_labels'] = execResultPy['doc_labels']
-    outputDict['clust_tree'] = execResultPy['clust_tree']
+    outputDict['doc_labels'] = execResultPy['docLabels']
+    outputDict['clust_tree'] = execResultPy['clustTree']
     return outputDict
 
 def latino_construct_centroid_classifier(inputDict):
@@ -784,7 +784,7 @@ def latino_prediction_info(inputDict):
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['labels'] = execResultPy['labels']
-    outputDict['predict_infos'] = execResultPy['predict_infos']
+    outputDict['predict_infos'] = execResultPy['predictInfos']
     return outputDict
 
 def latino_cross_validation(inputDict):
@@ -839,7 +839,7 @@ def latino_run_c_sharp_snippet(inputDict):
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['out'] = execResultPy['out']
-    outputDict['console_out'] = execResultPy['console_out']
+    outputDict['console_out'] = execResultPy['consoleOut']
     outputDict['error'] = execResultPy['error']
     outputDict['code'] = execResultPy['code']
     return outputDict
