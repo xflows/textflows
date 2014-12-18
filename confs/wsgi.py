@@ -11,8 +11,8 @@ might make sense to replace the whole Django WSGI application with a custom one
 that later delegates to the Django one. For example, you could introduce WSGI
 middleware here, or combine a Django application with an application of another
 framework.
-
 """
+
 import os
 import sys
 import site
@@ -20,7 +20,7 @@ import site
 import djcelery
 djcelery.setup_loader()
 
-project_path = '/srv/django-projects/mothra'
+project_path = '/var/www/textflows/textflows'
 if project_path not in sys.path:
         sys.path.append(project_path)
 
