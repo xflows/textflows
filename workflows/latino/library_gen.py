@@ -5,10 +5,6 @@
 from workflows.textflows_dot_net.import_dotnet import *
 from workflows.textflows_dot_net.serialization_utils import *
 
-import Latino
-import LatinoInterfaces
-from LatinoInterfaces import LatinoCF
-
 def latino_flatten_object_to_string_array(inputDict):
     _data = ToNetObj(inputDict['data'])
     execResult = LatinoCF.FlattenObjectToStringArray(_data)
@@ -769,13 +765,13 @@ def latino_train_classifier(inputDict):
     return outputDict
 
 def latino_predict_classification(inputDict):
-    _csf = ToNetObj(inputDict['csf'])
-    _ds = ToNetObj(inputDict['ds'])
-    execResult = LatinoCF.PredictClassification(_csf, _ds)
+    _trained_classifier = ToNetObj(inputDict['trained_classifier'])
+    _testing_dataset = ToNetObj(inputDict['testing_dataset'])
+    execResult = LatinoCF.PredictClassification(_trained_classifier, _testing_dataset)
     execResultPy = ToPyObj(execResult)
     outputDict = {}
     outputDict['predictions'] = execResultPy['predictions']
-    outputDict['ds'] = execResultPy['ds']
+    outputDict['labeled_dataset'] = execResultPy['labeledDataset']
     return outputDict
 
 def latino_prediction_info(inputDict):

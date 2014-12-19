@@ -19,7 +19,7 @@
       "parent": 1026145484,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -40,6 +40,7 @@
       "user": null,
       "visualization_view": "",
       "action": "latino_load_adc",
+      "windows_queue": true,
       "wsdl": "",
       "interactive": false,
       "has_progress_bar": false,
@@ -466,7 +467,7 @@
       "parent": 284729065,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -1339,7 +1340,7 @@
       "parent": 745366153,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -2400,7 +2401,7 @@
       "workflow": null,
       "user": null,
       "order": 4,
-      "name": "Tagging"
+      "name": "POS Tagging"
     }
   },
   {
@@ -2411,7 +2412,7 @@
       "parent": 321494981,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -2600,12 +2601,730 @@
     }
   },
   {
+    "pk": 291857809,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "94237b9c-8e88-460c-abc5-9c8108acb821",
+      "parent": 11481045,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Advanced"
+    }
+  },
+  {
+    "pk": 446243897,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 291857809,
+      "treeview_image": null,
+      "name": "POS Tagger Hub (Text)",
+      "is_streaming": false,
+      "uid": "33307dbf-08b5-4768-ba21-ebe1aa68c69b",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_pos_do_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_pos_tag_string",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 2,
+      "description": "Automatically generated widget from function PosTagString in package latino. The original function signature: PosTagString."
+    }
+  },
+  {
+    "pk": 242834712,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 446243897,
+      "name": "Text",
+      "short_name": "str",
+      "uid": "ed41747a-dc93-d818-291c-62d791613083",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "text",
+      "parameter": false,
+      "order": 1,
+      "description": "System.Object"
+    }
+  },
+  {
+    "pk": 609695729,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 446243897,
+      "name": "POS Tagger",
+      "short_name": "pst",
+      "uid": "981e7201-35ab-7b25-ae8f-29e5b03cb407",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "pos_tagger",
+      "parameter": false,
+      "order": 2,
+      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger"
+    }
+  },
+  {
+    "pk": 983045811,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 446243897,
+      "name": "Output Feature Name",
+      "short_name": "str",
+      "uid": "02d347c6-12c9-9892-5d69-38548474b35a",
+      "default": "posTag",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "output_feature",
+      "parameter": true,
+      "order": 3,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 954809219,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 446243897,
+      "name": "String",
+      "short_name": "str",
+      "variable": "string",
+      "uid": "b773304e-55a1-d06f-363c-e10850b7bd56",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 122373541,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "fb4fad1e-9c2f-454b-86af-3dc255ac9297",
+      "parent": null,
+      "workflow": null,
+      "user": null,
+      "order": 5,
+      "name": "Stemming"
+    }
+  },
+  {
+    "pk": 697718102,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "70b1a1cf-49e8-479b-a8d8-32cc2fbfa47b",
+      "parent": 122373541,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Latino"
+    }
+  },
+  {
+    "pk": 436025993,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 697718102,
+      "treeview_image": null,
+      "name": "Lemma Tagger LemmaGen",
+      "is_streaming": false,
+      "uid": "d7cf3f71-3efd-4568-b2ff-fb9520106d9a",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_stem_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_construct_lemma_sharp_lemmatizer",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 3,
+      "description": "Automatically generated widget from function ConstructLemmaSharpLemmatizer in package latino. The original function signature: ConstructLemmaSharpLemmatizer."
+    }
+  },
+  {
+    "pk": 797498886,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 436025993,
+      "name": "Language",
+      "short_name": "lng",
+      "uid": "97933b25-f871-cb19-0fc6-64b0ffc2c49b",
+      "default": "English",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "language",
+      "parameter": true,
+      "order": 1,
+      "description": "Latino.TextMining.Language"
+    }
+  },
+  {
+    "pk": 574102391,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "d31cca41-7ee0-6eb6-a3bb-cccbbf4490ca",
+      "abstract_input": 797498886,
+      "value": "Bulgarian",
+      "name": "Bulgarian"
+    }
+  },
+  {
+    "pk": 735861981,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "18ddfc3a-1255-b6ea-01fc-7c5742401cfa",
+      "abstract_input": 797498886,
+      "value": "Czech",
+      "name": "Czech"
+    }
+  },
+  {
+    "pk": 669825425,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "0e4a2ccf-0fd4-69e3-e630-d60d8b8f658e",
+      "abstract_input": 797498886,
+      "value": "English",
+      "name": "English"
+    }
+  },
+  {
+    "pk": 634123475,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "7a3e3672-48fb-5929-bc0a-d58253ea5a4b",
+      "abstract_input": 797498886,
+      "value": "Estonian",
+      "name": "Estonian"
+    }
+  },
+  {
+    "pk": 399198591,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "9b381bf5-3eab-bcdc-3ce4-491f99291ac9",
+      "abstract_input": 797498886,
+      "value": "French",
+      "name": "French"
+    }
+  },
+  {
+    "pk": 540469162,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "46c55bf1-aea8-bc38-2c32-f8ce64bdb3c4",
+      "abstract_input": 797498886,
+      "value": "German",
+      "name": "German"
+    }
+  },
+  {
+    "pk": 156418370,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "fc7c31e4-95d8-2801-efee-b4157d29f3f2",
+      "abstract_input": 797498886,
+      "value": "Hungarian",
+      "name": "Hungarian"
+    }
+  },
+  {
+    "pk": 571609196,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "3364645a-3a08-6dd5-8a1f-64e3c33a0685",
+      "abstract_input": 797498886,
+      "value": "Italian",
+      "name": "Italian"
+    }
+  },
+  {
+    "pk": 502296109,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "e7a9adf6-d6b2-5999-6cd8-2d894a7c31b4",
+      "abstract_input": 797498886,
+      "value": "Romanian",
+      "name": "Romanian"
+    }
+  },
+  {
+    "pk": 310027694,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "1c164e45-6ac6-c26b-1147-da7a53412c3d",
+      "abstract_input": 797498886,
+      "value": "Serbian",
+      "name": "Serbian"
+    }
+  },
+  {
+    "pk": 705184794,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "705cc251-de0f-8b0b-36e7-2a34a01f7c63",
+      "abstract_input": 797498886,
+      "value": "Slovene",
+      "name": "Slovene"
+    }
+  },
+  {
+    "pk": 775626918,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "4a2fbfde-ad2c-721d-c563-8f7aa4860d6d",
+      "abstract_input": 797498886,
+      "value": "Spanish",
+      "name": "Spanish"
+    }
+  },
+  {
+    "pk": 482673462,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 436025993,
+      "name": "Lemmatizer (Tagger)",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "7e9e5cb0-cc51-7ffb-d85c-f78309363f49",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 401359606,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 697718102,
+      "treeview_image": null,
+      "name": "Stem Tagger Snowball",
+      "is_streaming": false,
+      "uid": "bfd10a14-60ea-424d-bc54-eb34173fe7df",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_stem_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_construct_snowball_stemmer",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 4,
+      "description": "Automatically generated widget from function ConstructSnowballStemmer in package latino. The original function signature: ConstructSnowballStemmer."
+    }
+  },
+  {
+    "pk": 5100309,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 401359606,
+      "name": "Language",
+      "short_name": "lng",
+      "uid": "38622b5c-1d5f-4e61-ea6e-8dbdfe8768ee",
+      "default": "English",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "language",
+      "parameter": true,
+      "order": 1,
+      "description": "Latino.TextMining.Language"
+    }
+  },
+  {
+    "pk": 642879208,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "2a6956b4-d25c-c5cf-9680-37f358c44443",
+      "abstract_input": 5100309,
+      "value": "Danish",
+      "name": "Danish"
+    }
+  },
+  {
+    "pk": 724429704,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "44bf6b31-0384-c6f4-a32a-ea0f63dc7a64",
+      "abstract_input": 5100309,
+      "value": "Dutch",
+      "name": "Dutch"
+    }
+  },
+  {
+    "pk": 727821947,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "15d69a6e-35a2-e99a-339d-916620898d3e",
+      "abstract_input": 5100309,
+      "value": "English",
+      "name": "English"
+    }
+  },
+  {
+    "pk": 107318538,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "717fae43-e56c-75e8-873e-7d39ab06cb4b",
+      "abstract_input": 5100309,
+      "value": "Finnish",
+      "name": "Finnish"
+    }
+  },
+  {
+    "pk": 36662375,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "89bc5e03-96fe-4419-8d35-9dde624bdc01",
+      "abstract_input": 5100309,
+      "value": "French",
+      "name": "French"
+    }
+  },
+  {
+    "pk": 995586872,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "9c008d61-1052-d597-2ec3-f450a9db3ad9",
+      "abstract_input": 5100309,
+      "value": "German",
+      "name": "German"
+    }
+  },
+  {
+    "pk": 384696162,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "52cd8332-9770-2775-e1b2-c927225c3cdb",
+      "abstract_input": 5100309,
+      "value": "Italian",
+      "name": "Italian"
+    }
+  },
+  {
+    "pk": 682856669,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "7907ce4b-9e29-c093-35c1-442545a5d555",
+      "abstract_input": 5100309,
+      "value": "Norwegian",
+      "name": "Norwegian"
+    }
+  },
+  {
+    "pk": 1054485971,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "8a771e14-51c7-ff9a-6d1b-f6b12af42e0f",
+      "abstract_input": 5100309,
+      "value": "Portuguese",
+      "name": "Portuguese"
+    }
+  },
+  {
+    "pk": 743461350,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "d8d8ac95-caf7-f385-9fe1-80965496dec5",
+      "abstract_input": 5100309,
+      "value": "Russian",
+      "name": "Russian"
+    }
+  },
+  {
+    "pk": 229854922,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "1c32684a-8c3c-6478-1ec0-9a9758a8357c",
+      "abstract_input": 5100309,
+      "value": "Spanish",
+      "name": "Spanish"
+    }
+  },
+  {
+    "pk": 895992281,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "80d2656e-901f-7116-7e4d-41a0ee672536",
+      "abstract_input": 5100309,
+      "value": "Swedish",
+      "name": "Swedish"
+    }
+  },
+  {
+    "pk": 433060958,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 401359606,
+      "name": "Stemmer (Tagger)",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "19aaae25-ca47-25d1-c801-a4e72d012841",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 540821434,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 697718102,
+      "treeview_image": null,
+      "name": "Stemming Tagger Hub",
+      "is_streaming": false,
+      "uid": "3f8d1230-4aa3-4d0a-b1b7-440b4be85617",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_stem_do_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_tag_adc_stem_lemma",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 5,
+      "description": "Taggs the given annotated document corpus with the given tagger."
+    }
+  },
+  {
+    "pk": 161720761,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 540821434,
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "uid": "39f94180-1a05-b54c-a2ed-aca515adfdf5",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "adc",
+      "parameter": false,
+      "order": 1,
+      "description": "LatinoInterfaces.DocumentCorpus"
+    }
+  },
+  {
+    "pk": 509781756,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 540821434,
+      "name": "Token Tagger",
+      "short_name": "tgr",
+      "uid": "4b53bed0-7e83-30a8-6bc7-00c61010082a",
+      "default": "Output feature name specifies how the token will be tagged (assigend the feature to)\r\nIf multiple taggers are used then one line per tagger must be specified.",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "tagger",
+      "parameter": false,
+      "order": 2,
+      "description": "Token Annotation of the token to be tagged. If also the feature name is used than the feature value of selected token will be tagged.\r\nUsage: \r\n1. TokenName\r\n2. TokenName/FeatureName\r\nIf multiple taggers are used then one line per tagger must be specified."
+    }
+  },
+  {
+    "pk": 527636029,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 540821434,
+      "name": "Token Annotation",
+      "short_name": "str",
+      "uid": "568a8c0e-5e96-3315-ba84-4a1c2158050c",
+      "default": "Token",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "element_annotation",
+      "parameter": true,
+      "order": 3,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 560059550,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 540821434,
+      "name": "Output Feature Name",
+      "short_name": "str",
+      "uid": "ce347962-18cf-ca95-cd26-37e29fef1fd8",
+      "default": "stem",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "output_feature",
+      "parameter": true,
+      "order": 4,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 640312186,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 540821434,
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "variable": "adc",
+      "uid": "a54b5f27-df00-1cd7-3318-9e90d518d876",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 150294195,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "08c17c78-3f4d-4006-8b3f-1ee34bca5ccd",
+      "parent": 697718102,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Advanced"
+    }
+  },
+  {
+    "pk": 468100796,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 150294195,
+      "treeview_image": null,
+      "name": "Stemming Tagger Hub (Text)",
+      "is_streaming": false,
+      "uid": "f2be2fc3-5a17-47c1-9353-3cfc454bfe59",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_stem_do_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_tag_string_stem_lemma",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 3,
+      "description": "Automatically generated widget from function TagStringStemLemma in package latino. The original function signature: TagStringStemLemma."
+    }
+  },
+  {
+    "pk": 149228937,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 468100796,
+      "name": "Text",
+      "short_name": "str",
+      "uid": "24f1fd60-dd51-d6cb-4855-d1e4b9dc780c",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "text",
+      "parameter": false,
+      "order": 1,
+      "description": "System.Object"
+    }
+  },
+  {
+    "pk": 551058277,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 468100796,
+      "name": "Token Tagger",
+      "short_name": "tgr",
+      "uid": "c7161458-dd14-d64c-55b2-aeea24aa08b2",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "tagger",
+      "parameter": false,
+      "order": 2,
+      "description": "System.Object"
+    }
+  },
+  {
+    "pk": 1011871090,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 468100796,
+      "name": "Output Feature Name",
+      "short_name": "str",
+      "uid": "c8240d9c-bddf-fb62-f7b6-666f8dba9895",
+      "default": "stem",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "output_feature",
+      "parameter": true,
+      "order": 3,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 662035194,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 468100796,
+      "name": "String",
+      "short_name": "str",
+      "variable": "string",
+      "uid": "2430a1d2-25a4-c887-cb71-3df05bd2696f",
+      "order": 1,
+      "description": "string or array of strings (based on the input)"
+    }
+  },
+  {
+    "pk": 481056055,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "49d5fda2-23d4-444a-a6df-3c5714d2fdfd",
+      "parent": null,
+      "workflow": null,
+      "user": null,
+      "order": 6,
+      "name": "Stop Words"
+    }
+  },
+  {
+    "pk": 51745085,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "5f0ee744-65c5-4878-81c8-dab76f6e5976",
+      "parent": 481056055,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Latino"
+    }
+  },
+  {
     "pk": 472144877,
     "model": "workflows.abstractwidget",
     "fields": {
-      "category": 11481045,
+      "category": 51745085,
       "treeview_image": null,
-      "name": "Get Stopword Set",
+      "name": "Stop Word Sets",
       "is_streaming": false,
       "uid": "773960d9-ccca-41bc-8b13-0c0f62c62f0e",
       "interaction_view": "",
@@ -2836,364 +3555,12 @@
     }
   },
   {
-    "pk": 436025993,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 11481045,
-      "treeview_image": null,
-      "name": "Lemma Tagger LemmaGen",
-      "is_streaming": false,
-      "uid": "d7cf3f71-3efd-4568-b2ff-fb9520106d9a",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_stem_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_construct_lemma_sharp_lemmatizer",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 3,
-      "description": "Automatically generated widget from function ConstructLemmaSharpLemmatizer in package latino. The original function signature: ConstructLemmaSharpLemmatizer."
-    }
-  },
-  {
-    "pk": 797498886,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 436025993,
-      "name": "Language",
-      "short_name": "lng",
-      "uid": "97933b25-f871-cb19-0fc6-64b0ffc2c49b",
-      "default": "English",
-      "required": true,
-      "multi": false,
-      "parameter_type": "select",
-      "variable": "language",
-      "parameter": true,
-      "order": 1,
-      "description": "Latino.TextMining.Language"
-    }
-  },
-  {
-    "pk": 574102391,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "d31cca41-7ee0-6eb6-a3bb-cccbbf4490ca",
-      "abstract_input": 797498886,
-      "value": "Bulgarian",
-      "name": "Bulgarian"
-    }
-  },
-  {
-    "pk": 735861981,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "18ddfc3a-1255-b6ea-01fc-7c5742401cfa",
-      "abstract_input": 797498886,
-      "value": "Czech",
-      "name": "Czech"
-    }
-  },
-  {
-    "pk": 669825425,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "0e4a2ccf-0fd4-69e3-e630-d60d8b8f658e",
-      "abstract_input": 797498886,
-      "value": "English",
-      "name": "English"
-    }
-  },
-  {
-    "pk": 634123475,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "7a3e3672-48fb-5929-bc0a-d58253ea5a4b",
-      "abstract_input": 797498886,
-      "value": "Estonian",
-      "name": "Estonian"
-    }
-  },
-  {
-    "pk": 399198591,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "9b381bf5-3eab-bcdc-3ce4-491f99291ac9",
-      "abstract_input": 797498886,
-      "value": "French",
-      "name": "French"
-    }
-  },
-  {
-    "pk": 540469162,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "46c55bf1-aea8-bc38-2c32-f8ce64bdb3c4",
-      "abstract_input": 797498886,
-      "value": "German",
-      "name": "German"
-    }
-  },
-  {
-    "pk": 156418370,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "fc7c31e4-95d8-2801-efee-b4157d29f3f2",
-      "abstract_input": 797498886,
-      "value": "Hungarian",
-      "name": "Hungarian"
-    }
-  },
-  {
-    "pk": 571609196,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "3364645a-3a08-6dd5-8a1f-64e3c33a0685",
-      "abstract_input": 797498886,
-      "value": "Italian",
-      "name": "Italian"
-    }
-  },
-  {
-    "pk": 502296109,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "e7a9adf6-d6b2-5999-6cd8-2d894a7c31b4",
-      "abstract_input": 797498886,
-      "value": "Romanian",
-      "name": "Romanian"
-    }
-  },
-  {
-    "pk": 310027694,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "1c164e45-6ac6-c26b-1147-da7a53412c3d",
-      "abstract_input": 797498886,
-      "value": "Serbian",
-      "name": "Serbian"
-    }
-  },
-  {
-    "pk": 705184794,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "705cc251-de0f-8b0b-36e7-2a34a01f7c63",
-      "abstract_input": 797498886,
-      "value": "Slovene",
-      "name": "Slovene"
-    }
-  },
-  {
-    "pk": 775626918,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "4a2fbfde-ad2c-721d-c563-8f7aa4860d6d",
-      "abstract_input": 797498886,
-      "value": "Spanish",
-      "name": "Spanish"
-    }
-  },
-  {
-    "pk": 482673462,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 436025993,
-      "name": "Lemmatizer (Tagger)",
-      "short_name": "tgr",
-      "variable": "tagger",
-      "uid": "7e9e5cb0-cc51-7ffb-d85c-f78309363f49",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
-    "pk": 401359606,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 11481045,
-      "treeview_image": null,
-      "name": "Stem Tagger Snowball",
-      "is_streaming": false,
-      "uid": "bfd10a14-60ea-424d-bc54-eb34173fe7df",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_stem_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_construct_snowball_stemmer",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 4,
-      "description": "Automatically generated widget from function ConstructSnowballStemmer in package latino. The original function signature: ConstructSnowballStemmer."
-    }
-  },
-  {
-    "pk": 5100309,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 401359606,
-      "name": "Language",
-      "short_name": "lng",
-      "uid": "38622b5c-1d5f-4e61-ea6e-8dbdfe8768ee",
-      "default": "English",
-      "required": true,
-      "multi": false,
-      "parameter_type": "select",
-      "variable": "language",
-      "parameter": true,
-      "order": 1,
-      "description": "Latino.TextMining.Language"
-    }
-  },
-  {
-    "pk": 642879208,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "2a6956b4-d25c-c5cf-9680-37f358c44443",
-      "abstract_input": 5100309,
-      "value": "Danish",
-      "name": "Danish"
-    }
-  },
-  {
-    "pk": 724429704,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "44bf6b31-0384-c6f4-a32a-ea0f63dc7a64",
-      "abstract_input": 5100309,
-      "value": "Dutch",
-      "name": "Dutch"
-    }
-  },
-  {
-    "pk": 727821947,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "15d69a6e-35a2-e99a-339d-916620898d3e",
-      "abstract_input": 5100309,
-      "value": "English",
-      "name": "English"
-    }
-  },
-  {
-    "pk": 107318538,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "717fae43-e56c-75e8-873e-7d39ab06cb4b",
-      "abstract_input": 5100309,
-      "value": "Finnish",
-      "name": "Finnish"
-    }
-  },
-  {
-    "pk": 36662375,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "89bc5e03-96fe-4419-8d35-9dde624bdc01",
-      "abstract_input": 5100309,
-      "value": "French",
-      "name": "French"
-    }
-  },
-  {
-    "pk": 995586872,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "9c008d61-1052-d597-2ec3-f450a9db3ad9",
-      "abstract_input": 5100309,
-      "value": "German",
-      "name": "German"
-    }
-  },
-  {
-    "pk": 384696162,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "52cd8332-9770-2775-e1b2-c927225c3cdb",
-      "abstract_input": 5100309,
-      "value": "Italian",
-      "name": "Italian"
-    }
-  },
-  {
-    "pk": 682856669,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "7907ce4b-9e29-c093-35c1-442545a5d555",
-      "abstract_input": 5100309,
-      "value": "Norwegian",
-      "name": "Norwegian"
-    }
-  },
-  {
-    "pk": 1054485971,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "8a771e14-51c7-ff9a-6d1b-f6b12af42e0f",
-      "abstract_input": 5100309,
-      "value": "Portuguese",
-      "name": "Portuguese"
-    }
-  },
-  {
-    "pk": 743461350,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "d8d8ac95-caf7-f385-9fe1-80965496dec5",
-      "abstract_input": 5100309,
-      "value": "Russian",
-      "name": "Russian"
-    }
-  },
-  {
-    "pk": 229854922,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "1c32684a-8c3c-6478-1ec0-9a9758a8357c",
-      "abstract_input": 5100309,
-      "value": "Spanish",
-      "name": "Spanish"
-    }
-  },
-  {
-    "pk": 895992281,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "80d2656e-901f-7116-7e4d-41a0ee672536",
-      "abstract_input": 5100309,
-      "value": "Swedish",
-      "name": "Swedish"
-    }
-  },
-  {
-    "pk": 433060958,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 401359606,
-      "name": "Stemmer (Tagger)",
-      "short_name": "tgr",
-      "variable": "tagger",
-      "uid": "19aaae25-ca47-25d1-c801-a4e72d012841",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
     "pk": 1049064337,
     "model": "workflows.abstractwidget",
     "fields": {
-      "category": 11481045,
+      "category": 51745085,
       "treeview_image": null,
-      "name": "Stopwords Tagger",
+      "name": "Stop Word Tagger",
       "is_streaming": false,
       "uid": "e019026d-f751-430f-85c5-bdc983adc194",
       "interaction_view": "",
@@ -3253,7 +3620,7 @@
     "model": "workflows.abstractoutput",
     "fields": {
       "widget": 1049064337,
-      "name": "StopWords Tagger",
+      "name": "Stop Word Tagger",
       "short_name": "tgr",
       "variable": "tagger",
       "uid": "d49a2af5-3c00-19a3-acf5-4e19ad314452",
@@ -3262,122 +3629,12 @@
     }
   },
   {
-    "pk": 540821434,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 11481045,
-      "treeview_image": null,
-      "name": "Stem/Lemma Tagger Hub",
-      "is_streaming": false,
-      "uid": "3f8d1230-4aa3-4d0a-b1b7-440b4be85617",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_stem_do_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_tag_adc_stem_lemma",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 5,
-      "description": "Taggs the given annotated document corpus with the given tagger."
-    }
-  },
-  {
-    "pk": 161720761,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 540821434,
-      "name": "Annotated Document Corpus",
-      "short_name": "adc",
-      "uid": "39f94180-1a05-b54c-a2ed-aca515adfdf5",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "adc",
-      "parameter": false,
-      "order": 1,
-      "description": "LatinoInterfaces.DocumentCorpus"
-    }
-  },
-  {
-    "pk": 509781756,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 540821434,
-      "name": "Token Tagger",
-      "short_name": "tgr",
-      "uid": "4b53bed0-7e83-30a8-6bc7-00c61010082a",
-      "default": "Output feature name specifies how the token will be tagged (assigend the feature to)\r\nIf multiple taggers are used then one line per tagger must be specified.",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "tagger",
-      "parameter": false,
-      "order": 2,
-      "description": "Token Annotation of the token to be tagged. If also the feature name is used than the feature value of selected token will be tagged.\r\nUsage: \r\n1. TokenName\r\n2. TokenName/FeatureName\r\nIf multiple taggers are used then one line per tagger must be specified."
-    }
-  },
-  {
-    "pk": 527636029,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 540821434,
-      "name": "Token Annotation",
-      "short_name": "str",
-      "uid": "568a8c0e-5e96-3315-ba84-4a1c2158050c",
-      "default": "Token",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "element_annotation",
-      "parameter": true,
-      "order": 3,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 560059550,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 540821434,
-      "name": "Output Feature Name",
-      "short_name": "str",
-      "uid": "ce347962-18cf-ca95-cd26-37e29fef1fd8",
-      "default": "stem",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "output_feature",
-      "parameter": true,
-      "order": 4,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 640312186,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 540821434,
-      "name": "Annotated Document Corpus",
-      "short_name": "adc",
-      "variable": "adc",
-      "uid": "a54b5f27-df00-1cd7-3318-9e90d518d876",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
     "pk": 522085466,
     "model": "workflows.abstractwidget",
     "fields": {
-      "category": 11481045,
+      "category": 51745085,
       "treeview_image": null,
-      "name": "Stopword Tagger Hub",
+      "name": "Stop Word Tagger Hub",
       "is_streaming": false,
       "uid": "6176ee13-e03c-46ee-92b4-8ba06574f9d3",
       "interaction_view": "",
@@ -3482,11 +3739,11 @@
     }
   },
   {
-    "pk": 291857809,
+    "pk": 1036618967,
     "model": "workflows.category",
     "fields": {
-      "uid": "94237b9c-8e88-460c-abc5-9c8108acb821",
-      "parent": 11481045,
+      "uid": "dd9a30e3-f9bf-42d3-830b-125805373906",
+      "parent": 51745085,
       "workflow": null,
       "user": null,
       "order": 1,
@@ -3494,398 +3751,12 @@
     }
   },
   {
-    "pk": 446243897,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 291857809,
-      "treeview_image": null,
-      "name": "POS Tagger Hub (Text)",
-      "is_streaming": false,
-      "uid": "33307dbf-08b5-4768-ba21-ebe1aa68c69b",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_pos_do_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_pos_tag_string",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 2,
-      "description": "Automatically generated widget from function PosTagString in package latino. The original function signature: PosTagString."
-    }
-  },
-  {
-    "pk": 242834712,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 446243897,
-      "name": "Text",
-      "short_name": "str",
-      "uid": "ed41747a-dc93-d818-291c-62d791613083",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "text",
-      "parameter": false,
-      "order": 1,
-      "description": "System.Object"
-    }
-  },
-  {
-    "pk": 609695729,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 446243897,
-      "name": "POS Tagger",
-      "short_name": "pst",
-      "uid": "981e7201-35ab-7b25-ae8f-29e5b03cb407",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "pos_tagger",
-      "parameter": false,
-      "order": 2,
-      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger"
-    }
-  },
-  {
-    "pk": 983045811,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 446243897,
-      "name": "Output Feature Name",
-      "short_name": "str",
-      "uid": "02d347c6-12c9-9892-5d69-38548474b35a",
-      "default": "posTag",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "output_feature",
-      "parameter": true,
-      "order": 3,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 954809219,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 446243897,
-      "name": "String",
-      "short_name": "str",
-      "variable": "string",
-      "uid": "b773304e-55a1-d06f-363c-e10850b7bd56",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
-    "pk": 483142558,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 291857809,
-      "treeview_image": null,
-      "name": "Condition Tagger",
-      "is_streaming": false,
-      "uid": "9de84740-c4dc-464f-9388-fd736598829c",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_condition_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_construct_condition_tagger",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 1,
-      "description": "Automatically generated widget from function ConstructConditionTagger in package latino. The original function signature: ConstructConditionTagger."
-    }
-  },
-  {
-    "pk": 1045872341,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 483142558,
-      "name": "Feature Condition",
-      "short_name": "str",
-      "uid": "93ce61ae-f7af-ee3a-26d0-1b0af81bcc03",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "feature_condition",
-      "parameter": true,
-      "order": 1,
-      "description": "Condition which tokens to include based on their features.\r\nFormat examples:\r\n-Feature1 (don\u0027t include tokens with Feature1 set ta any value)\r\n-Feature1=Value1 (don\u0027t include tokens with Feature1 set to the value Value1)\r\n-Feature1 +Feature2 (don\u0027t include tokens with Feature1 set unless it has also Feature2 set)\r\n-Feature1=Value1 +Feature2 (don\u0027t include tokens with Feature1 set to Value1 unless it has also Feature2 set to any value)..."
-    }
-  },
-  {
-    "pk": 424063070,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 483142558,
-      "name": "output Feature Value",
-      "short_name": "str",
-      "uid": "96c4c439-c645-d2b4-cd7d-8524f3c3b2bf",
-      "default": "true",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "output_feature_value",
-      "parameter": true,
-      "order": 2,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 83203404,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 483142558,
-      "name": "Put token/feature text as the output feature value",
-      "short_name": "bol",
-      "uid": "b2e17caf-f2d7-b587-b76e-83bdf12109ae",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": "checkbox",
-      "variable": "elements_text_to_feature_value",
-      "parameter": true,
-      "order": 3,
-      "description": "If set to true than token or token\u0027s feature text is asigned as output feature value"
-    }
-  },
-  {
-    "pk": 695246262,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 483142558,
-      "name": "Tagger",
-      "short_name": "tgr",
-      "variable": "tagger",
-      "uid": "f1d9b4f2-62a1-add4-3f66-cb599081a33c",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
-    "pk": 491356387,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 291857809,
-      "treeview_image": null,
-      "name": "Universal Multiple Tagger Hub",
-      "is_streaming": false,
-      "uid": "5bb5799b-00d3-449a-b79a-42e31a36ec8c",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_multiple_do_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_tag_adc_multiple",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 5,
-      "description": "Automatically generated widget from function TagADCMultiple in package latino. The original function signature: TagADCMultiple."
-    }
-  },
-  {
-    "pk": 519424483,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 491356387,
-      "name": "Annotated Document Corpus",
-      "short_name": "adc",
-      "uid": "da1abf2d-4055-a35e-be5f-51113e7af728",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "adc",
-      "parameter": false,
-      "order": 1,
-      "description": "LatinoInterfaces.DocumentCorpus"
-    }
-  },
-  {
-    "pk": 132913396,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 491356387,
-      "name": "Token Tagger",
-      "short_name": "tgr",
-      "uid": "07a9308b-9a84-28db-7d6d-d7ba80587882",
-      "default": "",
-      "required": true,
-      "multi": true,
-      "parameter_type": null,
-      "variable": "taggers",
-      "parameter": false,
-      "order": 2,
-      "description": "System.Collections.IList"
-    }
-  },
-  {
-    "pk": 212945814,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 491356387,
-      "name": "Token Annotation [ / Feature Name ] (one line per each tagger)",
-      "short_name": "str",
-      "uid": "8081e46e-e87f-d112-5008-c99825c5ff12",
-      "default": "Token",
-      "required": true,
-      "multi": false,
-      "parameter_type": "textarea",
-      "variable": "element_annotations",
-      "parameter": true,
-      "order": 3,
-      "description": "Token Annotation of the token to be tagged. If also the feature name is used than the feature value of selected token will be tagged.\r\nUsage: \r\n1. TokenName\r\n2. TokenName/FatureName\r\n3. GroupTokenName/TokenName/FatureName\r\nIf multiple taggers are used then one line per tagger must be specified."
-    }
-  },
-  {
-    "pk": 25574682,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 491356387,
-      "name": "Output Feature Name (one line per each tagger)",
-      "short_name": "str",
-      "uid": "6e0f0289-cd76-2935-5153-a581b0bc8f89",
-      "default": "tag",
-      "required": true,
-      "multi": false,
-      "parameter_type": "textarea",
-      "variable": "output_features",
-      "parameter": true,
-      "order": 4,
-      "description": "Output feature name specifies how the token will be tagged (assigend the feature to)\r\nIf multiple taggers are used then one line per tagger must be specified."
-    }
-  },
-  {
-    "pk": 445543480,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 491356387,
-      "name": "Annotated Document Corpus",
-      "short_name": "adc",
-      "variable": "adc",
-      "uid": "d53da19f-9902-08f8-a857-a2b553cb17d7",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
-    "pk": 468100796,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 291857809,
-      "treeview_image": null,
-      "name": "Stem/Lemma Tagger Hub (Text)",
-      "is_streaming": false,
-      "uid": "f2be2fc3-5a17-47c1-9353-3cfc454bfe59",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_stem_do_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_tag_string_stem_lemma",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 3,
-      "description": "Automatically generated widget from function TagStringStemLemma in package latino. The original function signature: TagStringStemLemma."
-    }
-  },
-  {
-    "pk": 149228937,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 468100796,
-      "name": "Text",
-      "short_name": "str",
-      "uid": "24f1fd60-dd51-d6cb-4855-d1e4b9dc780c",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "text",
-      "parameter": false,
-      "order": 1,
-      "description": "System.Object"
-    }
-  },
-  {
-    "pk": 551058277,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 468100796,
-      "name": "Token Tagger",
-      "short_name": "tgr",
-      "uid": "c7161458-dd14-d64c-55b2-aeea24aa08b2",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "tagger",
-      "parameter": false,
-      "order": 2,
-      "description": "System.Object"
-    }
-  },
-  {
-    "pk": 1011871090,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 468100796,
-      "name": "Output Feature Name",
-      "short_name": "str",
-      "uid": "c8240d9c-bddf-fb62-f7b6-666f8dba9895",
-      "default": "stem",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "output_feature",
-      "parameter": true,
-      "order": 3,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 662035194,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 468100796,
-      "name": "String",
-      "short_name": "str",
-      "variable": "string",
-      "uid": "2430a1d2-25a4-c887-cb71-3df05bd2696f",
-      "order": 1,
-      "description": "string or array of strings (based on the input)"
-    }
-  },
-  {
     "pk": 399082852,
     "model": "workflows.abstractwidget",
     "fields": {
-      "category": 291857809,
+      "category": 1036618967,
       "treeview_image": null,
-      "name": "Stopword Tagger Hub (Text)",
+      "name": "Stop Word Tagger Hub (Text)",
       "is_streaming": false,
       "uid": "b1282be2-08f1-441e-9276-a05c0e6ab3ba",
       "interaction_view": "",
@@ -3979,7 +3850,7 @@
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 5,
+      "order": 7,
       "name": "Bag of Words"
     }
   },
@@ -3991,7 +3862,7 @@
       "parent": 968749401,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -4001,7 +3872,7 @@
     "fields": {
       "category": 274815427,
       "treeview_image": null,
-      "name": "BOW Model and Dataset",
+      "name": "Construct BOW Model and Dataset",
       "is_streaming": false,
       "uid": "070a465b-ea02-4238-b16c-9df74fbcbba8",
       "interaction_view": "",
@@ -4272,7 +4143,7 @@
     "fields": {
       "category": 274815427,
       "treeview_image": null,
-      "name": "BOW Model",
+      "name": "Construct BOW Model",
       "is_streaming": false,
       "uid": "0b647891-6048-4405-a164-e258fd3a862a",
       "interaction_view": "",
@@ -4782,7 +4653,7 @@
     "fields": {
       "category": 889177128,
       "treeview_image": null,
-      "name": "BOW Model (Text)",
+      "name": "Construct BOW Model (Text)",
       "is_streaming": false,
       "uid": "471eb047-8d39-4eac-8cc1-6c768c42d897",
       "interaction_view": "",
@@ -5277,7 +5148,7 @@
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 6,
+      "order": 8,
       "name": "Dataset"
     }
   },
@@ -5809,7 +5680,7 @@
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 7,
+      "order": 9,
       "name": "Similarity Matrix"
     }
   },
@@ -5821,7 +5692,7 @@
       "parent": 648061247,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -5999,7 +5870,7 @@
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 8,
+      "order": 10,
       "name": "Clustering"
     }
   },
@@ -6011,7 +5882,7 @@
       "parent": 333923332,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -6571,7 +6442,7 @@
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 9,
+      "order": 11,
       "name": "Classification"
     }
   },
@@ -6583,7 +6454,7 @@
       "parent": 908048087,
       "workflow": null,
       "user": null,
-      "order": 2,
+      "order": 1,
       "name": "Latino"
     }
   },
@@ -7678,7 +7549,7 @@
       "required": true,
       "multi": false,
       "parameter_type": null,
-      "variable": "csf",
+      "variable": "trained_classifier",
       "parameter": false,
       "order": 1,
       "description": "Latino.Model.IModel`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"
@@ -7696,7 +7567,7 @@
       "required": true,
       "multi": false,
       "parameter_type": null,
-      "variable": "ds",
+      "variable": "testing_dataset",
       "parameter": false,
       "order": 2,
       "description": "Latino.Model.LabeledDataset`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[Latino.SparseVector`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Latino, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"
@@ -7722,7 +7593,7 @@
       "widget": 902822955,
       "name": "Labeled dataset",
       "short_name": "ds",
-      "variable": "ds",
+      "variable": "labeled_dataset",
       "uid": "3a72cfc4-179d-8db9-8086-6017f697e3b8",
       "order": 2,
       "description": ""
@@ -8265,7 +8136,7 @@
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 4,
+      "order": 50,
       "name": "Helpers"
     }
   },
@@ -9079,7 +8950,7 @@
       "name": "Additional References (imports)",
       "short_name": "str",
       "uid": "5ae25dd8-d110-b97b-615b-6a5810dd7ef0",
-      "default": "System.dll\r\nSystem.Xml.dll\r\nworkflows\\latino\\bin\\Latino.dll\r\nworkflows\\latino\\bin\\LatinoWorkflows.dll\r\nworkflows\\latino\\bin\\LatinoInterfaces.dll",
+      "default": "System.dll\r\nSystem.Xml.dll\r\nSystem.Core.dll\r\nworkflows\\textflows_dot_net\\bin\\Latino.dll\r\nworkflows\\textflows_dot_net\\bin\\LatinoWorkflows.dll\r\nworkflows\\textflows_dot_net\\bin\\LatinoInterfaces.dll",
       "required": false,
       "multi": false,
       "parameter_type": "textarea",
@@ -9097,7 +8968,7 @@
       "name": "Namespace Section (using directives)",
       "short_name": "str",
       "uid": "6cb80407-d2c4-f810-c9cd-34527394644c",
-      "default": "using System;\r\nusing System.Collections.Generic;\r\nusing Latino;\r\nusing Latino.TextMining;\r\nusing LatinoInterfaces;",
+      "default": "using System;\r\nusing System.Collections.Generic;\r\nusing System.Linq;\r\nusing Latino;\r\nusing Latino.TextMining;\r\nusing LatinoInterfaces;",
       "required": false,
       "multi": false,
       "parameter_type": "textarea",
@@ -9117,7 +8988,7 @@
       "variable": "out",
       "uid": "8668b4da-ef51-b439-2c3e-10bba389cd5c",
       "order": 1,
-      "description": "output can be accesed/assigned as variable \"_out\" inside the code"
+      "description": "output can be accesed/assigned as variable \"out1\" inside the code"
     }
   },
   {
@@ -9326,6 +9197,220 @@
       "short_name": "str",
       "variable": "obj_str",
       "uid": "09a182f3-18ed-33b6-7cf4-ae0a69545641",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 1043529018,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "db8fc413-22c5-4d92-b398-475969477414",
+      "parent": 336761152,
+      "workflow": null,
+      "user": null,
+      "order": 2,
+      "name": "Tagging"
+    }
+  },
+  {
+    "pk": 483142558,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 1043529018,
+      "treeview_image": null,
+      "name": "Condition Tagger",
+      "is_streaming": false,
+      "uid": "9de84740-c4dc-464f-9388-fd736598829c",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_condition_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_construct_condition_tagger",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 2,
+      "description": "Automatically generated widget from function ConstructConditionTagger in package latino. The original function signature: ConstructConditionTagger."
+    }
+  },
+  {
+    "pk": 1045872341,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 483142558,
+      "name": "Feature Condition",
+      "short_name": "str",
+      "uid": "93ce61ae-f7af-ee3a-26d0-1b0af81bcc03",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "feature_condition",
+      "parameter": true,
+      "order": 1,
+      "description": "Condition which tokens to include based on their features.\r\nFormat examples:\r\n-Feature1 (don\u0027t include tokens with Feature1 set ta any value)\r\n-Feature1=Value1 (don\u0027t include tokens with Feature1 set to the value Value1)\r\n-Feature1 +Feature2 (don\u0027t include tokens with Feature1 set unless it has also Feature2 set)\r\n-Feature1=Value1 +Feature2 (don\u0027t include tokens with Feature1 set to Value1 unless it has also Feature2 set to any value)..."
+    }
+  },
+  {
+    "pk": 424063070,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 483142558,
+      "name": "output Feature Value",
+      "short_name": "str",
+      "uid": "96c4c439-c645-d2b4-cd7d-8524f3c3b2bf",
+      "default": "true",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "output_feature_value",
+      "parameter": true,
+      "order": 2,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 83203404,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 483142558,
+      "name": "Put token/feature text as the output feature value",
+      "short_name": "bol",
+      "uid": "b2e17caf-f2d7-b587-b76e-83bdf12109ae",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": "checkbox",
+      "variable": "elements_text_to_feature_value",
+      "parameter": true,
+      "order": 3,
+      "description": "If set to true than token or token\u0027s feature text is asigned as output feature value"
+    }
+  },
+  {
+    "pk": 695246262,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 483142558,
+      "name": "Tagger",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "f1d9b4f2-62a1-add4-3f66-cb599081a33c",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 491356387,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 1043529018,
+      "treeview_image": null,
+      "name": "Universal Multiple Tagger Hub",
+      "is_streaming": false,
+      "uid": "5bb5799b-00d3-449a-b79a-42e31a36ec8c",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_multiple_do_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_tag_adc_multiple",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "Automatically generated widget from function TagADCMultiple in package latino. The original function signature: TagADCMultiple."
+    }
+  },
+  {
+    "pk": 519424483,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 491356387,
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "uid": "da1abf2d-4055-a35e-be5f-51113e7af728",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "adc",
+      "parameter": false,
+      "order": 1,
+      "description": "LatinoInterfaces.DocumentCorpus"
+    }
+  },
+  {
+    "pk": 132913396,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 491356387,
+      "name": "Token Tagger",
+      "short_name": "tgr",
+      "uid": "07a9308b-9a84-28db-7d6d-d7ba80587882",
+      "default": "",
+      "required": true,
+      "multi": true,
+      "parameter_type": null,
+      "variable": "taggers",
+      "parameter": false,
+      "order": 2,
+      "description": "System.Collections.IList"
+    }
+  },
+  {
+    "pk": 212945814,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 491356387,
+      "name": "Token Annotation [ / Feature Name ] (one line per each tagger)",
+      "short_name": "str",
+      "uid": "8081e46e-e87f-d112-5008-c99825c5ff12",
+      "default": "Token",
+      "required": true,
+      "multi": false,
+      "parameter_type": "textarea",
+      "variable": "element_annotations",
+      "parameter": true,
+      "order": 3,
+      "description": "Token Annotation of the token to be tagged. If also the feature name is used than the feature value of selected token will be tagged.\r\nUsage: \r\n1. TokenName\r\n2. TokenName/FatureName\r\n3. GroupTokenName/TokenName/FatureName\r\nIf multiple taggers are used then one line per tagger must be specified."
+    }
+  },
+  {
+    "pk": 25574682,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 491356387,
+      "name": "Output Feature Name (one line per each tagger)",
+      "short_name": "str",
+      "uid": "6e0f0289-cd76-2935-5153-a581b0bc8f89",
+      "default": "tag",
+      "required": true,
+      "multi": false,
+      "parameter_type": "textarea",
+      "variable": "output_features",
+      "parameter": true,
+      "order": 4,
+      "description": "Output feature name specifies how the token will be tagged (assigend the feature to)\r\nIf multiple taggers are used then one line per tagger must be specified."
+    }
+  },
+  {
+    "pk": 445543480,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 491356387,
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "variable": "adc",
+      "uid": "d53da19f-9902-08f8-a857-a2b553cb17d7",
       "order": 1,
       "description": ""
     }

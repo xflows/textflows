@@ -29,6 +29,19 @@ if sys.platform.startswith('win'):
                 except System.BadImageFormatException, e:
                     pass
 
+        # loading LATINO namespace
+        import Latino
+        import LatinoInterfaces
+        from LatinoInterfaces import LatinoCF
+
+        # loading LEMMAGEN namespace
+        import LemmaSharpInterfaces
+        from LemmaSharpInterfaces import LemmaSharpIntf
+
+        # loading CROSSBEE namespace
+        import CrossBeeInterfaces
+        from CrossBeeInterfaces import CrossBeeIntf
+
     except Exception:
         logging.warning("DotNet assemblies could not be loaded! Probable reasons: missing dlls or wrong interpreter (see http://pythonnet.sourceforge.net). "
                         "Other functionality of ClowdFlows (besides .Net assemblies) should be OK! "
