@@ -397,7 +397,7 @@ class AbstractWidget(models.Model):
 
     package = models.CharField(max_length=150,blank=True,default='',help_text='Package is the package name. You are encouraged to use packages.')
 
-    windows_queue = models.BooleanField(default=False,help_text="This is used for Matjaz Jursic's widgets.")
+    windows_queue = models.BooleanField(default=False,help_text="Widget is required to be run on a Windows platform.")
 
     class Meta:
         ordering = ('order','name',)
