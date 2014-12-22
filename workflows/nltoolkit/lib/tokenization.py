@@ -83,7 +83,7 @@ def nltk_regex_tokenizer(input_dict):
     gaps = input_dict[u'gaps'] == "true"
     discard_empty = input_dict[u'discard_empty'] == "true"
 
-    return {'tokenizer': {'object': nltk.RegexpTokenizer(pattern=pattern, gaps=gaps, discard_empty=discard_empty)}}
+    return {'tokenizer': {'object': NltkRegexpTokenizer(pattern, gaps=gaps, discard_empty=discard_empty)}}
 
 
 def nltk_sexpression_tokenizer(input_dict):
@@ -157,9 +157,6 @@ def nltk_stanford_tokenizer(input_dict):
 
     :return: tokenizer: A python dictionary containing the Tokenizer object and its arguments.
     """
-
-    #it does not work without this kind of import
-    from nltk.tokenize.stanford import StanfordTokenizer
     return {'tokenizer': {'object': StanfordTokenizer()}}
 
 def nltk_text_tiling_tokenizer(input_dict):
@@ -196,13 +193,13 @@ def nltk_text_tiling_tokenizer(input_dict):
 
     print w, k, similarity_method, stopwords, smoothing_width, smoothing_rounds, cutoff_policy
 
-    return {'tokenizer': {'object': nltk.tokenize.TextTilingTokenizer(w=w,
-                                                                      k=k,
-                                                                      similarity_method = similarity_method,
-                                                                      stopwords=stopwords,
-                                                                      smoothing_width=smoothing_width,
-                                                                      smoothing_rounds=smoothing_rounds,
-                                                                      cutoff_policy=cutoff_policy)}}
+    return {'tokenizer': {  'object': TextTilingTokenizer(w=w,
+                                                          k=k,
+                                                          similarity_method = similarity_method,
+                                                          stopwords=stopwords,
+                                                          smoothing_width=smoothing_width,
+                                                          smoothing_rounds=smoothing_rounds,
+                                                          cutoff_policy=cutoff_policy)}}
 
 
 

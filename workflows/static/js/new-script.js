@@ -269,6 +269,8 @@ function deleteSelected() {
 
 
         },'json');
+
+        $('.tipsy').remove();
 	} else if (selectedConnection!=-1) {
         var newSelected = selectedConnection;
         $.post(url['delete-connection'], { "connection_id": selectedConnection }, function(data) {

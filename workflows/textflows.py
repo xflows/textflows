@@ -190,6 +190,19 @@ class NltkCorpus():
                 return getattr(self._corpus(),name)()
             return method
 
+class NltkRegexpTokenizer():
+    """ Wrapper for Nltk RegexTokenizer. Python's regular expressions are not picklable.
+    """
+    _pattern=''
+    _kargs={}
+
+    def __init__(self,pattern,**kargs):
+        self._pattern=pattern
+        self._kargs=kargs
+
+    def span_tokenize(self,text):
+        return nltk.RegexpTokenizer(self._pattern,**self._kargs).span_tokenize(text)
+
 class NltkClassifier():
     """ This is a wrapper for Nltk classifiers. Nltk classifiers do not have an appropriate __init__
         method which could save kargs and use them latter when .train(train_data) is called.
@@ -223,6 +236,42 @@ class LatinoObject:
     def load(self):
         import LatinoInterfaces
         return LatinoInterfaces.LatinoCF.Load(self.serialized_object)
+
+
+from nltk.tokenize.stanford import StanfordTokenizer
+from nltk.tokenize import TextTilingTokenizer
+
+class SpanTokenizeMixin():
+    def span_tokenize(self, s):
+        r"""
+        Return the offsets of the tokens in *s*, as a sequence of ``(start, end)``
+        tuples, by splitting the string at each successive match of *regexp*.
+
+            >>> from workflows.textflows import StanfordTokenizer
+            >>> s = '''Good muffins cost $3.88\nin New York.  Please buy me
+            ... two of them.\n\nThanks.'''
+            >>> list(StanfordTokenizer().span_tokenize(s))
+            [(0, 4), (5, 12), (13, 17), (18, 23), (24, 26), (27, 30), (31, 36),
+            (38, 44), (45, 48), (49, 51), (52, 55), (56, 58), (59, 64), (66, 73)]
+
+        :param s: the string to be tokenized
+        :type s: str
+        :rtype: iter(tuple(int, int))
+        """
+        tokens=self.tokenize(s)
+        right=0
+
+        for token in tokens:
+            left=right+s[right:].find(token)
+            right=left+len(token)
+            yield left,right
+
+class StanfordTokenizer(SpanTokenizeMixin,StanfordTokenizer):
+    pass
+
+class TextTilingTokenizer(SpanTokenizeMixin,TextTilingTokenizer):
+    pass
+
 
 
 
