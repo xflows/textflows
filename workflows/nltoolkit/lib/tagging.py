@@ -39,12 +39,15 @@ def stop_word_tagger_hub(input_dict):
         return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
 
 def stem_lemma_tagger_hub(input_dict):
-    raise NotImplementedError
-    if type(input_dict['tagger'])!=dict: #check if this is a latino object
+    if isinstance(input_dict['tagger'],LatinoObject): #check if this is a latino object
         from ...latino.library_gen import latino_tag_adcstem_lemma
         return latino_tag_adcstem_lemma(input_dict)
     else:
-        return universal_word_tagger_hub(input_dict)
+        adc = input_dict['adc']
+        tagger_dict = input_dict['tagger']
+        input_annotation = input_dict['element_annotation']
+        output_annotation = input_dict['output_feature']
+        return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
 
 def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation):
     tagger=tagger_dict['object']
@@ -59,6 +62,8 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
             for annotation,subtext in document.get_annotations_with_text(input_annotation): #all annotations of this type
                 if subtext:
                     new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
+                    if new_feature=='?':
+                        bb=3
                     if new_feature!=None:
                         annotation.features[output_annotation]=new_feature
     return {'adc': adc }

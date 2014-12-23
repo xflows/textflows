@@ -1,5 +1,30 @@
-				<li><span class="folder">{{ category.name }}</span><ul>
-                    {% for widget in category.widgets.all %}
-                    	{% include "treeview_widget.html" with widget=widget %}
-                    {% endfor %}
-                </ul></li>
+	            {% if not category.parent %}
+		            {% if not category.user %}
+		                <li class="closed">
+		                	<span class="folder" rel="{{ category.id }}" relType="category">{{ category.name }}</span>
+		                	<ul>
+		                    	{% for c in category.children.all %}
+				                    <li class="closed"><span class="folder" rel="{{ c.id }}" relType="category">{{ c.name }}</span>
+				                    	<ul>
+					                        {% for d in c.children.all %}
+					                            <li class="closed"><span class="folder" rel="{{ d.id }}" relType="category">{{ d.name }}</span>
+					                            	<ul>
+					                                {% for widget in d.widgets.all %}
+					                                	{% include "treeview_widget.html" with widget=widget %}
+					                                {% endfor %}
+					                				</ul>
+					                			</li>
+			                        		{% endfor %}
+					                        {% for widget in c.widgets.all %}
+												{% include "treeview_widget.html" with widget=widget %}
+					                        {% endfor %}
+			                    		</ul>
+		                			</li>
+			                    {% endfor %}
+			                    {% for widget in category.widgets.all %}
+									{% include "treeview_widget.html" with widget=widget %}
+			                    {% endfor %}
+		                	</ul>
+		                </li>
+		            {% endif %}
+	            {% endif %}

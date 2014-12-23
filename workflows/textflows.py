@@ -42,7 +42,8 @@ class Document:
                     try:
                         text = a.features[element_feature]
                     except KeyError:
-                        raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
+                        pass
+                        #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
                 else:
                     text = self.text[a.span_start:a.span_end+1]
                 annotations_with_text.append((a, text))
@@ -59,8 +60,8 @@ class Document:
 
 
 class Annotation:
-    def __init__(self, span_start, span_end, type, features={}):
-        self.features=features
+    def __init__(self, span_start, span_end, type, features=None):
+        self.features=features or {}
         self.span_start=span_start
         self.span_end=span_end
         self.type=type

@@ -133,41 +133,23 @@ userIsStaff = '{{ user.is_staff }}'=='True';
 	<div id="widgets" class="logging">
 		<input type="text" name="searchBox" id="searchBox" placeholder="Search"/>
 		<ul id="widgetsTree" class="browser filetree">
-			<li class="closed"><span class="folder">Local services</span>
-			<ul id="corewidgets">
-			{% for category in categories %}
-	            {% if not category.parent %}
-		            {% if not category.user %}
-		                <li class="closed">
-		                	<span class="folder" rel="{{ category.id }}" relType="category">{{ category.name }}</span>
-		                	<ul>
-		                    	{% for c in category.children.all %}
-				                    <li class="closed"><span class="folder" rel="{{ c.id }}" relType="category">{{ c.name }}</span>
-				                    	<ul>
-					                        {% for d in c.children.all %}
-					                            <li class="closed"><span class="folder" rel="{{ d.id }}" relType="category">{{ d.name }}</span>
-					                            	<ul>
-					                                {% for widget in d.widgets.all %}
-					                                	{% include "treeview_widget.html" with widget=widget %}
-					                                {% endfor %}
-					                				</ul>
-					                			</li>
-			                        		{% endfor %}
-					                        {% for widget in c.widgets.all %}
-												{% include "treeview_widget.html" with widget=widget %}
-					                        {% endfor %}
-			                    		</ul>
-		                			</li>
-			                    {% endfor %}
-			                    {% for widget in category.widgets.all %}
-									{% include "treeview_widget.html" with widget=widget %}
-			                    {% endfor %}
-		                	</ul>
-		                </li>
-		            {% endif %}
-	            {% endif %}
-            {% endfor %}
-			</ul>
+			<li class="closed"><span class="folder">Text mining widgets</span>
+				<ul id="corewidgets">
+					{% for category in categories %}
+						{% if not category.is_basic %}
+							{% include "category.html" with category=category %}
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</li>
+            <li class="closed"><span class="folder">Basic widgets</span>
+				<ul id="corewidgets">
+				{% for category in categories %}
+                    {% if category.is_basic %}
+						{% include "category.html" with category=category %}
+					{% endif %}
+				{% endfor %}
+				</ul>
 			</li>
 
 			<li class="closed"><span class="folder">Subprocess widgets</span>

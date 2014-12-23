@@ -7,7 +7,7 @@
       "parent": null, 
       "workflow": null, 
       "user": null, 
-      "order": 1, 
+      "order": 100, 
       "name": "NLP"
     }
   }, 
@@ -24,6 +24,7 @@
       "image": "images/nlp_9.png", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "", 
@@ -38,7 +39,7 @@
     }
   }, 
   {
-    "pk": 413, 
+    "pk": 1, 
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": 1, 
@@ -56,7 +57,7 @@
     }
   }, 
   {
-    "pk": 1, 
+    "pk": 2, 
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": 1, 
@@ -87,7 +88,7 @@
     }
   }, 
   {
-    "pk": 4, 
+    "pk": 2, 
     "model": "workflows.abstractwidget", 
     "fields": {
       "category": 1, 
@@ -99,6 +100,7 @@
       "image": "images/nlp_8.png", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "term_candidate_viewer", 
@@ -108,15 +110,15 @@
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
-      "order": 1, 
+      "order": 2, 
       "description": ""
     }
   }, 
   {
-    "pk": 5, 
+    "pk": 3, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 4, 
+      "widget": 2, 
       "name": "candidates", 
       "short_name": "can", 
       "uid": "32536744-964e-4206-b582-be92ab355e8e", 
@@ -131,7 +133,7 @@
     }
   }, 
   {
-    "pk": 176, 
+    "pk": 3, 
     "model": "workflows.abstractwidget", 
     "fields": {
       "category": 1, 
@@ -143,6 +145,7 @@
       "image": "", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "", 
@@ -152,15 +155,15 @@
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
-      "order": 1, 
+      "order": 3, 
       "description": "Term extraction from totrtale annotations."
     }
   }, 
   {
-    "pk": 431, 
+    "pk": 4, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 176, 
+      "widget": 3, 
       "name": "Annotations", 
       "short_name": "ann", 
       "uid": "73af8786-aff8-4e72-a2f4-84ac51b0f3cf", 
@@ -175,10 +178,10 @@
     }
   }, 
   {
-    "pk": 433, 
+    "pk": 5, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 176, 
+      "widget": 3, 
       "name": "Web service address", 
       "short_name": "ws", 
       "uid": "717b9e76-f0df-4f77-8edb-846f09226503", 
@@ -193,10 +196,10 @@
     }
   }, 
   {
-    "pk": 432, 
+    "pk": 6, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 176, 
+      "widget": 3, 
       "name": "Language", 
       "short_name": "lan", 
       "uid": "fbc7162b-9e62-478c-bc59-518cf061470c", 
@@ -211,30 +214,30 @@
     }
   }, 
   {
-    "pk": 102, 
+    "pk": 1, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "c2824299-1dac-4db7-a59b-6d0ccf7d07f2", 
-      "abstract_input": 432, 
+      "abstract_input": 6, 
       "value": "en", 
       "name": "English"
     }
   }, 
   {
-    "pk": 103, 
+    "pk": 2, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "a41e7da2-cfcf-4cd1-b023-3b10909250f6", 
-      "abstract_input": 432, 
+      "abstract_input": 6, 
       "value": "sl", 
       "name": "Slovene"
     }
   }, 
   {
-    "pk": 200, 
+    "pk": 2, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 176, 
+      "widget": 3, 
       "name": "Candidates", 
       "short_name": "can", 
       "variable": "candidates", 
@@ -244,7 +247,7 @@
     }
   }, 
   {
-    "pk": 174, 
+    "pk": 4, 
     "model": "workflows.abstractwidget", 
     "fields": {
       "category": 1, 
@@ -256,6 +259,7 @@
       "image": "", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "", 
@@ -265,15 +269,15 @@
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
-      "order": 1, 
+      "order": 4, 
       "description": "A tool developed to process historical (Slovene) text, which annotates words in a TEI encoded corpus with their modern-day equivalents, morphosyntactic tags and lemmas. Such a tool is useful for developing historical corpora of highly-inflecting languages, enabling full text search in digital libraries of historical texts, for modernising such texts for today's readers and making it simpler to correct OCR transcriptions."
     }
   }, 
   {
-    "pk": 420, 
+    "pk": 7, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "Corpus", 
       "short_name": "cor", 
       "uid": "462305a9-d156-42d6-888e-b64da8c4de78", 
@@ -288,10 +292,10 @@
     }
   }, 
   {
-    "pk": 419, 
+    "pk": 8, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "WSDL", 
       "short_name": "ws", 
       "uid": "c4b8b86a-13ac-4e87-8708-84cfb79cd24a", 
@@ -306,10 +310,10 @@
     }
   }, 
   {
-    "pk": 415, 
+    "pk": 9, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "Language", 
       "short_name": "lng", 
       "uid": "654779ff-54b8-460e-a543-c56a38a910a6", 
@@ -324,30 +328,30 @@
     }
   }, 
   {
-    "pk": 98, 
+    "pk": 3, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "4a78da69-2801-4a43-bd3e-60ba64036f08", 
-      "abstract_input": 415, 
+      "abstract_input": 9, 
       "value": "en", 
       "name": "English"
     }
   }, 
   {
-    "pk": 99, 
+    "pk": 4, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "558c7004-2edf-4910-985d-4bf89e5c2143", 
-      "abstract_input": 415, 
+      "abstract_input": 9, 
       "value": "sl", 
       "name": "Slovene"
     }
   }, 
   {
-    "pk": 414, 
+    "pk": 10, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "XML output", 
       "short_name": "xml", 
       "uid": "52b80a99-9302-4816-88ed-a5e1def8822d", 
@@ -362,10 +366,10 @@
     }
   }, 
   {
-    "pk": 416, 
+    "pk": 11, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "Post-processing", 
       "short_name": "pst", 
       "uid": "4bd34d04-8dd4-4a66-8005-12aa7df88c92", 
@@ -380,10 +384,10 @@
     }
   }, 
   {
-    "pk": 417, 
+    "pk": 12, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "Bohoricica", 
       "short_name": "boh", 
       "uid": "10af1284-dba8-4bdb-9b81-a479f0ce07cb", 
@@ -398,10 +402,10 @@
     }
   }, 
   {
-    "pk": 418, 
+    "pk": 13, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "Antique slovenian", 
       "short_name": "atq", 
       "uid": "57f45eb8-8fae-4ca1-ae36-178c364de2a7", 
@@ -416,10 +420,10 @@
     }
   }, 
   {
-    "pk": 198, 
+    "pk": 3, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 174, 
+      "widget": 4, 
       "name": "Annotations", 
       "short_name": "ann", 
       "variable": "annotations", 
@@ -429,7 +433,7 @@
     }
   }, 
   {
-    "pk": 35, 
+    "pk": 2, 
     "model": "workflows.category", 
     "fields": {
       "uid": "9a30eafc-37b8-48f2-8a92-692c4b324dff", 
@@ -441,10 +445,10 @@
     }
   }, 
   {
-    "pk": 177, 
+    "pk": 5, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 35, 
+      "category": 2, 
       "treeview_image": "", 
       "name": "Definition extraction by patterns", 
       "is_streaming": false, 
@@ -453,6 +457,7 @@
       "image": "", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "", 
@@ -467,10 +472,10 @@
     }
   }, 
   {
-    "pk": 437, 
+    "pk": 14, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 177, 
+      "widget": 5, 
       "name": "Annotations", 
       "short_name": "ann", 
       "uid": "9d27304b-dc9f-4535-bd76-2996083f6fc7", 
@@ -485,10 +490,10 @@
     }
   }, 
   {
-    "pk": 436, 
+    "pk": 15, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 177, 
+      "widget": 5, 
       "name": "Web service address", 
       "short_name": "ws", 
       "uid": "9d817240-a951-460e-84db-b46ae503cdfb", 
@@ -503,10 +508,10 @@
     }
   }, 
   {
-    "pk": 438, 
+    "pk": 16, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 177, 
+      "widget": 5, 
       "name": "Language", 
       "short_name": "lan", 
       "uid": "a509c622-a31e-4b51-8d11-7793ea923b71", 
@@ -521,30 +526,30 @@
     }
   }, 
   {
-    "pk": 113, 
+    "pk": 5, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "57c3afc3-623b-448c-90c8-f5056a847e67", 
-      "abstract_input": 438, 
+      "abstract_input": 16, 
       "value": "en", 
       "name": "English"
     }
   }, 
   {
-    "pk": 114, 
+    "pk": 6, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "deddbb96-e1d0-4f92-a0cd-d474444ded68", 
-      "abstract_input": 438, 
+      "abstract_input": 16, 
       "value": "sl", 
       "name": "Slovene"
     }
   }, 
   {
-    "pk": 439, 
+    "pk": 17, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 177, 
+      "widget": 5, 
       "name": "Pre-defined patterns", 
       "short_name": "pat", 
       "uid": "65d538aa-c277-4cb3-8f37-87d02ee5ede0", 
@@ -559,40 +564,40 @@
     }
   }, 
   {
-    "pk": 112, 
+    "pk": 7, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "c3e0868f-5479-4490-9ff7-857ba4c2ca3e", 
-      "abstract_input": 439, 
+      "abstract_input": 17, 
       "value": "begin_allvar", 
       "name": "Begin allvar"
     }
   }, 
   {
-    "pk": 110, 
+    "pk": 8, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "dce0b5b5-e12e-4ffa-a758-2b1d4dc9b773", 
-      "abstract_input": 439, 
+      "abstract_input": 17, 
       "value": "begin_novar", 
       "name": "Begin novar"
     }
   }, 
   {
-    "pk": 111, 
+    "pk": 9, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "9dc667b6-3b60-4844-ac6c-3b24645d6e4f", 
-      "abstract_input": 439, 
+      "abstract_input": 17, 
       "value": "no_begin", 
       "name": "No begin"
     }
   }, 
   {
-    "pk": 201, 
+    "pk": 4, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 177, 
+      "widget": 5, 
       "name": "Sentences", 
       "short_name": "sen", 
       "variable": "sentences", 
@@ -602,10 +607,10 @@
     }
   }, 
   {
-    "pk": 175, 
+    "pk": 6, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 35, 
+      "category": 2, 
       "treeview_image": "", 
       "name": "Definition extraction by terms", 
       "is_streaming": false, 
@@ -614,6 +619,7 @@
       "image": "", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "", 
@@ -628,10 +634,10 @@
     }
   }, 
   {
-    "pk": 421, 
+    "pk": 18, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Candidates", 
       "short_name": "can", 
       "uid": "521e1f25-6d61-4439-a494-2cd61c44244b", 
@@ -646,10 +652,10 @@
     }
   }, 
   {
-    "pk": 434, 
+    "pk": 19, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Web service address", 
       "short_name": "ws", 
       "uid": "d717986e-e906-4599-bc07-0c772078dc8d", 
@@ -664,10 +670,10 @@
     }
   }, 
   {
-    "pk": 422, 
+    "pk": 20, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Annotations", 
       "short_name": "ann", 
       "uid": "d8ee7029-f645-403c-94da-c5ea6f4f901a", 
@@ -682,10 +688,10 @@
     }
   }, 
   {
-    "pk": 423, 
+    "pk": 21, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Language", 
       "short_name": "lan", 
       "uid": "30b3d767-220d-4de1-bbc8-3ea22abd9ec5", 
@@ -700,30 +706,30 @@
     }
   }, 
   {
-    "pk": 100, 
+    "pk": 10, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "c9bedd1d-d374-4e07-b2bd-3faf7f71c6ee", 
-      "abstract_input": 423, 
+      "abstract_input": 21, 
       "value": "en", 
       "name": "English"
     }
   }, 
   {
-    "pk": 101, 
+    "pk": 11, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "398791e4-dc7e-47e0-974c-01539ec31c48", 
-      "abstract_input": 423, 
+      "abstract_input": 21, 
       "value": "sl", 
       "name": "Slovene"
     }
   }, 
   {
-    "pk": 424, 
+    "pk": 22, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Terms per sentence", 
       "short_name": "tps", 
       "uid": "14b2d90f-4539-4c67-94ea-2636988adc86", 
@@ -738,10 +744,10 @@
     }
   }, 
   {
-    "pk": 425, 
+    "pk": 23, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Nominatives (only for slovene)", 
       "short_name": "nom", 
       "uid": "eaf18ca7-b87c-4f78-90c1-a93837d0b525", 
@@ -756,40 +762,40 @@
     }
   }, 
   {
-    "pk": 105, 
+    "pk": 12, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "b0cd42f1-6b88-4beb-a39b-7a20d3a780ca", 
-      "abstract_input": 425, 
+      "abstract_input": 23, 
       "value": "0", 
       "name": "0"
     }
   }, 
   {
-    "pk": 106, 
+    "pk": 13, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "7990dda4-6d8b-47ab-bb5b-3984b908e810", 
-      "abstract_input": 425, 
+      "abstract_input": 23, 
       "value": "1", 
       "name": "1"
     }
   }, 
   {
-    "pk": 104, 
+    "pk": 14, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "f829d7b9-e59d-491f-a37a-6c46057032b0", 
-      "abstract_input": 425, 
+      "abstract_input": 23, 
       "value": "2", 
       "name": "2"
     }
   }, 
   {
-    "pk": 426, 
+    "pk": 24, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Threshold top % terms", 
       "short_name": "thr", 
       "uid": "ba6fb908-5d5b-4af7-afc4-5adbe5fd5d97", 
@@ -804,10 +810,10 @@
     }
   }, 
   {
-    "pk": 427, 
+    "pk": 25, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Verb between two terms", 
       "short_name": "vtt", 
       "uid": "24ce3b81-ae6d-4976-84c2-5bc56977ee8b", 
@@ -822,40 +828,40 @@
     }
   }, 
   {
-    "pk": 107, 
+    "pk": 15, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "80ea1fcb-f72e-4bd9-abc5-f8672fb3fce4", 
-      "abstract_input": 427, 
+      "abstract_input": 25, 
       "value": "all", 
       "name": "Between all"
     }
   }, 
   {
-    "pk": 108, 
+    "pk": 16, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "93d1fd82-5cef-482c-ab5b-9d617472c7fc", 
-      "abstract_input": 427, 
+      "abstract_input": 25, 
       "value": "none", 
       "name": "None"
     }
   }, 
   {
-    "pk": 109, 
+    "pk": 17, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "645705b8-1154-48ed-9095-fb85416f836f", 
-      "abstract_input": 427, 
+      "abstract_input": 25, 
       "value": "two", 
       "name": "Only between first two terms"
     }
   }, 
   {
-    "pk": 428, 
+    "pk": 26, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "First term should be a multi-word term", 
       "short_name": "mwt", 
       "uid": "7b47a94d-c8c0-4264-98da-9e96d3580a1e", 
@@ -870,10 +876,10 @@
     }
   }, 
   {
-    "pk": 430, 
+    "pk": 27, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Multi-terms in a sentence", 
       "short_name": "mtn", 
       "uid": "0343cf50-bacf-4e07-90d6-ecbeb19986d2", 
@@ -888,10 +894,10 @@
     }
   }, 
   {
-    "pk": 429, 
+    "pk": 28, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "One term should occur at the beginning of the sentence", 
       "short_name": "tbs", 
       "uid": "4eed193a-62b1-406f-8a6a-7d21fc02a2bd", 
@@ -906,10 +912,10 @@
     }
   }, 
   {
-    "pk": 199, 
+    "pk": 5, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 175, 
+      "widget": 6, 
       "name": "Sentences", 
       "short_name": "sen", 
       "variable": "sentences", 
@@ -919,10 +925,10 @@
     }
   }, 
   {
-    "pk": 178, 
+    "pk": 7, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 35, 
+      "category": 2, 
       "treeview_image": "", 
       "name": "Definition extraction by wordnet", 
       "is_streaming": false, 
@@ -931,6 +937,7 @@
       "image": "", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "", 
@@ -945,10 +952,10 @@
     }
   }, 
   {
-    "pk": 440, 
+    "pk": 29, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 178, 
+      "widget": 7, 
       "name": "Annotations", 
       "short_name": "ann", 
       "uid": "7342b75e-2e19-4bcf-b71e-fbd6d7a097f7", 
@@ -963,10 +970,10 @@
     }
   }, 
   {
-    "pk": 441, 
+    "pk": 30, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 178, 
+      "widget": 7, 
       "name": "Web service address", 
       "short_name": "ws", 
       "uid": "a9fc6cb8-53fe-4977-8c34-29347b274548", 
@@ -981,10 +988,10 @@
     }
   }, 
   {
-    "pk": 442, 
+    "pk": 31, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 178, 
+      "widget": 7, 
       "name": "Language", 
       "short_name": "lan", 
       "uid": "ceb04ed2-a444-499e-b24f-db6cb28f7e2c", 
@@ -999,30 +1006,30 @@
     }
   }, 
   {
-    "pk": 115, 
+    "pk": 18, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "eaf2ac7b-806b-444a-9ec3-5142b17f4ff7", 
-      "abstract_input": 442, 
+      "abstract_input": 31, 
       "value": "en", 
       "name": "English"
     }
   }, 
   {
-    "pk": 116, 
+    "pk": 19, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "36929744-b1be-4e76-88ef-2548378946ba", 
-      "abstract_input": 442, 
+      "abstract_input": 31, 
       "value": "sl", 
       "name": "Slovene"
     }
   }, 
   {
-    "pk": 202, 
+    "pk": 6, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 178, 
+      "widget": 7, 
       "name": "Sentences", 
       "short_name": "sen", 
       "variable": "sentences", 
@@ -1032,10 +1039,10 @@
     }
   }, 
   {
-    "pk": 2, 
+    "pk": 8, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 35, 
+      "category": 2, 
       "treeview_image": "treeview/nlp.png", 
       "name": "Merge sentences", 
       "is_streaming": false, 
@@ -1044,6 +1051,7 @@
       "image": "images/nlp_6.png", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "", 
@@ -1058,10 +1066,10 @@
     }
   }, 
   {
-    "pk": 2, 
+    "pk": 32, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 2, 
+      "widget": 8, 
       "name": "Sentences", 
       "short_name": "sen", 
       "uid": "15389d3e-d0b9-488e-9db8-038ff1b6e06a", 
@@ -1076,10 +1084,10 @@
     }
   }, 
   {
-    "pk": 3, 
+    "pk": 33, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 2, 
+      "widget": 8, 
       "name": "Join Method", 
       "short_name": "met", 
       "uid": "27c8cd4a-1016-4a88-b463-4713874fc87f", 
@@ -1094,40 +1102,40 @@
     }
   }, 
   {
-    "pk": 1, 
+    "pk": 20, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "de9d5d39-53dc-4791-8d1d-2298c678f5b6", 
-      "abstract_input": 3, 
+      "abstract_input": 33, 
       "value": "intersection", 
       "name": "Intersection"
     }
   }, 
   {
-    "pk": 2, 
+    "pk": 21, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "8a445f1f-44ad-481f-aa17-46e6222c82be", 
-      "abstract_input": 3, 
+      "abstract_input": 33, 
       "value": "intersection_two", 
       "name": "Intersection by at least two"
     }
   }, 
   {
-    "pk": 3, 
+    "pk": 22, 
     "model": "workflows.abstractoption", 
     "fields": {
       "uid": "d0886005-a48a-415f-b767-e670211f6fe9", 
-      "abstract_input": 3, 
+      "abstract_input": 33, 
       "value": "union", 
       "name": "Union"
     }
   }, 
   {
-    "pk": 2, 
+    "pk": 7, 
     "model": "workflows.abstractoutput", 
     "fields": {
-      "widget": 2, 
+      "widget": 8, 
       "name": "Merged Sentences", 
       "short_name": "sen", 
       "variable": "merged_sentences", 
@@ -1137,10 +1145,10 @@
     }
   }, 
   {
-    "pk": 3, 
+    "pk": 9, 
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": 35, 
+      "category": 2, 
       "treeview_image": "treeview/nlp_1.png", 
       "name": "Sentence viewer", 
       "is_streaming": false, 
@@ -1149,6 +1157,7 @@
       "image": "images/nlp_7.png", 
       "package": "nlp", 
       "static_image": "nlp.png", 
+      "windows_queue": false, 
       "post_interact_action": "", 
       "user": null, 
       "visualization_view": "definition_sentences_viewer", 
@@ -1163,10 +1172,10 @@
     }
   }, 
   {
-    "pk": 4, 
+    "pk": 34, 
     "model": "workflows.abstractinput", 
     "fields": {
-      "widget": 3, 
+      "widget": 9, 
       "name": "candidates", 
       "short_name": "can", 
       "uid": "2ad6546b-5fae-42fa-97ab-e75e91838c19", 

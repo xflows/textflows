@@ -36,6 +36,10 @@ class Category(models.Model):
 
     uid = models.CharField(max_length=250,blank=True,default='')
 
+    def is_basic(self):
+        a=self.name in ['Files','Objects','Strings','Integers']
+        return self.name in ['Files','Objects','Strings','Integers']
+
     class Meta:
         verbose_name_plural = "categories"
         ordering = ('order','name',)
@@ -45,6 +49,7 @@ class Category(models.Model):
             return unicode(self.name)
         else:
             return unicode(unicode(self.parent)+" :: "+self.name)
+
 
 class Workflow(models.Model):
     name = models.CharField(max_length=200,default='Untitled workflow') # a field
