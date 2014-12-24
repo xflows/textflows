@@ -84,6 +84,13 @@ class BowDataset:
         sparse_bow_matrix = bow_vectorizer.transform(documents)
         return cls(sparse_bow_matrix,labels)
 
+    @classmethod
+    def from_adc(cls,adc,bow_model):
+        sparse_bow_matrix = bow_model.vectorizer.transform(bow_model.get_raw_text(adc.documents))
+        labels=bow_model.get_labels(adc)
+
+        return cls(sparse_bow_matrix,labels)
+
     def sparce_bow_matrix(self):
         return self.sparse_bow_matrix
     def dense_bow_matrix(self):
@@ -138,11 +145,28 @@ class BowDataset:
 
 
 class BowModel:
-    def __init__(self,documents):
+    def __init__(self,adc,token_annotation,stem_feature_name,stop_word_feature_name,label_doc_feature_name):
+        self._label_feature_name=token_annotation
+        self._token_annotation=token_annotation
+        self._stem_feature_name=stem_feature_name
+        self._stop_word_feature_name=stop_word_feature_name
+        self._label_doc_feature_name=label_doc_feature_name
+
+
         self.vectorizer =TfidfVectorizer() #DictVectorizer(dtype=dtype, sparse=sparse)
-        self.vectorizer.fit(documents)
+        raw_documents=self.get_raw_text(adc.documents)
+        self.vectorizer.fit(raw_documents)
         self._vocab_to_idx=self.vectorizer.vocabulary_
         self._idx_to_vocab = {v: k for k, v in self._vocab_to_idx.items()}
+
+
+    def get_raw_text(self,documents):
+        feature_name=self._token_annotation+('/'+self._stem_feature_name if self._stem_feature_name else '')
+        return [document.raw_text(self._token_annotation,feature_name) for document in documents]
+
+    def get_labels(self,adc):
+        return [doc.features.get(self._label_feature_name,'') for doc in adc.documents] if self._label_feature_name else None
+
 
 #BowSpace
         # private ITokenizer mTokenizer
