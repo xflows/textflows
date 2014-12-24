@@ -7,6 +7,7 @@ body {font-family:helvetica;}
 #backlink {text-align:right;width:95%;}
 #backlinkA {color:Gray}
 ul, li, ul li a {list-style: none;width:100%;}
+.documentText, #DocumentText {line-height: 120%;}
 
 h3 {color: #3C64B6; font-weight:bold;}
 a:link, a:visited, a:active, a:hover { color: #3C64B6; outline: 0; }

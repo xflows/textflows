@@ -112,11 +112,11 @@ class BowDataset:
             train_data[i][j]=v   #seting the dict in (list(dict))
         return train_data
 
-    def bow_in_proper_format(self,classifier):
+    def bow_in_proper_format(self,classifier,no_labels=False):
         #check if classifier can deal with sparse data
         if isinstance(classifier,NltkClassifier):
-            return self.nltk_dataset_with_labels() if self.labels else self.nltk_dataset_without_labels()
-        if isinstance(classifier,(GaussianNB,DecisionTreeClassifier)):
+            return self.nltk_dataset_without_labels() if no_labels else self.nltk_dataset_with_labels()
+        elif isinstance(classifier,(GaussianNB,DecisionTreeClassifier)):
             return self.dense_bow_matrix()
         else: #if latino classifier or a classifier that can deal with sparse data
             return self.sparse_bow_matrix

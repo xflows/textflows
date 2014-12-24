@@ -3,7 +3,7 @@ body {margin-left: 15%; margin-right: 10%; margin-top: 5%; font-family:helvetica
 #corpusFeatures {position:absolute;left:50px;top:60px;padding-top:1em;width:300px;height:auto;z-index:1;word-wrap:break-word;font-size:0.9em;}
 .documentTitle {font-weight:bold; font-size:1.2em; margin-top: 1.5em; margin-bottom: 0.5em; }
 .statistics {margin-top: 0.3em; margin-bottom: 0em; width: 50em; font-size:0.8em; color:#CD3700;}
-.documentText {margin-top: 0em; margin-bottom: 0em; width: 50em; font-size:1em;}
+.documentText {margin-top: 0em; margin-bottom: 0em; width: 50em; font-size:1em;line-height: 120%;}
 h2 {color: #004D99; font-weight:bold}
 
 #backlinkA {color:Gray}

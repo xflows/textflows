@@ -113,7 +113,7 @@ def train_classifier(input_dict):
     if isinstance(classifier,NltkClassifier):
         trained_classifier=classifier.train(training_data)
         return {'trained_classifier': trained_classifier}
-    if input_dict['classifier'].__module__.startswith('sklearn'):
+    elif input_dict['classifier'].__module__.startswith('sklearn'):
         classifier.fit(training_data, training_bow_dataset.labels)
         return {'trained_classifier': classifier}
     else:
@@ -129,7 +129,7 @@ def convert_to_probdists(csf,y_probas):
 def apply_bow_classifier(input_dict):
     trained_classifier = input_dict['trained_classifier']
     testing_bow_dataset = input_dict['testing_dataset']
-    testing_dataset=testing_bow_dataset.bow_in_proper_format(trained_classifier)
+    testing_dataset=testing_bow_dataset.bow_in_proper_format(trained_classifier,no_labels=True)
 
     classifier_package=input_dict['trained_classifier'].__module__
     if isinstance(trained_classifier,LatinoObject):  #check if this is a latino object

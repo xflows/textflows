@@ -87,7 +87,7 @@ $(document).ready(function () {
             htmlResult = "";
             if (colorArray[0] != undefined) {
                 if (featureArray[0] == undefined || featureArray[0] == "") {
-                    htmlResult += "<span style='background-color:" + colorArray[0] + "; border: 1px solid white;'>";
+                    htmlResult += "<span style='background-color:" + colorArray[0] + "; border: 2px solid white;'>";
                 }
                 else {
                     htmlResult += "<span style='background-color:" + colorArray[0] + ";' class='text' title='Features: <br/>" + featureArray[0] + "'>";
@@ -102,7 +102,7 @@ $(document).ready(function () {
                     }
                     if (colorArray[i + 1] != undefined) {
                         if (featureArray[i + 1] == undefined || featureArray[i + 1] == "") {
-                            htmlResult += "<span style='background-color:" + colorArray[i + 1] + "; border: 1px solid white;'>";
+                            htmlResult += "<span style='background-color:" + colorArray[i + 1] + "; border: 2px solid white;'>";
                         }
                         else {
                             htmlResult += "<span style='background-color:" + colorArray[i + 1] + ";' class='text' title='Features: <br/>" + featureArray[i + 1] + "'>";
