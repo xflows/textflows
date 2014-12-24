@@ -2705,6 +2705,554 @@
     }
   },
   {
+    "pk": 481056055,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "49d5fda2-23d4-444a-a6df-3c5714d2fdfd",
+      "parent": null,
+      "workflow": null,
+      "user": null,
+      "order": 5,
+      "name": "Stop Words"
+    }
+  },
+  {
+    "pk": 51745085,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "5f0ee744-65c5-4878-81c8-dab76f6e5976",
+      "parent": 481056055,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Latino"
+    }
+  },
+  {
+    "pk": 472144877,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 51745085,
+      "treeview_image": null,
+      "name": "Stop Word Sets",
+      "is_streaming": false,
+      "uid": "773960d9-ccca-41bc-8b13-0c0f62c62f0e",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "get_stop_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_get_stop_words",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 6,
+      "description": "Automatically generated widget from function GetStopWords in package latino. The original function signature: GetStopWords."
+    }
+  },
+  {
+    "pk": 787991705,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 472144877,
+      "name": "Language",
+      "short_name": "lng",
+      "uid": "6a6806de-1cbc-b670-82cc-498784c2d7f4",
+      "default": "English",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "language",
+      "parameter": true,
+      "order": 1,
+      "description": "Latino.TextMining.Language"
+    }
+  },
+  {
+    "pk": 793613448,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "2c472b88-5377-c473-bb7c-74612d9e8752",
+      "abstract_input": 787991705,
+      "value": "Bulgarian",
+      "name": "Bulgarian"
+    }
+  },
+  {
+    "pk": 127482501,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "8c8245e9-ddc7-ddb7-48e8-83a1df62511a",
+      "abstract_input": 787991705,
+      "value": "Czech",
+      "name": "Czech"
+    }
+  },
+  {
+    "pk": 435168482,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "5449a6c7-e8fd-8355-6447-70d41e87cfb9",
+      "abstract_input": 787991705,
+      "value": "Danish",
+      "name": "Danish"
+    }
+  },
+  {
+    "pk": 163763410,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "3d04e639-6b74-5bdd-ef00-3211be836630",
+      "abstract_input": 787991705,
+      "value": "Dutch",
+      "name": "Dutch"
+    }
+  },
+  {
+    "pk": 971154333,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "5713ce63-336f-316a-6319-30263ea86f35",
+      "abstract_input": 787991705,
+      "value": "English",
+      "name": "English"
+    }
+  },
+  {
+    "pk": 682485618,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "8f7a8ad5-c65b-b3ed-931e-4376d5699f5c",
+      "abstract_input": 787991705,
+      "value": "Finnish",
+      "name": "Finnish"
+    }
+  },
+  {
+    "pk": 731326350,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "f6d4c7e3-1514-6427-f155-9b14cab0d38c",
+      "abstract_input": 787991705,
+      "value": "French",
+      "name": "French"
+    }
+  },
+  {
+    "pk": 825840179,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "091f177e-767f-3361-10af-bd2f6e85d994",
+      "abstract_input": 787991705,
+      "value": "German",
+      "name": "German"
+    }
+  },
+  {
+    "pk": 1065072759,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "39218bba-61fe-40a9-b34d-699b9f58c12e",
+      "abstract_input": 787991705,
+      "value": "Hungarian",
+      "name": "Hungarian"
+    }
+  },
+  {
+    "pk": 46352978,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "08c09945-f0f1-d216-354d-e963dd9f19b8",
+      "abstract_input": 787991705,
+      "value": "Italian",
+      "name": "Italian"
+    }
+  },
+  {
+    "pk": 799801346,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "49138042-2c55-3b9f-a703-89745bf7ba86",
+      "abstract_input": 787991705,
+      "value": "Norwegian",
+      "name": "Norwegian"
+    }
+  },
+  {
+    "pk": 802074281,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "cfeae8fc-9cee-e702-96b4-a59d7cdd598f",
+      "abstract_input": 787991705,
+      "value": "Portuguese",
+      "name": "Portuguese"
+    }
+  },
+  {
+    "pk": 745459478,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "9ad4c287-f426-299d-17e0-b079df66d04c",
+      "abstract_input": 787991705,
+      "value": "Romanian",
+      "name": "Romanian"
+    }
+  },
+  {
+    "pk": 273268062,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "81b661f7-cf4a-fdc2-7519-268ad17e3b61",
+      "abstract_input": 787991705,
+      "value": "Russian",
+      "name": "Russian"
+    }
+  },
+  {
+    "pk": 411940695,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "ecc8309f-87c2-de3f-757f-eebbbfeade29",
+      "abstract_input": 787991705,
+      "value": "Serbian",
+      "name": "Serbian"
+    }
+  },
+  {
+    "pk": 1030218569,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "d328b41f-7770-2db1-9bd3-0fa7e1682751",
+      "abstract_input": 787991705,
+      "value": "Slovene",
+      "name": "Slovene"
+    }
+  },
+  {
+    "pk": 9694148,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "c038a6e7-e788-e0d5-7f89-cabf84920123",
+      "abstract_input": 787991705,
+      "value": "Spanish",
+      "name": "Spanish"
+    }
+  },
+  {
+    "pk": 498613282,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "bad16fe3-7af6-2e35-8728-61563526d77b",
+      "abstract_input": 787991705,
+      "value": "Swedish",
+      "name": "Swedish"
+    }
+  },
+  {
+    "pk": 1057328076,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 472144877,
+      "name": "StopWords",
+      "short_name": "str",
+      "variable": "strings",
+      "uid": "d601ddbb-a068-cda8-8963-4dc61c890a37",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 1049064337,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 51745085,
+      "treeview_image": null,
+      "name": "Stop Word Tagger",
+      "is_streaming": false,
+      "uid": "e019026d-f751-430f-85c5-bdc983adc194",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_stop_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_construct_stop_words_tagger",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 7,
+      "description": "Automatically generated widget from function ConstructStopWordsTagger in package latino. The original function signature: ConstructStopWordsTagger."
+    }
+  },
+  {
+    "pk": 212000721,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 1049064337,
+      "name": "Stopwords",
+      "short_name": "str",
+      "uid": "e48be590-bbd9-0604-2542-a58ac6d43eac",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "stop_words",
+      "parameter": false,
+      "order": 1,
+      "description": "List of stopwords"
+    }
+  },
+  {
+    "pk": 50228584,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 1049064337,
+      "name": "Ignore Case",
+      "short_name": "bol",
+      "uid": "05ce0842-1fbf-a438-deac-3b84f792d62f",
+      "default": "true",
+      "required": true,
+      "multi": false,
+      "parameter_type": "checkbox",
+      "variable": "ignore_case",
+      "parameter": true,
+      "order": 2,
+      "description": "If true than words are marked stopword regardless of their casing."
+    }
+  },
+  {
+    "pk": 843023556,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 1049064337,
+      "name": "Stop Word Tagger",
+      "short_name": "tgr",
+      "variable": "tagger",
+      "uid": "d49a2af5-3c00-19a3-acf5-4e19ad314452",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 522085466,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 51745085,
+      "treeview_image": null,
+      "name": "Stop Word Tagger Hub",
+      "is_streaming": false,
+      "uid": "6176ee13-e03c-46ee-92b4-8ba06574f9d3",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_stop_do_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_tag_adc_stopwords",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 8,
+      "description": "Automatically generated widget from function TagADCStopwords in package latino. The original function signature: TagADCStopwords."
+    }
+  },
+  {
+    "pk": 10860882,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 522085466,
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "uid": "506918e6-a155-19db-a92d-a49020cb739e",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "adc",
+      "parameter": false,
+      "order": 1,
+      "description": "LatinoInterfaces.DocumentCorpus"
+    }
+  },
+  {
+    "pk": 858259816,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 522085466,
+      "name": "Token Tagger",
+      "short_name": "tgr",
+      "uid": "ab4aca52-bba4-ce58-fdb2-5f8e12117236",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "tagger",
+      "parameter": false,
+      "order": 2,
+      "description": "System.Object"
+    }
+  },
+  {
+    "pk": 602471038,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 522085466,
+      "name": "Token Annotation",
+      "short_name": "str",
+      "uid": "cc2ca8d9-f024-0b55-8876-dbd2f604dc1b",
+      "default": "Token",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "element_annotation",
+      "parameter": true,
+      "order": 3,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 491264834,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 522085466,
+      "name": "Output Feature Name",
+      "short_name": "str",
+      "uid": "4059e050-41d9-28bf-312b-245be978eb90",
+      "default": "stopword",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "output_feature",
+      "parameter": true,
+      "order": 4,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 1013935438,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 522085466,
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "variable": "adc",
+      "uid": "3a8fcb8a-bf7e-38d1-1f9c-dd0f8ad2fd35",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 1036618967,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "dd9a30e3-f9bf-42d3-830b-125805373906",
+      "parent": 51745085,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Advanced"
+    }
+  },
+  {
+    "pk": 399082852,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 1036618967,
+      "treeview_image": null,
+      "name": "Stop Word Tagger Hub (Text)",
+      "is_streaming": false,
+      "uid": "b1282be2-08f1-441e-9276-a05c0e6ab3ba",
+      "interaction_view": "",
+      "image": null,
+      "package": "latino",
+      "static_image": "tag_stop_do_image.png",
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "action": "latino_tag_string_stopwords",
+      "windows_queue": true,
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 4,
+      "description": "Automatically generated widget from function TagStringStopwords in package latino. The original function signature: TagStringStopwords."
+    }
+  },
+  {
+    "pk": 302359030,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 399082852,
+      "name": "Text",
+      "short_name": "str",
+      "uid": "45d86c20-4d28-d6f5-0eb7-aaf9b3aaff54",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "text",
+      "parameter": false,
+      "order": 1,
+      "description": "System.Object"
+    }
+  },
+  {
+    "pk": 712312614,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 399082852,
+      "name": "Token Tagger",
+      "short_name": "tgr",
+      "uid": "04643077-85b4-3f70-c52c-04515ab8c662",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "tagger",
+      "parameter": false,
+      "order": 2,
+      "description": "string or array of strings"
+    }
+  },
+  {
+    "pk": 604057396,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 399082852,
+      "name": "Output Feature Name",
+      "short_name": "str",
+      "uid": "362bc947-acec-8ccd-8cc9-2545d8a672db",
+      "default": "stopword",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "output_feature",
+      "parameter": true,
+      "order": 3,
+      "description": "System.String"
+    }
+  },
+  {
+    "pk": 613723123,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 399082852,
+      "name": "String",
+      "short_name": "str",
+      "variable": "string",
+      "uid": "a123a330-58a9-5fd4-a3ae-9f231da3e5ad",
+      "order": 1,
+      "description": "string or array of strings (based on the input)"
+    }
+  },
+  {
     "pk": 122373541,
     "model": "workflows.category",
     "fields": {
@@ -2712,7 +3260,7 @@
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 5,
+      "order": 6,
       "name": "Stemming"
     }
   },
@@ -3290,554 +3838,6 @@
       "short_name": "str",
       "variable": "string",
       "uid": "2430a1d2-25a4-c887-cb71-3df05bd2696f",
-      "order": 1,
-      "description": "string or array of strings (based on the input)"
-    }
-  },
-  {
-    "pk": 481056055,
-    "model": "workflows.category",
-    "fields": {
-      "uid": "49d5fda2-23d4-444a-a6df-3c5714d2fdfd",
-      "parent": null,
-      "workflow": null,
-      "user": null,
-      "order": 6,
-      "name": "Stop Words"
-    }
-  },
-  {
-    "pk": 51745085,
-    "model": "workflows.category",
-    "fields": {
-      "uid": "5f0ee744-65c5-4878-81c8-dab76f6e5976",
-      "parent": 481056055,
-      "workflow": null,
-      "user": null,
-      "order": 1,
-      "name": "Latino"
-    }
-  },
-  {
-    "pk": 472144877,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 51745085,
-      "treeview_image": null,
-      "name": "Stop Word Sets",
-      "is_streaming": false,
-      "uid": "773960d9-ccca-41bc-8b13-0c0f62c62f0e",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "get_stop_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_get_stop_words",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 6,
-      "description": "Automatically generated widget from function GetStopWords in package latino. The original function signature: GetStopWords."
-    }
-  },
-  {
-    "pk": 787991705,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 472144877,
-      "name": "Language",
-      "short_name": "lng",
-      "uid": "6a6806de-1cbc-b670-82cc-498784c2d7f4",
-      "default": "English",
-      "required": true,
-      "multi": false,
-      "parameter_type": "select",
-      "variable": "language",
-      "parameter": true,
-      "order": 1,
-      "description": "Latino.TextMining.Language"
-    }
-  },
-  {
-    "pk": 793613448,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "2c472b88-5377-c473-bb7c-74612d9e8752",
-      "abstract_input": 787991705,
-      "value": "Bulgarian",
-      "name": "Bulgarian"
-    }
-  },
-  {
-    "pk": 127482501,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "8c8245e9-ddc7-ddb7-48e8-83a1df62511a",
-      "abstract_input": 787991705,
-      "value": "Czech",
-      "name": "Czech"
-    }
-  },
-  {
-    "pk": 435168482,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "5449a6c7-e8fd-8355-6447-70d41e87cfb9",
-      "abstract_input": 787991705,
-      "value": "Danish",
-      "name": "Danish"
-    }
-  },
-  {
-    "pk": 163763410,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "3d04e639-6b74-5bdd-ef00-3211be836630",
-      "abstract_input": 787991705,
-      "value": "Dutch",
-      "name": "Dutch"
-    }
-  },
-  {
-    "pk": 971154333,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "5713ce63-336f-316a-6319-30263ea86f35",
-      "abstract_input": 787991705,
-      "value": "English",
-      "name": "English"
-    }
-  },
-  {
-    "pk": 682485618,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "8f7a8ad5-c65b-b3ed-931e-4376d5699f5c",
-      "abstract_input": 787991705,
-      "value": "Finnish",
-      "name": "Finnish"
-    }
-  },
-  {
-    "pk": 731326350,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "f6d4c7e3-1514-6427-f155-9b14cab0d38c",
-      "abstract_input": 787991705,
-      "value": "French",
-      "name": "French"
-    }
-  },
-  {
-    "pk": 825840179,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "091f177e-767f-3361-10af-bd2f6e85d994",
-      "abstract_input": 787991705,
-      "value": "German",
-      "name": "German"
-    }
-  },
-  {
-    "pk": 1065072759,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "39218bba-61fe-40a9-b34d-699b9f58c12e",
-      "abstract_input": 787991705,
-      "value": "Hungarian",
-      "name": "Hungarian"
-    }
-  },
-  {
-    "pk": 46352978,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "08c09945-f0f1-d216-354d-e963dd9f19b8",
-      "abstract_input": 787991705,
-      "value": "Italian",
-      "name": "Italian"
-    }
-  },
-  {
-    "pk": 799801346,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "49138042-2c55-3b9f-a703-89745bf7ba86",
-      "abstract_input": 787991705,
-      "value": "Norwegian",
-      "name": "Norwegian"
-    }
-  },
-  {
-    "pk": 802074281,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "cfeae8fc-9cee-e702-96b4-a59d7cdd598f",
-      "abstract_input": 787991705,
-      "value": "Portuguese",
-      "name": "Portuguese"
-    }
-  },
-  {
-    "pk": 745459478,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "9ad4c287-f426-299d-17e0-b079df66d04c",
-      "abstract_input": 787991705,
-      "value": "Romanian",
-      "name": "Romanian"
-    }
-  },
-  {
-    "pk": 273268062,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "81b661f7-cf4a-fdc2-7519-268ad17e3b61",
-      "abstract_input": 787991705,
-      "value": "Russian",
-      "name": "Russian"
-    }
-  },
-  {
-    "pk": 411940695,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "ecc8309f-87c2-de3f-757f-eebbbfeade29",
-      "abstract_input": 787991705,
-      "value": "Serbian",
-      "name": "Serbian"
-    }
-  },
-  {
-    "pk": 1030218569,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "d328b41f-7770-2db1-9bd3-0fa7e1682751",
-      "abstract_input": 787991705,
-      "value": "Slovene",
-      "name": "Slovene"
-    }
-  },
-  {
-    "pk": 9694148,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "c038a6e7-e788-e0d5-7f89-cabf84920123",
-      "abstract_input": 787991705,
-      "value": "Spanish",
-      "name": "Spanish"
-    }
-  },
-  {
-    "pk": 498613282,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "bad16fe3-7af6-2e35-8728-61563526d77b",
-      "abstract_input": 787991705,
-      "value": "Swedish",
-      "name": "Swedish"
-    }
-  },
-  {
-    "pk": 1057328076,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 472144877,
-      "name": "StopWords",
-      "short_name": "str",
-      "variable": "strings",
-      "uid": "d601ddbb-a068-cda8-8963-4dc61c890a37",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
-    "pk": 1049064337,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 51745085,
-      "treeview_image": null,
-      "name": "Stop Word Tagger",
-      "is_streaming": false,
-      "uid": "e019026d-f751-430f-85c5-bdc983adc194",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_stop_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_construct_stop_words_tagger",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 7,
-      "description": "Automatically generated widget from function ConstructStopWordsTagger in package latino. The original function signature: ConstructStopWordsTagger."
-    }
-  },
-  {
-    "pk": 212000721,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 1049064337,
-      "name": "Stopwords",
-      "short_name": "str",
-      "uid": "e48be590-bbd9-0604-2542-a58ac6d43eac",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "stop_words",
-      "parameter": false,
-      "order": 1,
-      "description": "List of stopwords"
-    }
-  },
-  {
-    "pk": 50228584,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 1049064337,
-      "name": "Ignore Case",
-      "short_name": "bol",
-      "uid": "05ce0842-1fbf-a438-deac-3b84f792d62f",
-      "default": "true",
-      "required": true,
-      "multi": false,
-      "parameter_type": "checkbox",
-      "variable": "ignore_case",
-      "parameter": true,
-      "order": 2,
-      "description": "If true than words are marked stopword regardless of their casing."
-    }
-  },
-  {
-    "pk": 843023556,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 1049064337,
-      "name": "Stop Word Tagger",
-      "short_name": "tgr",
-      "variable": "tagger",
-      "uid": "d49a2af5-3c00-19a3-acf5-4e19ad314452",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
-    "pk": 522085466,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 51745085,
-      "treeview_image": null,
-      "name": "Stop Word Tagger Hub",
-      "is_streaming": false,
-      "uid": "6176ee13-e03c-46ee-92b4-8ba06574f9d3",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_stop_do_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_tag_adc_stopwords",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 8,
-      "description": "Automatically generated widget from function TagADCStopwords in package latino. The original function signature: TagADCStopwords."
-    }
-  },
-  {
-    "pk": 10860882,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 522085466,
-      "name": "Annotated Document Corpus",
-      "short_name": "adc",
-      "uid": "506918e6-a155-19db-a92d-a49020cb739e",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "adc",
-      "parameter": false,
-      "order": 1,
-      "description": "LatinoInterfaces.DocumentCorpus"
-    }
-  },
-  {
-    "pk": 858259816,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 522085466,
-      "name": "Token Tagger",
-      "short_name": "tgr",
-      "uid": "ab4aca52-bba4-ce58-fdb2-5f8e12117236",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "tagger",
-      "parameter": false,
-      "order": 2,
-      "description": "System.Object"
-    }
-  },
-  {
-    "pk": 602471038,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 522085466,
-      "name": "Token Annotation",
-      "short_name": "str",
-      "uid": "cc2ca8d9-f024-0b55-8876-dbd2f604dc1b",
-      "default": "Token",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "element_annotation",
-      "parameter": true,
-      "order": 3,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 491264834,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 522085466,
-      "name": "Output Feature Name",
-      "short_name": "str",
-      "uid": "4059e050-41d9-28bf-312b-245be978eb90",
-      "default": "stopword",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "output_feature",
-      "parameter": true,
-      "order": 4,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 1013935438,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 522085466,
-      "name": "Annotated Document Corpus",
-      "short_name": "adc",
-      "variable": "adc",
-      "uid": "3a8fcb8a-bf7e-38d1-1f9c-dd0f8ad2fd35",
-      "order": 1,
-      "description": ""
-    }
-  },
-  {
-    "pk": 1036618967,
-    "model": "workflows.category",
-    "fields": {
-      "uid": "dd9a30e3-f9bf-42d3-830b-125805373906",
-      "parent": 51745085,
-      "workflow": null,
-      "user": null,
-      "order": 1,
-      "name": "Advanced"
-    }
-  },
-  {
-    "pk": 399082852,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 1036618967,
-      "treeview_image": null,
-      "name": "Stop Word Tagger Hub (Text)",
-      "is_streaming": false,
-      "uid": "b1282be2-08f1-441e-9276-a05c0e6ab3ba",
-      "interaction_view": "",
-      "image": null,
-      "package": "latino",
-      "static_image": "tag_stop_do_image.png",
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "action": "latino_tag_string_stopwords",
-      "windows_queue": true,
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 4,
-      "description": "Automatically generated widget from function TagStringStopwords in package latino. The original function signature: TagStringStopwords."
-    }
-  },
-  {
-    "pk": 302359030,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 399082852,
-      "name": "Text",
-      "short_name": "str",
-      "uid": "45d86c20-4d28-d6f5-0eb7-aaf9b3aaff54",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "text",
-      "parameter": false,
-      "order": 1,
-      "description": "System.Object"
-    }
-  },
-  {
-    "pk": 712312614,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 399082852,
-      "name": "Token Tagger",
-      "short_name": "tgr",
-      "uid": "04643077-85b4-3f70-c52c-04515ab8c662",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "tagger",
-      "parameter": false,
-      "order": 2,
-      "description": "string or array of strings"
-    }
-  },
-  {
-    "pk": 604057396,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 399082852,
-      "name": "Output Feature Name",
-      "short_name": "str",
-      "uid": "362bc947-acec-8ccd-8cc9-2545d8a672db",
-      "default": "stopword",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "output_feature",
-      "parameter": true,
-      "order": 3,
-      "description": "System.String"
-    }
-  },
-  {
-    "pk": 613723123,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 399082852,
-      "name": "String",
-      "short_name": "str",
-      "variable": "string",
-      "uid": "a123a330-58a9-5fd4-a3ae-9f231da3e5ad",
       "order": 1,
       "description": "string or array of strings (based on the input)"
     }
