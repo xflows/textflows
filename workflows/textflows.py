@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
 
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import GaussianNB, MultinomialNB
 
 
 class DocumentCorpus:
@@ -117,7 +117,7 @@ class BowDataset:
         #check if classifier can deal with sparse data
         if isinstance(classifier,NltkClassifier):
             return self.nltk_dataset_without_labels() if no_labels else self.nltk_dataset_with_labels()
-        elif isinstance(classifier,(GaussianNB,DecisionTreeClassifier)):
+        elif isinstance(classifier, (GaussianNB, MultinomialNB,  DecisionTreeClassifier)):
             return self.dense_bow_matrix()
         else: #if latino classifier or a classifier that can deal with sparse data
             return self.sparse_bow_matrix

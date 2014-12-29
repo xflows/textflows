@@ -27,7 +27,8 @@ INSTALLED_APPS_WORKFLOWS_SUB = (
     #'workflows.subgroup_discovery',
     #'workflows.nlp',
     'workflows.nl_toolkit',
-    'workflows.nltoolkit'
+    'workflows.nltoolkit',
+    'workflows.scikit_classifiers',
     #'workflows.ilp',
     #'workflows.weka',
     #'workflows.cforange',
