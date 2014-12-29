@@ -13,6 +13,8 @@ class DocumentCorpus:
     def __unicode__(self):
         #for i in itemDir:
         return 'Documents; {0}' % (self.documents)
+
+
 class Document:
     def __init__(self, name,text,annotations,features):
         self.annotations=annotations
@@ -56,7 +58,6 @@ class Document:
             selected_subtexts=[text for (ann,text) in self.get_annotations_with_text(selector)
                                if not ann.features.has_key(stop_word_feature_name)]
             return join_annotations_with.join(selected_subtexts)
-
 
 
 class Annotation:
@@ -215,6 +216,7 @@ class NltkCorpus():
                 return getattr(self._corpus(),name)()
             return method
 
+
 class NltkRegexpTokenizer():
     """ Wrapper for Nltk RegexTokenizer. Python's regular expressions are not picklable.
     """
@@ -227,6 +229,7 @@ class NltkRegexpTokenizer():
 
     def span_tokenize(self,text):
         return nltk.RegexpTokenizer(self._pattern,**self._kargs).span_tokenize(text)
+
 
 class NltkClassifier():
     """ This is a wrapper for Nltk classifiers. Nltk classifiers do not have an appropriate __init__
@@ -249,6 +252,7 @@ class NltkClassifier():
     def __repr__(self):
         return '<NltkClassifier object for %s>' % (self._classifier)
 
+
 class LatinoObject:
     def __init__(self,latino_object):
         import LatinoInterfaces
@@ -265,8 +269,11 @@ class LatinoObject:
 
 from nltk.tokenize.stanford import StanfordTokenizer
 from nltk.tokenize import TextTilingTokenizer
+from nltk.tokenize import TreebankWordTokenizer
+
 
 class SpanTokenizeMixin():
+
     def span_tokenize(self, s):
         r"""
         Return the offsets of the tokens in *s*, as a sequence of ``(start, end)``
@@ -283,20 +290,25 @@ class SpanTokenizeMixin():
         :type s: str
         :rtype: iter(tuple(int, int))
         """
-        tokens=self.tokenize(s)
-        right=0
+        tokens = self.tokenize(s)
+        right = 0
 
         for token in tokens:
-            left=right+s[right:].find(token)
-            right=left+len(token)
-            yield left,right
+            left = right + s[right:].find(token)
+            right = left + len(token)
+            yield left, right
 
-class StanfordTokenizer(SpanTokenizeMixin,StanfordTokenizer):
+
+class StanfordTokenizer(SpanTokenizeMixin, StanfordTokenizer):
     pass
 
-class TextTilingTokenizer(SpanTokenizeMixin,TextTilingTokenizer):
+
+class TextTilingTokenizer(SpanTokenizeMixin, TextTilingTokenizer):
     pass
 
+
+class TreebankWordTokenizer(SpanTokenizeMixin, TreebankWordTokenizer):
+    pass
 
 
 
