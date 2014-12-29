@@ -1,0 +1,389 @@
+[
+  {
+    "pk": 57,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "1e366c76-9a29-4b3b-bcca-4089d89bc8ba",
+      "parent": null,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Scikit_classifiers"
+    }
+  },
+  {
+    "pk": 208,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 57,
+      "treeview_image": "",
+      "name": "Create Integer List",
+      "is_streaming": false,
+      "uid": "92c49065-6cc2-47e1-87f1-e6f6777661a3",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "construction_work .png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "scikit_classifiers_create_integers",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 547,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 208,
+      "name": "Integer List String",
+      "short_name": "str",
+      "uid": "0bb39532-7e5d-4f51-944f-51cb099511ef",
+      "default": "3\r\n2\r\n1\r\n4",
+      "required": false,
+      "multi": false,
+      "parameter_type": "textarea",
+      "variable": "intStr",
+      "parameter": true,
+      "order": 1,
+      "description": "Comma or new-line separated list of integers"
+    }
+  },
+  {
+    "pk": 548,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 208,
+      "name": "Sort list",
+      "short_name": "bol",
+      "uid": "b66484cc-0785-4d93-aeef-41bf0f886914",
+      "default": "true",
+      "required": true,
+      "multi": false,
+      "parameter_type": "checkbox",
+      "variable": "sort",
+      "parameter": true,
+      "order": 2,
+      "description": "Should the list be sorted"
+    }
+  },
+  {
+    "pk": 216,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 208,
+      "name": "Integer List",
+      "short_name": "lst",
+      "variable": "intList",
+      "uid": "52d65fa7-f694-462b-af0b-96750c01e4b2",
+      "order": 1,
+      "description": "List of integers"
+    }
+  },
+  {
+    "pk": 209,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 57,
+      "treeview_image": "",
+      "name": "Filter Integers",
+      "is_streaming": false,
+      "uid": "657ca399-5234-4b1c-91b5-a8b8be1c8f26",
+      "interaction_view": "scikit_classifiers_filter_integers",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "construction_work .png",
+      "windows_queue": false,
+      "post_interact_action": "scikit_classifiers_post_filter_integers",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "scikit_classifiers_pre_filter_integers",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": true,
+      "has_progress_bar": false,
+      "order": 2,
+      "description": ""
+    }
+  },
+  {
+    "pk": 549,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 209,
+      "name": "Integer List",
+      "short_name": "lst",
+      "uid": "9ae47c5e-539c-476a-8c7e-812ab2a5bb1b",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "intList",
+      "parameter": false,
+      "order": 1,
+      "description": "List of integers"
+    }
+  },
+  {
+    "pk": 217,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 209,
+      "name": "Filtered Integer List",
+      "short_name": "lst",
+      "variable": "intList",
+      "uid": "db559b89-2299-4cfe-8f6e-c90e9d7c61c3",
+      "order": 1,
+      "description": "Filtered list of integers"
+    }
+  },
+  {
+    "pk": 210,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 57,
+      "treeview_image": "",
+      "name": "Sum Integers",
+      "is_streaming": false,
+      "uid": "09b75459-eba9-4fb2-958e-faa13fd80ce7",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "construction_work .png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "scikit_classifiers_sum_integers",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 3,
+      "description": ""
+    }
+  },
+  {
+    "pk": 550,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 210,
+      "name": "Integer List",
+      "short_name": "lst",
+      "uid": "12eedbf8-2c89-47e5-8b2c-6ad1f0f78ab7",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "intList",
+      "parameter": false,
+      "order": 1,
+      "description": "List of integers"
+    }
+  },
+  {
+    "pk": 218,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 210,
+      "name": "Sum",
+      "short_name": "int",
+      "variable": "sum",
+      "uid": "39e54084-06fd-4a0c-983d-8310de34ef59",
+      "order": 1,
+      "description": "Sum of integer list"
+    }
+  },
+  {
+    "pk": 211,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 57,
+      "treeview_image": "",
+      "name": "Display Summation",
+      "is_streaming": false,
+      "uid": "47c4d92b-af90-4307-b9b0-2f4b36ff9f93",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "construction_work .png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "scikit_classifiers_display_summation",
+      "streaming_visualization_view": "",
+      "action": "scikit_classifiers_pre_display_summation",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 4,
+      "description": ""
+    }
+  },
+  {
+    "pk": 551,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 211,
+      "name": "Integer List",
+      "short_name": "lst",
+      "uid": "c84bc35f-2df0-4a6b-9ab4-18e9a19ee054",
+      "default": "",
+      "required": false,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "intList",
+      "parameter": false,
+      "order": 1,
+      "description": "List of integers"
+    }
+  },
+  {
+    "pk": 552,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 211,
+      "name": "Sum",
+      "short_name": "int",
+      "uid": "e54f725e-b058-49d0-998b-4c4e99c1a32f",
+      "default": "",
+      "required": false,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "sum",
+      "parameter": false,
+      "order": 2,
+      "description": "Sum (possibly correct) of integer list"
+    }
+  },
+  {
+    "pk": 46,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "46050a99-188d-40e1-90e5-0c1912059fa7",
+      "parent": null,
+      "workflow": null,
+      "user": null,
+      "order": 9,
+      "name": "Classification"
+    }
+  },
+  {
+    "pk": 58,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "cb54c8a7-2681-47ed-8321-2ab093d32662",
+      "parent": 46,
+      "workflow": null,
+      "user": null,
+      "order": 3,
+      "name": "Scikit"
+    }
+  },
+  {
+    "pk": 212,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 58,
+      "treeview_image": "",
+      "name": "Naive Bayes Classifier",
+      "is_streaming": false,
+      "uid": "2f5e2bd7-5d8c-4631-b843-2a9016bd1fe6",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "classifier_naive_bayes_image.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "sc_naivebayes",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "Naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong (naive) independence assumptions between the features."
+    }
+  },
+  {
+    "pk": 554,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 212,
+      "name": "Parameter estimation",
+      "short_name": "pre",
+      "uid": "4ec5c9a1-218f-43fd-9dd3-171015f29345",
+      "default": "gaussian_nb",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "type",
+      "parameter": true,
+      "order": 1,
+      "description": "The multinomial Naive Bayes classifier is suitable for classification with discrete features (e.g., word counts for text classification). The multinomial distribution normally requires integer feature counts. However,     in practice, fractional counts such as tf-idf may also work.\r\n\r\nGaussian Naive Bayes.  When dealing with continuous data, a typical assumption is that the continuous values associated with each class are distributed according to a Gaussian distribution."
+    }
+  },
+  {
+    "pk": 139,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "77a5a0dc-be53-4b5d-9881-0f37c177154a",
+      "abstract_input": 554,
+      "value": "gaussian_nb",
+      "name": "Gaussian naive Bayes"
+    }
+  },
+  {
+    "pk": 140,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "c04401f2-7393-403c-b5c5-03d174f21733",
+      "abstract_input": 554,
+      "value": "multinomial_nb",
+      "name": "Multinomial naive Bayes"
+    }
+  },
+  {
+    "pk": 553,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 212,
+      "name": "Alpha",
+      "short_name": "alp",
+      "uid": "a4802365-d9a0-42b6-b9e9-e0febfc63f68",
+      "default": "1.0",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "alpha",
+      "parameter": true,
+      "order": 2,
+      "description": "Additive (Laplace/Lidstone) smoothing parameter (0 for no smoothing). Parameter is only used with Multinomial naive Bayes."
+    }
+  },
+  {
+    "pk": 219,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 212,
+      "name": "Classifier",
+      "short_name": "csf",
+      "variable": "classifier",
+      "uid": "d714edc2-c59f-478f-a746-cc6a6577f534",
+      "order": 1,
+      "description": ""
+    }
+  }
+]

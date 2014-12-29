@@ -3620,7 +3620,7 @@
       "wsdl": "",
       "interactive": false,
       "has_progress_bar": false,
-      "order": 13,
+      "order": 1,
       "description": "TODO"
     }
   },
@@ -3709,7 +3709,7 @@
       "wsdl": "",
       "interactive": false,
       "has_progress_bar": false,
-      "order": 15,
+      "order": 2,
       "description": "Automatically generated widget from function TrainClassifier in package latino. The original function signature: TrainClassifier."
     }
   },
@@ -3770,7 +3770,7 @@
       "parent": 46,
       "workflow": null,
       "user": null,
-      "order": 1,
+      "order": 2,
       "name": "Nltk"
     }
   },
