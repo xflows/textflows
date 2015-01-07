@@ -296,7 +296,7 @@
     "fields": {
       "category": 58,
       "treeview_image": "",
-      "name": "Naive Bayes Classifier",
+      "name": "Gaussian Naive Bayes Classifier",
       "is_streaming": false,
       "uid": "2f5e2bd7-5d8c-4631-b843-2a9016bd1fe6",
       "interaction_view": "",
@@ -308,69 +308,13 @@
       "user": null,
       "visualization_view": "",
       "streaming_visualization_view": "",
-      "action": "sc_naivebayes",
+      "action": "sc_gaussian_nb",
       "wsdl_method": "",
       "wsdl": "",
       "interactive": false,
       "has_progress_bar": false,
       "order": 1,
-      "description": "Naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes' theorem with strong (naive) independence assumptions between the features."
-    }
-  },
-  {
-    "pk": 554,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 212,
-      "name": "Parameter estimation",
-      "short_name": "pre",
-      "uid": "4ec5c9a1-218f-43fd-9dd3-171015f29345",
-      "default": "gaussian_nb",
-      "required": true,
-      "multi": false,
-      "parameter_type": "select",
-      "variable": "type",
-      "parameter": true,
-      "order": 1,
-      "description": "The multinomial Naive Bayes classifier is suitable for classification with discrete features (e.g., word counts for text classification). The multinomial distribution normally requires integer feature counts. However,     in practice, fractional counts such as tf-idf may also work.\r\n\r\nGaussian Naive Bayes.  When dealing with continuous data, a typical assumption is that the continuous values associated with each class are distributed according to a Gaussian distribution."
-    }
-  },
-  {
-    "pk": 139,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "77a5a0dc-be53-4b5d-9881-0f37c177154a",
-      "abstract_input": 554,
-      "value": "gaussian_nb",
-      "name": "Gaussian naive Bayes"
-    }
-  },
-  {
-    "pk": 140,
-    "model": "workflows.abstractoption",
-    "fields": {
-      "uid": "c04401f2-7393-403c-b5c5-03d174f21733",
-      "abstract_input": 554,
-      "value": "multinomial_nb",
-      "name": "Multinomial naive Bayes"
-    }
-  },
-  {
-    "pk": 553,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 212,
-      "name": "Alpha",
-      "short_name": "alp",
-      "uid": "a4802365-d9a0-42b6-b9e9-e0febfc63f68",
-      "default": "1.0",
-      "required": true,
-      "multi": false,
-      "parameter_type": "text",
-      "variable": "alpha",
-      "parameter": true,
-      "order": 2,
-      "description": "Additive (Laplace/Lidstone) smoothing parameter (0 for no smoothing). Parameter is only used with Multinomial naive Bayes."
+      "description": "Gaussian Naive Bayes.  When dealing with continuous data, a typical assumption is that the continuous values associated with each class are distributed according to a Gaussian distribution."
     }
   },
   {
@@ -382,6 +326,552 @@
       "short_name": "csf",
       "variable": "classifier",
       "uid": "d714edc2-c59f-478f-a746-cc6a6577f534",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 216,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 58,
+      "treeview_image": "",
+      "name": "k-Nearest Neighbours",
+      "is_streaming": false,
+      "uid": "588104e6-365c-4a5f-8b80-5837a05e01d4",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "classifier_knn_image.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "sc_knn",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "Classifier implementing the k-nearest neighbors vote."
+    }
+  },
+  {
+    "pk": 564,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 216,
+      "name": "Number of neighbors",
+      "short_name": "nne",
+      "uid": "5bd7564a-a9a4-4dc4-ad57-13c00fb47200",
+      "default": "5",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "n_neighbors",
+      "parameter": true,
+      "order": 1,
+      "description": "Number of neighbors to use by default for k_neighbors queries."
+    }
+  },
+  {
+    "pk": 566,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 216,
+      "name": "Algorithm",
+      "short_name": "alg",
+      "uid": "d1e42d54-c63c-4672-920c-4bc2d054f1b3",
+      "default": "auto",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "algorithm",
+      "parameter": true,
+      "order": 2,
+      "description": "Algorithm used to compute the nearest neighbors:\r\n‘ball_tree’ will use BallTree\r\n‘kd_tree’ will use KDTree\r\n‘brute’ will use a brute-force search.\r\n‘auto’ will attempt to decide the most appropriate algorithm based on the values passed to fit method.\r\nNote: fitting on sparse input will override the setting of this parameter, using brute force."
+    }
+  },
+  {
+    "pk": 155,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "c8c8d4fc-019f-45a9-bba3-4d1b44c84cfe",
+      "abstract_input": 566,
+      "value": "ball_tree",
+      "name": "ball tree"
+    }
+  },
+  {
+    "pk": 157,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "e8c64f20-490f-4a31-aff8-588f9232d9dc",
+      "abstract_input": 566,
+      "value": "brute",
+      "name": "brute"
+    }
+  },
+  {
+    "pk": 156,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "ae295113-d31f-43eb-9050-808a49760a99",
+      "abstract_input": 566,
+      "value": "kd_tree",
+      "name": "kd tree"
+    }
+  },
+  {
+    "pk": 154,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "4e5c5456-a65e-4809-9800-b773e6267c0e",
+      "abstract_input": 566,
+      "value": "auto",
+      "name": "most appropriate (automatically)"
+    }
+  },
+  {
+    "pk": 565,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 216,
+      "name": "Weights",
+      "short_name": "wei",
+      "uid": "0bd35788-b7cf-463d-9327-7b81bdad358e",
+      "default": "uniform",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "weights",
+      "parameter": true,
+      "order": 3,
+      "description": "weight function used in prediction. Possible values:\r\n‘uniform’ : uniform weights. All points in each neighborhood are weighted equally.\r\n‘distance’ : weight points by the inverse of their distance. in this case, closer neighbors of a query point will have a greater influence than neighbors which are further away.\r\n[callable] : a user-defined function which accepts an array of distances, and returns an array of the same shape containing the weights.\r\nUniform weights are used by default."
+    }
+  },
+  {
+    "pk": 153,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "fc673c5a-118f-4538-9c3f-06e42de311b3",
+      "abstract_input": 565,
+      "value": "distance",
+      "name": "distance"
+    }
+  },
+  {
+    "pk": 152,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "15104e2e-020b-4364-8e75-7abe3453847b",
+      "abstract_input": 565,
+      "value": "uniform",
+      "name": "uniform"
+    }
+  },
+  {
+    "pk": 223,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 216,
+      "name": "Classifier",
+      "short_name": "csf",
+      "variable": "classifier",
+      "uid": "1317a3d6-0e37-4579-a82c-3697cef1e7dd",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 214,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 58,
+      "treeview_image": "",
+      "name": "Linear Support Vector Classification",
+      "is_streaming": false,
+      "uid": "b6919040-e04c-4f52-9bb4-cd2c2b7a963c",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "classifier_svm_image.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "sc_linear_svc",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "Linear Support Vector Classification. Similar to SVC with parameter kernel=’linear’, but implemented in terms of liblinear rather than libsvm, so it has more flexibility in the choice of penalties and loss functions and should scale better (to large numbers of samples)."
+    }
+  },
+  {
+    "pk": 557,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 214,
+      "name": "C",
+      "short_name": "ccc",
+      "uid": "2d4cbcee-9ca4-4db2-ad5f-aa86aa5e91cb",
+      "default": "1.0",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "C",
+      "parameter": true,
+      "order": 1,
+      "description": "Penalty parameter C of the error term."
+    }
+  },
+  {
+    "pk": 560,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 214,
+      "name": "Loss",
+      "short_name": "lss",
+      "uid": "119c1119-8669-4194-9ba5-89550cfa6d96",
+      "default": "l2",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "loss",
+      "parameter": true,
+      "order": 2,
+      "description": "Specifies the loss function. ‘l1’ is the hinge loss (standard SVM) while ‘l2’ is the squared hinge loss."
+    }
+  },
+  {
+    "pk": 145,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "402c61c1-f2e4-4a2c-969e-ac0751fbc8c5",
+      "abstract_input": 560,
+      "value": "l1",
+      "name": "l1"
+    }
+  },
+  {
+    "pk": 146,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "5fd8b8dd-8b3b-4996-ba83-ae2dfa9c8a4c",
+      "abstract_input": 560,
+      "value": "l2",
+      "name": "l2"
+    }
+  },
+  {
+    "pk": 559,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 214,
+      "name": "Penalty",
+      "short_name": "pen",
+      "uid": "78a41810-b898-4990-bd8d-bd05ba6544da",
+      "default": "l2",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "penalty",
+      "parameter": true,
+      "order": 3,
+      "description": "Specifies the norm used in the penalization. The ‘l2’ penalty is the standard used in SVC. The ‘l1’ leads to coef_ vectors that are sparse."
+    }
+  },
+  {
+    "pk": 143,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "db887f99-13c5-4f19-9b44-ac2ed41155fa",
+      "abstract_input": 559,
+      "value": "l1",
+      "name": "l1"
+    }
+  },
+  {
+    "pk": 144,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "a93af0bc-1654-4891-bea9-51cb93cf44f1",
+      "abstract_input": 559,
+      "value": "l2",
+      "name": "l2"
+    }
+  },
+  {
+    "pk": 558,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 214,
+      "name": "Multi class",
+      "short_name": "mlc",
+      "uid": "319161b1-be5d-4260-8a8c-583083804e60",
+      "default": "ovr",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "multi_class",
+      "parameter": true,
+      "order": 4,
+      "description": "Determines the multi-class strategy if y contains more than two classes. ovr trains n_classes one-vs-rest classifiers, while crammer_singer optimizes a joint objective over all classes. While crammer_singer is interesting from an theoretical perspective as it is consistent it is seldom used in practice and rarely leads to better accuracy and is more expensive to compute. If crammer_singer is choosen, the options loss, penalty and dual will be ignored."
+    }
+  },
+  {
+    "pk": 142,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "6ab05b2c-7706-4b89-ab64-1beb161c1085",
+      "abstract_input": 558,
+      "value": "crammer_singer",
+      "name": "crammer singer"
+    }
+  },
+  {
+    "pk": 141,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "aa692bd8-730f-49f9-b800-4430d07edbc9",
+      "abstract_input": 558,
+      "value": "ovr",
+      "name": "ovr"
+    }
+  },
+  {
+    "pk": 221,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 214,
+      "name": "Classifier",
+      "short_name": "csf",
+      "variable": "classifier",
+      "uid": "a15c4049-0dea-4b81-a073-1d96926313ab",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 213,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 58,
+      "treeview_image": "",
+      "name": "Multinomial Naive Bayes Classifier",
+      "is_streaming": false,
+      "uid": "b0c86eed-6ce9-4c0d-b896-706b7810b173",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "classifier_naive_bayes_image.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "sc_multinomial_nb",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "The multinomial Naive Bayes classifier is suitable for classification with discrete features (e.g., word counts for text classification). The multinomial distribution normally requires integer feature counts. However, in practice, fractional counts such as tf-idf may also work."
+    }
+  },
+  {
+    "pk": 555,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 213,
+      "name": "Alpha",
+      "short_name": "alp",
+      "uid": "5004eb4f-a852-4a88-a51b-1c2cca8f6427",
+      "default": "1.0",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "alpha",
+      "parameter": true,
+      "order": 1,
+      "description": "Additive (Laplace/Lidstone) smoothing parameter (0 for no smoothing). "
+    }
+  },
+  {
+    "pk": 556,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 213,
+      "name": "Fit prior",
+      "short_name": "fpr",
+      "uid": "0b52c6d6-724c-4b8a-831a-71f66548eff3",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": "checkbox",
+      "variable": "fit_prior",
+      "parameter": true,
+      "order": 1,
+      "description": "Whether to learn class prior probabilities or not.\r\n        If false, a uniform prior will be used."
+    }
+  },
+  {
+    "pk": 220,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 213,
+      "name": "Classifier",
+      "short_name": "csf",
+      "variable": "classifier",
+      "uid": "99ef0e30-5970-430f-a62b-3c436d543c4d",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 215,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 58,
+      "treeview_image": "",
+      "name": "Support Vector Classification",
+      "is_streaming": false,
+      "uid": "890cfb15-c08a-4487-bfa0-0a0192b3885f",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "classifier_svm_image.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "sc_svc",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "Implementation of Support Vector Machine classifier using libsvm: the kernel can be non-linear but its SMO algorithm does not scale to large number of samples as LinearSVC does. Furthermore SVC multi-class mode is implemented using one vs one scheme while LinearSVC uses one vs the rest."
+    }
+  },
+  {
+    "pk": 561,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 215,
+      "name": "C",
+      "short_name": "ccc",
+      "uid": "a88c330e-f55a-4ca9-9c7f-c818651b42a4",
+      "default": "1.0",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "C",
+      "parameter": true,
+      "order": 1,
+      "description": "Penalty parameter C of the error term."
+    }
+  },
+  {
+    "pk": 562,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 215,
+      "name": "Degree",
+      "short_name": "deg",
+      "uid": "96d70c8f-8da5-4c84-88be-f2f447c1b715",
+      "default": "3",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "degree",
+      "parameter": true,
+      "order": 2,
+      "description": "Degree of the polynomial kernel function (‘poly’). Ignored by all other kernels."
+    }
+  },
+  {
+    "pk": 563,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 215,
+      "name": "Kernel",
+      "short_name": "ker",
+      "uid": "78abb5f8-3ed5-49f1-995d-7dfb81977a79",
+      "default": "rbf",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "kernel",
+      "parameter": true,
+      "order": 3,
+      "description": "Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used. If a callable is given it is used to precompute the kernel matrix."
+    }
+  },
+  {
+    "pk": 147,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "2d008858-03a0-4b4d-b3d8-af2c4210075e",
+      "abstract_input": 563,
+      "value": "linear",
+      "name": "linear"
+    }
+  },
+  {
+    "pk": 148,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "2d463c16-e4f5-40d3-a752-c881abe075f1",
+      "abstract_input": 563,
+      "value": "poly",
+      "name": "poly"
+    }
+  },
+  {
+    "pk": 150,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "c9f66639-75db-48b1-972e-012408da741e",
+      "abstract_input": 563,
+      "value": "precomputed",
+      "name": "precomputed"
+    }
+  },
+  {
+    "pk": 151,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "875652ff-d962-4544-a081-3bb829cbae04",
+      "abstract_input": 563,
+      "value": "rbf",
+      "name": "rbf"
+    }
+  },
+  {
+    "pk": 149,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "c780c9c3-b981-4dba-947f-93dbb3ac6f45",
+      "abstract_input": 563,
+      "value": "sigmoid",
+      "name": "sigmoid"
+    }
+  },
+  {
+    "pk": 222,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 215,
+      "name": "Classifier",
+      "short_name": "csf",
+      "variable": "classifier",
+      "uid": "350f1806-86ef-46f4-8027-0b2d0fb13e74",
       "order": 1,
       "description": ""
     }
