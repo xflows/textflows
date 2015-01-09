@@ -16,3 +16,6 @@ django-discover-runner==1.0
 numpy
 scipy
 scikit-learn
+liac-arff==2.0.1
+networkx==1.9.1
+
