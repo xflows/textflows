@@ -1,4 +1,17 @@
 import nltk
+from workflows.textflows import *
+from tagging_common import universal_word_tagger_hub
+
+def stem_lemma_tagger_hub(input_dict):
+    if isinstance(input_dict['tagger'],LatinoObject): #check if this is a latino object
+        from ...latino.library_gen import latino_tag_adcstem_lemma
+        return latino_tag_adcstem_lemma(input_dict)
+    else:
+        adc = input_dict['adc']
+        tagger_dict = input_dict['tagger']
+        input_annotation = input_dict['element_annotation']
+        output_annotation = input_dict['output_feature']
+        return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
 
 # STEMMERS
 def nltk_lancaster_stemmer(input_dict):
@@ -47,10 +60,10 @@ def nltk_regexp_stemmer(input_dict):
     :param min: The minimum length of string to stem
     """
 
-    regexp = input_dict["regexp"]
-    _min = int(input_dict["min"])
+    regexp = input_dict["regexp"] #default ing$|s$|e$|able$
+    min = int(input_dict["min"]) #default 4
     return {'tagger':
-                {'object': nltk.stem.regexp.RegexpStemmer(regexp=regexp, min=_min),
+                {'object': NltkRegexpStemmer(regexp, min=min),
                  'function': 'stem',
                 }
     }

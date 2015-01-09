@@ -230,6 +230,19 @@ class NltkRegexpTokenizer():
     def span_tokenize(self,text):
         return nltk.RegexpTokenizer(self._pattern,**self._kargs).span_tokenize(text)
 
+class NltkRegexpStemmer():
+    """ Wrapper for Nltk RegexStemmer. Python's regular expressions are not picklable.
+    """
+    _pattern=''
+    _kargs={}
+
+    def __init__(self,pattern,**kargs):
+        self._pattern=pattern
+        self._kargs=kargs
+
+    def stem(self,text):
+        return nltk.stem.RegexpStemmer(self._pattern,**self._kargs).stem(text)
+
 
 class NltkClassifier():
     """ This is a wrapper for Nltk classifiers. Nltk classifiers do not have an appropriate __init__

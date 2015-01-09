@@ -169,7 +169,15 @@ function recursiveDelete(widget) {
     var i = 0;
     $("div#tabs ul li").each(function() {
         if ($(this).children("a").attr('href')=="#canvas"+workflow_link) {
-            $("#tabs").tabs("remove",i);
+            //$("#tabs").tabs("remove",i);
+            // Remove the tab
+            var tab = $( "#tabs" ).find( ".ui-tabs-nav li:eq("+i+")" ).remove();
+            // Find the id of the associated panel
+            var panelId = tab.attr( "aria-controls" );
+            // Remove the panel
+            $( "#" + panelId ).remove();
+            // Refresh the tabs widget
+            $( "tabs" ).tabs( "refresh" );
         }
         i++;
     });
@@ -261,7 +269,14 @@ function deleteSelected() {
                 var i = 0;
                 $("div#tabs ul li").each(function() {
                     if ($(this).children("a").attr('href')=="#canvas"+data.delete_tab) {
-                        $("#tabs").tabs("remove",i);
+                        // Remove the tab
+                        var tab = $( "#tabs" ).find( ".ui-tabs-nav li:eq("+i+")" ).remove();
+                        // Find the id of the associated panel
+                        var panelId = tab.attr( "aria-controls" );
+                        // Remove the panel
+                        $( "#" + panelId ).remove();
+                        // Refresh the tabs widget
+                        $( "tabs" ).tabs( "refresh" );
                     }
                     i++;
                 });
@@ -1019,10 +1034,14 @@ function updateWidgetListeners() {
                 var thisWidget = this;
                 $.post(url['get-subprocess'], { 'widget_id':$(thisWidget).attr('rel') }, function(data) {
                 $(thisWidget).data("workflow_link",data.workflow_link);
-
+č
                 $("#tabs").append('<div rel="'+data.workflow_link+'" class="canvas'+data.workflow_link+' canvas" id="canvas'+data.workflow_link+'"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position:absolute;top:0px;left:0px;width:100%;height:100%;"></svg></div>');
-                $("#tabs").tabs("add","#canvas"+data.workflow_link,data.workflow_name);
-                $("#tabs").tabs("select","#canvas"+$(thisWidget).data('workflow_link'));
+                //$("#tabs").tabs("add","#canvas"+data.workflow_link,data.workflow_name);
+                $( "<li><a href='#canvas"+data.workflow_link+"'>"+data.workflow_name+"</a></li>" )
+                .appendTo( "#tabs .ui-tabs-nav" );
+                $( "#tabs" ).tabs( "refresh" );
+
+                $("#tabs").tabs("option","active",-1);
                 activeCanvasId = $(thisWidget).data('workflow_link');
                 activeCanvas = $(".canvas"+activeCanvasId);
                 resizeCanvas();
@@ -1032,7 +1051,7 @@ function updateWidgetListeners() {
             },'json');
 
             } else {
-            $("#tabs").tabs("select","#canvas"+this_workflow_link);
+            $("#tabs").tabs("option","active",$("#canvas"+this_workflow_link).index());
             activeCanvasId = this_workflow_link;
             activeCanvas = $(".canvas"+activeCanvasId);
             resizeCanvas();
@@ -1268,8 +1287,8 @@ function resizeCanvas() {
 // this is the jquery document ready function. It executes when the entire DOM is loaded
 $(function(){
 	$("#tabs").tabs({
-	select: function(event, ui) {
-		activeCanvasId = $(ui.panel).attr('rel');
+	beforeActivate: function(event, ui) {
+		activeCanvasId = $(ui.oldPanel).attr('rel');
 		activeCanvas = $("#canvas"+activeCanvasId);
 		resizeCanvas();
 		resizeWidgets();

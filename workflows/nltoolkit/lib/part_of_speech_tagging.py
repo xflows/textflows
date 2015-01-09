@@ -1,4 +1,4 @@
-from nltk.tag.util       import str2tuple, tuple2str, untag
+from tagging_common import universal_sentence_tagger_hub
 #from nltk.tag.simplify   import (simplify_brown_tag, simplify_wsj_tag,
 #                                 simplify_indian_tag, simplify_alpino_tag,
 #                                 simplify_tag)
@@ -15,9 +15,15 @@ from nltk.tag.stanford   import StanfordTagger
 #from nltk.tag.crf        import MalletCRF
 from django.conf import settings
 
+def pos_tagger_hub(input_dict):
+    if type(input_dict['pos_tagger'])!=dict: #check if this is a latino object
+        from ...latino.library_gen import latino_pos_tag
+        return latino_pos_tag(input_dict)
+    else:
+        return universal_sentence_tagger_hub(input_dict)
+
+
 from workflows.textflows import DocumentCorpus
-
-
 def corpus_reader(corpus):
     if type(corpus)==DocumentCorpus:
         raise NotImplementedError
