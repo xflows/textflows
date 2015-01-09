@@ -58,7 +58,6 @@ def sc_linear_svc(input_dict):
     :return: scikit classifier
     """
     from sklearn.svm import LinearSVC
-    print input_dict
 
     classifier = LinearSVC(C=float(input_dict["C"]),
                            loss=input_dict["loss"],
@@ -114,6 +113,56 @@ def sc_knn(input_dict):
     return {'classifier': classifier}
 
 
+def sc_logreg(input_dict):
+    """
+    Logistic regression, despite its name, is a linear model for classification rather than regression. Logistic
+    regression is also known in the literature as logit regression, maximum-entropy classification (MaxEnt) or the
+    log-linear classifier. In this model, the probabilities describing the possible outcomes of a single trial are
+    modeled using a logistic function.
+
+    :param input_dict (default): {u'penalty': u'l1', u'C': u'1.0'}
+    :param penalty : string, l1 or l2 Used to specify the norm used in the penalization.
+    :param C : float, optional (default=1.0)
+    Inverse of regularization strength; must be a positive float. Like in support vector machines, smaller values specify stronger regularization.
+
+    :return: scikit classifier
+    """
+    from sklearn.linear_model import LogisticRegression
+
+    classifier = LogisticRegression(penalty=str(input_dict["penalty"]), C=float(input_dict["C"]))
+    return {'classifier': classifier}
+
+
+def sc_decision_tree(input_dict):
+    """
+    A decision tree is a decision support tool that uses a tree-like graph or model of decisions and their possible
+    consequences, including chance event outcomes, resource costs, and utility.
+
+    :param input_dict (default): {u'max_features': u'auto', u'max_depth': u'100'}
+    :param max_features : int, float, string or None, optional (default=auto) The number of features to consider when
+        looking for the best split:
+        If int, then consider max_features features at each split.
+        If float, then max_features is a percentage and int(max_features * n_features) features are considered at each split.
+        If auto, then max_features=sqrt(n_features).
+        If sqrt, then max_features=sqrt(n_features).
+        If log2, then max_features=log2(n_features).
+        Note: the search for a split does not stop until at least one valid partition of the node samples is found,
+        even if it requires to effectively inspect more than max_features features.
+    :param max_depth : int or None, optional (default=100) The maximum depth of the tree. If None, then nodes are
+        expanded until all leaves are pure or until all leaves contain less than min_samples_split samples. Ignored if
+        max_samples_leaf is not None.
+    :return: scikit classifier
+    """
+    from sklearn import tree
+
+    #parse input and determin its type
+    try:
+        max_features = float(input_dict["max_features"]) if '.' in input_dict["max_features"] else int(input_dict["max_features"]) #return int or float
+    except ValueError:
+        max_features = input_dict["max_features"] #return string
+
+    classifier = tree.DecisionTreeClassifier(max_features=max_features, max_depth=int(input_dict["max_depth"]))
+    return {'classifier': classifier}
 
 
 

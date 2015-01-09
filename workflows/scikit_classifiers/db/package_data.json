@@ -291,6 +291,82 @@
     }
   },
   {
+    "pk": 218,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 58,
+      "treeview_image": "",
+      "name": "Decision Tree",
+      "is_streaming": false,
+      "uid": "a49766ca-d6ad-4183-8885-721e86217a1c",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "scikit_Tree-icon.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "sc_decision_tree",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "A decision tree is a decision support tool that uses a tree-like graph or model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility."
+    }
+  },
+  {
+    "pk": 569,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 218,
+      "name": "Max features",
+      "short_name": "mxf",
+      "uid": "3e4ce114-9637-4889-b163-e74c641c460d",
+      "default": "auto",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "max_features",
+      "parameter": true,
+      "order": 1,
+      "description": "The number of features to consider when looking for the best split:\r\nIf int, then consider max_features features at each split.\r\nIf float, then max_features is a percentage and int(max_features * n_features) features are considered at each split.\r\nIf “auto”, then max_features=sqrt(n_features).\r\nIf “sqrt”, then max_features=sqrt(n_features).\r\nIf “log2”, then max_features=log2(n_features).\r\nIf None, then max_features=n_features."
+    }
+  },
+  {
+    "pk": 570,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 218,
+      "name": "Max depth ",
+      "short_name": "mxd",
+      "uid": "a8a60a8b-dc57-48ad-a724-487e28751987",
+      "default": "100",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "max_depth",
+      "parameter": true,
+      "order": 2,
+      "description": "The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all leaves contain less than min_samples_split samples. "
+    }
+  },
+  {
+    "pk": 225,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 218,
+      "name": "Classifier",
+      "short_name": "csf",
+      "variable": "classifier",
+      "uid": "1b63f0a1-0588-40dc-aaa8-79470bc0a1fa",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
     "pk": 212,
     "model": "workflows.abstractwidget",
     "fields": {
@@ -652,6 +728,102 @@
       "short_name": "csf",
       "variable": "classifier",
       "uid": "a15c4049-0dea-4b81-a073-1d96926313ab",
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 217,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 58,
+      "treeview_image": "",
+      "name": "Logistic regression",
+      "is_streaming": false,
+      "uid": "e67c914d-07e9-4b5e-80f9-673c5fbbbfd2",
+      "interaction_view": "",
+      "image": "",
+      "package": "scikit_classifiers",
+      "static_image": "scikit_LogisticRegression.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "sc_logreg",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "Logistic regression, despite its name, is a linear model for classification rather than regression. Logistic regression is also known in the literature as logit regression, maximum-entropy classification (MaxEnt) or the log-linear classifier. In this model, the probabilities describing the possible outcomes of a single trial are modeled using a logistic function."
+    }
+  },
+  {
+    "pk": 568,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 217,
+      "name": "Penalty",
+      "short_name": "pen",
+      "uid": "293f61a4-d662-4d1c-914e-0fa0d0786912",
+      "default": "l1",
+      "required": true,
+      "multi": false,
+      "parameter_type": "select",
+      "variable": "penalty",
+      "parameter": true,
+      "order": 1,
+      "description": "Used to specify the norm used in the penalization."
+    }
+  },
+  {
+    "pk": 158,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "ac1b9369-dbf7-4172-a4fd-fd9ccde768b4",
+      "abstract_input": 568,
+      "value": "l1",
+      "name": "l1"
+    }
+  },
+  {
+    "pk": 159,
+    "model": "workflows.abstractoption",
+    "fields": {
+      "uid": "48f1dce5-ece5-436d-a23a-b899fff7e6c7",
+      "abstract_input": 568,
+      "value": "l2",
+      "name": "l2"
+    }
+  },
+  {
+    "pk": 567,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 217,
+      "name": "C",
+      "short_name": "ccc",
+      "uid": "2869f6df-0431-4a87-8790-7236d78fcc88",
+      "default": "1.0",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "C",
+      "parameter": true,
+      "order": 2,
+      "description": "Inverse of regularization strength; must be a positive float. Like in support vector machines, smaller values specify stronger regularization."
+    }
+  },
+  {
+    "pk": 224,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 217,
+      "name": "Classifier",
+      "short_name": "csf",
+      "variable": "classifier",
+      "uid": "78830a40-559b-4375-911f-6afd1348e757",
       "order": 1,
       "description": ""
     }

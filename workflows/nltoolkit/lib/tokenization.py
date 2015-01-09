@@ -188,6 +188,7 @@ def nltk_stanford_tokenizer(input_dict):
 
     return {'tokenizer': {'object': StanfordTokenizer()}}
 
+
 def nltk_text_tiling_tokenizer(input_dict):
     """
     Tokenize a document into topical sections using the TextTiling algorithm.
@@ -221,8 +222,6 @@ def nltk_text_tiling_tokenizer(input_dict):
     smoothing_width = int(input_dict["smoothing_width"])
     smoothing_rounds = int(input_dict["smoothing_rounds"])
     cutoff_policy = input_dict["cutoff_policy"]
-
-    #print w, k, similarity_method, stopwords, smoothing_width, smoothing_rounds, cutoff_policy
 
     return {'tokenizer': {  'object': TextTilingTokenizer(w=w,
                                                           k=k,
