@@ -1,269 +1,120 @@
 [
   {
-    "pk": 57,
+    "pk": 45,
     "model": "workflows.category",
     "fields": {
-      "uid": "1e366c76-9a29-4b3b-bcca-4089d89bc8ba",
+      "uid": "9571d766-09a1-4e85-9f13-974c76c15f9e",
       "parent": null,
       "workflow": null,
       "user": null,
-      "order": 1,
-      "name": "Scikit_classifiers"
+      "order": 8,
+      "name": "Clustering"
     }
   },
   {
-    "pk": 208,
+    "pk": 59,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "d6227d82-f8cf-4511-854c-190bfffc2e0a",
+      "parent": 45,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Scikit"
+    }
+  },
+  {
+    "pk": 219,
     "model": "workflows.abstractwidget",
     "fields": {
-      "category": 57,
+      "category": 59,
       "treeview_image": "",
-      "name": "Create Integer List",
+      "name": "k-Means",
       "is_streaming": false,
-      "uid": "92c49065-6cc2-47e1-87f1-e6f6777661a3",
+      "uid": "932984f8-6726-4e41-af86-101888b4e41d",
       "interaction_view": "",
       "image": "",
       "package": "scikit_classifiers",
-      "static_image": "construction_work .png",
+      "static_image": "",
       "windows_queue": false,
       "post_interact_action": "",
       "user": null,
       "visualization_view": "",
       "streaming_visualization_view": "",
-      "action": "scikit_classifiers_create_integers",
+      "action": "sc_kmeans",
       "wsdl_method": "",
       "wsdl": "",
       "interactive": false,
       "has_progress_bar": false,
       "order": 1,
-      "description": ""
+      "description": "The KMeans algorithm clusters data by trying to separate samples in n groups of equal variance, minimizing a criterion known as the inertia <inertia> or within-cluster sum-of-squares. This algorithm requires the number of clusters to be specified. It scales well to large number of samples and has been used across a large range of application areas in many different fields."
     }
   },
   {
-    "pk": 547,
+    "pk": 571,
     "model": "workflows.abstractinput",
     "fields": {
-      "widget": 208,
-      "name": "Integer List String",
-      "short_name": "str",
-      "uid": "0bb39532-7e5d-4f51-944f-51cb099511ef",
-      "default": "3\r\n2\r\n1\r\n4",
-      "required": false,
-      "multi": false,
-      "parameter_type": "textarea",
-      "variable": "intStr",
-      "parameter": true,
-      "order": 1,
-      "description": "Comma or new-line separated list of integers"
-    }
-  },
-  {
-    "pk": 548,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 208,
-      "name": "Sort list",
-      "short_name": "bol",
-      "uid": "b66484cc-0785-4d93-aeef-41bf0f886914",
-      "default": "true",
+      "widget": 219,
+      "name": "Number of clusters",
+      "short_name": "noc",
+      "uid": "d4f839fc-816a-43c6-8ec2-8bb5ce51e515",
+      "default": "8",
       "required": true,
       "multi": false,
-      "parameter_type": "checkbox",
-      "variable": "sort",
+      "parameter_type": "text",
+      "variable": "n_clusters",
       "parameter": true,
-      "order": 2,
-      "description": "Should the list be sorted"
-    }
-  },
-  {
-    "pk": 216,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 208,
-      "name": "Integer List",
-      "short_name": "lst",
-      "variable": "intList",
-      "uid": "52d65fa7-f694-462b-af0b-96750c01e4b2",
       "order": 1,
-      "description": "List of integers"
+      "description": "The number of clusters to form as well as the number of centroids to generate."
     }
   },
   {
-    "pk": 209,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 57,
-      "treeview_image": "",
-      "name": "Filter Integers",
-      "is_streaming": false,
-      "uid": "657ca399-5234-4b1c-91b5-a8b8be1c8f26",
-      "interaction_view": "scikit_classifiers_filter_integers",
-      "image": "",
-      "package": "scikit_classifiers",
-      "static_image": "construction_work .png",
-      "windows_queue": false,
-      "post_interact_action": "scikit_classifiers_post_filter_integers",
-      "user": null,
-      "visualization_view": "",
-      "streaming_visualization_view": "",
-      "action": "scikit_classifiers_pre_filter_integers",
-      "wsdl_method": "",
-      "wsdl": "",
-      "interactive": true,
-      "has_progress_bar": false,
-      "order": 2,
-      "description": ""
-    }
-  },
-  {
-    "pk": 549,
+    "pk": 572,
     "model": "workflows.abstractinput",
     "fields": {
-      "widget": 209,
-      "name": "Integer List",
-      "short_name": "lst",
-      "uid": "9ae47c5e-539c-476a-8c7e-812ab2a5bb1b",
-      "default": "",
+      "widget": 219,
+      "name": "Max iterations",
+      "short_name": "mit",
+      "uid": "18b3159c-3aa7-40da-85a4-38c3f4f98b16",
+      "default": "300",
       "required": true,
       "multi": false,
-      "parameter_type": null,
-      "variable": "intList",
-      "parameter": false,
-      "order": 1,
-      "description": "List of integers"
+      "parameter_type": "text",
+      "variable": "max_iter",
+      "parameter": true,
+      "order": 2,
+      "description": "Maximum number of iterations of the k-means algorithm for a single run."
     }
   },
   {
-    "pk": 217,
-    "model": "workflows.abstractoutput",
+    "pk": 573,
+    "model": "workflows.abstractinput",
     "fields": {
-      "widget": 209,
-      "name": "Filtered Integer List",
-      "short_name": "lst",
-      "variable": "intList",
-      "uid": "db559b89-2299-4cfe-8f6e-c90e9d7c61c3",
-      "order": 1,
-      "description": "Filtered list of integers"
-    }
-  },
-  {
-    "pk": 210,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 57,
-      "treeview_image": "",
-      "name": "Sum Integers",
-      "is_streaming": false,
-      "uid": "09b75459-eba9-4fb2-958e-faa13fd80ce7",
-      "interaction_view": "",
-      "image": "",
-      "package": "scikit_classifiers",
-      "static_image": "construction_work .png",
-      "windows_queue": false,
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "streaming_visualization_view": "",
-      "action": "scikit_classifiers_sum_integers",
-      "wsdl_method": "",
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
+      "widget": 219,
+      "name": "Tolerance",
+      "short_name": "tol",
+      "uid": "b63ce227-2b55-4d29-ad95-5e0b7413c75b",
+      "default": "1e-4",
+      "required": true,
+      "multi": false,
+      "parameter_type": "text",
+      "variable": "tol",
+      "parameter": true,
       "order": 3,
-      "description": ""
+      "description": "Relative tolerance with regards to inertia to declare convergence."
     }
   },
   {
-    "pk": 550,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 210,
-      "name": "Integer List",
-      "short_name": "lst",
-      "uid": "12eedbf8-2c89-47e5-8b2c-6ad1f0f78ab7",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "intList",
-      "parameter": false,
-      "order": 1,
-      "description": "List of integers"
-    }
-  },
-  {
-    "pk": 218,
+    "pk": 226,
     "model": "workflows.abstractoutput",
     "fields": {
-      "widget": 210,
-      "name": "Sum",
-      "short_name": "int",
-      "variable": "sum",
-      "uid": "39e54084-06fd-4a0c-983d-8310de34ef59",
+      "widget": 219,
+      "name": "Clustering",
+      "short_name": "cls",
+      "variable": "clustering",
+      "uid": "eaa0ce7c-fbad-4503-908b-63a367f022ea",
       "order": 1,
-      "description": "Sum of integer list"
-    }
-  },
-  {
-    "pk": 211,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 57,
-      "treeview_image": "",
-      "name": "Display Summation",
-      "is_streaming": false,
-      "uid": "47c4d92b-af90-4307-b9b0-2f4b36ff9f93",
-      "interaction_view": "",
-      "image": "",
-      "package": "scikit_classifiers",
-      "static_image": "construction_work .png",
-      "windows_queue": false,
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "scikit_classifiers_display_summation",
-      "streaming_visualization_view": "",
-      "action": "scikit_classifiers_pre_display_summation",
-      "wsdl_method": "",
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 4,
       "description": ""
-    }
-  },
-  {
-    "pk": 551,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 211,
-      "name": "Integer List",
-      "short_name": "lst",
-      "uid": "c84bc35f-2df0-4a6b-9ab4-18e9a19ee054",
-      "default": "",
-      "required": false,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "intList",
-      "parameter": false,
-      "order": 1,
-      "description": "List of integers"
-    }
-  },
-  {
-    "pk": 552,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 211,
-      "name": "Sum",
-      "short_name": "int",
-      "uid": "e54f725e-b058-49d0-998b-4c4e99c1a32f",
-      "default": "",
-      "required": false,
-      "multi": false,
-      "parameter_type": null,
-      "variable": "sum",
-      "parameter": false,
-      "order": 2,
-      "description": "Sum (possibly correct) of integer list"
     }
   },
   {
