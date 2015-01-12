@@ -1035,7 +1035,7 @@ function updateWidgetListeners() {
                 var thisWidget = this;
                 $.post(url['get-subprocess'], { 'widget_id':$(thisWidget).attr('rel') }, function(data) {
                 $(thisWidget).data("workflow_link",data.workflow_link);
-č
+
                 $("#tabs").append('<div rel="'+data.workflow_link+'" class="canvas'+data.workflow_link+' canvas" id="canvas'+data.workflow_link+'"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position:absolute;top:0px;left:0px;width:100%;height:100%;"></svg></div>');
                 //$("#tabs").tabs("add","#canvas"+data.workflow_link,data.workflow_name);
                 $( "<li><a href='#canvas"+data.workflow_link+"'>"+data.workflow_name+"</a></li>" )
@@ -1289,6 +1289,7 @@ function resizeCanvas() {
 $(function(){
 	$("#tabs").tabs({
 	beforeActivate: function(event, ui) {
+        alert("aa");
 		activeCanvasId = $(ui.oldPanel).attr('rel');
 		activeCanvas = $("#canvas"+activeCanvasId);
 		resizeCanvas();

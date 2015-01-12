@@ -227,9 +227,13 @@ class Workflow(models.Model):
         # Special case when reading from a DB
         input_type = input_list.__class__.__name__
         context = None
+        document_corpus = None
         if input_type == 'DBContext':
             context = input_list
             input_list = context.orng_tables.get(context.target_table, None)
+        elif input_type == 'DocumentCorpus':
+            document_corpus=input_list
+            input_list=document_corpus.documents
 
         if not input_list:
             raise Exception('CrossValidation: Empty input list!')
@@ -248,6 +252,16 @@ class Workflow(models.Model):
                 output_train = input_list.select(indices, i, negate=1)
                 output_test = input_list.select(indices, i)
                 folds.append((output_train, output_test))
+        elif input_type == 'DocumentCorpus':
+            from sklearn.cross_validation import StratifiedKFold,KFold
+
+            if 'classes' in document_corpus.features:
+                labels=[doc.get_first_label(document_corpus.features['classes']) for doc in input_list]
+                stf=StratifiedKFold(labels,n_folds=input_fold,random_state=input_seed)
+            else:
+                stf=KFold(len(document_corpus.documents),n_folds=input_fold,random_state=input_seed)
+
+            folds=[(list(train_index),list(test_index)) for train_index, test_index in stf]
         else:
             rand.seed(input_seed)
             rand.shuffle(input_list)
@@ -270,6 +284,16 @@ class Workflow(models.Model):
             if hasattr(input_list, "get_items_ref"):
                 output_test = folds[i][1]
                 output_train = folds[i][0]
+            elif input_type == 'DocumentCorpus':
+                import copy
+                train_indices, test_indices= folds[i]
+                print("TRAIN:", train_indices, "TEST:", test_indices)
+
+                output_train = DocumentCorpus(copy.deepcopy([input_list[i] for i in train_indices]),
+                                              copy.deepcopy(document_corpus.features))
+                output_test = DocumentCorpus(copy.deepcopy([input_list[i] for i in test_indices]),
+                                              copy.deepcopy(document_corpus.features))
+
             else:
                 output_train = folds[:i] + folds[i+1:]
                 output_test = folds[i]

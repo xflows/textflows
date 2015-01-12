@@ -59,6 +59,11 @@ class Document:
                                if not ann.features.has_key(stop_word_feature_name)]
             return join_annotations_with.join(selected_subtexts)
 
+    def get_first_label(self,classes):
+        for klass in classes:
+            if klass in self.features:
+                return klass
+
 
 class Annotation:
     def __init__(self, span_start, span_end, type, features=None):
