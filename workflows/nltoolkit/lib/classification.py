@@ -137,11 +137,11 @@ def apply_bow_classifier(input_dict):
         return latino_predict_classification(input_dict)
     elif classifier_package.startswith("sklearn"):
         #example: http://scikit-learn.org/stable/auto_examples/document_classification_20newsgroups.html
-        _results = trained_classifier.predict_proba(testing_dataset)
-        results=convert_to_probdists(trained_classifier,_results)
+        results = trained_classifier.predict_proba(testing_dataset)
+        #results=convert_to_probdists(trained_classifier,_results)
     elif isinstance(trained_classifier,NltkClassifier):
         results=trained_classifier.prob_classify_many(testing_dataset)
     else:
         raise Exception("What are you connecting me to then?")
 
-    return {'labeled_dataset': results}
+    return {'labeled_dataset': None, 'predictions': results}

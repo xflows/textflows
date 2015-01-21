@@ -51,7 +51,7 @@ def nltk_default_pos_tagger(input_dict):
     """
     from nltk.tag import DefaultTagger
     return {'pos_tagger': {
-        'function':'batch_tag',
+        'function':'tag_sents',
         'object': DefaultTagger(input_dict.get('default_tag','-None-'))
         }
     }
@@ -88,7 +88,7 @@ def nltk_affix_pos_tagger(input_dict):
 
 
     return {'pos_tagger': {
-                'function':'batch_tag',
+                'function':'tag_sents',
                 'object': AffixTagger(tagged_corpus, affix_length=affix_length, cutoff=cutoff,
                          min_stem_length=min(min_stem_length, 2), backoff=backoff_tagger)
         }
@@ -129,7 +129,7 @@ def nltk_ngram_pos_tagger(input_dict):
     cutoff=int(input_dict['cutoff']) #default 0
 
     return {'pos_tagger': {
-                'function':'batch_tag',
+                'function':'tag_sents',
                 'object': NgramTagger(n, train=training_corpus, model=None,
                  backoff=backoff_tagger, cutoff=cutoff)
             }
@@ -188,7 +188,7 @@ TODO: odloci se katerega se obdrzi od naslednjih dveh
     tagger_object=ClassifierBasedPOSTagger(train=nltk.corpus.brown.tagged_sents()[:5], classifier=classifier,
                  backoff=backoff_tagger, cutoff_prob=cutoff_prob)
     return {'pos_tagger': {
-                'function':'batch_tag',
+                'function':'tag_sents',
                 'object': tagger_object
             }
     }
@@ -243,7 +243,7 @@ def nltk_brill_pos_tagger(input_dict):
             print(str(rule))
 
     return {'pos_tagger': {
-                'function':'batch_tag',
+                'function':'tag_sents',
                 'object': brill_tagger
             }
     }

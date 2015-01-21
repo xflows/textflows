@@ -40,15 +40,15 @@ class Document:
 
         for a in self.annotations:
             if a.type == element_annotation:
-                if element_feature:
-                    try:
-                        text = a.features[element_feature]
-                    except KeyError:
-                        pass
-                        #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
-                else:
-                    text = self.text[a.span_start:a.span_end+1]
-                annotations_with_text.append((a, text))
+                try:
+                    if element_feature:
+                            text = a.features[element_feature]
+                    else:
+                        text = self.text[a.span_start:a.span_end+1]
+                    annotations_with_text.append((a, text))
+                except KeyError:
+                     #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
+                     pass
         return annotations_with_text
 
     def raw_text(self,selector=None,stop_word_feature_name="StopWord",join_annotations_with=" "):

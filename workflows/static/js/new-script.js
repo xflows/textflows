@@ -1289,8 +1289,7 @@ function resizeCanvas() {
 $(function(){
 	$("#tabs").tabs({
 	beforeActivate: function(event, ui) {
-        alert("aa");
-		activeCanvasId = $(ui.oldPanel).attr('rel');
+		activeCanvasId = $(ui.newPanel).attr('rel');
 		activeCanvas = $("#canvas"+activeCanvasId);
 		resizeCanvas();
 		resizeWidgets();

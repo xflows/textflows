@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from mothra import settings
 import workflows.library
 
 import time
@@ -601,7 +602,7 @@ class Widget(models.Model):
     def run(self,offline):
         """ This is only a hack, to make this work on windows """
         try: 
-            if self.abstract_widget.windows_queue:
+            if not settings.DEBUG and self.abstract_widget.windows_queue:
                 t = runWidget.apply_async([self,offline],queue="windows")
                 t.wait()
             else:
