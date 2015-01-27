@@ -1,0 +1,408 @@
+[
+  {
+    "pk": 69, 
+    "model": "workflows.category", 
+    "fields": {
+      "uid": "23a64dd1-2764-4e22-90c5-f395da1c7dae", 
+      "parent": null, 
+      "workflow": null, 
+      "user": null, 
+      "order": 10, 
+      "name": "Literature Based Discovery"
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "workflows.category", 
+    "fields": {
+      "uid": "d3a0f587-3911-437e-b123-622b6bbc3068", 
+      "parent": 69, 
+      "workflow": null, 
+      "user": null, 
+      "order": 1, 
+      "name": "Heuristic Calculation"
+    }
+  }, 
+  {
+    "pk": 266, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 71, 
+      "treeview_image": "", 
+      "name": "Calculate Term Heuristics Scores", 
+      "is_streaming": false, 
+      "uid": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_calculate_heuristics", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 20, 
+      "description": "Calculate all input heuristics."
+    }
+  }, 
+  {
+    "pk": 640, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 266, 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "442fc5b5-64e0-452d-beed-3cab4373241c", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)"
+    }
+  }, 
+  {
+    "pk": 639, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 266, 
+      "name": "Bag of Words Model", 
+      "short_name": "bwm", 
+      "uid": "91ab0793-3dd2-4c02-917c-4ba446ad325d", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "bow_model", 
+      "parameter": false, 
+      "order": 2, 
+      "description": "Bag of Words Model (BowModel) gathers utilities to build feature vectors from annotated document corpus."
+    }
+  }, 
+  {
+    "pk": 613, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 266, 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "uid": "40dd3ea3-99de-415c-8411-71d1a036dde2", 
+      "default": "", 
+      "required": true, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 3, 
+      "description": "List of heuristic names which scores will be calculated."
+    }
+  }, 
+  {
+    "pk": 263, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 266, 
+      "name": "Calculated B-termHeuristics", 
+      "short_name": "heu", 
+      "variable": "calcs", 
+      "uid": "78873828-e066-43d8-9970-fd794ca072e4", 
+      "order": 1, 
+      "description": "Calculated B-Term Heuristic Scores"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "workflows.category", 
+    "fields": {
+      "uid": "3f354ad3-aab3-43fe-aeb8-b5183cb185be", 
+      "parent": 69, 
+      "workflow": null, 
+      "user": null, 
+      "order": 1, 
+      "name": "Heuristic Specification"
+    }
+  }, 
+  {
+    "pk": 261, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Frequency-based heuristics", 
+      "is_streaming": false, 
+      "uid": "079aae7d-aaa3-4f3c-9990-7bc976bbbba1", 
+      "interaction_view": "lbd_frequency_heuristics", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "lbd_heuristic_selection_post", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristics_selection", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": true, 
+      "has_progress_bar": false, 
+      "order": 1, 
+      "description": "Interactive widget which allows specification of of frquency-based bridging term discovery heuristics."
+    }
+  }, 
+  {
+    "pk": 258, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 261, 
+      "name": "List of Selected Heuristics for Bringing Term Discovery", 
+      "short_name": "lst", 
+      "variable": "heuristics", 
+      "uid": "24da1aca-f3c8-43c7-9f73-9c2100af360c", 
+      "order": 1, 
+      "description": "List of Selected Heuristics for Bringing Term Discovery"
+    }
+  }, 
+  {
+    "pk": 260, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "TF-IDF-based heuristics", 
+      "is_streaming": false, 
+      "uid": "614f692b-07b5-496a-b0d3-a64199adaf62", 
+      "interaction_view": "lbd_tfidf_heuristics", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "lbd_heuristic_selection_post", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristics_selection", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": true, 
+      "has_progress_bar": false, 
+      "order": 2, 
+      "description": "Interactive widget which allows specification of TF-IDF based bridging term discovery heuristics."
+    }
+  }, 
+  {
+    "pk": 257, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 260, 
+      "name": "List of Selected Heuristics for Bringing Term Discovery", 
+      "short_name": "lst", 
+      "variable": "heuristics", 
+      "uid": "80cb8cde-2e9d-4500-a452-daaffe7dd8c6", 
+      "order": 1, 
+      "description": "List of Selected Heuristics for Bringing Term Discovery"
+    }
+  }, 
+  {
+    "pk": 263, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Similarity-based heuristics", 
+      "is_streaming": false, 
+      "uid": "93955580-47ef-46b6-8518-3b563c628cba", 
+      "interaction_view": "lbd_similarity_heuristics", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "lbd_heuristic_selection_post", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristics_selection", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": true, 
+      "has_progress_bar": false, 
+      "order": 3, 
+      "description": "Interactive widget which allows specification of similarity-based bridging term discovery heuristics."
+    }
+  }, 
+  {
+    "pk": 260, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 263, 
+      "name": "List of Selected Heuristics for Bringing Term Discovery", 
+      "short_name": "lst", 
+      "variable": "heuristics", 
+      "uid": "a3828aac-1052-40d9-9896-97800501e38c", 
+      "order": 1, 
+      "description": "List of Selected Heuristics for Bringing Term Discovery"
+    }
+  }, 
+  {
+    "pk": 262, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Outlier-based heuristics", 
+      "is_streaming": false, 
+      "uid": "053f7571-b7a4-4367-a829-abe29d437a02", 
+      "interaction_view": "lbd_outlier_heuristics", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "lbd_heuristic_selection_post", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristics_selection", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": true, 
+      "has_progress_bar": false, 
+      "order": 4, 
+      "description": "Interactive widget which allows specification of outlier-based bridging term discovery heuristics."
+    }
+  }, 
+  {
+    "pk": 259, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 262, 
+      "name": "List of Selected Heuristics for Bringing Term Discovery", 
+      "short_name": "lst", 
+      "variable": "heuristics", 
+      "uid": "5c85dac9-b28c-47a2-ada2-c0c453d1cf23", 
+      "order": 1, 
+      "description": "List of Selected Heuristics for Bringing Term Discovery"
+    }
+  }, 
+  {
+    "pk": 264, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Calculated Heuristic Sum", 
+      "is_streaming": false, 
+      "uid": "c6c5025c-1f31-42f7-a62b-dedb2bf53350", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristic_sum", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 6, 
+      "description": "Defines a calculated heuristic that does a summation of the input heuristics."
+    }
+  }, 
+  {
+    "pk": 611, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 264, 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "uid": "b0f71552-1950-47ad-a348-d03897405e41", 
+      "default": "", 
+      "required": false, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 261, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 264, 
+      "name": "Calculated Heuristic Sum", 
+      "short_name": "heu", 
+      "variable": "heuristic", 
+      "uid": "446f175b-d259-45df-a8e9-4446b60a7bbc", 
+      "order": 1, 
+      "description": "Calculated Heuristic Sum"
+    }
+  }, 
+  {
+    "pk": 265, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Calculated Heuristic Ensamble Vote", 
+      "is_streaming": false, 
+      "uid": "b8736b27-6ea3-4fdd-910f-6a74785f28b1", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristic_vote", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 7, 
+      "description": "Defines a calculated heuristic that does a summation of the input heuristics."
+    }
+  }, 
+  {
+    "pk": 612, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 265, 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "uid": "92dc9fe5-3731-427c-8c99-d927d706ebf4", 
+      "default": "", 
+      "required": false, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 262, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 265, 
+      "name": "Calculated Heuristic Ensamble Vote", 
+      "short_name": "heu", 
+      "variable": "heuristic", 
+      "uid": "1b15122a-4a90-4730-93ea-6aa5b08e6d83", 
+      "order": 1, 
+      "description": "Calculated Heuristic Ensamble Vote"
+    }
+  }
+]

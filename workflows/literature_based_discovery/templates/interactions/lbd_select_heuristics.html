@@ -1,0 +1,35 @@
+<style type="text/css">
+    #widgetinteract-{{ widget.pk }} input {
+        width: 15px;
+        height: 15px;
+    }
+    #widgetinteract-{{ widget.pk }} td{
+        padding: 5px;
+        vertical-align:middle;
+    }
+</style>
+
+
+<div id="widgetinteract-{{ widget.pk }}" rel="{{ widget.pk }}" class="widgetinteractdialog"
+     title="{{ widget.name }} interaction" width="600" height="300">
+    <form>
+        <label style="margin-bottom: 10px;">For every term t calculate the following heuristics</label>
+        <table>
+            {% for name,description in heuristics %}
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selected[]" value="{{ name }}" class="">
+                    </td>
+                    <td>
+                        {{ name }}(t):
+                    </td>
+                    <td>
+                        {{description }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="hidden" name="widget_id" value="{{ widget.pk }}"/>
+    </form>
+</div>
+

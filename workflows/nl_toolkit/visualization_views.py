@@ -6,3 +6,8 @@ def nl_toolkit_display_summation(request,input_dict,output_dict,widget):
     else:
         check = 'The calculation appears incorrect!'
     return render(request, 'visualizations/nl_toolkit_display_integers.html',{'widget':widget,'input_dict':input_dict, 'output_dict':output_dict, 'check':check})
+
+
+def read_string_in_slovene(request,input_dict,output_dict,widget):
+    text=input_dict.get('text')
+    return render(request, 'visualizations/read_string_in_slovene.html',{'widget':widget,'text':text})

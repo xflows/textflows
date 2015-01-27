@@ -1,5 +1,5 @@
 from itertools import izip
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer, TfidfTransformer
 import nltk
 
 from sklearn.tree import DecisionTreeClassifier
@@ -151,27 +151,76 @@ class BowDataset:
 
 
 class BowModel:
-    def __init__(self,adc,token_annotation,stem_feature_name,stop_word_feature_name,label_doc_feature_name):
+    def __init__(self,adc,token_annotation,stem_feature_name,stop_word_feature_name,
+                 label_doc_feature_name,
+                weighting_type, normalize_vectors,
+                 max_ngram,min_tf):
         self._label_feature_name=token_annotation
         self._token_annotation=token_annotation
         self._stem_feature_name=stem_feature_name
         self._stop_word_feature_name=stop_word_feature_name
-        self._label_doc_feature_name=label_doc_feature_name
+        self._doc_class_label=label_doc_feature_name
 
+        self.__count_params={'ngram_range':(1,max_ngram),'min_df':min_tf}
+        #tf_idf args: 'norm', 'smooth_idf', 'sublinear_tf', 'use_idf
+        self.__tfidf_params=self.__wighting_type_to_tfidf_params(weighting_type)
+        self.__tfidf_params['norm']='l2' if normalize_vectors else None
 
-        self.vectorizer =TfidfVectorizer() #DictVectorizer(dtype=dtype, sparse=sparse)
+        #set default vectorizer
+        self.vectorizer =self._count_vectorizer() if weighting_type=='term_freq' else self._tfidf_vectorizer() #DictVectorizer(dtype=dtype, sparse=sparse)
+
         raw_documents=self.get_raw_text(adc.documents)
-        self.vectorizer.fit(raw_documents)
-        self._vocab_to_idx=self.vectorizer.vocabulary_
-        self._idx_to_vocab = {v: k for k, v in self._vocab_to_idx.items()}
+
+        self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
+        self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
+
+    @staticmethod
+    def __wighting_type_to_tfidf_params(weighting_type):
+        if weighting_type=='term_freq':
+            return {}
+        elif weighting_type=='tf_idf':
+            return {'use_idf':True,'smooth_idf':False,'sublinear_tf':False}
+        elif weighting_type=='tf_idf_safe':
+            return {'use_idf':True,'smooth_idf':True,'sublinear_tf':False}
+        elif weighting_type=='log_df_tf_idf':
+            return {'use_idf':True,'smooth_idf':False,'sublinear_tf':True}
+
+    def _vocab_to_idx(self):
+        return self._count_params['vocabulary']
+
+
+    def _idx_to_vocab(self):
+        return {v: k for k, v in self._vocab_to_idx().items()}
+
+
+    def _count_vectorizer(self):
+        return CountVectorizer(**self.__count_params)
+    def _tfidf_vectorizer(self):
+        return TfidfVectorizer(**dict(self.__count_params.items()+self.__tfidf_params.items()))
+    def _tfidf_transformer(self):
+        return TfidfTransformer(**self.__tfidf_params)
+
 
 
     def get_raw_text(self,documents):
         feature_name=self._token_annotation+('/'+self._stem_feature_name if self._stem_feature_name else '')
         return [document.raw_text(self._token_annotation,feature_name) for document in documents]
 
-    def get_labels(self,adc):
-        return [doc.features.get(self._label_feature_name,'') for doc in adc.documents] if self._label_feature_name else None
+    def get_labels(self,adc,binary=False):
+        '''
+        :param adc: annotated document corpus
+        :param binary: return binary results
+        :return: for every document if it contains the selected label
+        '''
+
+        if self._doc_class_label:
+            res=[]
+            for doc in adc.documents:
+                f=doc.features.get(self._doc_class_label,'')
+                res.append(int(f=='true') if binary else f)
+            return res
+        else:
+            return None
 
 
 #BowSpace

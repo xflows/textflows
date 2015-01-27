@@ -24,3 +24,6 @@ def nl_toolkit_create_integers(input_dict):
     if input_dict['sort'].lower() == "true":
         intList.sort()
     return {'intList':intList}
+
+def read_string_in_slovene(input_dict):
+    return {}
