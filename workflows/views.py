@@ -95,8 +95,8 @@ def add_widget(request):
             if (workflow.user==request.user):
                 w = Widget()
                 w.workflow = workflow
-                w.x = int(request.POST['scrollLeft'])+50
-                y = int(request.POST['scrollTop'])+50
+                w.x = int(request.POST['scrollLeft'].split(".")[0])+50
+                y = int(request.POST['scrollTop'].split(".")[0])+50
                 while workflow.widgets.filter(y=y,x=w.x).count()>0:
                     y = y + 100
                 w.y = y
@@ -321,6 +321,7 @@ def add_connection(request):
                     j.value = None
                     j.parameter_type = i.parameter_type
                     j.multi_id = i.multi_id
+                    j.order = i.order
                     j.save()
                     refresh = i.widget.id
                     refreshworkflow = i.widget.workflow.id
@@ -999,9 +1000,18 @@ def run_widget(request):
         if (w.workflow.user==request.user):
             try:
                 # find all required inputs
+                multi_satisfied = {}
                 for inp in w.inputs.filter(required=True,parameter=False):
                     if inp.connections.count()==0:
-                        raise Exception("The input "+str(inp)+" must have something connected to it in order to run.")
+                        if inp.multi_id == 0:
+                            raise Exception("The input "+str(inp)+" must have something connected to it in order to run.")
+                        else:
+                            multi_satisfied[inp.multi_id] = (str(inp),multi_satisfied.get(inp.multi_id,False))
+                    elif inp.multi_id != 0:
+                        multi_satisfied[inp.multi_id] = (str(inp),True)
+                for mid in multi_satisfied.keys():
+                    if multi_satisfied[mid][1]==False:
+                        raise Exception("The input "+multi_satisfied[mid][0]+" must have something connected to it in order to run.")
                 if w.type == 'for_input' or w.type == 'for_output':
                     raise Exception("You can't run for loops like this. Please run the containing widget.")
                 output_dict = w.run(False)
