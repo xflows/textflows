@@ -1,5 +1,5 @@
 from workflows.literature_based_discovery.lib.heuristics.heuristic_calculations import HeuristicCalculations
-import numpy as np
+from workflows.textflows import flatten
 
 
 def lbd_heuristics_selection(input_dict):
@@ -32,15 +32,18 @@ def lbd_calculate_heuristics(input_dict):
     calcs=hc.calculate_heuristics(heuristic_names)
     return {'calcs': calcs}
 
+def lbd_actual_and_predicted_values(input_dict):
+    bterms=input_dict['bterms']
+    bow_model=input_dict['bow_model']
+    vocabulary=bow_model._vocab_to_idx()
+    print vocabulary.keys
 
-from collections import Iterable
-def flat(lis):
-     for item in lis:
-         if isinstance(item, Iterable) and not isinstance(item, basestring):
-             for x in flat(item):
-                 yield x
-         else:
-             yield item
+    actual_values=[0]*len(vocabulary)
+    for bterm in bterms:
+        if bterm in vocabulary:
+            actual_values[vocabulary[bterm]]=1
 
-def flatten(lis):
-    return list(flat(lis))
+    heuristics=flatten(input_dict['heuristics'])
+
+    return {'apv':[{'name': h.name,'predicted':list(h.scores),'actual':actual_values} for h in heuristics]}
+

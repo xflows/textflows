@@ -1,3 +1,4 @@
+from workflows.literature_based_discovery.lib.heuristics.misclassification_indices import MisclassificationIndices
 from workflows.security import safeOpen
 import json
 import sys
@@ -493,7 +494,8 @@ def harf(input_dict):
 def classification_filter(input_dict, widget):
     import noiseAlgorithms4lib    
     output_dict = {}
-    output_dict['noise_dict']= noiseAlgorithms4lib.cfdecide(input_dict, widget)
+    output_dict['noise_dict']= MisclassificationIndices.calculate(input_dict['learner'],input_dict['data']) \
+        if type(input_dict['data']) else noiseAlgorithms4lib.cfdecide(input_dict, widget)
     return output_dict    
     
 def send_filename(input_dict):
@@ -536,7 +538,8 @@ def noiserank(input_dict):
             if not allnoise.has_key(i):
                 allnoise[i] = {}
                 allnoise[i]['id'] = i
-                allnoise[i]['class'] = data[int(i)].getclass().value
+                allnoise[i]['class'] = data[int(i)].getclass().value if hasattr(data, "get_items_ref") \
+                    else data.labels[int(i)]
                 allnoise[i]['by'] = []
             allnoise[i]['by'].append(det_by)
             print allnoise[i]['by']
@@ -562,13 +565,18 @@ def compareNoisyExamples(item1, item2):
     
 def noiserank_select(postdata,input_dict, output_dict):
     try:    
-        outselection = postdata['selected']
+        outselection = [int(i) for i in postdata['selected']]
         data = input_dict['data']
-        selection = [0]*len(data)
-        for i in outselection:
-            selection[int(i)] = 1
+
+        if hasattr(data, "get_items_ref"):
+            selection = [0]*len(data)
+            for i in outselection:
+                selection[i] = 1
             outdata = data.select(selection, 1)
-        output_dict['selection'] = outdata if outdata != None else None
+            output_dict['selection'] = outdata
+        else:
+            output_dict['selection'] = data.split(outselection,[])[0]
+
     except KeyError:
         output_dict['selection'] = None
     

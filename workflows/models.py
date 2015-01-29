@@ -286,15 +286,10 @@ class Workflow(models.Model):
                 output_test = folds[i][1]
                 output_train = folds[i][0]
             elif input_type == 'DocumentCorpus':
-                import copy
                 train_indices, test_indices= folds[i]
                 print("TRAIN:", train_indices, "TEST:", test_indices)
 
-                output_train = DocumentCorpus(copy.deepcopy([input_list[i] for i in train_indices]),
-                                              copy.deepcopy(document_corpus.features))
-                output_test = DocumentCorpus(copy.deepcopy([input_list[i] for i in test_indices]),
-                                              copy.deepcopy(document_corpus.features))
-
+                output_train, output_test = document_corpus.split(train_indices,test_indices)
             else:
                 output_train = folds[:i] + folds[i+1:]
                 output_test = folds[i]

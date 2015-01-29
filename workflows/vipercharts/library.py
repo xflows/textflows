@@ -1,4 +1,6 @@
 import re
+from workflows.textflows import flatten
+
 
 def vipercharts_create_integers(input_dict):
     intStr = input_dict['intStr']
@@ -36,7 +38,7 @@ def vipercharts_pre_display_summation(input_dict):
 def vipercharts_prepareCurveData(input_dict): #, subtype
 	import math
 	nPoints=4
-	performance = input_dict['predictions']#chartdata
+	performance = flatten(input_dict['predictions'])#chartdata
 	subtype = input_dict['subtype']
 	kenmax = 0.5
 	ratemax = 0.5

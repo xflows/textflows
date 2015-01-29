@@ -1,3 +1,4 @@
+import copy
 from itertools import izip
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer, TfidfTransformer
 import nltk
@@ -14,6 +15,13 @@ class DocumentCorpus:
         #for i in itemDir:
         return 'Documents; {0}' % (self.documents)
 
+    def split(self,train_indices,test_indices):
+        output_train = DocumentCorpus(copy.deepcopy([self.documents[i] for i in train_indices]),
+                                      copy.deepcopy(self.features))
+        output_test = DocumentCorpus(copy.deepcopy([self.documents[i] for i in test_indices]),
+                                      copy.deepcopy(self.features))
+
+        return output_train,output_test
 
 class Document:
     def __init__(self, name,text,annotations,features):
@@ -127,6 +135,13 @@ class BowDataset:
         else: #if latino classifier or a classifier that can deal with sparse data
             return self.sparse_bow_matrix
 
+    def split(self,train_indices,test_indices=None):
+        output_train = BowDataset(self.sparse_bow_matrix[train_indices],
+                                      [self.labels[i] for i in train_indices])
+        output_test = BowDataset(self.sparse_bow_matrix[test_indices], [self.labels[i] for i in test_indices]) \
+                if test_indices else None
+        return output_train,output_test
+
 # try:
 #     from nltk.classify import scikitlearn
 #     from sklearn.feature_extraction.text import TfidfTransformer
@@ -186,7 +201,7 @@ class BowModel:
             return {'use_idf':True,'smooth_idf':False,'sublinear_tf':True}
 
     def _vocab_to_idx(self):
-        return self._count_params['vocabulary']
+        return self.__count_params['vocabulary']
 
 
     def _idx_to_vocab(self):
@@ -378,6 +393,17 @@ class TreebankWordTokenizer(SpanTokenizeMixin, TreebankWordTokenizer):
     pass
 
 
+from collections import Iterable
+def flat(lis):
+     for item in lis:
+         if isinstance(item, list):# and not isinstance(item, basestring):
+             for x in flat(item):
+                 yield x
+         else:
+             yield item
+
+def flatten(lis):
+    return list(flat(lis))
 
 def simulate_cf_pickling(obj_to_pickle,compress_object=False):
     from base64 import b64encode, b64decode

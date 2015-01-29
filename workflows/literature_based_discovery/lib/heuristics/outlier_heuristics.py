@@ -1,3 +1,5 @@
+from workflows.textflows import BowDataset
+
 __author__ = 'matic'
 
 from memoizator import memoized
@@ -10,20 +12,17 @@ class OutlierBasedHeuristicCalculations():
     @memoized
     def _d_cs_indices(self):
         return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
-                                                  self._tfidf_matrix(),
-                                                  self._classes,
+                                                  BowDataset(self._tfidf_matrix(),self._classes),
                                                   n_folds=2)['indices']
     @memoized
     def _d_rf_indices(self):
         return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
-                                                  self._tfidf_matrix(),
-                                                  self._classes,
+                                                  BowDataset(self._tfidf_matrix(),self._classes),
                                                   n_folds=2)['indices']
     @memoized
     def _d_svm_indices(self):
         return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
-                                                  self._tfidf_matrix(),
-                                                  self._classes,
+                                                  BowDataset(self._tfidf_matrix(),self._classes),
                                                   n_folds=2)['indices']
 
 
