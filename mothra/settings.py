@@ -174,29 +174,25 @@ INSTALLED_APPS_DEFAULT = (
     'djcelery',
     #'kombu.transport.django',
     'discover_runner',
+    'rest_framework',
     )
 
 INSTALLED_APPS_WORKFLOWS_SUB = ()
 
 TEST_RUNNER = 'discover_runner.DiscoverRunner'
 
+USE_WINDOWS_QUEUE = True
 
-try:
-    LOCAL_SETTINGS
-except NameError:
-    try:
-        from local_settings import *
-    except ImportError:
-        pass     
-
-INSTALLED_APPS = \
-    INSTALLED_APPS_DEFAULT +\
-    INSTALLED_APPS_WORKFLOWS_SUB
-
-#REST_FRAMEWORK = {
-#    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-#    'PAGINATE_BY': 10
-#}    
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'PAGINATE_BY': None,
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)    
+}
 
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS
 
@@ -213,5 +209,17 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_DOC_ROOT = os.path.join(os.getcwd(), 'mothra/public/media')
 
-#CELERY_RESULT_BACKEND = 'amqp'
-#CELERY_TASK_RESULT_EXPIRES = 18000
+CELERY_RESULT_BACKEND = 'amqp'
+CELERY_TASK_RESULT_EXPIRES = 18000
+
+try:
+    LOCAL_SETTINGS
+except NameError:
+    try:
+        from local_settings import *
+    except ImportError:
+        pass     
+
+INSTALLED_APPS = \
+    INSTALLED_APPS_DEFAULT +\
+    INSTALLED_APPS_WORKFLOWS_SUB

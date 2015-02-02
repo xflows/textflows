@@ -565,7 +565,7 @@ def compareNoisyExamples(item1, item2):
     
 def noiserank_select(postdata,input_dict, output_dict):
     try:    
-        outselection = [int(i) for i in postdata['selected']]
+        output_dict['indices']= outselection = [int(i) for i in postdata['selected']]
         data = input_dict['data']
 
         if hasattr(data, "get_items_ref"):
@@ -580,7 +580,6 @@ def noiserank_select(postdata,input_dict, output_dict):
     except KeyError:
         output_dict['selection'] = None
     
-    #output_dict['selection'] = outselection if outselection != None else None
     return output_dict
 
 
