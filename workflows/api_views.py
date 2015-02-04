@@ -38,7 +38,8 @@ class WidgetViewSet(viewsets.ModelViewSet):
         return WidgetSerializer
 
     def get_queryset(self):
-        return Widget.objects.filter(workflow__user=self.request.user).prefetch_related('inputs','outputs')
+        return Widget.objects.prefetch_related('inputs','outputs') #.filter(workflow__user=self.request.user)\
+
 
 
 class ConnectionViewSet(viewsets.ModelViewSet):
