@@ -47,3 +47,11 @@ def lbd_actual_and_predicted_values(input_dict):
 
     return {'apv':[{'name': h.name,'predicted':list(h.scores),'actual':actual_values} for h in heuristics]}
 
+def lbd_explore_in_crossbee(input_dict):
+    from workflows.textflows_dot_net.serialization_utils import ToNetObj
+    import LatinoInterfaces
+    output_dict={}
+    output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))#.serialized_object
+    output_dict['heuristic_scores']=input_dict['heuristic_scores']
+    return output_dict
+    #return render(request, 'visualizations/open_data_in_crossbee.html',{'widget':widget}) #,'input_dict':input_dict,'output_dict':output_dict})

@@ -334,6 +334,26 @@ class NltkClassifier():
     def __repr__(self):
         return '<NltkClassifier object for %s>' % (self._classifier)
 
+from nltk.probability import DictionaryProbDist
+class DictionaryProbDist(DictionaryProbDist):
+    def __repr__(self):
+        return '<ProbDist: %s>' % str(self._prob_dict)
+
+    @classmethod
+    def from_prediction_and_classes(cls,prediction,classes):
+        prob_dict={}
+        for i,klass in enumerate(classes):
+            prob_dict[unicode(klass)]=1. if klass==prediction else 0.
+        return cls(prob_dict=prob_dict)
+
+    @classmethod
+    def from_probabilities_and_classes(cls,predictions,classes):
+        prob_dict={}
+        for i,klass in enumerate(classes):
+            prob_dict[unicode(klass)]=predictions[i]
+        return cls(prob_dict=prob_dict)
+
+
 
 class LatinoObject:
     def __init__(self,latino_object):
@@ -416,4 +436,5 @@ def simulate_cf_pickling(obj_to_pickle,compress_object=False):
         return loads(decompress(b64decode(b64encode(compress(dumps(obj_to_pickle))))))
 
 #python manage.py export_package workflows/nltoolkit/db/package_data.json nltoolkit
+#python manage.py export_package workflows/literature_based_discovery/db/package_data.json literature_based_discovery
 #python manage.py celery worker -l info

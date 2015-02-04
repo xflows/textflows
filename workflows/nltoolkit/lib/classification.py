@@ -3,7 +3,7 @@
 # from nltk.classify.megam import config_megam, call_megam
 #from nltk.classify.weka import WekaClassifier, config_weka
 from datetime import time
-from nltk import ELEProbDist, DictionaryProbDist
+from nltk import ELEProbDist
 from nltk.classify.naivebayes import NaiveBayesClassifier
 from nltk.classify.positivenaivebayes import PositiveNaiveBayesClassifier
 from nltk.classify.decisiontree import DecisionTreeClassifier
@@ -20,7 +20,7 @@ from nltk.classify.maxent import (MaxentClassifier, BinaryMaxentFeatureEncoding,
 # use MultinomialNB instead, and maybe try BernoulliNB. scikit-learn comes with a document classification example that,
 # incidentally, uses tf-idf weighting using the built-in TfidfTransformer.
 #################
-from workflows.textflows import NltkClassifier, LatinoObject
+from workflows.textflows import NltkClassifier, LatinoObject, DictionaryProbDist
 
 
 def nltk_naive_bayes_classifier(input_dict):
@@ -128,6 +128,12 @@ def convert_to_probdists(csf,y_probas):
 #apply_classifier already exists in orange package
 def apply_bow_classifier(input_dict):
     trained_classifier = input_dict['trained_classifier']
+    if input_dict.get('probability','true')=='true':
+        try:
+            trained_classifier.set_params(probability=True)
+        except (ValueError,AttributeError):   #some classifiers don't have probability parameter
+            pass
+
     testing_bow_dataset = input_dict['testing_dataset']
     testing_dataset=testing_bow_dataset.bow_in_proper_format(trained_classifier,no_labels=True)
 
@@ -136,11 +142,18 @@ def apply_bow_classifier(input_dict):
         from ...latino.library_gen import latino_predict_classification
         return latino_predict_classification(input_dict)
     elif classifier_package.startswith("sklearn"):
+        a=trained_classifier.predict(testing_dataset)
         #example: http://scikit-learn.org/stable/auto_examples/document_classification_20newsgroups.html
-        results = trained_classifier.predict_proba(testing_dataset)
+        try:
+            results = [DictionaryProbDist.from_probabilities_and_classes(example_predictions,trained_classifier.classes_)
+                       for example_predictions in trained_classifier.predict_proba(testing_dataset)]
+        except AttributeError:
+            results = [DictionaryProbDist.from_prediction_and_classes(example_prediction,trained_classifier.classes_)
+                       for example_prediction in trained_classifier.predict(testing_dataset)]
         #results=convert_to_probdists(trained_classifier,_results)
     elif isinstance(trained_classifier,NltkClassifier):
-        results=trained_classifier.prob_classify_many(testing_dataset)
+        results=[DictionaryProbDist(prob_dict=dpd._prob_dict,normalize=True)
+                 for dpd in trained_classifier.prob_classify_many(testing_dataset)]
     else:
         raise Exception("What are you connecting me to then?")
 

@@ -13,17 +13,17 @@ class OutlierBasedHeuristicCalculations():
     def _d_cs_indices(self):
         return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
                                                   BowDataset(self._tfidf_matrix(),self._classes),
-                                                  n_folds=2)['indices']
+                                                  n_folds=2)['inds']
     @memoized
     def _d_rf_indices(self):
         return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
                                                   BowDataset(self._tfidf_matrix(),self._classes),
-                                                  n_folds=2)['indices']
+                                                  n_folds=2)['inds']
     @memoized
     def _d_svm_indices(self):
         return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
                                                   BowDataset(self._tfidf_matrix(),self._classes),
-                                                  n_folds=2)['indices']
+                                                  n_folds=2)['inds']
 
 
     #not memoized

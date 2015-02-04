@@ -3607,6 +3607,24 @@
     }
   }, 
   {
+    "pk": 669, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 214, 
+      "name": "Calculate class probabilities", 
+      "short_name": "prb", 
+      "uid": "ae618918-0719-4b78-94f7-cf92e6997441", 
+      "default": "true", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "probability", 
+      "parameter": true, 
+      "order": 3, 
+      "description": "Enable probability estimates (if the classifier allows this. This will slow down that method a bit.)"
+    }
+  }, 
+  {
     "pk": 211, 
     "model": "workflows.abstractoutput", 
     "fields": {

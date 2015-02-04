@@ -154,6 +154,20 @@ def ToNetObj(data):
                 ds.Add(label,ex)
 
             return ds
+        elif isinstance(data,DictionaryProbDist):
+            p=Latino.Model.Prediction[System.Double]()
+            genType = p.GetType().GetGenericTypeDefinition()
+            KeyDats=[]
+
+            for key,score in data._prob_dict.items():
+                KeyDats.append(Latino.KeyDat[System.Double,System.String](score,key))
+            aaa=Latino.ArrayList[Latino.KeyDat[System.Double,System.String]](ToNetObj(KeyDats))
+            p.AddRange(Latino.ArrayList[Latino.KeyDat[System.Double,System.String]](ToNetObj(KeyDats)))
+
+            # elif genType.Equals(Latino.Model.Prediction):
+            # probs=dict([(keyDat.Dat,keyDat.Key) for keyDat in data.Inner])
+            # return DictionaryProbDist(prob_dict=probs)
+            return p
     return data
 
 def latino_object_set_feature_values(latinoObj,features):
@@ -187,22 +201,28 @@ def ToPyObj(data):
             for val in data:
                 l.append(ToPyObj(val))
             return tuple(l)
-        if MAP_TO_PYTHON_OBJECTS and genType.Equals(Latino.Model.LabeledDataset):
-            labels=[]
-            row=[]
-            col=[]
-            values=[]
-            for i,labeled_example in enumerate(data): #if genType.Equals(Latino.Model.LabeledExample)
-                labels.append(labeled_example.get_Label())
-                sparse_vector=labeled_example.get_Example()
+        if MAP_TO_PYTHON_OBJECTS:
+            if genType.Equals(Latino.Model.LabeledDataset):
+                labels=[]
+                row=[]
+                col=[]
+                values=[]
+                for i,labeled_example in enumerate(data): #if genType.Equals(Latino.Model.LabeledExample)
+                    labels.append(labeled_example.get_Label())
+                    sparse_vector=labeled_example.get_Example()
 
-                for el in sparse_vector:
-                    row.append(i)
-                    col.append(el.get_Idx())
-                    values.append(el.get_Dat())
+                    for el in sparse_vector:
+                        row.append(i)
+                        col.append(el.get_Idx())
+                        values.append(el.get_Dat())
 
-            bow_matrix=csr_matrix((values,(row,col)))
-            return BowDataset(bow_matrix,labels)
+                bow_matrix=csr_matrix((values,(row,col)))
+                return BowDataset(bow_matrix,labels)
+            elif genType.Equals(Latino.Model.Prediction):
+                probs=dict([(keyDat.Dat,keyDat.Key) for keyDat in data.Inner])
+                return DictionaryProbDist(prob_dict=probs)
+
+
 
     if MAP_TO_PYTHON_OBJECTS and hasattr(data, "GetType"):
         if data.GetType().Equals(LatinoInterfaces.DocumentCorpus):
@@ -217,7 +237,6 @@ def ToPyObj(data):
                 k = keyVal.Key
                 v = keyVal.Value
                 d[k] = v
-
             return d
 
     if hasattr(data, "GetType"):
@@ -228,3 +247,46 @@ def ToPyObj(data):
             if interface.Name == u'ISerializable':
                 return LatinoObject(data) #if other type of latino object
     return data #usually types like string, list which are converted from c# objects
+
+class SerializableObject:
+    netObj = None
+    constructor = '<constructor_func_name>'
+    def __init__(self, object = None):
+        self.netObj = object
+        self.copyAttributes()
+    def createInstance(self, dict):
+        constr = eval(self.constructor)
+        args = self.getConstructorArgs(dict)
+        self.netObj = constr(*args)
+        self.copyAttributes()
+    def getConstructorArgs(self, dict):
+        if dict.has_key('constructorArgs'):
+            return tuple([val for key,val in dict['constructorArgs'].items()])
+        return ()
+    def copyAttributes(self): #copy all attributes from wrapped object to the wrapper
+        pass
+        #for attr in dir(self.netObj):
+        #    if hasattr(self.netObj, attr) and not hasattr(self, attr):
+        #        setattr(self, attr, getattr(self.netObj, attr))
+    def __repr__(self):
+        #return "<" + self.netObj.__str__() + " wrapped in "+self.__class__.__name__+">"
+        return "<" + self.netObj.__str__() + ">"
+    def netObj(self):
+        return self.netObj
+class LatinoSerializableObject(SerializableObject):
+    def __getstate__(self):
+        logging.info('Serialize {0} with latino serializer (start)'.format(self.netObj.__class__.__name__))
+        start = time.clock()
+        byteData = LatinoCF.Save(self.netObj)
+        elapsed = (time.clock() - start)
+        logging.info('Serialize {0} with latino serializer (end, size: {1:,} chars) in {2} ms'.format(self.netObj.__class__.__name__, len(byteData),elapsed))
+        return {'byteData': byteData}
+    def __setstate__(self, dict):
+        logging.info('Deserialize {0} with latino deserializer (start)'.format("<LatinoObject>"))
+        start = time.clock()
+        self.netObj = LatinoCF.Load(dict['byteData'])
+        self.copyAttributes()
+        elapsed = (time.clock() - start)
+        logging.info('Deserialize {0} with latino deserializer (end, size: {1:,} chars) in {2} ms'.format(self.netObj.__class__.__name__, len(dict['byteData']),elapsed))
+    def __repr__(self):
+        return "<LSO: " + self.netObj.__str__() + ">"

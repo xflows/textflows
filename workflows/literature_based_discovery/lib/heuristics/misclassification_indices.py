@@ -25,8 +25,8 @@ class MisclassificationIndices:
             #classifier.fit(train_data,)
             #predictions = classifier.predict(test_data)
 
-            for indice, real_class, predicted_class in izip(test_indices, test_data.labels, predictions):
-                if real_class != predicted_class:
+            for indice, real_class, prediction in izip(test_indices, test_data.labels, predictions):
+                if real_class != prediction.max():
                     noisyIndices.append(indice)
                     #widget.progress = int((i+1)*1.0/k*100)
                     #widget.save()
