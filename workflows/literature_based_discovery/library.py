@@ -52,6 +52,7 @@ def lbd_explore_in_crossbee(input_dict):
     import LatinoInterfaces
     output_dict={}
     output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))#.serialized_object
-    output_dict['heuristic_scores']=input_dict['heuristic_scores']
+    output_dict['heuristic_scores']=[hevr.__dict__ for hevr in flatten(input_dict['heuristic_scores'])]
+    output_dict['bterms']=input_dict['bterms']
     return output_dict
     #return render(request, 'visualizations/open_data_in_crossbee.html',{'widget':widget}) #,'input_dict':input_dict,'output_dict':output_dict})
