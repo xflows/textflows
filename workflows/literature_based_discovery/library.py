@@ -36,7 +36,6 @@ def lbd_actual_and_predicted_values(input_dict):
     bterms=input_dict['bterms']
     bow_model=input_dict['bow_model']
     vocabulary=bow_model._vocab_to_idx()
-    print vocabulary.keys
 
     actual_values=[0]*len(vocabulary)
     for bterm in bterms:

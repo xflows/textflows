@@ -179,7 +179,7 @@ def split_documents_by_feature_value(input_dict):
     :return adc_rest: adc with documents that do not fulfil the condtion
     """
     discard_filtered_out = input_dict["discard_filtered_out"] == u"true"
-    adc_filtered, adc_rest = DocumentCorpus("", ""), input_dict["adc"]
+    adc_filtered, adc_rest = None, input_dict["adc"]
 
     if input_dict["feature_condition"] != u'':
         feature_conditions = [el.strip().split("=") for el in re.split("[;|,]",input_dict["feature_condition"])]
@@ -197,10 +197,10 @@ def split_documents_by_feature_value(input_dict):
             else:
                 discarded.append(i)
 
-        adc_filtered, adc_rest = input_dict["adc"].split(included, discarded)
+        adc_filtered, adc_rest = input_dict["adc"].split(included, None if discard_filtered_out else discarded)
 
     if discard_filtered_out:
-        return {"adc_filtered":adc_filtered, "adc_rest": DocumentCorpus("", "")}
+        return {"adc_filtered":adc_filtered, "adc_rest": None}
     else:
         return {"adc_filtered": adc_filtered, "adc_rest": adc_rest}
 
@@ -224,12 +224,9 @@ def extract_documents(input_dict):
         if i < 0 or i >= len(input_dict["adc"].documents) or type(i) != int:
             raise Exception("Document indices are set incorrectly.")
     discarded = [i for i in range(len(input_dict["adc"].documents)) if i not in input_dict["index_list"]]
-    adc_filtered, adc_rest = input_dict["adc"].split(included, discarded)
+    adc_filtered, adc_rest = input_dict["adc"].split(included, None if discard_filtered_out else discarded)
 
-    if discard_filtered_out:
-        return {"adc_filtered":adc_filtered, "adc_rest": DocumentCorpus("", "")}
-    else:
-        return {"adc_filtered": adc_filtered, "adc_rest": adc_rest}
+    return {"adc_filtered": adc_filtered, "adc_rest": adc_rest}
 
 
 def merge_corpora(input_dict):

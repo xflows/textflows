@@ -15,11 +15,11 @@ class DocumentCorpus:
         #for i in itemDir:
         return 'Documents; {0}' % (self.documents)
 
-    def split(self,train_indices,test_indices):
+    def split(self,train_indices,test_indices=None):
         output_train = DocumentCorpus(copy.deepcopy([self.documents[i] for i in train_indices]),
                                       copy.deepcopy(self.features))
         output_test = DocumentCorpus(copy.deepcopy([self.documents[i] for i in test_indices]),
-                                      copy.deepcopy(self.features))
+                                      copy.deepcopy(self.features)) if test_indices else None
 
         return output_train,output_test
 
