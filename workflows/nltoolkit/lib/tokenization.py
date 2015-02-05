@@ -29,7 +29,8 @@ def tokenizer_hub(input_dict):
         input_annotation = input_dict['input_annotation']
         output_annotation = input_dict['output_annotation']
         adc = input_dict['adc']
-        for document in adc.documents:
+        docs_count=len(adc.documents)
+        for i,document in enumerate(adc.documents):
             if document.features['contentType'] == "Text":
                 if not document.text:
                     pass
@@ -37,6 +38,10 @@ def tokenizer_hub(input_dict):
                     new_token_spans=tokenizer.span_tokenize(subtext,*args,**kwargs)
                     for starts_at,ends_at in new_token_spans:
                         document.annotations.append(Annotation(annotation.span_start+starts_at,annotation.span_start+ends_at-1,output_annotation))
+            if i%100==0:
+                print int((i+1)*1.0/docs_count*100)
+            #widget.progress = int((i+1)*1.0/*100)
+            #widget.save()
         return {'adc': adc}
 
 

@@ -1,0 +1,123 @@
+[
+  {
+    "pk": 83,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "227ab607-c890-4803-a49b-141ee283e41b",
+      "parent": null,
+      "workflow": null,
+      "user": null,
+      "order": 10,
+      "name": "Lexicology"
+    }
+  },
+  {
+    "pk": 84,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "7b62f695-5ba6-4012-af8b-abe99b8771be",
+      "parent": 83,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Controlled Vocabularies"
+    }
+  },
+  {
+    "pk": 301,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 84,
+      "treeview_image": "",
+      "name": "MeSH vocabulary builder",
+      "is_streaming": false,
+      "uid": "171a022a-093f-482b-a58e-c46f53c6f73b",
+      "interaction_view": "lexicology_mesh_filter",
+      "image": "",
+      "package": "lexicology",
+      "static_image": "",
+      "windows_queue": false,
+      "post_interact_action": "lexicology_mesh_filter_finished",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "lexicology_mesh_filter",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": true,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "Constructs vocabulary from selected top categories in MeSH hierarchy."
+    }
+  },
+  {
+    "pk": 295,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 301,
+      "name": "List of MeSH terms",
+      "short_name": "msh",
+      "variable": "term_list",
+      "uid": "0b894c08-5bb2-455d-b4e9-74137f6b2245",
+      "order": 1,
+      "description": "List of MeSH terms."
+    }
+  },
+  {
+    "pk": 31,
+    "model": "workflows.category",
+    "fields": {
+      "uid": "4b74b12d-4767-45b1-9bb3-8872234b01fe",
+      "parent": null,
+      "workflow": null,
+      "user": null,
+      "order": 1,
+      "name": "Data In/Out"
+    }
+  },
+  {
+    "pk": 171,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 31,
+      "treeview_image": "",
+      "name": "Read string in Slovene",
+      "is_streaming": false,
+      "uid": "6864fe91-1d32-426f-a6b2-4bc4e769ae8f",
+      "interaction_view": "",
+      "image": "",
+      "package": "nl_toolkit",
+      "static_image": "load_adc_from_file_image.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "read_string_in_slovene",
+      "streaming_visualization_view": "",
+      "action": "read_string_in_slovene",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 4,
+      "description": "Read string"
+    }
+  },
+  {
+    "pk": 610,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 171,
+      "name": "Text to be read",
+      "short_name": "str",
+      "uid": "7d1b6f42-bfb2-460b-adeb-4efcaca897dc",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": null,
+      "variable": "text",
+      "parameter": false,
+      "order": 1,
+      "description": "Text in Slovene"
+    }
+  }
+]

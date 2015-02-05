@@ -1,0 +1,51 @@
+<!-- include jQuery and jQueryUI libraries
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>-->
+
+<!-- include plugin -->
+<script type="text/javascript" src="{{ STATIC_URL }}lexicology/jquery-tree/jquery.tree.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lexicology/jquery-tree/jquery.tree.min.css"/>
+<style type="text/css">
+.widgetinteractdialog input {
+    width: 10px;
+    height: 15px;
+    position: relative;
+    float: left;
+}
+</style>
+<!-- initialize checkboxTree plugin -->
+<script type="text/javascript">
+    //<!--
+    $(document).ready(function () {
+        $('#widgetinteract-{{widget.pk}}').tree({
+            /* specify here your options */
+        });
+    });
+    //-->
+</script>
+
+
+<div id="widgetinteract-{{ widget.pk }}" rel="{{ widget.pk }}" class="widgetinteractdialog"
+     title="{{ widget.name }} interaction" width="700" height="600">
+    <form>
+        <label style="margin-bottom: 10px;">Select headings used for generating a controlled vocabulary:</label>
+        <ul>
+            {% for abb,text,level2s in categories %}
+                <li class="collapsed" style="clear: both;"><input type="checkbox"><span>[{{ abb }}] {{ text }}</span>
+                    <ul>
+                        {% for abb2,text2 in level2s %}
+                            <li style="margin-left: 30px;clear: both;">
+                                <input type="checkbox" name="selected[]" value="{{ abb2 }}"><span>[{{ abb2 }}] {{ text2 }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <input type="hidden" name="widget_id" value="{{ widget.pk }}"/>
+    </form>
+
+</div>
+
