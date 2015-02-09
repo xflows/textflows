@@ -384,6 +384,64 @@
     }
   }, 
   {
+    "pk": 302, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Outlier-based heuristics", 
+      "is_streaming": false, 
+      "uid": "8cf041ab-7158-4ebe-b17d-7d544ae0eca4", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_custom_outlier_based_heuristics", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 5, 
+      "description": "Interactive widget which allows specification of a custom outlier-based bridging term discovery heuristics by using the classifiers from the input."
+    }
+  }, 
+  {
+    "pk": 688, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 302, 
+      "name": "Classifier", 
+      "short_name": "csf", 
+      "uid": "37875b4c-251c-40c7-a2f9-e0fecae19495", 
+      "default": "", 
+      "required": true, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "classifiers", 
+      "parameter": false, 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 296, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 302, 
+      "name": "List of Selected Heuristics for Bringing Term Discovery", 
+      "short_name": "lst", 
+      "variable": "heuristics", 
+      "uid": "fa81a2e1-efe5-425b-b16c-96154b0dc22d", 
+      "order": 1, 
+      "description": "List of Selected Heuristics for Bringing Term Discovery"
+    }
+  }, 
+  {
     "pk": 264, 
     "model": "workflows.abstractwidget", 
     "fields": {

@@ -1,7 +1,7 @@
 from workflows.textflows import BowDataset,BowModel
 
 
-def construct_bow_model(input_dict): #TODO
+def construct_bow_model_and_dataset(input_dict): #TODO
     # _wordWeightType = ToEnum(Latino.TextMining.WordWeightType, inputDict['wordWeightType'], Latino.TextMining.WordWeightType.TfIdf)
     # _cutLowWeightsPerc = ToFloat(inputDict['cutLowWeightsPerc'])
     # _normalizeVectors = ToBool(inputDict['normalizeVectors'])
@@ -28,15 +28,16 @@ def construct_bow_model(input_dict): #TODO
             'weighting_type':input_dict['word_weight_type'], #tf_idf
             'normalize_vectors': input_dict['normalize_vectors']=='true', #true
             'max_ngram': int(input_dict['max_ngram_len']), #2
-            'min_tf': int(input_dict['min_word_freq'])} #5
+            'min_tf': int(input_dict['min_word_freq']),#5
+            'vocabulary': input_dict.get('vocabulary',None)}
 
     bow_model=BowModel(**args)
     bow_dataset=BowDataset.from_adc(adc,bow_model)
 
     return {'bow_model': bow_model,'bow_dataset': bow_dataset}
 
-def create_dataset_with_bow_model(input_dict):
-    bow_model = input_dict['bow_model']
-    adc = input_dict['adc']
-
-    return {'bow_dataset': BowDataset.from_adc(adc,bow_model)}
+# def create_dataset_with_bow_model(input_dict):
+#     bow_model = input_dict['bow_model']
+#     adc = input_dict['adc']
+#
+#     return {'bow_dataset': BowDataset.from_adc(adc,bow_model)}

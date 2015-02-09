@@ -116,13 +116,16 @@ def get_plain_texts(input_dict):
     """
 
     adc = input_dict['adc']
+    annotation = input_dict['token_annotation']
     feature_annotation = input_dict['feature_annotation']
+    if feature_annotation:
+        annotation+="/"+feature_annotation
     delimiter = input_dict['delimiter']
     includeDocId = input_dict['include_doc_id'] == "true"
 
     output_dict = {"strings": []}
     for document in adc.documents:
-        output_dict["strings"].append((document.name+": " if includeDocId else "") + delimiter.join([t[1] for t in document.get_annotations_with_text(feature_annotation)]))
+        output_dict["strings"].append((document.name+": " if includeDocId else "") + delimiter.join([t[1] for t in document.get_annotations_with_text(annotation)]))
     return output_dict
 
 

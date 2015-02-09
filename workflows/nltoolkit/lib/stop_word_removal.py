@@ -1,5 +1,5 @@
 from workflows.textflows import *
-from tagging_common import universal_sentence_tagger_hub,universal_word_tagger_hub
+from tagging_common import universal_word_tagger_hub
 
 def stop_word_tagger_hub(input_dict):
     """

@@ -169,10 +169,12 @@ class BowModel:
     def __init__(self,adc,token_annotation,stem_feature_name,stop_word_feature_name,
                  label_doc_feature_name,
                 weighting_type, normalize_vectors,
-                 max_ngram,min_tf):
-        self._label_feature_name=token_annotation
-        self._token_annotation=token_annotation
-        self._stem_feature_name=stem_feature_name
+                 max_ngram,min_tf,vocabulary=None):
+        #self._label_feature_name=label_doc_feature_name
+        #self._token_annotation=token_annotation
+        #self._stem_feature_name=stem_feature_name
+        self._feature_name=token_annotation+('/'+stem_feature_name if stem_feature_name else '')
+
         self._stop_word_feature_name=stop_word_feature_name
         self._doc_class_label=label_doc_feature_name
 
@@ -181,13 +183,33 @@ class BowModel:
         self.__tfidf_params=self.__wighting_type_to_tfidf_params(weighting_type)
         self.__tfidf_params['norm']='l2' if normalize_vectors else None
 
+
         #set default vectorizer
         self.vectorizer =self._count_vectorizer() if weighting_type=='term_freq' else self._tfidf_vectorizer() #DictVectorizer(dtype=dtype, sparse=sparse)
 
-        raw_documents=self.get_raw_text(adc.documents)
+        #set predefined controlled vocabulary
+        if vocabulary:
+            vocab_vectorizer=CountVectorizer(ngram_range=(1,max_ngram))
+            vocab_vectorizer.fit(vocabulary)
+            if True: #intersect vocabularies
+                raw_documents=self.get_raw_text(adc.documents)
+                self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
+                feature_intersection=[term for term in self.vectorizer.get_feature_names()
+                                      if term in vocab_vectorizer.vocabulary_]
 
-        self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
+                self.vectorizer.set_params(
+                    vocabulary=dict([(a,i) for i,a in enumerate(feature_intersection)])) #set new vocabulary
+                self.vectorizer.fit(raw_documents)
+            else:
+                self.__count_params['vocabulary']=vocab_vectorizer.vocabulary_
+        else:
+            raw_documents=self.get_raw_text(adc.documents)
+            self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
+
+
         self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
+
+
 
     @staticmethod
     def __wighting_type_to_tfidf_params(weighting_type):
@@ -218,8 +240,9 @@ class BowModel:
 
 
     def get_raw_text(self,documents):
-        feature_name=self._token_annotation+('/'+self._stem_feature_name if self._stem_feature_name else '')
-        return [document.raw_text(self._token_annotation,feature_name) for document in documents]
+        return [document.raw_text(selector=self._feature_name,
+                                  stop_word_feature_name=self._stop_word_feature_name)
+                for document in documents]
 
     def get_labels(self,adc,binary=False):
         '''
