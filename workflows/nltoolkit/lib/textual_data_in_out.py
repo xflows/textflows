@@ -14,10 +14,13 @@ def load_adc_widget(input_dict):
     :param plain_string: documents text
     :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
+    print input_dict
     if input_dict[u"file"] != u"":
         return load_adc_from_file(input_dict)
     elif input_dict[u"plain_string"] != u"":
         return load_adc_from_string(input_dict)
+    else:
+        return {"adc": DocumentCorpus("", "")}
 
 
 def load_adc_from_file(input_dict):
