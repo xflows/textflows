@@ -41,10 +41,11 @@ def lbd_actual_and_predicted_values(input_dict):
     for bterm in bterms:
         if bterm in vocabulary:
             actual_values[vocabulary[bterm]]=1
+            print bterm
 
     heuristics=flatten(input_dict['heuristics'])
 
-    return {'apv':[{'name': h.name,'predicted':list(h.scores),'actual':actual_values} for h in heuristics]}
+    return {'apv':[{'name': h.name,'predicted':list(h.votes),'actual':actual_values} for h in heuristics]}
 
 def lbd_explore_in_crossbee(input_dict):
     from workflows.textflows_dot_net.serialization_utils import ToNetObj

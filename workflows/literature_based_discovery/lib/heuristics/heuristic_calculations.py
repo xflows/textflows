@@ -27,11 +27,13 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
         #DEVIDE COUNT MATRIX BY CLASS
         idx_A = np.where(self._classes == self.__A_class)[0]
         idx_C = np.where(self._classes == self.__C_class)[0]
+        try:
+            self._count_A = self._count_matrix[idx_A]
+            self._count_C = self._count_matrix[idx_C]
+        except ValueError:
+            raise Exception("One of domains appears not to contain any documents. "+\
+                  "This usually happens because of wrong class settings in the Construct Bow Model widget.")
 
-        self._count_A = self._count_matrix[idx_A]
-        self._count_C = self._count_matrix[idx_C]
-        #self.classes_A = classes[self.idx_A]
-        #self.classes_C = classes[self.idx_C]
 
     @memoized
     def _count_A_csc(self):
@@ -115,9 +117,14 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
 
 
 class BTermHeuristic:
-    def __init__(self, name, scores):
+    def __init__(self, name, scores,votes=None):
         self.name = name
         self.scores = scores
+        self.votes=votes if votes else self._calculate_votes()
+
+    def _calculate_votes(self):
+        positions = self.scores.argsort().argsort() + 1  #double argsort: position on in the spot of the element
+        return np.array(positions > len(positions) * 2 / 3.0, dtype=int)
 
     def __repr__(self):
         return '<BTermHeuristic name: %s>' % (self.name)

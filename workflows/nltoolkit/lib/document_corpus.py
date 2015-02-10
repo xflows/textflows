@@ -1,5 +1,6 @@
 from workflows.textflows import NltkCorpus
 import time
+import re
 
 
 def nltk_corpus(input_dict):

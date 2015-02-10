@@ -4,8 +4,8 @@ from tagging_common import universal_word_tagger_hub
 
 def stem_lemma_tagger_hub(input_dict):
     if isinstance(input_dict['tagger'],LatinoObject): #check if this is a latino object
-        from ...latino.library_gen import latino_tag_adcstem_lemma
-        return latino_tag_adcstem_lemma(input_dict)
+        from ...latino.library_gen import latino_tag_adc_stem_lemma
+        return latino_tag_adc_stem_lemma(input_dict)
     else:
         adc = input_dict['adc']
         tagger_dict = input_dict['tagger']
