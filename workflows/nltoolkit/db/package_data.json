@@ -124,6 +124,118 @@
     }
   },
   {
+    "pk": 227,
+    "model": "workflows.abstractwidget",
+    "fields": {
+      "category": 36,
+      "treeview_image": "",
+      "name": "Load Document Corpus",
+      "is_streaming": false,
+      "uid": "c4c09d13-026a-4190-8d03-b8d3a9591a98",
+      "interaction_view": "",
+      "image": "",
+      "package": "nltoolkit",
+      "static_image": "load_adc_from_file_image.png",
+      "windows_queue": false,
+      "post_interact_action": "",
+      "user": null,
+      "visualization_view": "",
+      "streaming_visualization_view": "",
+      "action": "load_adc_widget",
+      "wsdl_method": "",
+      "wsdl": "",
+      "interactive": false,
+      "has_progress_bar": false,
+      "order": 1,
+      "description": "This widget processes input text and loads it into ADC (Annotated Document Corpus) structure. The input text contains one document per line - the whole line represents text from the body of a document. In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure."
+    }
+  },
+  {
+    "pk": 597,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 227,
+      "name": "File",
+      "short_name": "fil",
+      "uid": "299a7fc0-4fa8-4dc1-8d20-6471ebb3bc73",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": "file",
+      "variable": "file",
+      "parameter": true,
+      "order": 1,
+      "description": ""
+    }
+  },
+  {
+    "pk": 598,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 227,
+      "name": "or input text",
+      "short_name": "str",
+      "uid": "71eb88a2-7c31-4185-b9be-83fb5dd69cb5",
+      "default": "",
+      "required": true,
+      "multi": false,
+      "parameter_type": "textarea",
+      "variable": "plain_string",
+      "parameter": true,
+      "order": 2,
+      "description": "Input Text String: Contains one document per line - the whole line represents text from the body of a document."
+    }
+  },
+  {
+    "pk": 599,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 227,
+      "name": "Text before the first tabulator [/t] represents the title of a document",
+      "short_name": "bol",
+      "uid": "5a84d688-6e0f-4dff-8c62-d3cb03a187b6",
+      "default": "false",
+      "required": true,
+      "multi": false,
+      "parameter_type": "checkbox",
+      "variable": "tab_separated_title",
+      "parameter": true,
+      "order": 3,
+      "description": "Text before the first tabulator [/t] represents the title of a document."
+    }
+  },
+  {
+    "pk": 600,
+    "model": "workflows.abstractinput",
+    "fields": {
+      "widget": 227,
+      "name": "First words in a line (after optional title) with preceding exclamation (!) present labels",
+      "short_name": "bol",
+      "uid": "fc3d5423-b0e1-4f22-acf7-c0a7862e1964",
+      "default": "false",
+      "required": true,
+      "multi": false,
+      "parameter_type": "checkbox",
+      "variable": "leading_labels",
+      "parameter": true,
+      "order": 4,
+      "description": "First words in a line (after optional title) with preceding exclamation (!) present labels."
+    }
+  },
+  {
+    "pk": 236,
+    "model": "workflows.abstractoutput",
+    "fields": {
+      "widget": 227,
+      "name": "Annotated Document Corpus",
+      "short_name": "adc",
+      "variable": "adc",
+      "uid": "741cdd40-9091-4ba3-acef-354dc5822438",
+      "order": 1,
+      "description": "Annotated Document Corpus."
+    }
+  },
+  {
     "pk": 167,
     "model": "workflows.abstractwidget",
     "fields": {
@@ -213,118 +325,6 @@
       "short_name": "adc",
       "variable": "adc",
       "uid": "23bd7cd5-2928-4efa-bb6f-a6403d7939c6",
-      "order": 1,
-      "description": "Annotated Document Corpus."
-    }
-  },
-  {
-    "pk": 226,
-    "model": "workflows.abstractwidget",
-    "fields": {
-      "category": 36,
-      "treeview_image": "",
-      "name": "Load Document Corpus",
-      "is_streaming": false,
-      "uid": "ca7931cc-e416-4f9c-bae5-f6963df5caff",
-      "interaction_view": "",
-      "image": "",
-      "package": "nltoolkit",
-      "static_image": "load_adc_from_file_image.png",
-      "windows_queue": false,
-      "post_interact_action": "",
-      "user": null,
-      "visualization_view": "",
-      "streaming_visualization_view": "",
-      "action": "load_adc_widget",
-      "wsdl_method": "",
-      "wsdl": "",
-      "interactive": false,
-      "has_progress_bar": false,
-      "order": 4,
-      "description": "This widget processes raw text file and loads the texts into ADC (Annotated Document Corpus) structure. The input file contains one document per line - the whole line represents text from the body of a document. In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure."
-    }
-  },
-  {
-    "pk": 593,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 226,
-      "name": "Raw Text File",
-      "short_name": "fil",
-      "uid": "4f703f50-06e9-4595-835f-4bb8b826754b",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": "file",
-      "variable": "file",
-      "parameter": true,
-      "order": 1,
-      "description": "Input Text File: Contains one document per line - the whole line represents text from the body of a document."
-    }
-  },
-  {
-    "pk": 596,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 226,
-      "name": "or input text",
-      "short_name": "tex",
-      "uid": "68e5bba4-eb53-434b-80bf-ff4e72564bcf",
-      "default": "",
-      "required": true,
-      "multi": false,
-      "parameter_type": "textarea",
-      "variable": "plain_string",
-      "parameter": true,
-      "order": 2,
-      "description": ""
-    }
-  },
-  {
-    "pk": 594,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 226,
-      "name": "Text before the first tabulator [/t] represents the title of a document",
-      "short_name": "bol",
-      "uid": "b9ec0a50-99fe-4ee3-bceb-ec6320331aa1",
-      "default": "false",
-      "required": true,
-      "multi": false,
-      "parameter_type": "checkbox",
-      "variable": "tab_separated_title",
-      "parameter": true,
-      "order": 3,
-      "description": "Text before the first tabulator [/t] represents the title of a document."
-    }
-  },
-  {
-    "pk": 595,
-    "model": "workflows.abstractinput",
-    "fields": {
-      "widget": 226,
-      "name": "First words in a line (after optional title) with preceding exclamation (!) present labels",
-      "short_name": "bol",
-      "uid": "1d0aad77-783b-4cc5-a81f-584a1e4d5b25",
-      "default": "false",
-      "required": true,
-      "multi": false,
-      "parameter_type": "checkbox",
-      "variable": "leading_labels",
-      "parameter": true,
-      "order": 4,
-      "description": "First words in a line (after optional title) with preceding exclamation (!) present labels."
-    }
-  },
-  {
-    "pk": 235,
-    "model": "workflows.abstractoutput",
-    "fields": {
-      "widget": 226,
-      "name": "Annotated Document Corpus",
-      "short_name": "adc",
-      "variable": "adc",
-      "uid": "864d3185-cea3-408e-83d4-6890bfdb523e",
       "order": 1,
       "description": "Annotated Document Corpus."
     }
