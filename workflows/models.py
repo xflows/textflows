@@ -40,8 +40,15 @@ class Category(models.Model):
     uid = models.CharField(max_length=250,blank=True,default='')
 
     def is_basic(self):
-        a=self.name in ['Files','Objects','Strings','Integers']
         return self.name in ['Files','Objects','Strings','Integers']
+
+    def update_uid(self):
+        import uuid
+        if self.uid == '' or self.uid is None:
+            self.uid = uuid.uuid4()
+            self.save()
+        if self.parent:
+            self.parent.update_uid()
 
     class Meta:
         verbose_name_plural = "categories"
@@ -437,21 +444,37 @@ class AbstractWidget(models.Model):
 
     def set_uid(self,commit=False):
         import uuid
-        self.uid = uuid.uuid4()
+        self.uid = str(uuid.uuid4())
         if commit:
             self.save()
         for i in self.inputs.all():
-            i.uid = uuid.uuid4()
+            i.uid = str(uuid.uuid4())
             if commit:
                 i.save()
             for option in i.options.all():
-                option.uid = uuid.uuid4()
+                option.uid = str(uuid.uuid4())
                 if commit:
                     option.save()
         for o in self.outputs.all():
-            o.uid = uuid.uuid4()
+            o.uid = str(uuid.uuid4())
             if commit:
                 o.save()
+
+    def update_uid(self):
+        import uuid
+        if self.uid == '' or self.uid is None:
+            self.uid = uuid.uuid4()
+            self.save()
+        for i in self.inputs.filter(uid=''):
+            i.uid = uuid.uuid4()
+            i.save()
+            for option in i.options.filter(uid=''):
+                option.uid = uuid.uuid4()
+                option.save()
+        for o in self.outputs.filter(uid=''):
+            o.uid = uuid.uuid4()
+            o.save()   
+        self.category.update_uid()     
 
     def __unicode__(self):
         return unicode(self.name)
@@ -537,6 +560,12 @@ class Widget(models.Model):
         ('subprocess','Subprocess widget'),
         ('input', 'Input widget'),
         ('output', 'Output widget'),
+        ('for_input', 'For input'),
+        ('for_output', 'For output'),
+        ('cv_input', 'Cross Validation input'),
+        ('cv_output', 'Cross Validation output'),
+        ('cv_input2', 'Cross Validation input 2'),
+        ('cv_input3', 'Cross Validation input 3'),
     )
     type = models.CharField(max_length=50,choices=WIDGET_CHOICES,default='regular')
 

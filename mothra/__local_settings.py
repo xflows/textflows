@@ -41,8 +41,8 @@ INSTALLED_APPS_WORKFLOWS_SUB = (
     #'workflows.bio3graph',
     #'workflows.noise',
     #'workflows.vipercharts',
-    #'kombu.transport.django'
-    'workflows.MUSE',
+    #'workflows.MUSE',
+    #'workflows.hbp',
     )
 
 BROKER_URL = 'django://'
