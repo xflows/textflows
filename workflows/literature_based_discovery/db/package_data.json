@@ -389,7 +389,7 @@
     "fields": {
       "category": 70, 
       "treeview_image": "", 
-      "name": "Outlier-based heuristics", 
+      "name": "Outlier-based heuristic", 
       "is_streaming": false, 
       "uid": "8cf041ab-7158-4ebe-b17d-7d544ae0eca4", 
       "interaction_view": "", 
@@ -442,12 +442,70 @@
     }
   }, 
   {
+    "pk": 305, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Heuristic Maximum", 
+      "is_streaming": false, 
+      "uid": "6eacaae6-4db3-4a43-95c4-db4d3f9e2eb9", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristic_max", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 6, 
+      "description": "Defines a calculated heuristic that is the maximum (for every term) of the input heuristics."
+    }
+  }, 
+  {
+    "pk": 696, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 305, 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "uid": "934cced0-7b78-4ca2-bc3a-1a2e1c98a567", 
+      "default": "", 
+      "required": false, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 299, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 305, 
+      "name": "Heuristic Max Specification", 
+      "short_name": "heu", 
+      "variable": "heuristic", 
+      "uid": "c4a92e58-17fa-4767-9baf-8c3ace74d59b", 
+      "order": 1, 
+      "description": "Heuristic Maximum Specification"
+    }
+  }, 
+  {
     "pk": 264, 
     "model": "workflows.abstractwidget", 
     "fields": {
       "category": 70, 
       "treeview_image": "", 
-      "name": "Calculated Heuristic Sum", 
+      "name": "Heuristic Minimum", 
       "is_streaming": false, 
       "uid": "c6c5025c-1f31-42f7-a62b-dedb2bf53350", 
       "interaction_view": "", 
@@ -459,13 +517,13 @@
       "user": null, 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "action": "lbd_heuristic_sum", 
+      "action": "lbd_heuristic_min", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 6, 
-      "description": "Defines a calculated heuristic that does a summation of the input heuristics."
+      "description": "Defines a calculated heuristic that is the minimum (for every term) of the input heuristics."
     }
   }, 
   {
@@ -491,12 +549,186 @@
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": 264, 
-      "name": "Calculated Heuristic Sum", 
+      "name": "Heuristic Min Specification", 
       "short_name": "heu", 
       "variable": "heuristic", 
       "uid": "446f175b-d259-45df-a8e9-4446b60a7bbc", 
       "order": 1, 
-      "description": "Calculated Heuristic Sum"
+      "description": "Heuristic Minimum Specification"
+    }
+  }, 
+  {
+    "pk": 306, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Heuristic Normalization", 
+      "is_streaming": false, 
+      "uid": "e35a4e23-1e8d-4c1b-982a-470b047acd44", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristic_norm", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 6, 
+      "description": "Defines calculated heuristics where scores are scaled to [0,1] values using the minimum and maximum scores."
+    }
+  }, 
+  {
+    "pk": 697, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 306, 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "uid": "db59da34-f022-4d38-83d5-943b11c26a9c", 
+      "default": "", 
+      "required": false, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 300, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 306, 
+      "name": "Normalized Heuristic or Heuristic Specifications list ", 
+      "short_name": "heu", 
+      "variable": "norm_heuristics", 
+      "uid": "a4a723f2-e6c2-46ad-98d0-1c07a6764a09", 
+      "order": 1, 
+      "description": "Normalized Heuristic Specification or Heuristic Specifications list"
+    }
+  }, 
+  {
+    "pk": 304, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Heuristic Sum", 
+      "is_streaming": false, 
+      "uid": "66fd72e8-b662-4006-89a6-8a44ab9a44ae", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_heuristic_sum", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 6, 
+      "description": "Defines a calculated heuristic that is the summation of the input heuristics."
+    }
+  }, 
+  {
+    "pk": 695, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 304, 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "uid": "c5c99022-e9cb-47f7-8662-877948222b4f", 
+      "default": "", 
+      "required": false, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 298, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 304, 
+      "name": "Heuristic Sum Specification", 
+      "short_name": "heu", 
+      "variable": "heuristic", 
+      "uid": "ff76f950-6933-4bd4-8c68-8a8949ec0417", 
+      "order": 1, 
+      "description": "Heuristic Summation Specification"
+    }
+  }, 
+  {
+    "pk": 307, 
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": 70, 
+      "treeview_image": "", 
+      "name": "Ensemble Average Position", 
+      "is_streaming": false, 
+      "uid": "6e038eeb-7be6-4260-b1fb-dd29ea17b8c2", 
+      "interaction_view": "", 
+      "image": "", 
+      "package": "literature_based_discovery", 
+      "static_image": "crossbee_widget.png", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
+      "user": null, 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "action": "lbd_ensemble_average_position", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "has_progress_bar": false, 
+      "order": 7, 
+      "description": "The Ensemble Average Position score is calculated as an average of position scores of individual base heuristics."
+    }
+  }, 
+  {
+    "pk": 698, 
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": 307, 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "uid": "00126d92-521d-48fe-b55f-d6f95036e7b9", 
+      "default": "", 
+      "required": false, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 1, 
+      "description": ""
+    }
+  }, 
+  {
+    "pk": 301, 
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": 307, 
+      "name": "Ensemble Average Position Specification", 
+      "short_name": "heu", 
+      "variable": "heuristic", 
+      "uid": "3050b941-2e62-44f5-adcb-7b629dc57b0a", 
+      "order": 1, 
+      "description": "Ensemble Average Position Specification"
     }
   }, 
   {
@@ -505,7 +737,7 @@
     "fields": {
       "category": 70, 
       "treeview_image": "", 
-      "name": "Calculated Heuristic Ensamble Vote", 
+      "name": "Ensemble Heuristic Vote", 
       "is_streaming": false, 
       "uid": "b8736b27-6ea3-4fdd-910f-6a74785f28b1", 
       "interaction_view": "", 
@@ -517,13 +749,13 @@
       "user": null, 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
-      "action": "lbd_heuristic_vote", 
+      "action": "lbd_ensemble_heuristic_vote", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
       "has_progress_bar": false, 
       "order": 7, 
-      "description": "Defines a calculated heuristic that does a summation of the input heuristics."
+      "description": "Every term get an integer score, which represents how many of input heuristics voted for the term. Each input heuristic gives one vote to each term which is in the first third in its ranked list of terms."
     }
   }, 
   {
@@ -549,12 +781,12 @@
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": 265, 
-      "name": "Calculated Heuristic Ensamble Vote", 
+      "name": "Ensemble Heuristic Vote Specification", 
       "short_name": "heu", 
       "variable": "heuristic", 
       "uid": "1b15122a-4a90-4730-93ea-6aa5b08e6d83", 
       "order": 1, 
-      "description": "Calculated Heuristic Ensamble Vote"
+      "description": "Ensemble Heuristic Vote Specification"
     }
   }, 
   {

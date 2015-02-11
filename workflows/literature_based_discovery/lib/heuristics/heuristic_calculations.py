@@ -1,3 +1,5 @@
+from workflows.textflows import flatten
+
 __author__ = 'matic'
 
 from memoizator import memoized
@@ -76,35 +78,51 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
             scores=getattr(self,heuristic_names)()
             return BTermHeuristic(heuristic_names,scores)
         elif isinstance(heuristic_names, tuple):
-            if heuristic_names[0] == 'Sum':
-                return self.calculate_heuristic_sum(heuristic_names[1])
+            if heuristic_names[0] in ['Sum','Min','Max']:
+                return self.calculate_heuristic_func(heuristic_names[1],heuristic_names[0])
+            elif heuristic_names[0]=='Norm':
+                return self.calculate_heuristic_norm(heuristic_names[1])
             elif heuristic_names[0]=='Vote':
-                return self.calculate_heuristic_votes(heuristic_names[1])
+                return self.calculate_ensemble_heuristic_votes(heuristic_names[1])
+            elif heuristic_names[0]=='AvgPos':
+                return self.calculate_ensemble_average_position(heuristic_names[1])
 
         elif isinstance(heuristic_names, list):
             return [self.calculate_heuristics(heuristic_name) for heuristic_name in heuristic_names]
         return None
 
-    def calculate_heuristic_sum(self, heuristic_names):
+    def calculate_heuristic_func(self, heuristic_names,function):
         heuristics = [self.calculate_heuristics( heuristic_name) for heuristic_name in heuristic_names]
-        name = "Sum(" + ",".join([heuristic.name for heuristic in heuristics]) + ")"
-        scores = np.array([heuristic.scores for heuristic in heuristics]).sum(axis=0)
+        name = function+"(" + ",".join([heuristic.name for heuristic in heuristics]) + ")"
+        scores = getattr(np.array([heuristic.scores for heuristic in heuristics]),function.lower())(axis=0)
         return BTermHeuristic(name, scores)
 
-    def calculate_heuristic_votes(self,heuristic_names):
+
+    def calculate_heuristic_norm(self, heuristic_name):
+        heuristic = self.calculate_heuristics( heuristic_name)
+        name = "Norm("+heuristic.name+ ")"
+        xmin =  heuristic.scores.min(axis=0)
+        scores= (heuristic.scores - xmin) / (heuristic.scores.max(axis=0) - xmin)
+        return BTermHeuristic(name, scores)
+
+    def calculate_ensemble_heuristic_votes(self,heuristic_names):
         heuristics = [self.calculate_heuristics(heuristic_name) for heuristic_name in heuristic_names]
         name = "Vote(" + ",".join([heuristic.name for heuristic in heuristics]) + ")"
-        voting_scores = []
+        voting_scores = [ h.votes() for h in heuristics]
+        scores=np.array(voting_scores).sum(axis=0)
+        return BTermHeuristic(name, scores )
+
+    def calculate_ensemble_average_position(self,heuristic_names):
+        heuristics = [self.calculate_heuristics(heuristic_name) for heuristic_name in heuristic_names]
+        name = "AvgPos(" + ",".join([heuristic.name for heuristic in heuristics]) + ")"
         position_scores = []
 
         for h in heuristics:
-            positions = h.scores.argsort().argsort() + 1  #double argsort: position on in the spot of the element
-            h_voting_scores = np.array(positions > len(positions) * 2 / 3.0, dtype=int)
-            h_position_scores = (len(positions) - positions) / (len(positions) * 1. * len(heuristics))
+            positions = h.positions() #double argsort: position on in the spot of the element
+            h_position_scores = (len(positions) - positions) / (len(positions) * 1.)
 
-            voting_scores.append(h_voting_scores)
             position_scores.append(h_position_scores)
-        scores = np.array(voting_scores + position_scores).sum(axis=0)
+        scores = np.array(position_scores).mean(axis=0)
 
         return BTermHeuristic(name, scores)
 
@@ -117,14 +135,17 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
 
 
 class BTermHeuristic:
-    def __init__(self, name, scores,votes=None):
+    def __init__(self, name, scores):
         self.name = name
         self.scores = scores
-        self.votes=votes if votes else self._calculate_votes()
+        #self.votes=votes if votes else self._calculate_votes()
 
-    def _calculate_votes(self):
-        positions = self.scores.argsort().argsort() + 1  #double argsort: position on in the spot of the element
+    def votes(self):
+        positions = self.positions()  #double argsort: position on in the spot of the element
         return np.array(positions > len(positions) * 2 / 3.0, dtype=int)
+
+    def positions(self):
+        return self.scores.argsort().argsort() + 1
 
     def __repr__(self):
         return '<BTermHeuristic name: %s>' % (self.name)

@@ -12,13 +12,29 @@ def lbd_heuristic_selection_post(postdata, input_dict, output_dict):
     return {'heuristics': selected_heuristics}
 
 
+def lbd_heuristic_min(input_dict):
+    heuristic_names=flatten(input_dict.get('heuristics',[]))
+    return {'heuristic': ('Min',heuristic_names)}
+
+def lbd_heuristic_max(input_dict):
+    heuristic_names=flatten(input_dict.get('heuristics',[]))
+    return {'heuristic': ('Max',heuristic_names)}
+
 def lbd_heuristic_sum(input_dict):
     heuristic_names=flatten(input_dict.get('heuristics',[]))
     return {'heuristic': ('Sum',heuristic_names)}
 
-def lbd_heuristic_vote(input_dict):
+def lbd_heuristic_norm(input_dict):
+    heuristic_names=flatten(input_dict.get('heuristics',[]))
+    return {'norm_heuristics': [('Norm',heuristic_name) for heuristic_name in heuristic_names]}
+
+def lbd_ensemble_heuristic_vote(input_dict):
     heuristic_names=flatten(input_dict['heuristics'])
     return {'heuristic': ('Vote',heuristic_names)}
+
+def lbd_ensemble_average_position(input_dict):
+    heuristic_names=flatten(input_dict['heuristics'])
+    return {'heuristic': ('AvgPos',heuristic_names)}
 
 def lbd_calculate_heuristics(input_dict):
     heuristic_names=input_dict.get('heuristics',[])
@@ -45,7 +61,7 @@ def lbd_actual_and_predicted_values(input_dict):
 
     heuristics=flatten(input_dict['heuristics'])
 
-    return {'apv':[{'name': h.name,'predicted':list(h.votes),'actual':actual_values} for h in heuristics]}
+    return {'apv':[{'name': h.name,'predicted':list(h.scores),'actual':actual_values} for h in heuristics]}
 
 def lbd_explore_in_crossbee(input_dict):
     from workflows.textflows_dot_net.serialization_utils import ToNetObj
