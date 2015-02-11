@@ -2,7 +2,7 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "05c26564-86b5-4a73-aae9-f4dc14bc75d7", 
+      "category": "70b1a1cf-49e8-479b-a8d8-32cc2fbfa47b", 
       "treeview_image": "", 
       "uid": "3f8d1230-4aa3-4d0a-b1b7-440b4be85617", 
       "is_streaming": false, 
@@ -12,7 +12,7 @@
       "image": "", 
       "description": "Taggs the given annotated document corpus with the given tagger.", 
       "static_image": "tag_stem_do_image.png", 
-      "action": "latino_tag_adcstem_lemma", 
+      "action": "latino_tag_adc_stem_lemma", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": true, 
       "order": 5, 
-      "name": "Stem/Lemma Tagger Hub"
+      "name": "Stemming Tagger Hub"
     }
   }, 
   {
@@ -31,7 +31,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "elementAnnotation", 
+      "variable": "element_annotation", 
       "parameter": true, 
       "order": 3, 
       "uid": "568a8c0e-5e96-3315-ba84-4a1c2158050c"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "outputFeature", 
+      "variable": "output_feature", 
       "parameter": true, 
       "order": 4, 
       "uid": "ce347962-18cf-ca95-cd26-37e29fef1fd8"

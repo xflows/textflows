@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "53445215-f202-462e-bb3d-26814c3185b7", 
+      "treeview_image": "", 
+      "uid": "fcf93056-8fa3-444b-a203-f58a85157a93", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Constructs a python stop word tagger object.\r\n", 
+      "static_image": "tag_stop_image.png", 
+      "action": "nltk_stop_word_tagger", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 8, 
+      "name": "Stopwords Tagger"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "fcf93056-8fa3-444b-a203-f58a85157a93", 
+      "name": "Stop Words", 
+      "short_name": "str", 
+      "default": "", 
+      "description": "A list or string (stop words separated by new lines) of stop words.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "stop_words", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "0572bb02-0fb7-4b83-b759-680bdf8cacb7"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "fcf93056-8fa3-444b-a203-f58a85157a93", 
+      "name": "Ignore Case", 
+      "short_name": "bol", 
+      "default": "true", 
+      "description": "If true than words are marked as stop word regardless of their casing.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "ignore_case", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "aced5810-e09d-4bb8-b307-83d32049e9cf"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "fcf93056-8fa3-444b-a203-f58a85157a93", 
+      "name": "Stop Word Tagger", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the StopWordTagger object and its arguments.", 
+      "variable": "stop_word_tagger", 
+      "order": 1, 
+      "uid": "a9b43282-d68a-4e51-9ced-825ef97cec61"
+    }
+  }
+]

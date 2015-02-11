@@ -48,7 +48,7 @@
       "name": "flatData", 
       "short_name": "obj", 
       "description": "", 
-      "variable": "flatData", 
+      "variable": "flat_data", 
       "order": 1, 
       "uid": "a16d6a3b-e656-9b50-10c8-8359a5174193"
     }

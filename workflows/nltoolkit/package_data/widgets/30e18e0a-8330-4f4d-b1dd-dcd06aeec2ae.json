@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "b0ce2ce4-16e8-4f9c-9874-238066c20fea", 
+      "treeview_image": "", 
+      "uid": "30e18e0a-8330-4f4d-b1dd-dcd06aeec2ae", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "    The Treebank tokenizer uses regular expressions to tokenize text as in Penn Treebank.\r\n    This is the method that is invoked by ``word_tokenize()``.  It assumes that the\r\n    text has already been segmented into sentences, e.g. using ``sent_tokenize()``.\r\n\r\n    This tokenizer performs the following steps:\r\n\r\n    - split standard contractions, e.g. ``don't`` -> ``do n't`` and ``they'll`` -> ``they 'll``\r\n    - treat most punctuation characters as separate tokens\r\n    - split off commas and single quotes, when followed by whitespace\r\n    - separate periods that appear at the end of line\r\n\r\n        >>> from nltk.tokenize import TreebankWordTokenizer\r\n        >>> s = '''Good muffins cost $3.88\\\\nin New York.  Please buy me\\\\ntwo of them.\\\\n\\\\nThanks.'''\r\n        >>> TreebankWordTokenizer().tokenize(s)\r\n        ['Good', 'muffins', 'cost', '$', '3.88', 'in', 'New', 'York.',\r\n        'Please', 'buy', 'me', 'two', 'of', 'them', '.', 'Thanks', '.']\r\n        >>> s = \"They'll save and invest more.\"\r\n        >>> TreebankWordTokenizer().tokenize(s)\r\n        ['They', \"'ll\", 'save', 'and', 'invest', 'more', '.']\r\n\r\n    NB. this tokenizer assumes that the text is presented as one sentence per line,\r\n    where each line is delimited with a newline character.\r\n    The only periods to be treated as separate tokens are those appearing\r\n    at the end of a line.", 
+      "static_image": "token_word_image.png", 
+      "action": "nltk_treebank_word_tokenizer", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 6, 
+      "name": "Treebank Word Tokenizer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "30e18e0a-8330-4f4d-b1dd-dcd06aeec2ae", 
+      "name": "Tokenizer", 
+      "short_name": "tkn", 
+      "description": "", 
+      "variable": "tokenizer", 
+      "order": 1, 
+      "uid": "b2812153-04ac-47d3-ab6f-4147e6fccb4f"
+    }
+  }
+]

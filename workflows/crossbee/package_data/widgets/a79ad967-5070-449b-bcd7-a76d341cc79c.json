@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 410, 
       "name": "Load Outlier Heuristics"
     }
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "namePrefix", 
+      "variable": "name_prefix", 
       "parameter": true, 
       "order": 1, 
       "uid": "d6055ed0-f08d-555b-4cd3-5355a117f07d"
@@ -82,7 +82,7 @@
       "name": "Ensemble Heuristics", 
       "short_name": "heu", 
       "description": "", 
-      "variable": "newHeurisitcs", 
+      "variable": "new_heurisitcs", 
       "order": 1, 
       "uid": "7e50c540-0fce-c6dc-b8d0-54a0f8a8f161"
     }

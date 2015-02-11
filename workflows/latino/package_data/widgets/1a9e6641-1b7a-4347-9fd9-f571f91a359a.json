@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "minTokenLen", 
+      "variable": "min_token_len", 
       "parameter": true, 
       "order": 2, 
       "uid": "dcc2c809-f060-d931-3751-34694bceec2e"

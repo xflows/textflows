@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "leadingLabels", 
+      "variable": "leading_labels", 
       "parameter": true, 
       "order": 3, 
       "uid": "bc7ca808-781e-4de4-09cb-2bf3ff1f8954"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "tabSeparatedTitle", 
+      "variable": "tab_separated_title", 
       "parameter": true, 
       "order": 2, 
       "uid": "cb7ddfe9-08ad-6b8a-d1fa-76cd91888d5e"

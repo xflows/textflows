@@ -31,7 +31,7 @@
       "name": "Clusterer", 
       "short_name": "cls", 
       "default": "", 
-      "description": "LatinoClowdFlows.IClusterer", 
+      "description": "LatinoInterfaces.IClusterer", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -65,7 +65,7 @@
       "name": "Clustering Results", 
       "short_name": "cr", 
       "description": "", 
-      "variable": "clustRes", 
+      "variable": "clust_res", 
       "order": 1, 
       "uid": "1c2b8946-b303-5a95-410c-19d069a2be4e"
     }

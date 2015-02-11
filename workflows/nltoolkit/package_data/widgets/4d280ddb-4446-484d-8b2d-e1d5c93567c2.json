@@ -1,0 +1,92 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "uid": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "NLTK corpus readers. The modules in this package provide functions that can be used to read corpus files in a variety of formats. These functions can be used to read both the corpus files that are distributed in the NLTK corpus package, and corpus files that are part of external corpora.\r\n\r\nPlease see http://nltk.googlecode.com/svn/trunk/nltk_data/index.xml for a complete list. Install corpora using nltk.download().\r\n\r\nCorpus has the following available functions:\r\nwords(): list of str\r\nsents(): list of (list of str)\r\nparas(): list of (list of (list of str))\r\ntagged_words(): list of (str,str) tuple\r\ntagged_sents(): list of (list of (str,str))\r\ntagged_paras(): list of (list of (list of (str,str)))\r\nchunked_sents(): list of (Tree w/ (str,str) leaves)\r\nparsed_sents(): list of (Tree with str leaves)\r\nparsed_paras(): list of (list of (Tree with str leaves))\r\nxml(): A single xml ElementTree\r\nraw(): unprocessed corpus contents", 
+      "static_image": "", 
+      "action": "nltk_corpus", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "NLTK Document Corpus"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
+      "name": "NLTK Document Corpus Name", 
+      "short_name": "str", 
+      "default": "brown", 
+      "description": "NTLK Document Corpus Name", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "corpus_name", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
+      "name": "NTLK document corpus", 
+      "short_name": "cor", 
+      "description": "NLTK document corpus name", 
+      "variable": "corpus", 
+      "order": 1, 
+      "uid": "c2fce52f-e6c4-4074-9b75-49a3ebcac8bf"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Treebank", 
+      "uid": "045fac92-ea05-4699-b8aa-99cb33966b03", 
+      "value": "treebank", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Floresta", 
+      "uid": "51464033-9252-455a-8024-9d14893789ff", 
+      "value": "floresta", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Cess Esp (spanish)", 
+      "uid": "d9a7ece8-fb57-4ff3-8e7f-233a1dd989b9", 
+      "value": "cess_esp", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Brown", 
+      "uid": "fcf19171-2a06-450f-8e5a-5a40b9cb3370", 
+      "value": "brown", 
+      "abstract_input": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+    }
+  }
+]

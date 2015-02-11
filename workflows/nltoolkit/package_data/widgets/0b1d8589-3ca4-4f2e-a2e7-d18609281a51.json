@@ -1,0 +1,107 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "uid": "0b1d8589-3ca4-4f2e-a2e7-d18609281a51", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Add a feature to Annotated Document Corpus.", 
+      "static_image": "adc_add_feature_image.png", 
+      "action": "add_feature", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Add Feature"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0b1d8589-3ca4-4f2e-a2e7-d18609281a51", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "854cba32-6882-49a4-8884-51aaf407f0f9"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0b1d8589-3ca4-4f2e-a2e7-d18609281a51", 
+      "name": "New Feature Value Prefix", 
+      "short_name": "str", 
+      "default": "", 
+      "description": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "feature_value_prefix", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "a23ccbb2-90b1-49ca-a471-677e6f6248dc"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0b1d8589-3ca4-4f2e-a2e7-d18609281a51", 
+      "name": "New Feature Name", 
+      "short_name": "str", 
+      "default": "feature", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "feature_name", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "ca508d74-3812-4786-8648-c9ed44690a8c"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0b1d8589-3ca4-4f2e-a2e7-d18609281a51", 
+      "name": "Feature Values ", 
+      "short_name": "str", 
+      "default": "", 
+      "description": "List of feature values", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "feature_values", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "fd5b4e9f-34ef-4e33-a5f8-3557b79defa4"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "0b1d8589-3ca4-4f2e-a2e7-d18609281a51", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "6c929ddd-9b30-4556-b1f0-68baddb2f3c9"
+    }
+  }
+]

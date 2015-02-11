@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": true, 
       "order": 1, 
-      "name": "BOW Model (Text)"
+      "name": "Construct BOW Model (Text)"
     }
   }, 
   {
@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "cutLowWeightsPerc", 
+      "variable": "cut_low_weights_perc", 
       "parameter": true, 
       "order": 8, 
       "uid": "0160cac5-a82c-a2ea-d8ec-66e3a76b2a02"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "minWordFreq", 
+      "variable": "min_word_freq", 
       "parameter": true, 
       "order": 6, 
       "uid": "10e4ef28-62b4-c59e-2f6c-7188bfac4a17"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "normalizeVectors", 
+      "variable": "normalize_vectors", 
       "parameter": true, 
       "order": 9, 
       "uid": "58e02ee9-6308-6ad8-49aa-dce004c8175f"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
-      "variable": "wordWeightType", 
+      "variable": "word_weight_type", 
       "parameter": true, 
       "order": 7, 
       "uid": "76121091-e83a-ec17-bdf2-cd239e7c8b5d"
@@ -120,7 +120,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "maxNGramLen", 
+      "variable": "max_n_gram_len", 
       "parameter": true, 
       "order": 5, 
       "uid": "9f7a8787-5d03-122a-97a3-540ef7e2ce9d"
@@ -207,6 +207,15 @@
       "name": "Term Freq", 
       "uid": "25f63cf8-7cdf-fae2-f661-c69cfb7ec932", 
       "value": "TermFreq", 
+      "abstract_input": "76121091-e83a-ec17-bdf2-cd239e7c8b5d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Tf Idf Safe", 
+      "uid": "68cd0606-ab6f-bb26-7590-a98df0298ef9", 
+      "value": "TfIdfSafe", 
       "abstract_input": "76121091-e83a-ec17-bdf2-cd239e7c8b5d"
     }
   }, 

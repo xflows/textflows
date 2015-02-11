@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "alphaNumericOptimization", 
+      "variable": "alpha_numeric_optimization", 
       "parameter": true, 
       "order": 1, 
       "uid": "f49e114d-c12e-a3e6-1bde-b53999b0b759"

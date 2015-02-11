@@ -31,11 +31,11 @@
       "name": "Similarity Model", 
       "short_name": "typ", 
       "default": "Cosine", 
-      "description": "LatinoClowdFlows.SimilarityModel", 
+      "description": "LatinoInterfaces.SimilarityModel", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
-      "variable": "similarityModel", 
+      "variable": "similarity_model", 
       "parameter": true, 
       "order": 1, 
       "uid": "8c1b49cb-78f8-a7d2-2d8a-8710b5f25a03"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "normalizeCentorids", 
+      "variable": "normalize_centorids", 
       "parameter": true, 
       "order": 2, 
       "uid": "c3a78c28-2c45-7233-7f40-c424577eb01b"

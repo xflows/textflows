@@ -31,7 +31,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
@@ -65,7 +65,7 @@
       "name": "Term Dataset", 
       "short_name": "tds", 
       "description": "", 
-      "variable": "termDataset", 
+      "variable": "term_dataset", 
       "order": 1, 
       "uid": "1d1bb0a9-af17-4c12-0c1a-ff3dea0956e4"
     }

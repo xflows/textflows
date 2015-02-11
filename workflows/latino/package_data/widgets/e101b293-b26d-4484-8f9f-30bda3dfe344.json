@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "maxIter", 
+      "variable": "max_iter", 
       "parameter": true, 
       "order": 9, 
       "uid": "189b1989-a282-605a-16dc-894a1f4561cf"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "kernelParamD", 
+      "variable": "kernel_param_d", 
       "parameter": true, 
       "order": 5, 
       "uid": "32512a7e-6e2c-76de-94ba-61b70f9c6ac5"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "kernelParamC", 
+      "variable": "kernel_param_c", 
       "parameter": true, 
       "order": 7, 
       "uid": "42583600-9253-fa64-557b-7e435aea5d73"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "biasedHyperplane", 
+      "variable": "biased_hyperplane", 
       "parameter": true, 
       "order": 2, 
       "uid": "7892b4b0-9f15-4ab2-2ed3-88a37abd987c"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "kernelParamS", 
+      "variable": "kernel_param_s", 
       "parameter": true, 
       "order": 6, 
       "uid": "84a0f438-e258-bb86-0a47-95aab9b37912"
@@ -120,7 +120,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "kernelParamGamma", 
+      "variable": "kernel_param_gamma", 
       "parameter": true, 
       "order": 4, 
       "uid": "9febc0b2-4792-9a75-d078-06cba1fec00b"
@@ -154,7 +154,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
-      "variable": "kernelType", 
+      "variable": "kernel_type", 
       "parameter": true, 
       "order": 3, 
       "uid": "f63be5e5-9f93-fbba-c06e-d80de1d65191"
@@ -188,7 +188,7 @@
       "required": false, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "customParams", 
+      "variable": "custom_params", 
       "parameter": true, 
       "order": 10, 
       "uid": "fdbde52d-2257-24a8-fec4-6b0b8aa0a414"

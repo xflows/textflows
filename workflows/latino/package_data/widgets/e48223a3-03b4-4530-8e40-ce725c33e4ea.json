@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "clustRes", 
+      "variable": "clust_res", 
       "parameter": false, 
       "order": 1, 
       "uid": "8ad4dfeb-cf27-9013-826d-046edc418b25"
@@ -48,7 +48,7 @@
       "name": "Document Labels (Array of Clusteres Ids)", 
       "short_name": "str", 
       "description": "", 
-      "variable": "docLabels", 
+      "variable": "doc_labels", 
       "order": 1, 
       "uid": "611c7d9f-a46c-8051-30dc-3c5559411937"
     }
@@ -60,7 +60,7 @@
       "name": "Clusters Tree", 
       "short_name": "obj", 
       "description": "", 
-      "variable": "clustTree", 
+      "variable": "clust_tree", 
       "order": 2, 
       "uid": "a5aeaa0f-527d-7706-37c1-e3c75bec5250"
     }

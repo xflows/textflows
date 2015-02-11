@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "treeview_image": "", 
+      "uid": "c8472428-1050-4f54-9a5e-e910c692415d", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "WordNet Lemmatizer\r\n    \r\nLemmatize using WordNet's built-in morphy function. Returns the input word unchanged if it cannot be found in WordNet.", 
+      "static_image": "tag_stem_image.png", 
+      "action": "nltk_wordnet_lemmatizer", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 5, 
+      "name": "WordNet Lemmatizer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "c8472428-1050-4f54-9a5e-e910c692415d", 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "description": "", 
+      "variable": "tagger", 
+      "order": 1, 
+      "uid": "cdd6ed1a-d7b0-4959-85de-f07be993444d"
+    }
+  }
+]

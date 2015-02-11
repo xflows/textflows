@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Controlled Vocabularies", 
+    "parent": "227ab607-c890-4803-a49b-141ee283e41b", 
+    "order": 1, 
+    "uid": "7b62f695-5ba6-4012-af8b-abe99b8771be"
+  }
+}

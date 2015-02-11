@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "featureName", 
+      "variable": "feature_name", 
       "parameter": true, 
       "order": 2, 
       "uid": "276fe964-c5aa-1081-0be9-13aad301c661"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "randomSeed", 
+      "variable": "random_seed", 
       "parameter": true, 
       "order": 7, 
       "uid": "36dc97df-1c37-9f7a-337d-a11eedcd894d"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "useSeed", 
+      "variable": "use_seed", 
       "parameter": true, 
       "order": 6, 
       "uid": "48804f65-9306-be3d-70d4-ad81252d0a38"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "numOfSets", 
+      "variable": "num_of_sets", 
       "parameter": true, 
       "order": 4, 
       "uid": "96533d85-f52d-69a7-c4d9-4ab99f38fcb0"
@@ -116,7 +116,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -137,7 +137,7 @@
       "required": false, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "featureValuePrefix", 
+      "variable": "feature_value_prefix", 
       "parameter": true, 
       "order": 3, 
       "uid": "d67ecbbb-e185-d9bf-43dd-52e2906a7f1f"

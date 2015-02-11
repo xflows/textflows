@@ -1,0 +1,144 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
+      "treeview_image": "", 
+      "uid": "588104e6-365c-4a5f-8b80-5837a05e01d4", 
+      "is_streaming": false, 
+      "package": "scikit_classifiers", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Classifier implementing the k-nearest neighbors vote.", 
+      "static_image": "classifier_knn_image.png", 
+      "action": "sc_knn", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "k-Nearest Neighbours"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "588104e6-365c-4a5f-8b80-5837a05e01d4", 
+      "name": "Weights", 
+      "short_name": "wei", 
+      "default": "uniform", 
+      "description": "weight function used in prediction. Possible values:\r\n\u2018uniform\u2019 : uniform weights. All points in each neighborhood are weighted equally.\r\n\u2018distance\u2019 : weight points by the inverse of their distance. in this case, closer neighbors of a query point will have a greater influence than neighbors which are further away.\r\n[callable] : a user-defined function which accepts an array of distances, and returns an array of the same shape containing the weights.\r\nUniform weights are used by default.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "weights", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "0bd35788-b7cf-463d-9327-7b81bdad358e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "588104e6-365c-4a5f-8b80-5837a05e01d4", 
+      "name": "Number of neighbors", 
+      "short_name": "nne", 
+      "default": "5", 
+      "description": "Number of neighbors to use by default for k_neighbors queries.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "n_neighbors", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "5bd7564a-a9a4-4dc4-ad57-13c00fb47200"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "588104e6-365c-4a5f-8b80-5837a05e01d4", 
+      "name": "Algorithm", 
+      "short_name": "alg", 
+      "default": "auto", 
+      "description": "Algorithm used to compute the nearest neighbors:\r\n\u2018ball_tree\u2019 will use BallTree\r\n\u2018kd_tree\u2019 will use KDTree\r\n\u2018brute\u2019 will use a brute-force search.\r\n\u2018auto\u2019 will attempt to decide the most appropriate algorithm based on the values passed to fit method.\r\nNote: fitting on sparse input will override the setting of this parameter, using brute force.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "algorithm", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "d1e42d54-c63c-4672-920c-4bc2d054f1b3"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "588104e6-365c-4a5f-8b80-5837a05e01d4", 
+      "name": "Classifier", 
+      "short_name": "csf", 
+      "description": "", 
+      "variable": "classifier", 
+      "order": 1, 
+      "uid": "1317a3d6-0e37-4579-a82c-3697cef1e7dd"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "uniform", 
+      "uid": "15104e2e-020b-4364-8e75-7abe3453847b", 
+      "value": "uniform", 
+      "abstract_input": "0bd35788-b7cf-463d-9327-7b81bdad358e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "most appropriate (automatically)", 
+      "uid": "4e5c5456-a65e-4809-9800-b773e6267c0e", 
+      "value": "auto", 
+      "abstract_input": "d1e42d54-c63c-4672-920c-4bc2d054f1b3"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "kd tree", 
+      "uid": "ae295113-d31f-43eb-9050-808a49760a99", 
+      "value": "kd_tree", 
+      "abstract_input": "d1e42d54-c63c-4672-920c-4bc2d054f1b3"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "ball tree", 
+      "uid": "c8c8d4fc-019f-45a9-bba3-4d1b44c84cfe", 
+      "value": "ball_tree", 
+      "abstract_input": "d1e42d54-c63c-4672-920c-4bc2d054f1b3"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "brute", 
+      "uid": "e8c64f20-490f-4a31-aff8-588f9232d9dc", 
+      "value": "brute", 
+      "abstract_input": "d1e42d54-c63c-4672-920c-4bc2d054f1b3"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "distance", 
+      "uid": "fc673c5a-118f-4538-9c3f-06e42de311b3", 
+      "value": "distance", 
+      "abstract_input": "0bd35788-b7cf-463d-9327-7b81bdad358e"
+    }
+  }
+]

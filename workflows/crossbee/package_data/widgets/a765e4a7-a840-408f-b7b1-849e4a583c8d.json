@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 510, 
       "name": "Document Outlier Detection"
     }
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "numOfSets", 
+      "variable": "num_of_sets", 
       "parameter": true, 
       "order": 5, 
       "uid": "70f37618-6173-b6de-1581-333303025651"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "outlierThreshold", 
+      "variable": "outlier_threshold", 
       "parameter": true, 
       "order": 4, 
       "uid": "ad206ea1-4158-620d-3ea8-7a1ad7f87cc8"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "useSeed", 
+      "variable": "use_seed", 
       "parameter": true, 
       "order": 7, 
       "uid": "b732736e-8c7f-d8f7-e9f0-7becd4a6bdcc"
@@ -137,7 +137,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
-      "variable": "outlierWeighting", 
+      "variable": "outlier_weighting", 
       "parameter": true, 
       "order": 9, 
       "uid": "d656fe12-2f4c-efb5-6687-013fb8c4b1e0"
@@ -154,7 +154,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "randomSeed", 
+      "variable": "random_seed", 
       "parameter": true, 
       "order": 8, 
       "uid": "e7228b95-f0d5-346a-697c-6225bfc98db2"
@@ -171,7 +171,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "repetitionCount", 
+      "variable": "repetition_count", 
       "parameter": true, 
       "order": 3, 
       "uid": "ffa6f21f-bab4-ec85-564d-3c97ce7f1575"

@@ -2,7 +2,7 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "94237b9c-8e88-460c-abc5-9c8108acb821", 
+      "category": "db8fc413-22c5-4d92-b398-475969477414", 
       "treeview_image": "", 
       "uid": "9de84740-c4dc-464f-9388-fd736598829c", 
       "is_streaming": false, 
@@ -20,7 +20,7 @@
       "wsdl": "", 
       "interactive": false, 
       "windows_queue": true, 
-      "order": 1, 
+      "order": 2, 
       "name": "Condition Tagger"
     }
   }, 
@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "featureCondition", 
+      "variable": "feature_condition", 
       "parameter": true, 
       "order": 1, 
       "uid": "93ce61ae-f7af-ee3a-26d0-1b0af81bcc03"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "outputFeatureValue", 
+      "variable": "output_feature_value", 
       "parameter": true, 
       "order": 2, 
       "uid": "96c4c439-c645-d2b4-cd7d-8524f3c3b2bf"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "elementsTextToFeatureValue", 
+      "variable": "elements_text_to_feature_value", 
       "parameter": true, 
       "order": 3, 
       "uid": "b2e17caf-f2d7-b587-b76e-83bdf12109ae"

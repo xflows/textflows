@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "uid": "a75e8dc0-d86d-4755-aea0-4e25e033af8b", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Extract documents features.", 
+      "static_image": "adc_extract_feature_image.png", 
+      "action": "extract_feature", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Extract Feature"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "a75e8dc0-d86d-4755-aea0-4e25e033af8b", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "13172bfe-b10e-4eb3-b7a9-b33d1430ea6e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "a75e8dc0-d86d-4755-aea0-4e25e033af8b", 
+      "name": "Extracted Feature Name", 
+      "short_name": "efn", 
+      "default": "", 
+      "description": "Extracted Feature Name", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "feature_name", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "84b79dde-ec76-42f0-a17f-c9c0ac561e51"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "a75e8dc0-d86d-4755-aea0-4e25e033af8b", 
+      "name": "List of Extracted Features", 
+      "short_name": "str", 
+      "description": "", 
+      "variable": "strings", 
+      "order": 1, 
+      "uid": "dbc02abf-3312-4c49-a9cb-15ba5baa5c15"
+    }
+  }
+]

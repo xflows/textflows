@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "testSize", 
+      "variable": "test_size", 
       "parameter": true, 
       "order": 7, 
       "uid": "2d2abe8f-342c-76c1-28e7-81f64f993296"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "trainSize", 
+      "variable": "train_size", 
       "parameter": true, 
       "order": 6, 
       "uid": "31018dd7-7d3d-7389-81bf-b62f01ab1aa7"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "numOfSets", 
+      "variable": "num_of_sets", 
       "parameter": true, 
       "order": 2, 
       "uid": "3c925a37-0ee3-f62e-7b22-d1714d351d1d"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "numOfExamples", 
+      "variable": "num_of_examples", 
       "parameter": true, 
       "order": 1, 
       "uid": "462fb6c6-cd17-00fb-d043-1f1ffba08207"
@@ -120,7 +120,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "trainTestDelay", 
+      "variable": "train_test_delay", 
       "parameter": true, 
       "order": 8, 
       "uid": "7907fe83-3ce8-2c40-bda9-f82a0596e58d"
@@ -137,7 +137,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "randomSeed", 
+      "variable": "random_seed", 
       "parameter": true, 
       "order": 5, 
       "uid": "8c1254ff-9daf-705a-4538-63c58d0e6ecf"
@@ -171,7 +171,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "useSeed", 
+      "variable": "use_seed", 
       "parameter": true, 
       "order": 4, 
       "uid": "cf82fbf2-afcb-3dfb-e9b0-729905db423e"

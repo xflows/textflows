@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "POS Tagging", 
+    "parent": null, 
+    "order": 4, 
+    "uid": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd"
+  }
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "uid": "2b2c8547-8d24-4e35-9a4f-639c6af3bddc", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Merge multiple Annotated Document Corpuses into one.", 
+      "static_image": "latino_widget_image.png", 
+      "action": "merge_corpora", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Merge Corpora"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2b2c8547-8d24-4e35-9a4f-639c6af3bddc", 
+      "name": "Annotated ", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated ", 
+      "required": true, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "eac4128d-ccf3-41e2-bdac-0184cb42cd37"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "2b2c8547-8d24-4e35-9a4f-639c6af3bddc", 
+      "name": "Merged Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "e5952d4d-0990-412e-95ce-5b7d07b8534b"
+    }
+  }
+]

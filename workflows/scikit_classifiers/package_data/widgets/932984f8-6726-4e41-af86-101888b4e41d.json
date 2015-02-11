@@ -1,0 +1,90 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d6227d82-f8cf-4511-854c-190bfffc2e0a", 
+      "treeview_image": "", 
+      "uid": "932984f8-6726-4e41-af86-101888b4e41d", 
+      "is_streaming": false, 
+      "package": "scikit_classifiers", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "The KMeans algorithm clusters data by trying to separate samples in n groups of equal variance, minimizing a criterion known as the inertia <inertia> or within-cluster sum-of-squares. This algorithm requires the number of clusters to be specified. It scales well to large number of samples and has been used across a large range of application areas in many different fields.", 
+      "static_image": "", 
+      "action": "sc_kmeans", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "k-Means"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "932984f8-6726-4e41-af86-101888b4e41d", 
+      "name": "Max iterations", 
+      "short_name": "mit", 
+      "default": "300", 
+      "description": "Maximum number of iterations of the k-means algorithm for a single run.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "max_iter", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "18b3159c-3aa7-40da-85a4-38c3f4f98b16"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "932984f8-6726-4e41-af86-101888b4e41d", 
+      "name": "Tolerance", 
+      "short_name": "tol", 
+      "default": "1e-4", 
+      "description": "Relative tolerance with regards to inertia to declare convergence.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "tol", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "b63ce227-2b55-4d29-ad95-5e0b7413c75b"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "932984f8-6726-4e41-af86-101888b4e41d", 
+      "name": "Number of clusters", 
+      "short_name": "noc", 
+      "default": "8", 
+      "description": "The number of clusters to form as well as the number of centroids to generate.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "n_clusters", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "d4f839fc-816a-43c6-8ec2-8bb5ce51e515"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "932984f8-6726-4e41-af86-101888b4e41d", 
+      "name": "Clustering", 
+      "short_name": "cls", 
+      "description": "", 
+      "variable": "clustering", 
+      "order": 1, 
+      "uid": "eaa0ce7c-fbad-4503-908b-63a367f022ea"
+    }
+  }
+]

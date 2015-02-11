@@ -1,9 +1,9 @@
 {
   "model": "workflows.category", 
   "fields": {
-    "name": "Classification", 
-    "parent": "3f7d449c-9222-458b-9c4e-412b01bcbc6b", 
-    "order": 9, 
+    "name": "Latino", 
+    "parent": "46050a99-188d-40e1-90e5-0c1912059fa7", 
+    "order": 1, 
     "uid": "c8fd491e-75ad-487d-b42f-b5ca07ec045a"
   }
 }

@@ -1,0 +1,61 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "1e366c76-9a29-4b3b-bcca-4089d89bc8ba", 
+      "treeview_image": "", 
+      "uid": "47c4d92b-af90-4307-b9b0-2f4b36ff9f93", 
+      "is_streaming": false, 
+      "package": "scikit_classifiers", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "", 
+      "static_image": "construction_work .png", 
+      "action": "scikit_classifiers_pre_display_summation", 
+      "visualization_view": "scikit_classifiers_display_summation", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 4, 
+      "name": "Display Summation"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "47c4d92b-af90-4307-b9b0-2f4b36ff9f93", 
+      "name": "Integer List", 
+      "short_name": "lst", 
+      "default": "", 
+      "description": "List of integers", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "intList", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "c84bc35f-2df0-4a6b-9ab4-18e9a19ee054"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "47c4d92b-af90-4307-b9b0-2f4b36ff9f93", 
+      "name": "Sum", 
+      "short_name": "int", 
+      "default": "", 
+      "description": "Sum (possibly correct) of integer list", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "sum", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "e54f725e-b058-49d0-998b-4c4e99c1a32f"
+    }
+  }
+]

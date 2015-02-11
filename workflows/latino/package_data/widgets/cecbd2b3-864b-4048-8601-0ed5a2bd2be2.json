@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "randomSeed", 
+      "variable": "random_seed", 
       "parameter": true, 
       "order": 3, 
       "uid": "2226b21b-7e55-07b6-69ba-b66d5173bef9"

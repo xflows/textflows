@@ -31,7 +31,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
-      "variable": "outputAnnotations", 
+      "variable": "output_annotations", 
       "parameter": true, 
       "order": 4, 
       "uid": "8c781452-1924-dc90-e405-787c3c6d3124"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
-      "variable": "inputAnnotations", 
+      "variable": "input_annotations", 
       "parameter": true, 
       "order": 3, 
       "uid": "ecb3bf15-fa48-6a10-aa11-dfc62fb0ee46"

@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "numThreads", 
+      "variable": "num_threads", 
       "parameter": true, 
       "order": 4, 
       "uid": "279fff3f-5f66-58f1-5a03-3c51d5648c95"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "moveData", 
+      "variable": "move_data", 
       "parameter": true, 
       "order": 1, 
       "uid": "5388af0b-ce34-92a3-0f7c-514191196514"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "cutOff", 
+      "variable": "cut_off", 
       "parameter": true, 
       "order": 3, 
       "uid": "8a227607-600a-8909-0216-25ea11d5a839"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "numIter", 
+      "variable": "num_iter", 
       "parameter": true, 
       "order": 2, 
       "uid": "c31bbe9d-0354-503d-b9b3-807e7844a237"

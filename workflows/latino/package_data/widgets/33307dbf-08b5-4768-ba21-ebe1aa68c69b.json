@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "outputFeature", 
+      "variable": "output_feature", 
       "parameter": true, 
       "order": 3, 
       "uid": "02d347c6-12c9-9892-5d69-38548474b35a"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "posTagger", 
+      "variable": "pos_tagger", 
       "parameter": false, 
       "order": 2, 
       "uid": "981e7201-35ab-7b25-ae8f-29e5b03cb407"

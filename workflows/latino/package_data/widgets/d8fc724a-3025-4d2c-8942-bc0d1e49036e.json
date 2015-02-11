@@ -12,7 +12,7 @@
       "image": "", 
       "description": "Automatically generated widget from function ConstructKMeansFastClusterer in package latino. The original function signature: ConstructKMeansFastClusterer.", 
       "static_image": "clusterer_kmenas_fast_image.png", 
-      "action": "latino_construct_kmeans_fast_clusterer", 
+      "action": "latino_construct_k_means_fast_clusterer", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "randomSeed", 
+      "variable": "random_seed", 
       "parameter": true, 
       "order": 2, 
       "uid": "31ecfb03-fbcf-677a-8580-d4419528df02"

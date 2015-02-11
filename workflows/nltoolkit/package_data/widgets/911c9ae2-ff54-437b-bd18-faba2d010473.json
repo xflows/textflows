@@ -1,0 +1,107 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "5a2a3054-1e34-4e51-851e-85baaee020d4", 
+      "treeview_image": "", 
+      "uid": "911c9ae2-ff54-437b-bd18-faba2d010473", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Automatically generated widget from function CalculateSimilarityMatrix in package latino. The original function signature: CalculateSimilarityMatrix.", 
+      "static_image": "calc_sim_matrix_image.png", 
+      "action": "calculate_similarity_matrix", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Calculate Similarity Matrix"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "911c9ae2-ff54-437b-bd18-faba2d010473", 
+      "name": "Dataset", 
+      "short_name": "ds", 
+      "default": "", 
+      "description": "Latino.Model.IUnlabeledExampleCollection`1[[Latino.SparseVector`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Latino, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "ds2", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "507a7bad-c956-49c6-9deb-c9cfd4a6b471"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "911c9ae2-ff54-437b-bd18-faba2d010473", 
+      "name": "Full Matrix (not only Lower Triangular)", 
+      "short_name": "bol", 
+      "default": "true", 
+      "description": "System.Boolean", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "fullMatrix", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "7125b9d7-c961-4fa1-8acf-4c99207f641b"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "911c9ae2-ff54-437b-bd18-faba2d010473", 
+      "name": "Dataset", 
+      "short_name": "ds", 
+      "default": "", 
+      "description": "Latino.Model.IUnlabeledExampleCollection`1[[Latino.SparseVector`1[[System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], Latino, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "ds1", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "835ffa43-4cfc-48e4-a2d7-71cc01c47205"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "911c9ae2-ff54-437b-bd18-faba2d010473", 
+      "name": "Similarity Threshold", 
+      "short_name": "dbl", 
+      "default": "0", 
+      "description": "System.Double", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "thresh", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "f31d1331-576c-4b39-940f-4ecb4395c83b"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "911c9ae2-ff54-437b-bd18-faba2d010473", 
+      "name": "Similarity Matrix", 
+      "short_name": "smx", 
+      "description": "", 
+      "variable": "smx", 
+      "order": 1, 
+      "uid": "0e9ff5c7-cdbb-4032-9ba3-43f7058698e6"
+    }
+  }
+]

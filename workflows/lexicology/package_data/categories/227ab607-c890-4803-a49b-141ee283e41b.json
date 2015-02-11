@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Lexicology", 
+    "parent": null, 
+    "order": 10, 
+    "uid": "227ab607-c890-4803-a49b-141ee283e41b"
+  }
+}

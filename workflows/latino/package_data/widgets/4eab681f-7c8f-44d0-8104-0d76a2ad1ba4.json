@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "fullMatrix", 
+      "variable": "full_matrix", 
       "parameter": true, 
       "order": 4, 
       "uid": "f9775db0-0a33-b226-5f26-db727695324d"

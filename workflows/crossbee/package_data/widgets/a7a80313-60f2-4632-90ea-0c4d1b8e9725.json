@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 20, 
       "name": "Heuristics List"
     }
@@ -48,7 +48,7 @@
       "name": "Heuristics", 
       "short_name": "heu", 
       "description": "", 
-      "variable": "newHeurisitcs", 
+      "variable": "new_heurisitcs", 
       "order": 1, 
       "uid": "7f5afee7-a123-ba0c-a5c8-1c765b4ef212"
     }

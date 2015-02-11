@@ -1,0 +1,107 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "49d5fda2-23d4-444a-a6df-3c5714d2fdfd", 
+      "treeview_image": "", 
+      "uid": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Apply the *stop_word_tagger* object on the Annotated Document Corpus (*adc*):\r\n\r\n1. first select only annotations of type Token Annotation *element_annotation*,\r\n2. apply the stop_word tagger\r\n3. create new annotations *output_feature* with the outputs of the stop word tagger.\r\n", 
+      "static_image": "tag_stop_do_image.png", 
+      "action": "stop_word_tagger_hub", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": true, 
+      "order": 8, 
+      "name": "Stop Word Tagger Hub"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
+      "name": "Token Annotation", 
+      "short_name": "str", 
+      "default": "Token", 
+      "description": "Which annotated part of document to be searched for stopwords.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "245dd339-85de-4ddf-a39b-d3bb47881711"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
+      "name": "Output Feature Name", 
+      "short_name": "str", 
+      "default": "StopWord", 
+      "description": "How to annotate the newly discovered stop word features.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_feature", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "623a2684-0327-45e3-be7a-6f9c8d320c16"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
+      "name": "Stop Word Tagger", 
+      "short_name": "tgr", 
+      "default": "", 
+      "description": "A python dictionary containing the stop word tagger object and its arguments.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "stop_word_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "b1d8d6e9-43c8-4a67-8ea6-dd62c5e5aa67"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "c5745036-078d-44ef-881c-9dbc43be9bb6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "d858ac7b-0e3c-4ce6-a942-60d9d63caaa9"
+    }
+  }
+]

@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 1, 
       "name": "Calculate Terms Heuristic Scores"
     }
@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "termDataset", 
+      "variable": "term_dataset", 
       "parameter": false, 
       "order": 1, 
       "uid": "814b5a30-ba68-f7cc-cd5a-a258723c9b42"

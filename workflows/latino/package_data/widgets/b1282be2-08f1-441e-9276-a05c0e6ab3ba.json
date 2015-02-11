@@ -2,7 +2,7 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "94237b9c-8e88-460c-abc5-9c8108acb821", 
+      "category": "dd9a30e3-f9bf-42d3-830b-125805373906", 
       "treeview_image": "", 
       "uid": "b1282be2-08f1-441e-9276-a05c0e6ab3ba", 
       "is_streaming": false, 
@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": true, 
       "order": 4, 
-      "name": "Stopword Tagger Hub (Text)"
+      "name": "Stop Word Tagger Hub (Text)"
     }
   }, 
   {
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "outputFeature", 
+      "variable": "output_feature", 
       "parameter": true, 
       "order": 3, 
       "uid": "362bc947-acec-8ccd-8cc9-2545d8a672db"

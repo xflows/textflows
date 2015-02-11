@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "logSumExpTrick", 
+      "variable": "log_sum_exp_trick", 
       "parameter": true, 
       "order": 2, 
       "uid": "c87a9f5d-59a8-83d9-b0e9-24ed978e0359"

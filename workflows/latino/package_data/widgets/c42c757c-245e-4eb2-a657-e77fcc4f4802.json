@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "randomSeed", 
+      "variable": "random_seed", 
       "parameter": true, 
       "order": 6, 
       "uid": "15d0d98c-b25b-e7fc-19f1-d547a0dddd14"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "numOfSets", 
+      "variable": "num_of_sets", 
       "parameter": true, 
       "order": 3, 
       "uid": "21ea2877-e44d-c8db-0612-b9bce6e62f36"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "useSeed", 
+      "variable": "use_seed", 
       "parameter": true, 
       "order": 5, 
       "uid": "bdc7e5b8-00f1-d7bd-6927-fc91856a280a"

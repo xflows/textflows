@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsIgnorePatternWhitespace", 
+      "variable": "regex_options_ignore_pattern_whitespace", 
       "parameter": true, 
       "order": 8, 
       "uid": "0688894c-aea7-bfe4-6d38-ca14f2ff0337"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsECMAScript", 
+      "variable": "regex_options_ecma_script", 
       "parameter": true, 
       "order": 10, 
       "uid": "3283613d-19d2-4d84-cef9-ef8f168bcd24"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsIgnoreCase", 
+      "variable": "regex_options_ignore_case", 
       "parameter": true, 
       "order": 3, 
       "uid": "89faa019-8d68-c318-7d5f-2a7c1720adbf"
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsExplicitCapture", 
+      "variable": "regex_options_explicit_capture", 
       "parameter": true, 
       "order": 5, 
       "uid": "906e3a77-3d5c-9ba0-5135-066a28bbae4b"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsCompiled", 
+      "variable": "regex_options_compiled", 
       "parameter": true, 
       "order": 6, 
       "uid": "94702d0a-a6aa-a9ea-baf4-6d3bddd7afe2"
@@ -120,7 +120,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsRightToLeft", 
+      "variable": "regex_options_right_to_left", 
       "parameter": true, 
       "order": 9, 
       "uid": "9d1dfbe2-5019-0896-e2f1-f4f44b228435"
@@ -137,7 +137,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "tokenRegex", 
+      "variable": "token_regex", 
       "parameter": true, 
       "order": 1, 
       "uid": "9f31b30f-a480-da88-f8aa-275e938a1484"
@@ -154,7 +154,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsCultureInvariant", 
+      "variable": "regex_options_culture_invariant", 
       "parameter": true, 
       "order": 11, 
       "uid": "cc5c2449-77dd-fd50-690d-6686bdf49153"
@@ -171,7 +171,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsMultiline", 
+      "variable": "regex_options_multiline", 
       "parameter": true, 
       "order": 4, 
       "uid": "ce522d23-7d8d-ec98-4d04-0d7abf0cd476"
@@ -188,7 +188,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "regexOptionsSingleline", 
+      "variable": "regex_options_singleline", 
       "parameter": true, 
       "order": 7, 
       "uid": "da23b6c7-f4e2-cd81-b95c-f47fc8897da1"
@@ -205,7 +205,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "ignoreUnknownTokens", 
+      "variable": "ignore_unknown_tokens", 
       "parameter": true, 
       "order": 2, 
       "uid": "eddffd40-c816-c446-a2e3-606c0aaf0429"

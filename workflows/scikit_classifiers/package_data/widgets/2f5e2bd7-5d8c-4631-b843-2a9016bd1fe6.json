@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
+      "treeview_image": "", 
+      "uid": "2f5e2bd7-5d8c-4631-b843-2a9016bd1fe6", 
+      "is_streaming": false, 
+      "package": "scikit_classifiers", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Gaussian Naive Bayes.  When dealing with continuous data, a typical assumption is that the continuous values associated with each class are distributed according to a Gaussian distribution.", 
+      "static_image": "classifier_naive_bayes_image.png", 
+      "action": "sc_gaussian_nb", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Gaussian Naive Bayes Classifier"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "2f5e2bd7-5d8c-4631-b843-2a9016bd1fe6", 
+      "name": "Classifier", 
+      "short_name": "csf", 
+      "description": "", 
+      "variable": "classifier", 
+      "order": 1, 
+      "uid": "d714edc2-c59f-478f-a746-cc6a6577f534"
+    }
+  }
+]

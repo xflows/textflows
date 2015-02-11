@@ -1,0 +1,102 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "uid": "cec7f431-a875-46a8-b939-693063fd8b26", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Extract documents, given document indices, from Annotated Document Corpus. ", 
+      "static_image": "adc_split_image.png", 
+      "action": "extract_documents", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Extract Documents"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "cec7f431-a875-46a8-b939-693063fd8b26", 
+      "name": "Annotated ", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "3db57613-1b63-4000-98f8-675aea9832a3"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "cec7f431-a875-46a8-b939-693063fd8b26", 
+      "name": "List of Document Indexes to be Extracted", 
+      "short_name": "lst", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "index_list", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "bc5efc51-fc8d-48c1-a203-09fc2fa07760"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "cec7f431-a875-46a8-b939-693063fd8b26", 
+      "name": "Discard The Rest (The Filtered Out)", 
+      "short_name": "bol", 
+      "default": "false", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "discard_filtered_out", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "fbcda118-a57c-49d8-a8d4-2df868f24ab2"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "cec7f431-a875-46a8-b939-693063fd8b26", 
+      "name": "Annotated Document Corpus of Extracted Documents", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc_rest", 
+      "order": 1, 
+      "uid": "b875ee5d-dd58-45b0-9602-93838ec7e0c7"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "cec7f431-a875-46a8-b939-693063fd8b26", 
+      "name": "Annotated Document Corpus of Extracted Documents", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc_filtered", 
+      "order": 1, 
+      "uid": "cf20175d-a270-4849-adbb-5bc840b709ce"
+    }
+  }
+]

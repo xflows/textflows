@@ -1,0 +1,102 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "uid": "93fbc242-ef5f-4d63-9ffd-f3bdce79fc39", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Split Annotated Document Corpus by conditions with features and values.", 
+      "static_image": "adc_split_image.png", 
+      "action": "split_documents_by_feature_value", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Split"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "93fbc242-ef5f-4d63-9ffd-f3bdce79fc39", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated ", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "3d83968e-7fef-4518-83ac-5e6e26031143"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "93fbc242-ef5f-4d63-9ffd-f3bdce79fc39", 
+      "name": "Discard The Rest (The Filtered Out)", 
+      "short_name": "bol", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "discard_filtered_out", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "9f56c25a-5866-4378-bee7-1e6da3581d1e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "93fbc242-ef5f-4d63-9ffd-f3bdce79fc39", 
+      "name": "Feature Condition", 
+      "short_name": "fc", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "feature_condition", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "ab7548f0-9f01-4c4b-8758-8e8cb8de6291"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "93fbc242-ef5f-4d63-9ffd-f3bdce79fc39", 
+      "name": "Filtered Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc_filtered", 
+      "order": 1, 
+      "uid": "4bea2806-c44e-4928-99a7-8bd09373fe69"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "93fbc242-ef5f-4d63-9ffd-f3bdce79fc39", 
+      "name": "The Rest of Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc_rest", 
+      "order": 2, 
+      "uid": "bcfb47f2-7b6c-467c-a282-8decfe3ff7ba"
+    }
+  }
+]

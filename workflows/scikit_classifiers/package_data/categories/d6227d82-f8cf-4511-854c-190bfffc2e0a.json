@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Scikit", 
+    "parent": "9571d766-09a1-4e85-9f13-974c76c15f9e", 
+    "order": 1, 
+    "uid": "d6227d82-f8cf-4511-854c-190bfffc2e0a"
+  }
+}

@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "multiSets", 
+      "variable": "multi_sets", 
       "parameter": false, 
       "order": 3, 
       "uid": "fc3ba46a-fdb2-f840-efd7-7d17e4b4f797"

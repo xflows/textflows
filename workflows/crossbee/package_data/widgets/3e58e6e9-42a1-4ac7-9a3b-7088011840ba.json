@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 13, 
       "name": "Outlier Heuristic"
     }
@@ -35,7 +35,7 @@
       "required": false, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "outlierDocumentIndexes", 
+      "variable": "outlier_document_indexes", 
       "parameter": false, 
       "order": 3, 
       "uid": "1cf73158-780a-857f-fde4-4fbdda0553e8"
@@ -82,7 +82,7 @@
       "name": "Ensemble Heuristics", 
       "short_name": "heu", 
       "description": "", 
-      "variable": "newHeurisitcs", 
+      "variable": "new_heurisitcs", 
       "order": 1, 
       "uid": "4b418ff6-eb12-56cb-b6fe-8ac9dbe1ece7"
     }

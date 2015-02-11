@@ -1,9 +1,9 @@
 {
   "model": "workflows.category", 
   "fields": {
-    "name": "Bag of Words", 
-    "parent": "3f7d449c-9222-458b-9c4e-412b01bcbc6b", 
-    "order": 5, 
+    "name": "Latino", 
+    "parent": "6091637f-b3cd-4559-b525-18357b02dbc2", 
+    "order": 1, 
     "uid": "b5964b0d-5acb-4dbf-a49d-4331a5a44f9c"
   }
 }

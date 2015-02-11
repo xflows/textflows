@@ -1,0 +1,124 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
+      "treeview_image": "", 
+      "uid": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TODO", 
+      "static_image": "tag_pos_do_image.png", 
+      "action": "pos_tagger_hub", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": true, 
+      "order": 1, 
+      "name": "POS Tagger Hub"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "Output Feature Name", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_feature", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "42602fdc-7094-465b-8c8c-0ab19fd9ef44"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "Sentence's Annotation", 
+      "short_name": "str", 
+      "default": "Sentence", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "group_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "575212d6-fabc-4eb4-b725-f2f095538c7a"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "Element's Annotation", 
+      "short_name": "str", 
+      "default": "Token", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "element_annotation", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "5efe8312-301e-4fe9-aef8-d39762594584"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "default": "", 
+      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "pos_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "6f5f601d-d89c-4578-a6cc-f91750013c78"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "f769fea1-3600-4c01-817e-3cbf6214c4df"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "cded8ae2-2518-420a-a8ff-662ca07c57bc"
+    }
+  }
+]

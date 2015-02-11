@@ -2,7 +2,7 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "94237b9c-8e88-460c-abc5-9c8108acb821", 
+      "category": "08c17c78-3f4d-4006-8b3f-1ee34bca5ccd", 
       "treeview_image": "", 
       "uid": "f2be2fc3-5a17-47c1-9353-3cfc454bfe59", 
       "is_streaming": false, 
@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": true, 
       "order": 3, 
-      "name": "Stem/Lemma Tagger Hub (Text)"
+      "name": "Stemming Tagger Hub (Text)"
     }
   }, 
   {
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "outputFeature", 
+      "variable": "output_feature", 
       "parameter": true, 
       "order": 3, 
       "uid": "c8240d9c-bddf-fb62-f7b6-666f8dba9895"

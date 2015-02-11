@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 11, 
       "name": "Standard Heuristic"
     }
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
-      "variable": "heurisitcSpec", 
+      "variable": "heurisitc_spec", 
       "parameter": true, 
       "order": 2, 
       "uid": "ea0732f6-cc42-4b44-54cc-6ebc0062af17"

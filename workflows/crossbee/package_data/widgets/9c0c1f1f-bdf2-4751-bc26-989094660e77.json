@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 13, 
       "name": "Calculated Heuristic"
     }
@@ -82,7 +82,7 @@
       "name": "Ensemble Heuristics", 
       "short_name": "heu", 
       "description": "", 
-      "variable": "newHeurisitcs", 
+      "variable": "new_heurisitcs", 
       "order": 1, 
       "uid": "694f1c64-0b22-4c8e-6bc5-9e6022ee3f87"
     }

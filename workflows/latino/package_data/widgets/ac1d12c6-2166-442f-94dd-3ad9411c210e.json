@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "setId", 
+      "variable": "set_id", 
       "parameter": false, 
       "order": 3, 
       "uid": "d7455c5e-004f-74a1-b522-8c2a551860d3"

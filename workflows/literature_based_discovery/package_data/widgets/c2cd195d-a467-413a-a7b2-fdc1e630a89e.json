@@ -1,0 +1,90 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d3a0f587-3911-437e-b123-622b6bbc3068", 
+      "treeview_image": "", 
+      "uid": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
+      "is_streaming": false, 
+      "package": "literature_based_discovery", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Calculate all input heuristics.", 
+      "static_image": "crossbee_widget.png", 
+      "action": "lbd_calculate_heuristics", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 20, 
+      "name": "Calculate Term Heuristics Scores"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
+      "name": "Heuristic or Heuristic list", 
+      "short_name": "heu", 
+      "default": "", 
+      "description": "List of heuristic names which scores will be calculated.", 
+      "required": true, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristics", 
+      "parameter": false, 
+      "order": 3, 
+      "uid": "40dd3ea3-99de-415c-8411-71d1a036dde2"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "442fc5b5-64e0-452d-beed-3cab4373241c"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
+      "name": "Bag of Words Model", 
+      "short_name": "bwm", 
+      "default": "", 
+      "description": "Bag of Words Model (BowModel) gathers utilities to build feature vectors from annotated document corpus.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "bow_model", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "91ab0793-3dd2-4c02-917c-4ba446ad325d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
+      "name": "Heuristic Scores", 
+      "short_name": "hsc", 
+      "description": "Calculated B-Term Heuristic Scores", 
+      "variable": "calcs", 
+      "order": 1, 
+      "uid": "78873828-e066-43d8-9970-fd794ca072e4"
+    }
+  }
+]

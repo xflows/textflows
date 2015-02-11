@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "softVoting", 
+      "variable": "soft_voting", 
       "parameter": true, 
       "order": 3, 
       "uid": "9614283a-4628-4fa5-a62e-7aaee386c143"
@@ -65,11 +65,11 @@
       "name": "Similarity Model", 
       "short_name": "typ", 
       "default": "Cosine", 
-      "description": "LatinoClowdFlows.SimilarityModel", 
+      "description": "LatinoInterfaces.SimilarityModel", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
-      "variable": "similarityModel", 
+      "variable": "similarity_model", 
       "parameter": true, 
       "order": 1, 
       "uid": "96168cbb-3359-2286-2754-6d322af7f38c"

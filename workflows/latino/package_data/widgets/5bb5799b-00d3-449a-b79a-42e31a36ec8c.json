@@ -2,7 +2,7 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "94237b9c-8e88-460c-abc5-9c8108acb821", 
+      "category": "db8fc413-22c5-4d92-b398-475969477414", 
       "treeview_image": "", 
       "uid": "5bb5799b-00d3-449a-b79a-42e31a36ec8c", 
       "is_streaming": false, 
@@ -12,7 +12,7 @@
       "image": "", 
       "description": "Automatically generated widget from function TagADCMultiple in package latino. The original function signature: TagADCMultiple.", 
       "static_image": "tag_multiple_do_image.png", 
-      "action": "latino_tag_adcmultiple", 
+      "action": "latino_tag_adc_multiple", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
@@ -20,7 +20,7 @@
       "wsdl": "", 
       "interactive": false, 
       "windows_queue": true, 
-      "order": 5, 
+      "order": 1, 
       "name": "Universal Multiple Tagger Hub"
     }
   }, 
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
-      "variable": "outputFeatures", 
+      "variable": "output_features", 
       "parameter": true, 
       "order": 4, 
       "uid": "6e0f0289-cd76-2935-5153-a581b0bc8f89"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
-      "variable": "elementAnnotations", 
+      "variable": "element_annotations", 
       "parameter": true, 
       "order": 3, 
       "uid": "8081e46e-e87f-d112-5008-c99825c5ff12"
@@ -82,7 +82,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 

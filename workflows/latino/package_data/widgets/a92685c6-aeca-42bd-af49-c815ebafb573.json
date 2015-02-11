@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "ds", 
+      "variable": "testing_dataset", 
       "parameter": false, 
       "order": 2, 
       "uid": "6bfd0b18-b660-feb8-8894-492da5fb7ac9"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "csf", 
+      "variable": "trained_classifier", 
       "parameter": false, 
       "order": 1, 
       "uid": "d48016c2-edb0-265e-c40a-858745ab012b"
@@ -65,7 +65,7 @@
       "name": "Labeled dataset", 
       "short_name": "ds", 
       "description": "", 
-      "variable": "ds", 
+      "variable": "labeled_dataset", 
       "order": 2, 
       "uid": "3a72cfc4-179d-8db9-8086-6017f697e3b8"
     }

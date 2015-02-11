@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "treeview_image": "", 
+      "uid": "5746f13a-5cb8-4472-adcd-9e7deb7b540c", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "This is the Porter stemming algorithm, ported to Python from the version coded up in ANSI C by the author. It follows the algorithm presented in \r\n\r\nPorter, M. \"An algorithm for suffix stripping.\" Program 14.3 (1980): 130-137.\r\n\r\nonly differing from it at the points marked --DEPARTURE-- and --NEW--\r\nbelow.\r\n\r\nFor a more faithful version of the Porter algorithm, see\r\nhttp://www.tartarus.org/~martin/PorterStemmer/\r\n", 
+      "static_image": "tag_stem_image.png", 
+      "action": "nltk_porter_stemmer", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 7, 
+      "name": "Porter Stemmer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "5746f13a-5cb8-4472-adcd-9e7deb7b540c", 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "description": "", 
+      "variable": "tagger", 
+      "order": 1, 
+      "uid": "30a0c173-06ee-4726-a1d7-110f0ec84ed4"
+    }
+  }
+]

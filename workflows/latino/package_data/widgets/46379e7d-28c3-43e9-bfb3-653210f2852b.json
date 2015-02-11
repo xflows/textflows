@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "maxStringLen", 
+      "variable": "max_string_len", 
       "parameter": true, 
       "order": 3, 
       "uid": "69e503b8-07e4-94b2-b968-51599304de45"
@@ -82,7 +82,7 @@
       "name": "Object String Representation", 
       "short_name": "str", 
       "description": "", 
-      "variable": "objStr", 
+      "variable": "obj_str", 
       "order": 1, 
       "uid": "09a182f3-18ed-33b6-7cf4-ae0a69545641"
     }

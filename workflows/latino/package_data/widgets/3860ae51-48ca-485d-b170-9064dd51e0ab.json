@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "beamSize", 
+      "variable": "beam_size", 
       "parameter": true, 
       "order": 1, 
       "uid": "f85d9aa7-bb95-4d17-cd09-c55785705bad"
@@ -48,7 +48,7 @@
       "name": "POS Tagger", 
       "short_name": "pst", 
       "description": "", 
-      "variable": "posTagger", 
+      "variable": "pos_tagger", 
       "order": 1, 
       "uid": "3c4807f0-9a29-56b6-9b2e-3e038f1737b9"
     }

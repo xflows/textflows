@@ -60,7 +60,7 @@
       "name": "Prediction Info(s)", 
       "short_name": "obj", 
       "description": "", 
-      "variable": "predictInfos", 
+      "variable": "predict_infos", 
       "order": 2, 
       "uid": "8653f42a-e09b-5eaf-795f-587cc48bfc21"
     }

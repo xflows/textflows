@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "startIndex", 
+      "variable": "start_index", 
       "parameter": true, 
       "order": 2, 
       "uid": "54560185-50aa-5c7f-78cf-4c05b8cc4918"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "maxWords", 
+      "variable": "max_words", 
       "parameter": true, 
       "order": 3, 
       "uid": "61c01bdf-6add-cd59-aebd-e4dac714dacc"

@@ -1,0 +1,114 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "1685efd9-cbfb-4e52-bcee-a29a87087a55", 
+      "treeview_image": "", 
+      "uid": "29c7fd5c-99ed-4bf1-b0ac-0c16e431aff4", 
+      "is_streaming": false, 
+      "package": "literature_based_discovery", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Explore heuristic scores and terms in CrossBee.", 
+      "static_image": "crossbee_widget.png", 
+      "action": "lbd_explore_in_crossbee", 
+      "visualization_view": "lbd_explore_in_crossbee", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Explore in CrossBee"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "29c7fd5c-99ed-4bf1-b0ac-0c16e431aff4", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "18063e0f-53ea-4cae-9a86-e54d17bf17f5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "29c7fd5c-99ed-4bf1-b0ac-0c16e431aff4", 
+      "name": "Heuristic Scores", 
+      "short_name": "hsc", 
+      "default": "", 
+      "description": "Calculated B-Term Heuristic Scores", 
+      "required": true, 
+      "multi": true, 
+      "parameter_type": null, 
+      "variable": "heuristic_scores", 
+      "parameter": false, 
+      "order": 3, 
+      "uid": "dddbfbb5-10db-43eb-85a8-ae6a8278d395"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "29c7fd5c-99ed-4bf1-b0ac-0c16e431aff4", 
+      "name": "B-terms", 
+      "short_name": "lbt", 
+      "default": "", 
+      "description": "List of bridging terms", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "bterms", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "e4579d90-af40-4c24-8d5c-bd749a7b2a1f"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "29c7fd5c-99ed-4bf1-b0ac-0c16e431aff4", 
+      "name": "B-terms", 
+      "short_name": "lbt", 
+      "description": "List of bridging terms", 
+      "variable": "bterms", 
+      "order": 3, 
+      "uid": "00d492ec-7beb-4b4e-84a3-4916a28ee5b6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "29c7fd5c-99ed-4bf1-b0ac-0c16e431aff4", 
+      "name": "Heuristic Scores", 
+      "short_name": "hsc", 
+      "description": "Calculated B-Term Heuristic Scores", 
+      "variable": "heuristic_scores", 
+      "order": 2, 
+      "uid": "5c5a0620-295c-4c0d-accd-d0054fd48e78"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "29c7fd5c-99ed-4bf1-b0ac-0c16e431aff4", 
+      "name": "Serialized Annotated Document Corpus", 
+      "short_name": "sdc", 
+      "description": "Serialized Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "variable": "serialized_adc", 
+      "order": 1, 
+      "uid": "92751ad3-4304-47e5-9a3e-7d1ba8b68f67"
+    }
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "1e366c76-9a29-4b3b-bcca-4089d89bc8ba", 
+      "treeview_image": "", 
+      "uid": "09b75459-eba9-4fb2-958e-faa13fd80ce7", 
+      "is_streaming": false, 
+      "package": "scikit_classifiers", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "", 
+      "static_image": "construction_work .png", 
+      "action": "scikit_classifiers_sum_integers", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 3, 
+      "name": "Sum Integers"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "09b75459-eba9-4fb2-958e-faa13fd80ce7", 
+      "name": "Integer List", 
+      "short_name": "lst", 
+      "default": "", 
+      "description": "List of integers", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "intList", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "12eedbf8-2c89-47e5-8b2c-6ad1f0f78ab7"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "09b75459-eba9-4fb2-958e-faa13fd80ce7", 
+      "name": "Sum", 
+      "short_name": "int", 
+      "description": "Sum of integer list", 
+      "variable": "sum", 
+      "order": 1, 
+      "uid": "39e54084-06fd-4a0c-983d-8310de34ef59"
+    }
+  }
+]

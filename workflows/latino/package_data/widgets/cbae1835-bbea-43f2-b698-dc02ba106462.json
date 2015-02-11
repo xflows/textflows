@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "featureValues", 
+      "variable": "feature_values", 
       "parameter": false, 
       "order": 2, 
       "uid": "1219e584-0660-0d7b-4d31-288f5e99df89"
@@ -48,7 +48,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "featureName", 
+      "variable": "feature_name", 
       "parameter": true, 
       "order": 3, 
       "uid": "a69d8966-d9a4-8557-c845-12740520163d"
@@ -86,7 +86,7 @@
       "required": false, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "featureValuePrefix", 
+      "variable": "feature_value_prefix", 
       "parameter": true, 
       "order": 4, 
       "uid": "d04dc113-88d8-2ee0-2982-90cb37d30aba"

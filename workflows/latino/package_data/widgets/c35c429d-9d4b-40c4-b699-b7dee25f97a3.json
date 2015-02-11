@@ -12,7 +12,7 @@
       "image": "", 
       "description": "This widges processes raw text file and loads the texts into ADC (Annotated Document Corpus) structure. The input file contains one document per line - the whole line represents text from the body of a document. In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure.", 
       "static_image": "load_adc_from_file_image.png", 
-      "action": "latino_load_adcfrom_string", 
+      "action": "latino_load_adc_from_string", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "tabSeparatedTitle", 
+      "variable": "tab_separated_title", 
       "parameter": true, 
       "order": 2, 
       "uid": "18f37a99-5141-f7d2-108e-49ee6505c3da"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
-      "variable": "plainString", 
+      "variable": "plain_string", 
       "parameter": false, 
       "order": 1, 
       "uid": "91e6fdd5-0969-dc3f-395e-3f2827a9c57c"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "leadingLabels", 
+      "variable": "leading_labels", 
       "parameter": true, 
       "order": 3, 
       "uid": "c696eb66-0d08-ea16-7d68-57d160e613f3"

@@ -1,0 +1,107 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
+      "treeview_image": "", 
+      "uid": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "A tagger that chooses a token's tag based on its word string and\r\non the preceding n word's tags.  In particular, a tuple\r\n(tags[i-n:i-1], words[i]) is looked up in a table, and the\r\ncorresponding tag is returned.  N-gram taggers are typically\r\ntrained on a tagged corpus.\r\n\r\nTrain a new NgramTagger using the given training data or\r\nthe supplied model.  In particular, construct a new tagger\r\nwhose table maps from each context (tag[i-n:i-1], word[i])\r\nto the most frequent tag for that context.  But exclude any\r\ncontexts that are already tagged perfectly by the backoff\r\ntagger.", 
+      "static_image": "tag_pos_image.png", 
+      "action": "nltk_ngram_pos_tagger", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 13, 
+      "name": "POS N-gram Tagger"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
+      "name": "Backoff Tagger", 
+      "short_name": "tgr", 
+      "default": "", 
+      "description": "A backoff tagger, to be used by the new tagger if it encounters an unknown context.", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "backoff_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "53e45047-3542-458b-8461-9862de456282"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
+      "name": "Cutoff", 
+      "short_name": "cut", 
+      "default": "0", 
+      "description": "If the most likely tag for a context occurs fewer than *cutoff* times, then exclude it from the context-to-tag table for the new tagger.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "cutoff", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "9a3fa49e-3e9a-444c-bd58-3eac0ed73edf"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
+      "name": "N-gram", 
+      "short_name": "nnn", 
+      "default": "1", 
+      "description": "N-gram is a contiguous sequence of n items from a given sequence of text or speech.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "n", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "ad727689-89fa-411f-a68f-e7ae50f4fbc9"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "default": "", 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "c311d6f1-b046-4198-8edd-a7436bf77d39"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "ae9955c4-8175-4b61-92b9-9c9389f65000", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the POS tagger object and its arguments.", 
+      "variable": "pos_tagger", 
+      "order": 1, 
+      "uid": "ac04c915-bba0-4d21-b532-ad3e56df361d"
+    }
+  }
+]

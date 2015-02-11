@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Document Corpus", 
+    "parent": null, 
+    "order": 2, 
+    "uid": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185"
+  }
+}

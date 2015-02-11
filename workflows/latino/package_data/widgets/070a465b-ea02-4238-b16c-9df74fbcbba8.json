@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": true, 
       "order": 1, 
-      "name": "BOW Model and Dataset"
+      "name": "Construct BOW Model and Dataset"
     }
   }, 
   {
@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "tokenId", 
+      "variable": "token_id", 
       "parameter": true, 
       "order": 2, 
       "uid": "03cb77fe-4b71-3f3b-b52c-7ce359cd671a"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "maxNGramLen", 
+      "variable": "max_n_gram_len", 
       "parameter": true, 
       "order": 6, 
       "uid": "04f5a54b-df46-1b8f-fd33-2ef08e95a170"
@@ -65,7 +65,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
@@ -86,7 +86,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "minWordFreq", 
+      "variable": "min_word_freq", 
       "parameter": true, 
       "order": 7, 
       "uid": "0ee9ea90-c79d-60a6-acdb-550f3e83fc9f"
@@ -103,7 +103,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
-      "variable": "wordWeightType", 
+      "variable": "word_weight_type", 
       "parameter": true, 
       "order": 8, 
       "uid": "2d8b45c0-58db-00a7-3bce-d11bfb35cbe8"
@@ -120,7 +120,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "labelId", 
+      "variable": "label_id", 
       "parameter": true, 
       "order": 5, 
       "uid": "4eae4c2d-4cb3-f204-6de5-4864b2e45224"
@@ -137,7 +137,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "stopwordId", 
+      "variable": "stopword_id", 
       "parameter": true, 
       "order": 4, 
       "uid": "7f18f58a-52b5-2422-9e66-d48cea082d82"
@@ -154,7 +154,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "cutLowWeightsPerc", 
+      "variable": "cut_low_weights_perc", 
       "parameter": true, 
       "order": 9, 
       "uid": "d7f036e9-9634-d94d-a489-656760b8776d"
@@ -171,7 +171,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "stemId", 
+      "variable": "stem_id", 
       "parameter": true, 
       "order": 3, 
       "uid": "e22eb888-c070-e863-0abf-c8b448917d5f"
@@ -188,7 +188,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "normalizeVectors", 
+      "variable": "normalize_vectors", 
       "parameter": true, 
       "order": 10, 
       "uid": "e2ca4b98-3636-ff76-3e61-b25daed57739"
@@ -233,6 +233,15 @@
       "name": "Term Freq", 
       "uid": "354d457d-d086-66e5-6392-b9adf0dc74ed", 
       "value": "TermFreq", 
+      "abstract_input": "2d8b45c0-58db-00a7-3bce-d11bfb35cbe8"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Tf Idf Safe", 
+      "uid": "4ae803c7-f849-0aba-5617-47c7f0f0525f", 
+      "value": "TfIdfSafe", 
       "abstract_input": "2d8b45c0-58db-00a7-3bce-d11bfb35cbe8"
     }
   }, 

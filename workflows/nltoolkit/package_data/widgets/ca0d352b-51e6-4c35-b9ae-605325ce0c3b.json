@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "b0ce2ce4-16e8-4f9c-9874-238066c20fea", 
+      "treeview_image": "", 
+      "uid": "ca0d352b-51e6-4c35-b9ae-605325ce0c3b", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "A tokenizer divides text into a sequence of tokens, which roughly correspond to \"words\".", 
+      "static_image": "token_word_image.png", 
+      "action": "nltk_stanford_tokenizer", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Stanford Tokenizer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "ca0d352b-51e6-4c35-b9ae-605325ce0c3b", 
+      "name": "Tokenizer", 
+      "short_name": "tkn", 
+      "description": "A python dictionary containing the Tokenizer object and its arguments.", 
+      "variable": "tokenizer", 
+      "order": 1, 
+      "uid": "5a3b3fdc-f9d4-47e6-bc9d-d09082f7c177"
+    }
+  }
+]

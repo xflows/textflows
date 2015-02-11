@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "clustRes", 
+      "variable": "clust_res", 
       "parameter": false, 
       "order": 1, 
       "uid": "8dbe38d0-3b33-3d44-efe6-b21f26c17b5d"

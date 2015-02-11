@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "a797f6a3-02a7-4eee-ab65-075c8c35455c", 
+      "treeview_image": "", 
+      "uid": "12cf0104-c867-45b2-84f4-b57711378801", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "A classifier based on the Naive Bayes algorithm.  In order to find the\r\nprobability for a label, this algorithm first uses the Bayes rule to\r\nexpress P(label|features) in terms of P(label) and P(features|label):\r\n\r\n|                       P(label) * P(features|label)\r\n|  P(label|features) = ------------------------------\r\n|                              P(features)\r\n\r\nThe algorithm then makes the 'naive' assumption that all features are\r\nindependent, given the label:\r\n\r\n|                       P(label) * P(f1|label) * ... * P(fn|label)\r\n|  P(label|features) = --------------------------------------------\r\n|                                         P(features)\r\n\r\nRather than computing P(featues) explicitly, the algorithm just\r\ncalculates the denominator for each label, and normalizes them so they\r\nsum to one:\r\n\r\n|                       P(label) * P(f1|label) * ... * P(fn|label)\r\n|  P(label|features) = --------------------------------------------\r\n|                        SUM[l]( P(l) * P(f1|l) * ... * P(fn|l) )", 
+      "static_image": "classifier_naive_bayes_image.png", 
+      "action": "nltk_naive_bayes_classifier", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 1, 
+      "name": "Naive Bayes Classifier"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "12cf0104-c867-45b2-84f4-b57711378801", 
+      "name": "Log Sum Exp Trick", 
+      "short_name": "bol", 
+      "default": "true", 
+      "description": "System.Boolean", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "logSumExpTrick", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "51880889-342d-4bcd-a794-56c24a2f4c88"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "12cf0104-c867-45b2-84f4-b57711378801", 
+      "name": "Normalize", 
+      "short_name": "bol", 
+      "default": "false", 
+      "description": "System.Boolean", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "normalize", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "f46f63d3-e77b-454a-a82d-0d7798bcd9e1"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "12cf0104-c867-45b2-84f4-b57711378801", 
+      "name": "Classifier", 
+      "short_name": "csf", 
+      "description": "", 
+      "variable": "classifier", 
+      "order": 1, 
+      "uid": "71a80e38-d2ca-4262-8e69-8ed112c515f1"
+    }
+  }
+]

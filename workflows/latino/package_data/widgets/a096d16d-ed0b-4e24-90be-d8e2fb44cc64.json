@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "minQuality", 
+      "variable": "min_quality", 
       "parameter": true, 
       "order": 1, 
       "uid": "c7e679d0-ff8c-afcf-0d8b-011b65f862ed"

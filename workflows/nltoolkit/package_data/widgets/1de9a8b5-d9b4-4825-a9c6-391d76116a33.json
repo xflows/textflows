@@ -1,0 +1,124 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
+      "treeview_image": "", 
+      "uid": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "A tagger that chooses a token's tag based on a leading or trailing\r\nsubstring of its word string.  (It is important to note that these\r\nsubstrings are not necessarily \"true\" morphological affixes).  In\r\nparticular, a fixed-length substring of the word is looked up in a\r\ntable, and the corresponding tag is returned.  Affix taggers are\r\ntypically constructed by training them on a tagged corpus.", 
+      "static_image": "tag_pos_image.png", 
+      "action": "nltk_affix_pos_tagger", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 9, 
+      "name": "POS Affix Tagger"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "default": "", 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "6d8fe8de-2d18-49db-a0fd-9bde3859dc72"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "name": "Minimum Stem Length", 
+      "short_name": "msl", 
+      "default": "2", 
+      "description": "Any words whose length is less than min_stem_length+abs(affix_length) will be assigned a tag of None by this tagger.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "min_stem_length", 
+      "parameter": true, 
+      "order": 5, 
+      "uid": "84dc7d2f-05a0-4f66-8f72-0ec3c386ecb6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "name": "Cutoff", 
+      "short_name": "cut", 
+      "default": "0", 
+      "description": "If the most likely tag for a context occurs fewer than *cutoff* times, then exclude it from the context-to-tag table for the new tagger.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "cutoff", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "c071c373-5adc-40e8-9268-90155dfb1dfc"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "name": "Backoff Tagger", 
+      "short_name": "tgr", 
+      "default": "", 
+      "description": "A backoff tagger, to be used by the new tagger if it encounters an unknown context.", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "backoff_tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "d02b5b26-b436-4a4a-ab95-fa24df0d3105"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "name": "Affix Length", 
+      "short_name": "nnn", 
+      "default": "-3", 
+      "description": "The length of the affixes that should be considered during training and tagging.  Use negative numbers for suffixes.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "affix_length", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "fc504a68-f45f-4c41-9e08-56550aa17031"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "1de9a8b5-d9b4-4825-a9c6-391d76116a33", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the POS tagger object and its arguments.", 
+      "variable": "pos_tagger", 
+      "order": 1, 
+      "uid": "5062a84a-cf3b-457d-a898-33e463561591"
+    }
+  }
+]

@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "softVoting", 
+      "variable": "soft_voting", 
       "parameter": true, 
       "order": 2, 
       "uid": "70286a7a-bb2c-f5d7-9ffc-e838a3c880c1"

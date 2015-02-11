@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 25, 
       "name": "Explore in CrossBee"
     }
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "parsedDoc", 
+      "variable": "parsed_doc", 
       "parameter": false, 
       "order": 1, 
       "uid": "d6295874-04fd-26be-0bc1-48218f9b1aef"

@@ -31,7 +31,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "System.Collections.Generic.List`1[[LatinoClowdFlows.DocumentCorpus, LatinoClowdFlows, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]", 
+      "description": "System.Collections.Generic.List`1[[LatinoInterfaces.DocumentCorpus, LatinoInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]", 
       "required": true, 
       "multi": true, 
       "parameter_type": null, 

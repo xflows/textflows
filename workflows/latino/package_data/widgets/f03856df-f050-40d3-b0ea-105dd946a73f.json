@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
-      "variable": "maxStringLen", 
+      "variable": "max_string_len", 
       "parameter": true, 
       "order": 3, 
       "uid": "d0a89d3b-705e-46ef-eaf7-266c48d4432b"

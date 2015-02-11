@@ -31,7 +31,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
-      "variable": "discardFilteredOut", 
+      "variable": "discard_filtered_out", 
       "parameter": true, 
       "order": 3, 
       "uid": "986aade1-9a84-03e6-5951-d2e2a0eff7a1"
@@ -69,7 +69,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "indexList", 
+      "variable": "index_list", 
       "parameter": false, 
       "order": 2, 
       "uid": "d044e982-d465-5081-7834-5cb71c2c8160"
@@ -82,7 +82,7 @@
       "name": "Annotated Document Corpus of the Rest of Documents", 
       "short_name": "adc", 
       "description": "", 
-      "variable": "adcRest", 
+      "variable": "adc_rest", 
       "order": 2, 
       "uid": "a4b90021-e1fe-90cb-3d97-faf863753aea"
     }
@@ -94,7 +94,7 @@
       "name": "Annotated Document Corpus of Extracted Documents", 
       "short_name": "adc", 
       "description": "", 
-      "variable": "adcFiltered", 
+      "variable": "adc_filtered", 
       "order": 1, 
       "uid": "e9f552d1-8b0a-c54b-cb00-53fd897c353b"
     }

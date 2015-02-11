@@ -35,7 +35,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "ds", 
+      "variable": "training_data", 
       "parameter": false, 
       "order": 2, 
       "uid": "4df20aa1-64f1-11c1-bd8c-b9c64e5c0437"
@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "csf", 
+      "variable": "classifier", 
       "parameter": false, 
       "order": 1, 
       "uid": "e9bac05e-f82f-09cd-497d-4407fcecd056"
@@ -65,7 +65,7 @@
       "name": "Classifier", 
       "short_name": "csf", 
       "description": "", 
-      "variable": "csf", 
+      "variable": "trained_classifier", 
       "order": 1, 
       "uid": "fcf15ec3-2176-5d23-4c0a-ebe19faf2a92"
     }
