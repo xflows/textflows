@@ -4,7 +4,7 @@ import time
 import re
 
 
-def load_adc_widget(input_dict):
+def load_adc(input_dict):
     """
     This widges processes text and loads it into ADC (Annotated Document Corpus) structure. The input file contains one
     document per line - the whole line represents text from the body of a document. In case lines contain more document
@@ -14,13 +14,15 @@ def load_adc_widget(input_dict):
     :param plain_string: documents text
     :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
-    print input_dict
-    if input_dict[u"file"] != u"":
-        return load_adc_from_file(input_dict)
-    elif input_dict[u"plain_string"] != u"":
+    if type(input_dict[u"input"]) == list:
+        input_dict[u"plain_string"] = "\n".join(input_dict.pop(u"input"))
         return load_adc_from_string(input_dict)
+    elif os.path.exists(input_dict[u"input"]):
+        input_dict[u"file"] = input_dict.pop(u"input")
+        return load_adc_from_file(input_dict)
     else:
-        return {"adc": DocumentCorpus("", "")}
+        input_dict[u"plain_string"] = input_dict.pop(u"input")
+        return load_adc_from_string(input_dict)
 
 
 def load_adc_from_file(input_dict):
@@ -42,7 +44,7 @@ def load_adc_from_file(input_dict):
     source_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime(seconds)))
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
 
-    documents = load_adc(texts, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
+    documents = process_adc(texts, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
     features = {u"Source": file_name, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date}
 
     output_dict = {"adc": DocumentCorpus(documents=documents, features=features)}
@@ -62,14 +64,14 @@ def load_adc_from_string(input_dict):
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     texts = re.split("[\r\n]", input_dict['plain_string'])
 
-    documents = load_adc(texts, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
+    documents = process_adc(texts, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
     features = {u"Source": "string", u"SourceDate": source_date, u"CorpusCreateDate": corpus_date}
 
     output_dict = {"adc": DocumentCorpus(documents=documents, features=features)}
     return output_dict
 
 
-def load_adc(texts,  tab_separated_title, leading_labels):
+def process_adc(texts,  tab_separated_title, leading_labels):
     """
     function parses title and labels for documents from text and it sets annnotation for each document.
 
