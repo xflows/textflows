@@ -1,3 +1,4 @@
+from scipy.stats import rankdata
 from workflows.textflows import flatten
 
 __author__ = 'matic'
@@ -72,10 +73,16 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
         '''Document frequency across both domains'''
         return self._count_doc_D(self._count_matrix_csc())
 
+    def _penalize_not_appearing_in_all(self,scores):
+        not_in_all=np.where(self._appear_in_all_domains()==0)
+        scores[not_in_all]=0
+        return scores
+
 
     def calculate_heuristics(self, heuristic_names):
         if isinstance(heuristic_names, basestring):
-            scores=getattr(self,heuristic_names)()
+            scores=self._penalize_not_appearing_in_all(getattr(self,heuristic_names)())
+            #scores=getattr(self,heuristic_names)()
             return BTermHeuristic(heuristic_names,scores)
         elif isinstance(heuristic_names, tuple):
             if heuristic_names[0] in ['Sum','Min','Max']:
@@ -118,8 +125,8 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
         position_scores = []
 
         for h in heuristics:
-            positions = h.positions() #double argsort: position on in the spot of the element
-            h_position_scores = (len(positions) - positions) / (len(positions) * 1.)
+            positions = h.positions()
+            h_position_scores = positions / (len(positions) * 1.)
 
             position_scores.append(h_position_scores)
         scores = np.array(position_scores).mean(axis=0)
@@ -145,7 +152,13 @@ class BTermHeuristic:
         return np.array(positions > len(positions) * 2 / 3.0, dtype=int)
 
     def positions(self):
-        return self.scores.argsort().argsort() + 1
+        ''' Ranks scores, from the smallest to the largest score
+            Out[22]: array([1, 1, 1, 1, 5, 6, 7, 8, 9])
+            In[23]: rankdata(a,'average')
+            Out[23]: array([ 2.5,  2.5,  2.5,  2.5,  5. ,  6. ,  7. ,  8. ,  9. ])
+        '''
+        return rankdata(self.scores,'average')
+        #return self.scores.argsort().argsort() + 1
 
     def __repr__(self):
         return '<BTermHeuristic name: %s>' % (self.name)

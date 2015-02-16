@@ -494,7 +494,8 @@ def harf(input_dict):
 def classification_filter(input_dict, widget):
     import noiseAlgorithms4lib    
     output_dict = {}
-    output_dict['noise_dict']= MisclassificationIndices.calculate(input_dict['learner'],input_dict['data']) \
+    output_dict['noise_dict']= MisclassificationIndices.calculate(input_dict['learner'],input_dict['data'],
+                                                                  n_folds=int(input_dict['k_folds'])) \
         if type(input_dict['data']) else noiseAlgorithms4lib.cfdecide(input_dict, widget)
     return output_dict    
     

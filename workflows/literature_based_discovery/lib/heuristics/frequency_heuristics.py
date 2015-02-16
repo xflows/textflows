@@ -40,9 +40,16 @@ class FrequencyBasedHeuristicCalculations():
     ###BASELINE HEURISITCS
     def random(self):
         '''Random baseline heuristic'''
-        return np.random.rand(self._count_matrix.shape[0])
+        #print self._count_matrix.shape
+        return np.random.rand(self._count_matrix.shape[1])
+
+    @memoized
+    def _appear_in_all_domains(self):
+        '''Better baseline heuristic which can separate two classes of terms - the ones that appear in both domains and the ones that appear only in one'''
+        return np.array((self._count_term_A() > 0) & (self._count_term_C() > 0), dtype=int)
 
     def appear_in_all_domains(self):
         '''Better baseline heuristic which can separate two classes of terms - the ones that appear in both domains and the ones that appear only in one'''
-        return np.array((self._count_term_A() > 0) & (self._count_term_C() > 0), dtype=int) + \
-                        np.true_divide(np.random.rand(len(self._count_term_A())), 2)
+        return self._appear_in_all_domains() #+ np.true_divide(self.random(), 2)
+
+

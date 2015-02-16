@@ -92,7 +92,8 @@ class BowDataset:
     def __init__(self,sparse_bow_matrix,labels=None):
         self.sparse_bow_matrix=sparse_bow_matrix
         self.labels=labels
-
+    def __len__(self):
+        return self.sparse_bow_matrix.shape[0]
     @classmethod
     def from_raw_documents(cls,documents,bow_vectorizer,labels=None):
         sparse_bow_matrix = bow_vectorizer.transform(documents)
@@ -105,8 +106,8 @@ class BowDataset:
 
         return cls(sparse_bow_matrix,labels)
 
-    def sparce_bow_matrix(self):
-        return self.sparse_bow_matrix
+    #def sparce_bow_matrix(self):
+    #    return self.sparse_bow_matrix()
     def dense_bow_matrix(self):
         return self.sparse_bow_matrix.toarray()
 
@@ -137,10 +138,13 @@ class BowDataset:
 
     def split(self,train_indices,test_indices=None):
         output_train = BowDataset(self.sparse_bow_matrix[train_indices],
-                                      [self.labels[i] for i in train_indices])
-        output_test = BowDataset(self.sparse_bow_matrix[test_indices], [self.labels[i] for i in test_indices]) \
+                                      self.get_labels(train_indices))
+        output_test = BowDataset(self.sparse_bow_matrix[test_indices], self.get_labels(test_indices)) \
                 if test_indices else None
         return output_train,output_test
+
+    def get_labels(self,indices):
+        return [self.labels[i] for i in indices] if self.labels else []
 
 # try:
 #     from nltk.classify import scikitlearn

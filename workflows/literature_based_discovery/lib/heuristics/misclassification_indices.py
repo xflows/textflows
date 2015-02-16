@@ -1,4 +1,6 @@
 from itertools import izip
+from sklearn.cross_validation import KFold, StratifiedKFold
+
 from workflows.nltoolkit.lib.classification import train_classifier,apply_bow_classifier
 
 __author__ = 'matic'
@@ -6,10 +8,10 @@ __author__ = 'matic'
 class MisclassificationIndices:
     @staticmethod
     def calculate(classifier,bow_dataset,n_folds=3,seed=0):  #, widget):
-        from sklearn.cross_validation import StratifiedKFold
         noisyIndices = []
 
-        stf = StratifiedKFold(bow_dataset.labels, n_folds=n_folds, random_state=seed)
+        stf = StratifiedKFold(bow_dataset.labels, n_folds=n_folds, random_state=seed) \
+            if bow_dataset.labels else KFold(len(bow_dataset), n_folds=n_folds, random_state=seed)
         folds = [(list(train_index), list(test_index)) for train_index, test_index in stf]
 
         for i in range(n_folds):
@@ -26,10 +28,12 @@ class MisclassificationIndices:
             #predictions = classifier.predict(test_data)
 
             for indice, real_class, prediction in izip(test_indices, test_data.labels, predictions):
-                if real_class != prediction.max():
+                #b=prediction.max()
+                if str(real_class) != prediction.max(): #prediction.max returns class as string
                     noisyIndices.append(indice)
                     #widget.progress = int((i+1)*1.0/k*100)
                     #widget.save()
         # END test_fold
+        #print {'inds': len(sorted(noisyIndices)), 'name': classifier.__class__.__name__}
         return {'inds': sorted(noisyIndices), 'name': classifier.__class__.__name__}
 

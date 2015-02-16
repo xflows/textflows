@@ -1,3 +1,5 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC, LinearSVC
 from workflows.textflows import BowDataset
 
 __author__ = 'matic'
@@ -7,24 +9,29 @@ import numpy as np
 from misclassification_indices import MisclassificationIndices
 
 ###OUTLIER BASED HEURISITCS
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsClassifier, NearestCentroid
+
+
 class OutlierBasedHeuristicCalculations():
     @memoized
     def _d_cs_indices(self):
-        return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
+        classifier=NearestCentroid()
+        #classifier=KNeighborsClassifier(n_neighbors=5)
+        return MisclassificationIndices.calculate(classifier,
                                                   BowDataset(self._tfidf_matrix(),self._classes),
-                                                  n_folds=2)['inds']
+                                                  n_folds=10)['inds']
     @memoized
     def _d_rf_indices(self):
-        return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
-                                                  BowDataset(self._tfidf_matrix(),self._classes),
-                                                  n_folds=2)['inds']
+        classifier = RandomForestClassifier()
+        return MisclassificationIndices.calculate(classifier,
+                                                  BowDataset(self._tfidf_matrix().toarray(),self._classes),
+                                                  n_folds=10)['inds']
     @memoized
     def _d_svm_indices(self):
-        return MisclassificationIndices.calculate(KNeighborsClassifier(n_neighbors=2),
+        classifier = LinearSVC()
+        return MisclassificationIndices.calculate(classifier,
                                                   BowDataset(self._tfidf_matrix(),self._classes),
-                                                  n_folds=2)['inds']
-
+                                                  n_folds=10)['inds']
 
     #not memoized
     def _count_matrix_D_cs_csc(self):
@@ -54,17 +61,17 @@ class OutlierBasedHeuristicCalculations():
     @memoized
     def out_freq_cs(self):
         '''Term frequency in the Centroid Similarity outlier set'''
-        return self._count_term_D_cs()
+        return self._count_term_D_cs()+0.000001
 
     @memoized
     def out_freq_rf(self):
         '''Term frequency in the Random Forest outlier set'''
-        return self._count_term_D_rf()
+        return self._count_term_D_rf()+10**-10
 
     @memoized
     def out_freq_svm(self):
         '''Term frequency in the Support Vector Machine outlier set'''
-        return self._count_term_D_svm()
+        return self._count_term_D_svm()+0.000001
 
     @memoized
     def out_freq_sum(self):

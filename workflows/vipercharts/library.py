@@ -64,8 +64,9 @@ def vipercharts_prepareCurveData(input_dict): #, subtype
 			AUC = 0
 			AUPR = 0
 			ranked = sorted(paralel, key = lambda pair:pair[1], reverse=True)
-			print "ranked:"
-			print ranked
+			print "ranked:"+curve['name']
+			print "by prediction: "+str(ranked)
+			print "by actual: "+str(sorted(paralel, key = lambda pair:pair[0], reverse=True))
 			k = 0
 			tp = 0; fp = 0; tp_old = 0; fp_old = 0; n1 = 0; concordant_pairs = 0; discordant_pairs = 0;
 			while k < len(ranked):
@@ -183,7 +184,7 @@ def vipercharts_prepareCurveData(input_dict): #, subtype
 		curve['AUC'] = AUC
 		curve['Gini'] = 2 * AUC - 1
 		n0=n*(n-1)/2
-		curve['KENtau'] = (concordant_pairs - discordant_pairs) / math.sqrt((n0 - n1) * (n0 - (negs*(negs-1) + poss*(poss-1))/2))
+		#curve['KENtau'] = (concordant_pairs - discordant_pairs) / math.sqrt((n0 - n1) * (n0 - (negs*(negs-1) + poss*(poss-1))/2))
 		curve['AUPR'] = AUPR
 		AUCH = 0
 		for i in range(1, len(ROChull)):

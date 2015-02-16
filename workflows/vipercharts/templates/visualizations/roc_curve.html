@@ -1,11 +1,20 @@
 <div id="widgetvisualization-{{widget.pk}}" width="627" height="700" rel="{{widget.pk}}" class="widgetvisualizationdialog" title="{{widget.name}} results">
 
 <div id="widget-roc-curve-{{widget.pk}}" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<style>
+    .wordwrap {
+       white-space: pre-wrap;      /* CSS3 */
+       white-space: -moz-pre-wrap; /* Firefox */
+       white-space: -pre-wrap;     /* Opera <7 */
+       white-space: -o-pre-wrap;   /* Opera 7 */
+       word-wrap: break-word;      /* IE */
+    }
+</style>
 <script type="text/javascript">
 $(function () {
 
     var tempVisible = 0;
-	
+
 	var subtype = {%if input_dict.subtype %}'{{input_dict.subtype}}'{%else%}'-score'{%endif%};
 
     var chart;
@@ -24,7 +33,7 @@ $(function () {
 				//marginTop: 10,
                 spacingBottom: 15,
 				//marginBottom: 162,
-				
+
             },
 			events: {
 				selection: function(event){
@@ -52,7 +61,7 @@ $(function () {
             	max: 1.,
                 title: {
                     text: 'False positive rate',
-                    style:{ 
+                    style:{
                     	fontSize: '11pt',
 						color: 'black'
                     }
@@ -61,12 +70,12 @@ $(function () {
                 endOnTick: true,
                 showLastLabel: true,
                 tickInterval: 0.1,
-				
+
             },
             yAxis: {
                 gridLineWidth: 1,
 				lineWidth: 1,
-				lineColor: 'black',			
+				lineColor: 'black',
 				tickColor: 'black',
 				labels: {
 					style: {
@@ -78,7 +87,7 @@ $(function () {
             	max: 1.,
                 title: {
                     text: 'True positive rate',
-                    style:{ 
+                    style:{
                     	fontSize: '12pt',
 						color: 'black'
                     }
@@ -90,13 +99,13 @@ $(function () {
 				useHTML: true,
                 formatter: function() {
 					if (this.series.type == 'line' && this.series.name != '_diag_random_'){ // 9 "grid" F-isolines + number of points
-						return '<b>'+this.series.name+'</b><br/>'+
+						return '<div class="wordwrap" style="width:400px;font-weight:bold;">'+this.series.name+'</div>'+
 					    '<table><tr>'+
 						'<td class="ttip">FPR:</td><td class="ttip">' + this.x.toFixed(2) +
 						'</td></tr><tr><td class="ttip">TPR:</td><td class="ttip">'+this.y.toFixed(2) +
 						'</td></tr><tr><td class="ttip">'+
 						((subtype == '-score') ? 'Threshold:</td><td class="ttip">'+ this.point.tr : 'Rank:</td><td class="ttip">'+ this.point.tr) +
-						
+
 						'</td></tr></table>'
 					}
 					else return false;
@@ -118,9 +127,9 @@ $(function () {
             },
             plotOptions: {
 				series:{
-					turboThreshold: 5000,
+					turboThreshold: 50000,
 				},
-			
+
                 spline: {
 					lineWidth: 1,
 					lineColor: 'rgb(100,100,100)',
@@ -229,25 +238,25 @@ $(function () {
 			},
 
             // POINTS
-            {% for item in input_dict.performance %}            
+            {% for item in input_dict.performance %}
             {
                 //type: 'scatter',
                 name: '{{ item.name }}',
                 data: [
-				{% for point in item.ROCpoints %}
+				{% for point in item.ROCpoints|slice:"5000" %}
 				{ x:{{point.0}}, y:{{point.1}}, tr:'{{point.2}}' },
 				{% endfor %}
 					]
             },
-            {% endfor %}             
+            {% endfor %}
             ]
         }, function(chart){
 			// Hide grid lines
-			$.each($('widget-roc-curve-{{widget.pk}} .highcharts-grid path'), 
-			  function(i, elem) { 
+			$.each($('widget-roc-curve-{{widget.pk}} .highcharts-grid path'),
+			  function(i, elem) {
 					$(elem).attr('stroke-width','0');
 			   });
-		
+
             /*for (var i = 9+npoints; i<9+2*npoints; i++){
                 	var series = chart.series[i].group.element,
 					svg = series.parentNode.parentNode;
@@ -259,7 +268,7 @@ $(function () {
 			var ttip = svg.getElementById('tooltip')
 			svg.insertBefore(ttip, svg.getElementById('printButton') );
 			*/
-			
+
 			/*{% if input_dict.eps != '0' %}
 			// Add epsilon label
 			chart.renderer.text("<i>\u2195\u03b5</i>" , 572, mp_str)//025b, 03b5, 0190
