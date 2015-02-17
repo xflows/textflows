@@ -68,6 +68,7 @@ def lbd_explore_in_crossbee(input_dict):
     import LatinoInterfaces
     output_dict={}
     output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))#.serialized_object
+    output_dict['vocabulary']=[kv[1] for kv in sorted(input_dict['bow_model']._idx_to_vocab().items())]
     output_dict['heuristic_scores']=[{'name': hevr.name, 'scores': hevr.scores.tolist()} for hevr in flatten(input_dict['heuristic_scores'])]
     output_dict['bterms']=input_dict['bterms']
     return output_dict
