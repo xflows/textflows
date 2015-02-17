@@ -28,6 +28,23 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "8d22e7f2-0bc4-41ce-9ad2-a733fe53179a", 
+      "name": "Calculate class probabilities", 
+      "short_name": "prb", 
+      "default": "true", 
+      "description": "Calculate classification class probabilities. May slow down algorithm prediction.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "probability", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "96f5594b-c6cb-432e-9dc3-56c7192b931a"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8d22e7f2-0bc4-41ce-9ad2-a733fe53179a", 
       "name": "Dataset", 
       "short_name": "ds", 
       "default": "", 

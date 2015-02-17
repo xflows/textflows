@@ -164,6 +164,23 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "c745f516-55b3-498b-97f5-841b63b90ea8", 
+      "name": "Controlled Vocabulary", 
+      "short_name": "voc", 
+      "default": "", 
+      "description": "List of terms which will be used for building the vocabulary. Parameter 'Maximum N-gram Length' from in this widget is also applied to the vocabulary. The final vocabulary is the intersection of the controlled vocabulary and the dataset vocabulary.", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "vocabulary", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "f340b9a1-7310-4425-b37f-948fc4795269"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "c745f516-55b3-498b-97f5-841b63b90ea8", 
       "name": "Token Annotation", 
       "short_name": "str", 
       "default": "Token", 

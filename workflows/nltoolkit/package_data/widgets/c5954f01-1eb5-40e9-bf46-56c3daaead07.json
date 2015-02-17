@@ -45,6 +45,23 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "c5954f01-1eb5-40e9-bf46-56c3daaead07", 
+      "name": "Token Annotation", 
+      "short_name": "str", 
+      "default": "TextBlock", 
+      "description": "Select token annotation.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "token_annotation", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "2d691648-7db3-4036-8ee2-2348ca221cee"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "c5954f01-1eb5-40e9-bf46-56c3daaead07", 
       "name": "Delimiter for token concatenation", 
       "short_name": "str", 
       "default": "", 
