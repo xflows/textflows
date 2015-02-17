@@ -36,8 +36,8 @@ def construct_bow_model_and_dataset(input_dict): #TODO
 
     return {'bow_model': bow_model,'bow_dataset': bow_dataset}
 
-# def create_dataset_with_bow_model(input_dict):
-#     bow_model = input_dict['bow_model']
-#     adc = input_dict['adc']
-#
-#     return {'bow_dataset': BowDataset.from_adc(adc,bow_model)}
+def create_dataset_with_bow_model(input_dict):
+    bow_model = input_dict['bow_model']
+    adc = input_dict['adc']
+
+    return {'bow_dataset': BowDataset.from_adc(adc,bow_model)}
