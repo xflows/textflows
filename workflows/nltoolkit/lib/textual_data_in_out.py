@@ -15,27 +15,24 @@ def load_adc(input_dict):
     :param leading_labels: documents has labels infront of the text. Example: !LB1 !Lb2 !LBL \t start of text
     :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
-    if type(input_dict[u"input"]) == list:
-        source = "list"
-        source_date = unicode("unknown")
-        corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
-        texts = input_dict[u"input"]
+    input_text = input_dict[u"input"]
+    source = "list"
+    source_date = "unknown"
 
-    elif os.path.exists(input_dict[u"input"]):
-        file_path = input_dict[u"input"]
-        source = unicode(os.path.basename(file_path))
-        texts = re.split("[\r\n]", open(file_path, "r").read())
-        seconds = os.path.getctime(file_path)
+    #check if input is a file
+    if type(input_text) != list and os.path.exists(input_text):
+        source = os.path.basename(input_text)
+        seconds = os.path.getctime(input_text)
         source_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime(seconds)))
-        corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+        input_text = unicode(open(input_text, "r").read())
 
-    else:
-        source = "string"
-        source_date = unicode("unknown")
-        corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
-        texts = re.split("[\r\n]", input_dict[u"input"])
+    #check if input is a string
+    if type(input_text) == unicode:
+        source = "string" if source == "list" else source
+        input_text = re.split("[\r\n]", input_text)
 
-    documents = process_adc(texts, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
+    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    documents = process_adc(input_text, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
     features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date}
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
