@@ -10,65 +10,35 @@ def load_adc(input_dict):
     document per line - the whole line represents text from the body of a document. In case lines contain more document
     properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure.
 
-    :param file: file path
-    :param plain_string: documents text
+    :param input: file path, string or list
+    :param tab_separated_title: document title is separated from the text with \t. Example: title \t start of text
+    :param leading_labels: documents has labels infront of the text. Example: !LB1 !Lb2 !LBL \t start of text
     :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
     if type(input_dict[u"input"]) == list:
-        input_dict[u"plain_string"] = "\n".join(input_dict.pop(u"input"))
-        return load_adc_from_string(input_dict)
+        source = "list"
+        source_date = unicode("unknown")
+        corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+        texts = input_dict[u"input"]
+
     elif os.path.exists(input_dict[u"input"]):
-        input_dict[u"file"] = input_dict.pop(u"input")
-        return load_adc_from_file(input_dict)
+        file_path = input_dict[u"input"]
+        source = unicode(os.path.basename(file_path))
+        texts = re.split("[\r\n]", open(file_path, "r").read())
+        seconds = os.path.getctime(file_path)
+        source_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime(seconds)))
+        corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+
     else:
-        input_dict[u"plain_string"] = input_dict.pop(u"input")
-        return load_adc_from_string(input_dict)
-
-
-def load_adc_from_file(input_dict):
-    """
-    This widget processes raw text file and loads the texts into ADC (Annotated Document Corpus) structure.
-    The input file contains one document per line - the whole line represents text from the body of a document.
-    In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure.
-
-    :param file: file path
-    :param plain_string: documents text
-
-    :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
-    """
-    file_path = input_dict['file']
-    file_name = unicode(os.path.basename(file_path))
-    texts = re.split("[\r\n]", open(file_path, "r").read())
-
-    seconds = os.path.getctime(file_path)
-    source_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime(seconds)))
-    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+        source = "string"
+        source_date = unicode("unknown")
+        corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+        texts = re.split("[\r\n]", input_dict[u"input"])
 
     documents = process_adc(texts, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
-    features = {u"Source": file_name, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date}
+    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date}
 
-    output_dict = {"adc": DocumentCorpus(documents=documents, features=features)}
-    return output_dict
-
-
-def load_adc_from_string(input_dict):
-    """
-    This widges processes input text and loads it into ADC (Annotated Document Corpus) structure.
-    The input text contains one document per line - the whole line represents text from the body of a document.
-    In case lines contain more document properties (i.e.: ids, titles, labels,...) than other widgets should be used to load ADC structure.
-
-    :param plain_string: documents text
-    :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
-    """
-    source_date = unicode("unknown")
-    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
-    texts = re.split("[\r\n]", input_dict['plain_string'])
-
-    documents = process_adc(texts, input_dict['tab_separated_title'] == "true", input_dict['leading_labels'] == "true")
-    features = {u"Source": "string", u"SourceDate": source_date, u"CorpusCreateDate": corpus_date}
-
-    output_dict = {"adc": DocumentCorpus(documents=documents, features=features)}
-    return output_dict
+    return {"adc": DocumentCorpus(documents=documents, features=features)}
 
 
 def process_adc(texts,  tab_separated_title, leading_labels):
