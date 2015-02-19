@@ -266,7 +266,8 @@ class BowModel:
             return res
         else:
             return None
-
+    def get_feature_names(self):
+        return self.vectorizer.get_feature_names()
 
 #BowSpace
         # private ITokenizer mTokenizer
