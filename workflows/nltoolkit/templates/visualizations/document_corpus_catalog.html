@@ -12,9 +12,9 @@
 
 <div id="corpusFeatures">
     <h2>Features</h2>
-    <b>Source</b> = {{features.Source}} <br/><br/>
-    <b>Corpus create date</b> = {{features.CorpusCreateDate}}<br/><br/>
-    <b>Source date</b> = {{features.SourceDate}}<br/><br/>
+    {% for name, value in features.iteritems %}
+        <b>{{name}}</b> = {{ value }} <br/><br/>
+    {% endfor %}
 </div>
 
 <div id="documentList">

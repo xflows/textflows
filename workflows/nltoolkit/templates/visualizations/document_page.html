@@ -29,7 +29,7 @@ var htmlText = "{{document.text }}";
                             <input type="checkbox"  name="annotationTypeList" class ="{{ annotation_name}}" elements="{{ annotation_el.0 }}"/>
                                {{ annotation_name}}
                         </td>
-                        <td bgcolor={{annotation_el.1}} style="border:solid black 1px">&nbsp; &nbsp; &nbsp; </td>
+                        <td bgcolor="{{annotation_el.1}}" style="border:solid black 1px">&nbsp; &nbsp; &nbsp; </td>
                     </tr>
                 </table></li>
         {% endfor  %}
@@ -40,7 +40,7 @@ var htmlText = "{{document.text }}";
     <h3>Features</h3>
     {% for name, value in document.features.iteritems  %}
 
-        <b>{{name}}</b> = {{ value }} </br>
+        <b>{{name}}</b> = {{ value }} <br/>
 
     {% endfor %}
     </div>

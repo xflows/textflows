@@ -16,14 +16,14 @@
 <div id="corpusFeatures">
     {# if there is more than 100 documents, display a back link #}
     {% if back_url != "" %}
-        <a id="backlinkA" href="Index.html"> << Back to document catalog /a>
+        <a id="backlinkA" href="Index.html"> << Back to document catalog </a>
         <br/>
     {% endif %}
 
     <h2>Features</h2>
-    <b>Source</b> = {{features.Source}} <br/><br/>
-    <b>Corpus create date</b> = {{features.CorpusCreateDate}}<br/><br/>
-    <b>Source date</b> = {{features.SourceDate}}<br/><br/>
+    {% for name, value in features.iteritems  %}
+        <b>{{name}}</b> = {{ value }} <br/><br/>
+    {% endfor %}
 </div>
 
 <div id="documentList">

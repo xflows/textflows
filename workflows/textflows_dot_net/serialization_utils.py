@@ -172,7 +172,7 @@ def ToNetObj(data):
 
 def latino_object_set_feature_values(latinoObj,features):
     for k,v in features.items():
-        latinoObj.Features.SetFeatureValue(k,v)
+        latinoObj.Features.SetFeatureValue(k,str(v))
     return None
 
 

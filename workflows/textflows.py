@@ -79,6 +79,9 @@ class Annotation:
         self.span_start=span_start
         self.span_end=span_end
         self.type=type
+
+        if span_start<0 or span_end<0 or span_start>span_end:
+            raise Exception('Invalid span_start or span_end in %s' % str(self))
     def __repr__(self):
         return '<Annotation span_start:%d span_ned:%d>' % (self.span_start, self.span_end)
 
@@ -423,9 +426,14 @@ class SpanTokenizeMixin():
         right = 0
 
         for token in tokens:
-            left = right + s[right:].find(token)
-            right = left + len(token)
-            yield left, right
+            offset=s[right:].find(token)
+            if offset<0:
+                sadfa=45
+            else:
+                #raise Exception('Negative offset!')
+                left = right + offset #s[right:].find(token)
+                right = left + len(token)
+                yield left, right
 
 
 class StanfordTokenizer(SpanTokenizeMixin, StanfordTokenizer):
