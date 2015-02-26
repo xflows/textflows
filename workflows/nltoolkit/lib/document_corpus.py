@@ -1,3 +1,4 @@
+import copy
 from workflows.textflows import NltkCorpus
 import time
 import re
@@ -57,6 +58,50 @@ def add_feature(input_dict):
     for i, document in enumerate(input_dict["adc"].documents):
         document.features[input_dict[u"feature_name"]] = input_dict[u"feature_value_prefix"] + str(input_dict[u"feature_values"][i])
     return {"adc":input_dict["adc"]}
+
+
+def add_computed_document_features(input_dict):
+    """
+    TODO: Add a feature to Annotated Document Corpus.
+
+    :param adc: Annotated Document Corpus
+    :param feature_name: the name of new feature
+    :param feature_computation: "New Feature Computatation
+    :param feature_spec: Comma separated list of names of old features used in the 'New Feature Computataion'.
+
+    :return: new adc
+    """
+
+    adc=input_dict["adc"]
+    compute_new_features(adc.documents,input_dict["feature_name"],input_dict["feature_computation"])
+
+    return {"adc":adc}
+
+def add_computed_token_features(input_dict):
+    """
+    TODO
+
+    :param adc: Annotated Document Corpus
+    :param feature_name: the name of new feature
+    :param feature_computation: "New Feature Computatation
+    :param feature_spec: Comma separated list of names of old features used in the 'New Feature Computataion'.
+
+    :return: new adc
+    """
+
+    adc=input_dict["adc"]
+    for document in adc.documents:
+        compute_new_features(document.get_annotations(input_dict["annotation_name"]),input_dict["feature_name"],input_dict["feature_computation"])
+
+    return {"adc":adc}
+
+def compute_new_features(objs,new_feature_name,feature_computation):
+    features = re.findall(r"\{([\w\s]+)\}", feature_computation) #[mm.split(':')[0] for mm in m.groups()]
+    for obj in objs:
+        new_feature_value=copy.copy(feature_computation)
+        for feature in features:
+            new_feature_value=new_feature_value.replace("{"+feature+"}",obj.features.get(feature, "NULL"))
+        obj.features[new_feature_name]=new_feature_value
 
 
 def split_documents_by_feature_value(input_dict):
@@ -140,3 +185,4 @@ def merge_corpora(input_dict):
             adc.documents.append(document)
 
     return {"adc": adc}
+

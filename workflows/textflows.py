@@ -58,6 +58,8 @@ class Document:
                      #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
                      pass
         return annotations_with_text
+    def get_annotations(self, selector):
+        return [a[0] for a in self.get_annotations_with_text(selector)]
 
     def raw_text(self,selector=None,stop_word_feature_name="StopWord",join_annotations_with=" "):
         if not selector:
