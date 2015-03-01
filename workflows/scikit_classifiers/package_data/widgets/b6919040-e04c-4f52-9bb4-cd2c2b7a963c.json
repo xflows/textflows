@@ -10,7 +10,7 @@
       "interaction_view": "", 
       "has_progress_bar": false, 
       "image": "", 
-      "description": "Linear Support Vector Classification. Similar to SVC with parameter kernel=\u2019linear\u2019, but implemented in terms of liblinear rather than libsvm, so it has more flexibility in the choice of penalties and loss functions and should scale better (to large numbers of samples).", 
+      "description": "Similar to Support Vector Classification with parameter kernel=\u2019linear\u2019, but implemented in terms of liblinear rather than libsvm, so it has more flexibility in the choice of penalties and loss functions and should scale better (to large numbers of samples).", 
       "static_image": "classifier_svm_image.png", 
       "action": "sc_linear_svc", 
       "visualization_view": "", 
@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": false, 
       "order": 1, 
-      "name": "Linear Support Vector Classification"
+      "name": "SVM Linear Classifier"
     }
   }, 
   {

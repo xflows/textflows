@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": false, 
       "order": 1, 
-      "name": "Logistic regression"
+      "name": "Logistic regression Classifier"
     }
   }, 
   {
