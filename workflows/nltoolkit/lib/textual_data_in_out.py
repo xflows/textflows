@@ -56,8 +56,8 @@ def load_adc(input_dict):
         input_text = re.split("[\r\n]", input_text)
 
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
-    documents = process_adc(input_text, tab_separated_title, leading_labels, titles)
-    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date}
+    documents, labels = process_adc(input_text, tab_separated_title, leading_labels, titles)
+    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": labels}
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
 
@@ -69,9 +69,10 @@ def process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
     :param texts: list of documents
     :param tab_separated_title: document title is separated from the text with \t. Example: title \t start of text
     :param leading_labels: documents has labels infront of the text. Example: !LB1 !Lb2 !LBL \t start of text
-    :return: list of documents
+    :return: list of documents, uniq list of labels
     """
     documents = []
+    labels = set()
     for i, text in enumerate(texts):
         title = u"Document" + unicode(i + 1) if titles == [] else titles[i]
         features = {u"contentType": u"Text", u"sourceFileLine": unicode(i)}
@@ -87,6 +88,7 @@ def process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
             text = text.split("\t")
             for feature in [f.strip() for f in text[0].split("!") if f != u""]:
                 features[feature] = "true"
+                labels.add(feature)
             text = "".join(text[1:])
 
         documents.append(Document(name=title,
@@ -96,7 +98,7 @@ def process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
                                                           span_end=max(0, len(unicode(text)) - 1),
                                                           type=u"TextBlock",
                                                           features={})]))
-    return documents
+    return documents, list(labels)
 
 
 def get_plain_texts(input_dict):
