@@ -110,6 +110,23 @@
     }
   }, 
   {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "Take first k letters from POS tag", 
+      "short_name": "ltr", 
+      "default": "-1", 
+      "description": "Take first k letters from POS tag", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "num_of_letters", 
+      "parameter": true, 
+      "order": 6, 
+      "uid": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+    }
+  }, 
+  {
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
@@ -119,6 +136,42 @@
       "variable": "adc", 
       "order": 1, 
       "uid": "cded8ae2-2518-420a-a8ff-662ca07c57bc"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "3", 
+      "uid": "36b27b61-c8ba-4030-921c-1861b6b0fe59", 
+      "value": "3", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "all", 
+      "uid": "40f0e4a2-44b7-4a1a-98d0-c95a05fdc4ee", 
+      "value": "-1", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "1", 
+      "uid": "4cecf0f5-6039-4534-b3c0-dfa6cfdb2d0d", 
+      "value": "1", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "2", 
+      "uid": "57ebf440-472c-4618-9a20-b2093b9d1cde", 
+      "value": "2", 
+      "abstract_input": "f88272d6-3afc-4c9e-8c7e-7f4da009ae57"
     }
   }
 ]

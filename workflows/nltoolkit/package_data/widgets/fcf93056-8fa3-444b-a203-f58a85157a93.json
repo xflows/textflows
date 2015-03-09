@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": false, 
       "order": 8, 
-      "name": "Stopwords Tagger"
+      "name": "Stop Word Tagger"
     }
   }, 
   {

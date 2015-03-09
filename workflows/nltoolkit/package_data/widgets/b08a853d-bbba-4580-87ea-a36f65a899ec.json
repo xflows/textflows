@@ -12,7 +12,7 @@
       "image": "", 
       "description": "TODO:", 
       "static_image": "process_new_adc_image.png", 
-      "action": "create_dataset_with_bow_model", 
+      "action": "create_dataset_using_bow_model_constructor", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
@@ -21,21 +21,21 @@
       "interactive": false, 
       "windows_queue": false, 
       "order": 3, 
-      "name": "Create Dataset with Bow Model"
+      "name": "Create BoW Dataset using BoW Model Constructor"
     }
   }, 
   {
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
-      "name": "Bag of Words Model", 
-      "short_name": "bwm", 
+      "name": "Bag of Words Model Constructor", 
+      "short_name": "bmc", 
       "default": "", 
       "description": "Latino.TextMining.BowSpace", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "bow_model", 
+      "variable": "bow_model_constructor", 
       "parameter": false, 
       "order": 2, 
       "uid": "4cb462a9-19df-444f-9d0d-214a4f058782"

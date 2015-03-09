@@ -18,8 +18,6 @@ def load_adc(input_dict):
     :return adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
     input_text = input_dict[u"input"]
-    tab_separated_title = input_dict['tab_separated_title'] == "true"
-    leading_labels = input_dict['leading_labels'] == "true"
     source = "list"
     source_date = "unknown"
     titles = []
@@ -57,7 +55,7 @@ def load_adc(input_dict):
 
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     documents, labels = process_adc(input_text, tab_separated_title, leading_labels, titles)
-    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": labels}
+    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": json.dumps(labels)}
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
 
@@ -74,30 +72,31 @@ def process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
     documents = []
     labels = set()
     for i, text in enumerate(texts):
-        title = u"Document" + unicode(i + 1) if titles == [] else titles[i]
-        features = {u"contentType": u"Text", u"sourceFileLine": unicode(i)}
-
-        if tab_separated_title:
-            #example: title \t start of text
-            text = text.split("\t")
-            title = unicode(text[0])
-            text = "\t".join(text[1:])
-
-        if leading_labels:
-            #example: !LB1 !Lb2 !LBL \t start of text
-            text = text.split("\t")
-            for feature in [f.strip() for f in text[0].split("!") if f != u""]:
-                features[feature] = "true"
-                labels.add(feature)
-            text = "".join(text[1:])
-
-        documents.append(Document(name=title,
-                                  features=features,
-                                  text=unicode(text),
-                                  annotations=[Annotation(span_start=0,
-                                                          span_end=max(0, len(unicode(text)) - 1),
-                                                          type=u"TextBlock",
-                                                          features={})]))
+        if text:
+            title = u"Document" + unicode(i + 1) if titles == [] else titles[i]
+            features = {u"contentType": u"Text", u"sourceFileLine": unicode(i)}
+    
+            if tab_separated_title:
+                #example: title \t start of text
+                text = text.split("\t")
+                title = unicode(text[0])
+                text = "\t".join(text[1:])
+    
+            if leading_labels:
+                #example: !LB1 !Lb2 !LBL \t start of text
+                text = text.split("\t")
+                for feature in [f.strip() for f in text[0].split("!") if f != u""]:
+                    features[feature] = "true"
+                    labels.add(feature)
+                text = "".join(text[1:])
+    
+            documents.append(Document(name=title,
+                                      features=features,
+                                      text=unicode(text),
+                                      annotations=[Annotation(span_start=0,
+                                                              span_end=max(0, len(unicode(text)) - 1),
+                                                              type=u"TextBlock",
+                                                              features={})]))
     return documents, list(labels)
 
 

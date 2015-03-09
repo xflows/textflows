@@ -58,6 +58,6 @@ def universal_sentence_tagger_hub(input_dict):
             new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
             for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
                 for feature,annotation in izip(sentence_features,sentence_annotations):
-                    annotation.features[output_annotation_name]=feature[1]
+                    annotation.features[output_annotation_name]=feature[1] #[0:number_of_letters]
 
-            return {'adc': adc }
+    return {'adc': adc }

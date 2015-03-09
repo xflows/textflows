@@ -174,7 +174,8 @@ INSTALLED_APPS_DEFAULT = (
     #'kombu.transport.django',
     'discover_runner',
     'rest_framework',
-    'south',    
+    'south',
+    #'debug_toolbar',
     )
 
 INSTALLED_APPS_WORKFLOWS_SUB = ()

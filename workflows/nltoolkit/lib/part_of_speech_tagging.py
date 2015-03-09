@@ -16,14 +16,29 @@ from nltk.tag.stanford   import StanfordTagger
 from django.conf import settings
 
 def pos_tagger_hub(input_dict):
-    if type(input_dict['pos_tagger'])!=dict: #check if this is a latino object
+    if isinstance(input_dict['pos_tagger'],LatinoObject): #check if this is a latino object
         from ...latino.library_gen import latino_pos_tag
-        return latino_pos_tag(input_dict)
+        adc= latino_pos_tag(input_dict)['adc']
     else:
-        return universal_sentence_tagger_hub(input_dict)
+        adc= universal_sentence_tagger_hub(input_dict)['adc']
+
+    number_of_letters=int(input_dict['num_of_letters'])
+    if number_of_letters!=-1:
+        element_annotation_name = input_dict['element_annotation']
+        output_annotation_name = input_dict['output_feature']
+        for doc in adc.documents:
+            for annotation in doc.get_annotations(element_annotation_name):
+                if not output_annotation_name in annotation.features:
+                    print input_dict['pos_tagger'],annotation.features
+                    print doc.features
+                else:
+                    annotation.features[output_annotation_name]=annotation.features[output_annotation_name][0:number_of_letters]
+
+    return {'adc': adc }
+
+from workflows.textflows import DocumentCorpus, LatinoObject
 
 
-from workflows.textflows import DocumentCorpus
 def corpus_reader(corpus):
     if type(corpus)==DocumentCorpus:
         raise NotImplementedError

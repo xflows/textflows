@@ -1,5 +1,6 @@
 import copy
 from itertools import izip
+import json
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer, TfidfTransformer
 import nltk
 
@@ -22,6 +23,12 @@ class DocumentCorpus:
                                       copy.deepcopy(self.features)) if test_indices else None
 
         return output_train,output_test
+
+    def get_uniq_labels(self):
+        return json.loads(self.features['Labels']) if 'Labels' in self.features else []
+
+    def get_labels(self):
+        return [doc.get_first_label(self.get_uniq_labels()) for doc in self.documents]
 
 class Document:
     def __init__(self, name,text,annotations,features):
@@ -73,6 +80,7 @@ class Document:
         for klass in classes:
             if klass in self.features:
                 return klass
+        d=444
 
 
 class Annotation:
@@ -392,6 +400,9 @@ class LatinoObject:
     def __init__(self,latino_object):
         import LatinoInterfaces
         self.serialized_object = LatinoInterfaces.LatinoCF.Save(latino_object)
+        #if hasattr(latino_object, "GetType") and latino_object.GetType().IsGenericType:
+        #    name = latino_object.GetType().GetGenericTypeDefinition()
+        #a=latino_object.GetType()
         self.name=latino_object.__str__()
 
     def __repr__(self):

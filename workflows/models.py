@@ -309,7 +309,8 @@ class Workflow(models.Model):
             from sklearn.cross_validation import StratifiedKFold,KFold
 
             if 'Labels' in document_corpus.features:
-                labels=[doc.get_first_label(document_corpus.features['Labels']) for doc in input_list]
+                labels=document_corpus.get_labels()
+                #print "Seed:"+str(input_seed)
                 stf=StratifiedKFold(labels,n_folds=input_fold,random_state=input_seed)
             else:
                 stf=KFold(len(document_corpus.documents),n_folds=input_fold,random_state=input_seed)
