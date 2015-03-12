@@ -21,7 +21,7 @@
       "interactive": false, 
       "windows_queue": false, 
       "order": 3, 
-      "name": "Create BoW Dataset using BoW Model Constructor"
+      "name": "Create BoW Dataset using the BoW Model Constructor"
     }
   }, 
   {

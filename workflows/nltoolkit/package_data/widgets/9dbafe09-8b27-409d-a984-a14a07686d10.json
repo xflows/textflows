@@ -1,0 +1,107 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
+      "treeview_image": "", 
+      "uid": "9dbafe09-8b27-409d-a984-a14a07686d10", 
+      "is_streaming": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "For every annotation of the selected type generate an additional feature. Between { } a feature name can be entered and it will be replaced with its value.", 
+      "static_image": "adc_add_feature_image.png", 
+      "action": "add_computed_token_features", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 5, 
+      "name": "Add Computed Token Features"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "9dbafe09-8b27-409d-a984-a14a07686d10", 
+      "name": "New Feature Name", 
+      "short_name": "str", 
+      "default": "feature", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "feature_name", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "444bbce7-b4a2-44a3-a5f3-4d2d6266fb56"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "9dbafe09-8b27-409d-a984-a14a07686d10", 
+      "name": "New Feature Computataion", 
+      "short_name": "str", 
+      "default": "{Stem}_{POS Tag}", 
+      "description": "Values for the new features. Between { } a feature name can be entered and it will be replaced with its value.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "feature_computation", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "77af305a-1e34-44c5-b58b-1132bfe56ed5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "9dbafe09-8b27-409d-a984-a14a07686d10", 
+      "name": "Annotation Name", 
+      "short_name": "ann", 
+      "default": "Token", 
+      "description": "Add features to tokens of this type.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_name", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "c17e73a4-f715-4ac6-8065-0d71a14eb455"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "9dbafe09-8b27-409d-a984-a14a07686d10", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "LatinoInterfaces.DocumentCorpus", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "d2a27cfb-916c-4009-b910-c79542dc7c1c"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "9dbafe09-8b27-409d-a984-a14a07686d10", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "675b5fed-e87b-465a-84a9-6a7a8714866b"
+    }
+  }
+]
