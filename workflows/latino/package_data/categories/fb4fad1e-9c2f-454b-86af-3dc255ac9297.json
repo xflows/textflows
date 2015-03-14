@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Stemming", 
+    "parent": null, 
+    "order": 5, 
+    "uid": "fb4fad1e-9c2f-454b-86af-3dc255ac9297"
+  }
+}

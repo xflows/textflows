@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Advanced", 
+    "parent": "70b1a1cf-49e8-479b-a8d8-32cc2fbfa47b", 
+    "order": 1, 
+    "uid": "08c17c78-3f4d-4006-8b3f-1ee34bca5ccd"
+  }
+}
