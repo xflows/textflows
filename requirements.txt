@@ -18,8 +18,6 @@ scipy
 scikit-learn
 liac-arff==2.0.1
 networkx==1.9.1
-liac-arff==2.0.1
-networkx==1.9.1
 djangorestframework==3.0.3
 django-filter==0.9.1
 pdfminer==20140328
