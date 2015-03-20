@@ -21,6 +21,8 @@ def load_adc(input_dict):
     source = "list"
     source_date = "unknown"
     titles = []
+    tab_separated_title = input_dict['tab_separated_title'] == "true"
+    leading_labels = input_dict['leading_labels'] == "true"
 
     #check if input is a file
     if type(input_text) != list and os.path.exists(input_text):
