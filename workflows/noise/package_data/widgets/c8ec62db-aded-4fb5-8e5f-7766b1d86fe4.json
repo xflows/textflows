@@ -20,7 +20,7 @@
       "wsdl": "", 
       "interactive": true, 
       "windows_queue": false, 
-      "order": 1, 
+      "order": 2, 
       "name": "NoiseRank"
     }
   }, 

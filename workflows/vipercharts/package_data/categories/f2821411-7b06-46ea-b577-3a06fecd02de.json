@@ -3,7 +3,7 @@
   "fields": {
     "name": "Visual performance evaluation (ViperCharts)", 
     "parent": null, 
-    "order": 1, 
+    "order": 100, 
     "uid": "f2821411-7b06-46ea-b577-3a06fecd02de"
   }
 }

@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "windows_queue": true, 
       "order": 2, 
       "name": "Create String"
     }
@@ -37,7 +37,7 @@
       "parameter_type": "textarea", 
       "variable": "string", 
       "parameter": true, 
-      "order": 0, 
+      "order": 1, 
       "uid": "0f6fa6df-b8d1-4e12-a9ac-427233bb090a"
     }
   }, 
