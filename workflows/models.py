@@ -20,6 +20,8 @@ if USE_CONCURRENCY:
 
 from workflows.tasks import executeWidgetFunction, executeWidgetProgressBar, executeWidgetStreaming, executeWidgetWithRequest, runWidget, executeWidgetPostInteract
 
+from workflows.engine import WidgetRunner, WorkflowRunner
+
 class WidgetException(Exception):
     pass
 
@@ -56,7 +58,7 @@ class Category(models.Model):
     def update_uid(self):
         import uuid
         if self.uid == '' or self.uid is None:
-            self.uid = uuid.uuid4()
+            self.uid = str(uuid.uuid4())
             self.save()
         if self.parent:
             self.parent.update_uid()
@@ -105,7 +107,30 @@ class Workflow(models.Model):
         d['name']=self.name
         d['description']=self.description
         d['widgets'] = []
-        for w in self.widgets.all().prefetch_related('inputs','outputs'):
+        inps = Input.objects.filter(widget__workflow=self).defer('value').prefetch_related('options')
+        outs = Output.objects.filter(widget__workflow=self).defer('value')
+        widgets = self.widgets.all().select_related('abstract_widget')
+        workflow_links = Workflow.objects.filter(widget__in=widgets)
+        inps_by_id = {}
+        outs_by_id = {}
+        for i in inps:
+            l = inps_by_id.get(i.widget_id,[])
+            l.append(i)
+            inps_by_id[i.widget_id] = l
+        for o in outs:
+            l = outs_by_id.get(o.widget_id,[])
+            l.append(o)
+            outs_by_id[o.widget_id] = l
+        for w in widgets:
+            for workflow in workflow_links:
+                if workflow.widget_id == w.id:
+                    w.workflow_link_data = workflow
+                    w.workflow_link_exists = True
+                    break
+            else:
+                w.workflow_link_exists = False
+            w.inputs_all = inps_by_id.get(w.id,[])
+            w.outputs_all = outs_by_id.get(w.id,[])
             d['widgets'].append(w.export())
         d['connections'] = []
         for c in self.connections.all():
@@ -162,7 +187,7 @@ class Workflow(models.Model):
         for w in widgets:
             if not w.finished and not w.running:
                 ready_to_run = True
-                connections = self.connections.filter(input__widget=w)
+                connections = self.connections.filter(input__widget=w).select_related('input__widget')
                 for c in connections:
                     if not c.output.widget.finished:
                         #print c.output.widget
@@ -172,17 +197,46 @@ class Workflow(models.Model):
                     unfinished_list.append(w)
         return unfinished_list
 
+    """def run_for_loop(self):
+        widgets = self.widgets.all().prefetch_related('inputs','outputs')
+        connections = self.connections.all().select_related('input','output','input__widget','output__widget')
+        fi = None
+        fo = None
+        for w in widgets:
+            if w.type=='for_input':
+                fi = w
+            if w.type=='for_output':
+                fo = w
+        outer_output = fo.inputs.all()[0].outer_output
+        outer_output.value=[]
+        outer_output.save()
+        total = len(widgets)
+        input_list = fi.outputs.all()[0].outer_input.value # get all inputs from outer part
+        progress_total = len(input_list) # for progress bar
+        current_iteration = 0
+        for i in input_list:
+            finished = []
+            unfinished_list = []
+            fi.finished = True
+            proper_output = fi.outputs.all()[0]"""
+
     def run_for_loop(self):
         """ Method runs the workflow for loop. The use of [0] at the end of lines is because
         there can be only one for loop in one workflow. This way we take the first one. """
         #clear for_input and for_output
         #print("run_for_loop")
-        fi = self.widgets.filter(type='for_input')[0]
-        fo = self.widgets.filter(type='for_output')[0]
+        widgets = self.widgets.all().prefetch_related('inputs','outputs')
+        fi = None
+        fo = None
+        for w in widgets:
+            if w.type=='for_input':
+                fi = w
+            if w.type=='for_output':
+                fo = w
         outer_output = fo.inputs.all()[0].outer_output
         outer_output.value=[]
         outer_output.save()
-
+        total = len(widgets)
         input_list = fi.outputs.all()[0].outer_input.value # get all inputs from outer part
         progress_total = len(input_list) # for progress bar
         current_iteration = 0
@@ -203,10 +257,12 @@ class Workflow(models.Model):
                     while len(unfinished_list)>0:
                         for w in unfinished_list:
                             w.run(True) # run the widget
-                            total = self.widgets.count()
-                            completed = self.widgets.filter(finished=True).count()
-                            self.widget.progress = (int)((current_iteration*100.0/progress_total)+(((completed*1.0)/total)*(100/progress_total)))
-                            self.widget.save()
+                            completed = 0
+                            for w in widgets:
+                                if w.finished:
+                                    completed = completed+1
+                        self.widget.progress = (int)((current_iteration*100.0/progress_total)+(((completed*1.0)/total)*(100/progress_total)))
+                        self.widget.save()                        
                         unfinished_list = self.get_runnable_widgets()
                 except:
                     raise
@@ -515,16 +571,16 @@ class AbstractWidget(models.Model):
     def update_uid(self):
         import uuid
         if self.uid == '' or self.uid is None:
-            self.uid = uuid.uuid4()
+            self.uid = str(uuid.uuid4())
             self.save()
         for i in self.inputs.filter(uid=''):
-            i.uid = uuid.uuid4()
+            i.uid = str(uuid.uuid4())
             i.save()
             for option in i.options.filter(uid=''):
-                option.uid = uuid.uuid4()
+                option.uid = str(uuid.uuid4())
                 option.save()
         for o in self.outputs.filter(uid=''):
-            o.uid = uuid.uuid4()
+            o.uid = str(uuid.uuid4())
             o.save()   
         self.category.update_uid()     
 
@@ -644,13 +700,9 @@ class Widget(models.Model):
 
     def export(self):
         d = {}
-        try:
-            #d['workflow']=self.workflow.export()
-            if self.workflow_link:
-                d['workflow']=self.workflow_link.export()
-            else:
-                d['workflow']=None
-        except Workflow.DoesNotExist:
+        if self.workflow_link_exists:
+            d['workflow']=self.workflow_link_data.export()
+        else:
             d['workflow']=None
         d['x']=self.x
         d['y']=self.y
@@ -671,9 +723,9 @@ class Widget(models.Model):
         #d['progress']=self.progress
         d['inputs']=[]
         d['outputs']=[]
-        for i in self.inputs.all().prefetch_related('options'):
+        for i in self.inputs_all:
             d['inputs'].append(i.export())
-        for o in self.outputs.all():
+        for o in self.outputs_all:
             d['outputs'].append(o.export())
         return d
 
@@ -791,16 +843,11 @@ class Widget(models.Model):
                         """ else run abstract widget function """
                         outputs = function_to_call(input_dict)
                 else:
-                    if self.workflow_link.is_for_loop():
-                        """ if this is object is a for loop than true and run;
-                        else false and run workflow """
-                        #print("proper_run_is_for_loop")
-                        self.workflow_link.run_for_loop()
-                        #print self.outputs.all()[0].value
-                    elif self.workflow_link.is_cross_validation():
-                        self.workflow_link.run_cross_validation()
-                    else:
-                        self.workflow_link.run()
+                    Input.objects.filter(widget__workflow=self.workflow_link,parameter=False).update(value=None)
+                    Output.objects.filter(widget__workflow=self.workflow_link).update(value=None)
+                    wr = WidgetRunner(self,workflow_runner=WorkflowRunner(self.workflow,clean=False),standalone=True)
+                    wr.run()
+                    return
             except:
                 self.error=True
                 self.running=False
@@ -882,16 +929,23 @@ class Widget(models.Model):
         elif self.type == 'cv_output':
             """ if object is an output widget for cross validation, 
             then read output values and configure parameters"""
+            print "smo v cv_output"
             for i in self.inputs.all():
                 if not i.parameter:
                     """ if there is a connection than true and read the output value """
                     if i.connections.count() > 0:
                         if i.value is None:
+                            print "1"
                             i.value = [i.connections.all()[0].output.value]
                         else:
+                            print "2"
                             i.value = [i.connections.all()[0].output.value] + i.value
+                            print i.value
                         #print i.value
                         i.save()
+                        print "----"
+                        print i.outer_output.value
+                        print "----"
                         i.outer_output.value.append(i.value)
                         i.outer_output.save()
                         self.finished=True
@@ -1120,11 +1174,11 @@ class Input(models.Model):
         for o in self.options.all():
             d['options'].append(o.export())
         try:
-            d['inner_output']=self.inner_output.pk
+            d['inner_output']=self.inner_output_id
         except:
             d['inner_output']=None
         try:
-            d['outer_output']=self.outer_output.pk
+            d['outer_output']=self.outer_output_id
         except:
             d['outer_output']=None
         return d

@@ -29,8 +29,9 @@ def domain_map(features, feature_format, train_context, test_context,
     if feature_format in ['rsd', 'aleph']:
         train_rsd = RSD_Converter(train_context)
         test_rsd = RSD_Converter(test_context, discr_intervals=intervals)
-        train_examples = train_rsd.all_examples()
-        test_examples = test_rsd.all_examples()
+        mapper_target_name = train_context.target_table + '_mapper'
+        train_examples = train_rsd.all_examples(pred_name=mapper_target_name)
+        test_examples = test_rsd.all_examples(pred_name=mapper_target_name)
         
         if feature_format == 'aleph':
             features = aleph_to_rsd_features(features)
@@ -53,12 +54,15 @@ def domain_map(features, feature_format, train_context, test_context,
         f = tempfile.NamedTemporaryFile(delete=False)
         f.write(prolog_bk)
         f.close()
-        cmd_args = ['%s/mapper.pl' % THIS_DIR, f.name, train_context.target_table]
+        cmd_args = ['yap', '-L', '--', '%s/mapper.pl' % THIS_DIR, f.name, mapper_target_name]
         evaluations = subprocess.check_output(cmd_args)
         dataset = dump_dataset(features, feature_format, evaluations,
                                train_context,
                                format=format,
                                positive_class=positive_class)
+
+        # Cleanup
+        os.remove(f.name)
 
     elif feature_format == 'treeliker':
         # We provide treeliker with the test dataset
