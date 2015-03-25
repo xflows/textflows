@@ -549,7 +549,8 @@ def add_cv(request):
                 output = Output()
                 output.name = 'cv input data'
                 output.short_name = 'trn' # subproces inner input
-                output.variable = 'CVD'
+                output.variable = 'TRAIN'
+                output.order = 1
                 output.widget = cv_input_data
                 output.save()
                 input = Input()
@@ -558,26 +559,17 @@ def add_cv(request):
                 input.short_name = 'dat'  # subproces input
                 input.variable = 'CVD'
                 input.inner_output = output
+                input.order = 1
                 input.save()
                 output.outer_input = input
                 output.save()
 
-                # input: number of folds 
-                cv_input_fold = Widget()
-                cv_input_fold.workflow = workflow
-                cv_input_fold.x=int(request.POST['scrollLeft'])+50
-                y=int(request.POST['scrollTop'])+50
-                while workflow.widgets.filter(y=y,x=cv_input_fold.x).count()>0:
-                    y = y + 100
-                cv_input_fold.y=y
-                cv_input_fold.name = 'cv input2'
-                cv_input_fold.type = 'cv_input2'
-                cv_input_fold.save()
 
                 output = Output()
                 output.name = 'cv input data'
                 output.short_name = 'tst' # subproces inner input
-                output.variable = 'CVF'
+                output.variable = 'TEST'
+                output.order = 2
                 output.widget = cv_input_data
                 output.save()
                 input = Input()
@@ -586,26 +578,16 @@ def add_cv(request):
                 input.short_name = 'cvf'
                 input.variable = 'CVF'
                 input.inner_output = output
+                input.order = 2
                 input.save()
                 output.outer_input = input
                 output.save()
 
-                # input: seed
-                cv_input_fold = Widget()
-                cv_input_fold.workflow = workflow
-                cv_input_fold.x=int(request.POST['scrollLeft'])+50
-                y=int(request.POST['scrollTop'])+50
-                while workflow.widgets.filter(y=y,x=cv_input_fold.x).count()>0:
-                    y = y + 100
-                cv_input_fold.y=y
-                cv_input_fold.name = 'cv input3'
-                cv_input_fold.type = 'cv_input3'
-                cv_input_fold.save()
-
                 output = Output()
                 output.name = 'cv input data'
                 output.short_name = 'sed' # subproces inner input
-                output.variable = 'CVS'
+                output.variable = 'SEED'
+                output.order = 3
                 output.widget = cv_input_data
                 output.save()
                 input = Input()
@@ -613,6 +595,7 @@ def add_cv(request):
                 input.name = 'cv input seed'
                 input.short_name = 'sed'
                 input.variable = 'CVS'
+                input.order = 3
                 input.inner_output = output
                 input.save()
                 output.outer_input = input
