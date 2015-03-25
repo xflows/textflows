@@ -1,3 +1,4 @@
+from django.conf import settings
 import workflows.library
 import time
 import random
@@ -32,13 +33,13 @@ class WidgetRunner():
                     if self.widget.abstract_widget.wsdl != '':
                         input_dict['wsdl']=self.widget.abstract_widget.wsdl
                         input_dict['wsdl_method']=self.widget.abstract_widget.wsdl_method
-                    if self.abstract_widget.windows_queue and settings.USE_WINDOWS_QUEUE:
+                    if self.widget.abstract_widget.windows_queue and settings.USE_WINDOWS_QUEUE:
                         if self.widget.abstract_widget.has_progress_bar:
-                            outputs = executeWidgetFunction.apply_async([self.widget,input_dict],queue="windows").wait()
-                        elif self.widget.abstract_widget.is_streaming:
                             outputs = executeWidgetProgressBar.apply_async([self.widget,input_dict],queue="windows").wait()
-                        else:
+                        elif self.widget.abstract_widget.is_streaming:
                             outputs = executeWidgetStreaming.apply_async([self.widget,input_dict],queue="windows").wait()
+                        else:
+                            outputs = executeWidgetFunction.apply_async([self.widget,input_dict],queue="windows").wait()
                     else:
                         if self.widget.abstract_widget.has_progress_bar:
                             outputs = function_to_call(input_dict,self.widget)
@@ -252,6 +253,9 @@ class WorkflowRunner():
             if input_type == 'DBContext':
                 context = input_list
                 input_list = context.orng_tables.get(context.target_table,None)
+            elif input_type == 'DocumentCorpus':
+                document_corpus=input_list
+                input_list=document_corpus.documents
 
             if not input_list:
                 raise Exception('CrossValidation: Empty input list!')
@@ -266,6 +270,17 @@ class WorkflowRunner():
                     output_train.name = input_list.name
                     output_test.name = input_list.name
                     folds.append((output_train, output_test))
+            elif input_type == 'DocumentCorpus':
+                from sklearn.cross_validation import StratifiedKFold,KFold
+
+                if 'Labels' in document_corpus.features:
+                    labels=document_corpus.get_labels()
+                    #print "Seed:"+str(input_seed)
+                    stf=StratifiedKFold(labels,n_folds=input_fold,random_state=input_seed)
+                else:
+                    stf=KFold(len(document_corpus.documents),n_folds=input_fold,random_state=input_seed)
+
+                folds=[(list(train_index),list(test_index)) for train_index, test_index in stf]
             else:
                 rand.seed(input_seed)
                 rand.shuffle(input_list)
@@ -279,6 +294,12 @@ class WorkflowRunner():
                 if hasattr(input_list, "get_items_ref"):
                     output_test = folds[i][1]
                     output_train = folds[i][0]
+                elif input_type == 'DocumentCorpus':
+                    train_indices, test_indices= folds[i]
+                    print "engine"
+                    print("TRAIN:", train_indices, "TEST:", test_indices)
+
+                    output_train, output_test = document_corpus.split(train_indices,test_indices)
                 else:
                     output_train = folds[:i] + folds[i+1:]
                     output_test = folds[i]
