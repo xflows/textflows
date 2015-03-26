@@ -1,4 +1,4 @@
-from workflows.textflows import BowDataset,BowModel
+from workflows.textflows import BowDataset,BowModelConstructor
 
 
 def construct_dataset_and_bow_model_constructor(input_dict): #TODO
@@ -31,7 +31,7 @@ def construct_dataset_and_bow_model_constructor(input_dict): #TODO
             'min_tf': int(input_dict['min_word_freq']),#5
             'vocabulary': input_dict.get('vocabulary',None)}
 
-    bow_model=BowModel(**args)
+    bow_model=BowModelConstructor(**args)
     bow_dataset=BowDataset.from_adc(adc,bow_model)
 
     return {'bow_model_constructor': bow_model,'bow_dataset': bow_dataset}

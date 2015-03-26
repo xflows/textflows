@@ -24,11 +24,11 @@ class DocumentCorpus:
 
         return output_train,output_test
 
-    def get_uniq_labels(self):
+    def get_labels(self):
         return json.loads(self.features['Labels']) if 'Labels' in self.features else []
 
-    def get_labels(self):
-        return [doc.get_first_label(self.get_uniq_labels()) for doc in self.documents]
+    def get_document_labels(self):
+        return [doc.get_first_label() for doc in self.documents]
 
 class Document:
     def __init__(self, name,text,annotations,features):
@@ -76,11 +76,20 @@ class Document:
                                if not ann.features.has_key(stop_word_feature_name)]
             return join_annotations_with.join(selected_subtexts)
 
-    def get_first_label(self,classes):
-        for klass in classes:
-            if klass in self.features:
-                return klass
-        d=444
+    def get_first_label(self,label_feature_name="Labels"):
+        label_value=self.features.get(label_feature_name,None)
+        #for klass in classes:
+        #    if klass in self.features:
+        #        return klass
+        #d=444
+        if label_value==None:
+            return ''
+        try:
+            #print label_value
+            true_value=json.loads(label_value)
+            return true_value[0] if type(true_value)==list else label_value #if not a json list
+        except ValueError, e:
+            return label_value
 
 
 class Annotation:
@@ -115,7 +124,7 @@ class BowDataset:
     @classmethod
     def from_adc(cls,adc,bow_model):
         sparse_bow_matrix = bow_model.vectorizer.transform(bow_model.get_raw_text(adc.documents))
-        labels=bow_model.get_labels(adc)
+        labels=bow_model.get_document_labels(adc)
 
         return cls(sparse_bow_matrix,labels)
 
@@ -151,12 +160,12 @@ class BowDataset:
 
     def split(self,train_indices,test_indices=None):
         output_train = BowDataset(self.sparse_bow_matrix[train_indices],
-                                      self.get_labels(train_indices))
-        output_test = BowDataset(self.sparse_bow_matrix[test_indices], self.get_labels(test_indices)) \
+                                      self.get_document_labels(train_indices))
+        output_test = BowDataset(self.sparse_bow_matrix[test_indices], self.get_document_labels(test_indices)) \
                 if test_indices else None
         return output_train,output_test
 
-    def get_labels(self,indices):
+    def get_document_labels(self,indices):
         return [self.labels[i] for i in indices] if self.labels else []
 
 # try:
@@ -182,7 +191,7 @@ class BowDataset:
 #     ]
 
 
-class BowModel:
+class BowModelConstructor:
     def __init__(self,adc,token_annotation,stem_feature_name,stop_word_feature_name,
                  label_doc_feature_name,
                 weighting_type, normalize_vectors,
@@ -261,7 +270,7 @@ class BowModel:
                                   stop_word_feature_name=self._stop_word_feature_name)
                 for document in documents]
 
-    def get_labels(self,adc,binary=False):
+    def get_document_labels(self,adc,binary=False):
         '''
         :param adc: annotated document corpus
         :param binary: return binary results
@@ -269,10 +278,10 @@ class BowModel:
         '''
 
         if self._doc_class_label:
-            res=[]
-            for doc in adc.documents:
-                f=doc.features.get(self._doc_class_label,'')
-                res.append(int(f=='true') if binary else f)
+            res=[doc.get_first_label(self._doc_class_label) for doc in adc.documents]
+            if binary:
+                uniq_res=list(set(res))
+                return [uniq_res.index(r) for r in res]
             return res
         else:
             return None

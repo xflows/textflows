@@ -65,7 +65,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoClowdFlows.DocumentCorpus", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
@@ -98,7 +98,7 @@
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
-      "description": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "variable": "adc", 
       "order": 1, 
       "uid": "2882c119-5077-49a0-80dc-466cf30c5eb6"

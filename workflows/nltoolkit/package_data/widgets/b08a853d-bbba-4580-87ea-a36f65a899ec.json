@@ -48,7 +48,7 @@
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
-      "description": "LatinoInterfaces.DocumentCorpus", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
       "required": true, 
       "multi": false, 
       "parameter_type": "textarea", 
@@ -62,9 +62,9 @@
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
-      "name": "Dataset", 
+      "name": "BOW Model Dataset", 
       "short_name": "ds", 
-      "description": "", 
+      "description": "Sparse BOW feature vectors.", 
       "variable": "bow_dataset", 
       "order": 1, 
       "uid": "81e0be14-0ddd-47b1-a79d-74c53a3ffb7b"

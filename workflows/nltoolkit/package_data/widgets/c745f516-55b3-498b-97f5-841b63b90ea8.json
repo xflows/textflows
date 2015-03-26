@@ -47,7 +47,7 @@
       "widget": "c745f516-55b3-498b-97f5-841b63b90ea8", 
       "name": "Label Document Feature Name", 
       "short_name": "str", 
-      "default": "", 
+      "default": "Labels", 
       "description": "System.String", 
       "required": true, 
       "multi": false, 

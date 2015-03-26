@@ -72,7 +72,7 @@ def process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
     :return: list of documents, uniq list of labels
     """
     documents = []
-    labels = set()
+    corpus_labels = set()
     for i, text in enumerate(texts):
         if text:
             title = u"Document" + unicode(i + 1) if titles == [] else titles[i]
@@ -87,10 +87,13 @@ def process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
             if leading_labels:
                 #example: !LB1 !Lb2 !LBL \t start of text
                 text = text.split("\t")
-                for feature in [f.strip() for f in text[0].split("!") if f != u""]:
-                    features[feature] = "true"
-                    labels.add(feature)
+                doc_labels=[]
+                for label in [f.strip() for f in text[0].split("!") if f != u""]:
+                    features[label] = "true"
+                    corpus_labels.add(label)
+                    doc_labels.append(label)
                 text = "".join(text[1:])
+                features["Labels"]=json.dumps(doc_labels)
     
             documents.append(Document(name=title,
                                       features=features,
@@ -99,7 +102,7 @@ def process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
                                                               span_end=max(0, len(unicode(text)) - 1),
                                                               type=u"TextBlock",
                                                               features={})]))
-    return documents, list(labels)
+    return documents, list(corpus_labels)
 
 
 def get_plain_texts(input_dict):

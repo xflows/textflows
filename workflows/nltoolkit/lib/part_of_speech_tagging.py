@@ -8,7 +8,8 @@ from nltk.tag.sequential import (DefaultTagger, NgramTagger, AffixTagger,
 import nltk.tag.brill
 from nltk.tag.brill      import BrillTagger
 from nltk.tag.brill_trainer import BrillTaggerTrainer
-
+import re
+from workflows.textflows import LatinoObject
 from nltk.tag.tnt        import TnT
 from nltk.tag.hunpos     import HunposTagger
 from nltk.tag.stanford   import StanfordTagger
@@ -37,6 +38,15 @@ def pos_tagger_hub(input_dict):
     return {'adc': adc }
 
 from workflows.textflows import DocumentCorpus, LatinoObject
+
+def extract_pos_tagger_name(input_dict):
+    tagger=input_dict['pos_tagger']
+
+    tagger_name=tagger['object'].__class__.__name__ if not isinstance(tagger,LatinoObject) else tagger.name
+    tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
+
+    return {'pos_tagger_name': tagger_name}
+
 
 
 def corpus_reader(corpus):

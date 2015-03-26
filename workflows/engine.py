@@ -274,7 +274,7 @@ class WorkflowRunner():
                 from sklearn.cross_validation import StratifiedKFold,KFold
 
                 if 'Labels' in document_corpus.features:
-                    labels=document_corpus.get_labels()
+                    labels=document_corpus.get_document_labels()
                     #print "Seed:"+str(input_seed)
                     stf=StratifiedKFold(labels,n_folds=input_fold,random_state=input_seed)
                 else:

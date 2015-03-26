@@ -142,7 +142,7 @@ def apply_bow_classifier(input_dict):
         from ...latino.library_gen import latino_predict_classification
         return latino_predict_classification(input_dict)
     elif classifier_package.startswith("sklearn"):
-        a=trained_classifier.predict(testing_dataset)
+        #a=trained_classifier.predict(testing_dataset)
         #example: http://scikit-learn.org/stable/auto_examples/document_classification_20newsgroups.html
         try:
             results = [DictionaryProbDist.from_probabilities_and_classes(example_predictions,trained_classifier.classes_)
@@ -158,3 +158,34 @@ def apply_bow_classifier(input_dict):
         raise Exception("What are you connecting me to then?")
 
     return {'labeled_dataset': None, 'predictions': results}
+
+
+
+def extract_classifier_name(input_dict):
+    import re
+    from workflows.textflows import LatinoObject
+
+    in1=input_dict['classifier']
+    clsf=in1.__class__.__module__+'.'+in1.__class__.__name__ if not isinstance(in1,LatinoObject) else in1.name
+
+
+    out2=re.search(r'[A-Za-z\.0-9]+',clsf).group()
+
+    spl=out2.split('.')
+
+    if spl[0]=='sklearn':
+      spl[0]='scikit-learn'
+    elif spl[0]=='Latino':
+      spl[0]='LATINO'
+    if spl[-1]=='naive':
+      spl[-1]='Gaussian Naive Bayes Classifier'
+    if spl[-1]=='LinearSVC':
+      spl[-1]='SVM Linear Classifier'
+
+    return {'classifier_name': '['+spl[0]+'] '+spl[-1]}
+
+
+def extract_actual_and_predicted_values(input_dict):
+    actual=input_dict['dataset'].labels
+    predicted=[a.max() for a in input_dict['predictions']]
+    return {'actual_and_predicted': [actual, predicted]}

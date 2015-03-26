@@ -42,7 +42,7 @@ def lbd_calculate_heuristics(input_dict):
     bow_model=input_dict['bow_model']
 
     raw_documents=bow_model.get_raw_text(adc.documents)
-    classes=bow_model.get_labels(adc,binary=True)
+    classes=bow_model.get_document_labels(adc,binary=True)
 
     hc=HeuristicCalculations(raw_documents,classes,bow_model)
     calcs=hc.calculate_heuristics(heuristic_names)
