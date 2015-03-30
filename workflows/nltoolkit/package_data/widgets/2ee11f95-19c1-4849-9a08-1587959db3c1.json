@@ -5,7 +5,7 @@
       "category": "49d5fda2-23d4-444a-a6df-3c5714d2fdfd", 
       "treeview_image": "", 
       "uid": "2ee11f95-19c1-4849-9a08-1587959db3c1", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": true, 
+      "is_streaming": false, 
       "order": 8, 
       "name": "Stop Word Tagger Hub"
     }

@@ -20,6 +20,7 @@ class WidgetRunner():
             else:
                 raise Exception("this shouldn't happen!")
     def run(self):
+        print "Running: "+self.widget.name
         self.widget.running = True
         """ subprocesses and regular widgets get treated here """
         if self.widget.type == 'regular' or self.widget.type == 'subprocess':

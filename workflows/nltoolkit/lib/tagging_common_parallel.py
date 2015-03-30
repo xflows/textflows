@@ -1,4 +1,6 @@
 import multiprocessing
+from functools import partial
+
 from workflows.textflows import *
 
 
@@ -19,35 +21,61 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
     args=tagger_dict.get('args',[])
     kwargs=tagger_dict.get('kargs',{})
 
-    from functools import partial
-
-    partial_harvester = partial(tag_document, tagger=tagger,tagger_function=tagger_function,args=args,kwargs=kwargs,
-                                input_annotation=input_annotation,output_annotation=output_annotation)
-
-    pool = multiprocessing.Pool(processes=6)
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
 
     print "evo nas!!!"
-    #for document in adc.documents:
-    adc.documents=pool.map(partial_harvester, adc.documents)
+    #parallel for document in adc.documents:
+    new_documents=pool.map(
+        partial(tag_document,
+                tagger=tagger,
+                tagger_function=tagger_function,
+                args=args,
+                kwargs=kwargs,
+                input_annotation=input_annotation,
+                output_annotation=output_annotation),
+        adc.documents,
+        100 #chunksize, constructs list of this size which are passed to pool workers
+    )
     pool.close()
     pool.join()
-    print "dijo!!!"
+    adc.documents=new_documents #list(new_documents)
+
+    print "dijo!2!!"
 
     return {'adc': adc }
-# from functools import partial
-#
-# def harvester(text, case):
-#     X = case[0]
-#     return text + str(X)
-#
-# partial_harvester = partial(harvester, case=RAW_DATASET)
-#
-# if __name__ == '__main__':
-#     pool = multiprocessing.Pool(processes=6)
-#     case_data = RAW_DATASET
-#     pool.map(partial_harvester, case_data, 1)
-#     pool.close()
-#     pool.join()
+
+def sentance_tag_a_document(doc,tagger,tagger_function,args,kwargs,
+                            element_annotation_name,group_annotation_name,output_annotation_name):
+    if doc.features['contentType'] == "Text":
+        if not doc.text:
+            pass
+        group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0].span_start)
+        element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0].span_start)
+
+        text_grouped=[] #text_groups= [['First','sentence',['Second','sentance']]
+        annotations_grouped=[] #annotations_grouped= [[<Annotation span_start:0 span_ned:4>, <Annotation span_start:6 span_ned:11>],[...
+
+        i=0
+        for group_annotation,_ in group_annotations:
+            elements=[]
+            sentence_annotations=[]
+            #find elementary annotations 'contained' in the group_annotation
+            while i<len(element_annotations) and element_annotations[i][0].span_end<=group_annotation.span_end:
+                annotation=element_annotations[i][0]
+                text_block=element_annotations[i][1]
+                elements.append(text_block)
+                sentence_annotations.append(annotation)
+                i+=1
+            text_grouped.append(elements)
+            annotations_grouped.append(sentence_annotations)
+
+        new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
+        for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
+            for feature,annotation in izip(sentence_features,sentence_annotations):
+                annotation.features[output_annotation_name]=feature[1]
+    return doc
+
+
 
 def universal_sentence_tagger_hub(input_dict):
     tagger_dict = input_dict['pos_tagger']
@@ -62,33 +90,64 @@ def universal_sentence_tagger_hub(input_dict):
     adc = input_dict['adc']
 
 
-    for doc in adc.documents:
-        if doc.features['contentType'] == "Text":
-            if not doc.text:
-                pass
-            group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0].span_start)
-            element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0].span_start)
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
 
-            text_grouped=[] #text_groups= [['First','sentence',['Second','sentance']]
-            annotations_grouped=[] #annotations_grouped= [[<Annotation span_start:0 span_ned:4>, <Annotation span_start:6 span_ned:11>],[...
-
-            i=0
-            for group_annotation,_ in group_annotations:
-                elements=[]
-                sentence_annotations=[]
-                #find elementary annotations 'contained' in the group_annotation
-                while i<len(element_annotations) and element_annotations[i][0].span_end<=group_annotation.span_end:
-                    annotation=element_annotations[i][0]
-                    text_block=element_annotations[i][1]
-                    elements.append(text_block)
-                    sentence_annotations.append(annotation)
-                    i+=1
-                text_grouped.append(elements)
-                annotations_grouped.append(sentence_annotations)
-
-            new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
-            for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
-                for feature,annotation in izip(sentence_features,sentence_annotations):
-                    annotation.features[output_annotation_name]=feature[1]
-
+    print "evo nas!!!"
+    #parallel for document in adc.documents:
+    new_documents=pool.map(
+        partial(tag_document,
+                tagger=tagger,
+                tagger_function=tagger_function,
+                args=args,
+                kwargs=kwargs,
+                element_annotation_name=element_annotation_name,
+                group_annotation_name=group_annotation_name,
+                output_annotation_name=output_annotation_name),
+        adc.documents,
+        100 #chunksize, constructs list of this size which are passed to pool workers
+    )
+    pool.close()
+    pool.join()
+    adc.documents=new_documents
+    print "dijo!!!"
     return {'adc': adc }
+
+
+
+
+# def chunks(l, n):
+#     c=[[] for _ in range(n)]
+#     for i in range(l):
+#         c[i%n].append(i)
+#     return c
+#
+# print chunks(10,6)
+#
+# from multiprocessing import Process, Value, Array, Pool
+#
+# def f(a,indices):
+#     for i in indices:
+#         a[i] = -a[i]
+#
+# if __name__ == '__main__':
+#     a=[[i] for i in range(100)]
+#     arr = Array('i', a)
+#
+#     no_of_workers=6
+#     workers=[Process(target=f, args=(arr, indices)) for indices in chunks(len(arr),no_of_workers)]
+#
+#
+#     for p in workers:
+#         p.start()
+#     for p in workers:
+#         p.join()
+#
+#     print arr[:]
+#     print a
+#
+#
+#     #pool = multiprocessing.Pool(processes=6)
+#     #case_data = RAW_DATASET
+#     #pool.apply(f, args=(num, arr))
+#     #pool.close()
+#     #pool.join()

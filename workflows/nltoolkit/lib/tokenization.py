@@ -1,5 +1,7 @@
 from workflows.textflows import *
 import nltk
+from django.conf import settings
+from workflows.tasks import executeFunction
 
 
 def tokenizer_hub(input_dict):
@@ -21,7 +23,8 @@ def tokenizer_hub(input_dict):
 
     if type(tokenizer_dict)!=dict:
         from ...latino.library_gen import latino_tokenize_words
-        return latino_tokenize_words(input_dict)
+        return latino_tokenize_words(input_dict) if not settings.USE_WINDOWS_QUEUE \
+            else executeFunction.apply_async([latino_tokenize_words,input_dict],queue="windows").wait()
     else:
         tokenizer=tokenizer_dict['object']
         args=tokenizer_dict.get('args',[])

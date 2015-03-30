@@ -37,6 +37,10 @@ def executeWidgetPostInteract(widget,input_dict,output_dict,request):
     return function_to_call(request,input_dict,output_dict)
 
 @task()
+def executeFunction(function_to_call,input_dict):
+    return function_to_call(input_dict)
+
+@task()
 def runWidget(widget,offline):
     widget.proper_run(offline)
 

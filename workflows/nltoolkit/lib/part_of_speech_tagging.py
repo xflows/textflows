@@ -1,4 +1,5 @@
-from tagging_common import universal_sentence_tagger_hub
+#from tagging_common import universal_sentence_tagger_hub
+from tagging_common_parallel import universal_sentence_tagger_hub
 #from nltk.tag.simplify   import (simplify_brown_tag, simplify_wsj_tag,
 #                                 simplify_indian_tag, simplify_alpino_tag,
 #                                 simplify_tag)
@@ -15,11 +16,14 @@ from nltk.tag.hunpos     import HunposTagger
 from nltk.tag.stanford   import StanfordTagger
 #from nltk.tag.crf        import MalletCRF
 from django.conf import settings
+from workflows.tasks import executeFunction
+
 
 def pos_tagger_hub(input_dict):
     if isinstance(input_dict['pos_tagger'],LatinoObject): #check if this is a latino object
         from ...latino.library_gen import latino_pos_tag
-        adc= latino_pos_tag(input_dict)['adc']
+        adc= executeFunction.apply_async([latino_pos_tag,input_dict],queue="windows").wait()['adc'] \
+            if settings.USE_WINDOWS_QUEUE else latino_pos_tag(input_dict)
     else:
         adc= universal_sentence_tagger_hub(input_dict)['adc']
 

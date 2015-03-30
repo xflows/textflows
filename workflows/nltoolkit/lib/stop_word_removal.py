@@ -1,3 +1,6 @@
+from django.conf import settings
+from workflows.tasks import executeFunction
+
 from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
 
@@ -20,7 +23,9 @@ def stop_word_tagger_hub(input_dict):
     if isinstance(input_dict['stop_word_tagger'],LatinoObject):
         from ...latino.library_gen import latino_tag_adcstopwords
         input_dict['tagger']=input_dict['stop_word_tagger']  #TODO temporary
-        return latino_tag_adcstopwords(input_dict)
+        return executeFunction.apply_async([latino_tag_adcstopwords,input_dict],queue="windows").wait() if settings.USE_WINDOWS_QUEUE \
+            else latino_tag_adcstopwords(input_dict)
+
     else:
         adc = input_dict['adc']
         tagger_dict = input_dict['stop_word_tagger']

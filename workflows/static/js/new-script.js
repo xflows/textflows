@@ -1051,11 +1051,10 @@ function updateWidgetListeners() {
             },'json');
 
             } else {
-            $("#tabs").tabs("option","active",$("#canvas"+this_workflow_link).index());
-            activeCanvasId = this_workflow_link;
-            activeCanvas = $(".canvas"+activeCanvasId);
-            resizeCanvas();
-
+                $("#tabs").tabs("option", {active: $("#canvas"+this_workflow_link).index()-1});
+                activeCanvasId = this_workflow_link;
+                activeCanvas = $(".canvas"+activeCanvasId);
+                resizeCanvas();
             }
         } else {
         //$("#widgetpreferences-"+$(this).attr('rel')).dialog('open');

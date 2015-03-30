@@ -5,7 +5,7 @@
       "category": "bb196a4d-7235-475d-bb4a-8210564f9c37", 
       "treeview_image": "", 
       "uid": "737f32f0-033d-4455-8c82-28679393e998", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": true, 
+      "is_streaming": false, 
       "order": 7, 
       "name": "Tokenizer Hub"
     }

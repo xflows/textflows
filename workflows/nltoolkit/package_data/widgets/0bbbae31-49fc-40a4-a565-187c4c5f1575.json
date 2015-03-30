@@ -5,7 +5,7 @@
       "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
       "treeview_image": "", 
       "uid": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": true, 
+      "is_streaming": false, 
       "order": 1, 
       "name": "POS Tagger Hub"
     }
