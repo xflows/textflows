@@ -95,7 +95,7 @@ def universal_sentence_tagger_hub(input_dict):
     print "evo nas!!!"
     #parallel for document in adc.documents:
     new_documents=pool.map(
-        partial(tag_document,
+        partial(sentance_tag_a_document,
                 tagger=tagger,
                 tagger_function=tagger_function,
                 args=args,

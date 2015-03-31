@@ -335,6 +335,12 @@ class NltkCorpus():
                 return getattr(self._corpus(),name)()
             return method
 
+    def __repr__(self):
+        return "NltkCorpus wrapper for "+self.corpus_name+" dataset"
+
+    def __getstate__(self):
+        return {'corpus_name': self.corpus_name,'_corpus_methods': self._corpus_methods}
+
 
 class NltkRegexpTokenizer():
     """ Wrapper for Nltk RegexTokenizer. Python's regular expressions are not picklable.
