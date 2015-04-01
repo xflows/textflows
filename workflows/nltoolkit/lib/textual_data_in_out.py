@@ -51,7 +51,7 @@ def load_adc(input_dict):
             filename, input_text = document_converters.document_to_text(input_text)
 
     #check if input is a string
-    if type(input_text) == unicode:
+    if type(input_text) == unicode or type(input_text) == str:
         source = "string" if source == "list" else source
         input_text = re.split("[\r\n]", input_text)
 
