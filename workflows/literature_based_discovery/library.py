@@ -67,9 +67,11 @@ def lbd_explore_in_crossbee(input_dict):
     from workflows.textflows_dot_net.serialization_utils import ToNetObj
     import LatinoInterfaces
     output_dict={}
-    output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))#.serialized_object
+    output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))
     output_dict['vocabulary']=input_dict['bow_model'].get_feature_names()
     output_dict['heuristic_scores']=[{'name': hevr.name, 'scores': hevr.scores.tolist()} for hevr in flatten(input_dict['heuristic_scores'])]
     output_dict['bterms']=input_dict['bterms']
+    output_dict['serialized_dataset']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['dataset']))
+    output_dict['primary_heuristic_index']=input_dict['primary_heuristic_index']
     return output_dict
     #return render(request, 'visualizations/open_data_in_crossbee.html',{'widget':widget}) #,'input_dict':input_dict,'output_dict':output_dict})
