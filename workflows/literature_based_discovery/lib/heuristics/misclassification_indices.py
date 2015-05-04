@@ -9,9 +9,8 @@ class MisclassificationIndices:
     @staticmethod
     def calculate(classifier,bow_dataset,n_folds=3,seed=0):  #, widget):
         noisyIndices = []
-
         stf = StratifiedKFold(bow_dataset.labels, n_folds=n_folds, random_state=seed) \
-            if bow_dataset.labels else KFold(len(bow_dataset), n_folds=n_folds, random_state=seed)
+            if bow_dataset.labels!=None else KFold(len(bow_dataset), n_folds=n_folds, random_state=seed)
         folds = [(list(train_index), list(test_index)) for train_index, test_index in stf]
 
         for i in range(n_folds):
