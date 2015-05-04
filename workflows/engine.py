@@ -301,6 +301,7 @@ class WorkflowRunner():
                     print("TRAIN:", train_indices, "TEST:", test_indices)
 
                     output_train, output_test = document_corpus.split(train_indices,test_indices)
+                    print "end of split"
                 else:
                     output_train = folds[:i] + folds[i+1:]
                     output_test = folds[i]

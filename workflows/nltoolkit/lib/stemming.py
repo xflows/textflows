@@ -3,8 +3,8 @@ from workflows.tasks import executeFunction
 
 import nltk
 from workflows.textflows import *
-#from tagging_common import universal_word_tagger_hub
-from tagging_common_parallel import universal_word_tagger_hub
+from tagging_common import universal_word_tagger_hub
+#from tagging_common_parallel import universal_word_tagger_hub
 
 
 def stem_lemma_tagger_hub(input_dict):

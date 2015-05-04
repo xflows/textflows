@@ -5,7 +5,7 @@
       "category": "6091637f-b3cd-4559-b525-18357b02dbc2", 
       "treeview_image": "", 
       "uid": "b08a853d-bbba-4580-87ea-a36f65a899ec", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,8 +19,8 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
-      "order": 3, 
+      "is_streaming": false, 
+      "order": 2, 
       "name": "Create BoW Dataset using the BoW Model Constructor"
     }
   }, 

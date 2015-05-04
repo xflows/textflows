@@ -44,7 +44,7 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
 
     return {'adc': adc }
 
-def sentance_tag_a_document(doc,tagger,tagger_function,args,kwargs,
+def sentence_tag_a_document(doc,tagger,tagger_function,args,kwargs,
                             element_annotation_name,group_annotation_name,output_annotation_name):
     if doc.features['contentType'] == "Text":
         if not doc.text:
@@ -95,7 +95,7 @@ def universal_sentence_tagger_hub(input_dict):
     print "evo nas!!!"
     #parallel for document in adc.documents:
     new_documents=pool.map(
-        partial(sentance_tag_a_document,
+        partial(sentence_tag_a_document,
                 tagger=tagger,
                 tagger_function=tagger_function,
                 args=args,

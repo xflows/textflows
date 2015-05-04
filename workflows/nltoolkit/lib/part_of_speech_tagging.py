@@ -53,11 +53,17 @@ def extract_pos_tagger_name(input_dict):
 
 
 
-def corpus_reader(corpus):
+def corpus_reader(corpus,extract='tagged_sents'):
     if type(corpus)==DocumentCorpus:
         raise NotImplementedError
+    elif extract=='chunked_sents':
+        try:
+            return corpus.chunked_sents()
+        except AttributeError:
+            raise "The inputed corpus doesn't include chunked sentences."
     else:
         return corpus.tagged_sents()
+
 
 def nltk_default_pos_tagger(input_dict):
     """

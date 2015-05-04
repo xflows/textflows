@@ -65,8 +65,34 @@ class Document:
                      #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
                      pass
         return annotations_with_text
+
     def get_annotations(self, selector):
         return [a[0] for a in self.get_annotations_with_text(selector)]
+
+    def get_grouped_annotations_with_texts(self,element_annotation_name,group_annotation_name):
+        group_annotations=sorted(self.get_annotations_with_text(group_annotation_name),key=lambda x: x[0].span_start)
+        element_annotations=sorted(self.get_annotations_with_text(element_annotation_name),key=lambda x: x[0].span_start)
+
+        text_grouped=[] #text_groups= [['First','sentence',['Second','sentance']]
+        annotations_grouped=[] #annotations_grouped= [[<Annotation span_start:0 span_ned:4>, <Annotation span_start:6 span_ned:11>],[...
+
+        i=0
+        for group_annotation,_ in group_annotations:
+            elements=[]
+            sentence_annotations=[]
+            #find elementary annotations 'contained' in the group_annotation
+            while i<len(element_annotations) and element_annotations[i][0].span_end<=group_annotation.span_end:
+                annotation=element_annotations[i][0]
+                text_block=element_annotations[i][1]
+                elements.append(text_block)
+                sentence_annotations.append(annotation)
+                i+=1
+            text_grouped.append(elements)
+            annotations_grouped.append(sentence_annotations)
+
+        return text_grouped,annotations_grouped
+
+
 
     def raw_text(self,selector=None,stop_word_feature_name="StopWord",join_annotations_with=" "):
         if not selector:

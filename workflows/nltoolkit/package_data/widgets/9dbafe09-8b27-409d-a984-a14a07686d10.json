@@ -5,7 +5,7 @@
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
       "uid": "9dbafe09-8b27-409d-a984-a14a07686d10", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "order": 5, 
       "name": "Add Computed Token Features"
     }
@@ -30,7 +30,7 @@
       "widget": "9dbafe09-8b27-409d-a984-a14a07686d10", 
       "name": "New Feature Name", 
       "short_name": "str", 
-      "default": "feature", 
+      "default": "StemWithPOStag", 
       "description": "System.String", 
       "required": true, 
       "multi": false, 

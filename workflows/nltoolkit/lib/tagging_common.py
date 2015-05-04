@@ -35,25 +35,7 @@ def universal_sentence_tagger_hub(input_dict):
         if doc.features['contentType'] == "Text":
             if not doc.text:
                 pass
-            group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0].span_start)
-            element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0].span_start)
-
-            text_grouped=[] #text_groups= [['First','sentence',['Second','sentance']]
-            annotations_grouped=[] #annotations_grouped= [[<Annotation span_start:0 span_ned:4>, <Annotation span_start:6 span_ned:11>],[...
-
-            i=0
-            for group_annotation,_ in group_annotations:
-                elements=[]
-                sentence_annotations=[]
-                #find elementary annotations 'contained' in the group_annotation
-                while i<len(element_annotations) and element_annotations[i][0].span_end<=group_annotation.span_end:
-                    annotation=element_annotations[i][0]
-                    text_block=element_annotations[i][1]
-                    elements.append(text_block)
-                    sentence_annotations.append(annotation)
-                    i+=1
-                text_grouped.append(elements)
-                annotations_grouped.append(sentence_annotations)
+            text_grouped,annotations_grouped=doc.get_grouped_annotations_with_texts(element_annotation_name,group_annotation_name)
 
             new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
             for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
