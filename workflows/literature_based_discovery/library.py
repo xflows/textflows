@@ -2,14 +2,13 @@ from workflows.literature_based_discovery.lib.heuristics.heuristic_calculations 
 from workflows.textflows import flatten
 
 
-def lbd_heuristics_selection(input_dict):
-    return {}
 
-def lbd_heuristic_selection_post(postdata, input_dict, output_dict):
+
+def lbd_explore_in_crossbee_post(postdata, input_dict, output_dict):
     widget_id = postdata.get('widget_id')[0]
-    selected_heuristics=postdata.get('selected[]',[])
+    selected_heuristic=postdata.get('heuristic_index',[])
 
-    return {'heuristics': selected_heuristics}
+    return {'heuristic_index': selected_heuristic}
 
 
 def lbd_heuristic_min(input_dict):
@@ -68,7 +67,7 @@ def lbd_explore_in_crossbee(input_dict):
     import LatinoInterfaces
     output_dict={}
     output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))
-    output_dict['vocabulary']=input_dict['bow_model'].get_feature_names()
+    output_dict['vocabulary']=input_dict['bow_model_constructor'].get_feature_names()
     output_dict['heuristic_scores']=[{'name': hevr.name, 'scores': hevr.scores.tolist()} for hevr in flatten(input_dict['heuristic_scores'])]
     output_dict['bterms']=input_dict['bterms']
     output_dict['serialized_dataset']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['dataset']))

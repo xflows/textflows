@@ -1,0 +1,40 @@
+<style type="text/css">
+    #widgetinteract-{{ widget.pk }} input {
+        width: 15px;
+        height: 15px;
+    }
+    #widgetinteract-{{ widget.pk }} td{
+        padding: 5px;
+        vertical-align:middle;
+    }
+</style>
+
+
+<div id="widgetinteract-{{ widget.pk }}" rel="{{ widget.pk }}" class="widgetinteractdialog"
+     title="{{ widget.name }} interaction" width="800" height="500">
+    <form>
+        <label style="margin-bottom: 10px;">Select heuristic which will be used in CrossBee as the main ensemble heuristic.</label>
+        <table>
+            {% for name in heuristics %}
+                <tr>
+                    <td>
+                        <input type="radio" name="heuristic_index" value="{{forloop.counter0}}">
+                    </td>
+                    <td>
+                        {{ name }}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>
+                    <input type="radio" name="heuristic_index" value="-1">
+                </td>
+                <td>
+                    Construct new ensemble from the heuristics above
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="widget_id" value="{{ widget.pk }}"/>
+    </form>
+</div>
+
