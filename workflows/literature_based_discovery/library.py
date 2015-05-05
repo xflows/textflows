@@ -2,9 +2,10 @@ from workflows.literature_based_discovery.lib.heuristics.heuristic_calculations 
 from workflows.textflows import flatten
 
 
+def lbd_select_ensemble_heuristic(input_dict):
+    return {}
 
-
-def lbd_explore_in_crossbee_post(postdata, input_dict, output_dict):
+def lbd_select_ensemble_heuristic_post(postdata, input_dict, output_dict):
     widget_id = postdata.get('widget_id')[0]
     selected_heuristic=postdata.get('heuristic_index',[])
 
