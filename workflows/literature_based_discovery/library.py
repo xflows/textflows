@@ -7,9 +7,22 @@ def lbd_select_ensemble_heuristic(input_dict):
 
 def lbd_select_ensemble_heuristic_post(postdata, input_dict, output_dict):
     widget_id = postdata.get('widget_id')[0]
-    selected_heuristic=postdata.get('heuristic_index',[])
 
-    return {'heuristic_index': selected_heuristic}
+    print widget_id
+    from workflows.textflows_dot_net.serialization_utils import ToNetObj
+    import LatinoInterfaces
+    output_dict={}
+    output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))
+    output_dict['vocabulary']=input_dict['bow_model_constructor'].get_feature_names()
+    output_dict['heuristic_scores']=[{'name': hevr.name, 'scores': hevr.scores.tolist()} for hevr in flatten(input_dict['heuristic_scores'])]
+    output_dict['bterms']=input_dict['bterms']
+    output_dict['serialized_dataset']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['dataset']))
+    #output_dict['primary_heuristic_index']=input_dict['primary_heuristic_index']
+
+    print postdata
+    output_dict['primary_heuristic_index']=int(postdata.get('heuristic_index',[-1])[0])
+
+    return output_dict #{'heuristic_index': selected_heuristic}
 
 
 def lbd_heuristic_min(input_dict):
@@ -64,14 +77,5 @@ def lbd_actual_and_predicted_values(input_dict):
     return {'apv':[{'name': h.name,'predicted':list(h.scores),'actual':actual_values} for h in heuristics]}
 
 def lbd_explore_in_crossbee(input_dict):
-    from workflows.textflows_dot_net.serialization_utils import ToNetObj
-    import LatinoInterfaces
-    output_dict={}
-    output_dict['serialized_adc']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['adc']))
-    output_dict['vocabulary']=input_dict['bow_model_constructor'].get_feature_names()
-    output_dict['heuristic_scores']=[{'name': hevr.name, 'scores': hevr.scores.tolist()} for hevr in flatten(input_dict['heuristic_scores'])]
-    output_dict['bterms']=input_dict['bterms']
-    output_dict['serialized_dataset']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['dataset']))
-    output_dict['primary_heuristic_index']=input_dict['primary_heuristic_index']
-    return output_dict
+    return {} #output_dict
     #return render(request, 'visualizations/open_data_in_crossbee.html',{'widget':widget}) #,'input_dict':input_dict,'output_dict':output_dict})
