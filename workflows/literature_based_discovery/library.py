@@ -8,7 +8,6 @@ def lbd_select_ensemble_heuristic(input_dict):
 def lbd_select_ensemble_heuristic_post(postdata, input_dict, output_dict):
     widget_id = postdata.get('widget_id')[0]
 
-    print widget_id
     from workflows.textflows_dot_net.serialization_utils import ToNetObj
     import LatinoInterfaces
     output_dict={}
@@ -19,10 +18,19 @@ def lbd_select_ensemble_heuristic_post(postdata, input_dict, output_dict):
     output_dict['serialized_dataset']=LatinoInterfaces.LatinoCF.Save(ToNetObj(input_dict['dataset']))
     #output_dict['primary_heuristic_index']=input_dict['primary_heuristic_index']
 
-    print postdata
     output_dict['primary_heuristic_index']=int(postdata.get('heuristic_index',[-1])[0])
 
     return output_dict #{'heuristic_index': selected_heuristic}
+
+
+def lbd_heuristics_selection(input_dict):
+    return {}
+
+def lbd_heuristic_selection_post(postdata, input_dict, output_dict):
+    widget_id = postdata.get('widget_id')[0]
+    selected_heuristics=postdata.get('selected[]',[])
+
+    return {'heuristics': selected_heuristics}
 
 
 def lbd_heuristic_min(input_dict):

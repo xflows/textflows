@@ -68,10 +68,7 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
         '''Term frequency across both domains'''
         return self._count_term_D(self._count_matrix_csc())
 
-    @memoized
-    def freq_doc(self):
-        '''Document frequency across both domains'''
-        return self._count_doc_D(self._count_matrix_csc())
+
 
     def _penalize_not_appearing_in_all(self,scores):
         not_in_all=np.where(self._appear_in_all_domains()==0)

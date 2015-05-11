@@ -15,6 +15,15 @@ class FrequencyBasedHeuristicCalculations():
 
 
     ###FREQUENCY BASED HEURISTICS
+    def freq_term(self):
+        '''Term frequency across both domains'''
+        return self.tf()
+
+    @memoized
+    def freq_doc(self):
+        '''Document frequency across both domains'''
+        return self._count_doc_D(self._count_matrix_csc())
+
     @memoized
     def freq_ratio(self):
         '''Term to document frequency ratio'''
