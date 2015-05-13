@@ -1,6 +1,7 @@
 import copy
 from itertools import izip
 import json
+import re
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer, TfidfTransformer
 import nltk
 
@@ -68,12 +69,15 @@ class Document:
     def get_annotations(self, selector):
         return [a[0] for a in self.get_annotations_with_text(selector)]
 
+    def get_annotation_texts(self,selector,stop_word_feature_name="StopWord"):
+        return [text for (ann,text) in self.get_annotations_with_text(selector)
+                               if not ann.features.has_key(stop_word_feature_name)]
+
     def raw_text(self,selector=None,stop_word_feature_name="StopWord",join_annotations_with=" "):
         if not selector:
             return self.text
         else:
-            selected_subtexts=[text for (ann,text) in self.get_annotations_with_text(selector)
-                               if not ann.features.has_key(stop_word_feature_name)]
+            selected_subtexts=self.get_annotation_texts(selector,stop_word_feature_name)
             return join_annotations_with.join(selected_subtexts)
 
     def get_first_label(self,label_feature_name="Labels"):
@@ -195,33 +199,44 @@ class BowModelConstructor:
     def __init__(self,adc,token_annotation,stem_feature_name,stop_word_feature_name,
                  label_doc_feature_name,
                 weighting_type, normalize_vectors,
-                 max_ngram,min_tf,vocabulary=None):
-        #self._label_feature_name=label_doc_feature_name
-        #self._token_annotation=token_annotation
-        #self._stem_feature_name=stem_feature_name
+                 max_ngram,min_tf,predefined_vocabulary=None):
+
         self._feature_name=token_annotation+('/'+stem_feature_name if stem_feature_name else '')
 
         self._stop_word_feature_name=stop_word_feature_name
         self._doc_class_label=label_doc_feature_name
 
-        self.__count_params={'ngram_range':(1,max_ngram),'min_df':min_tf}
+        raw_documents=self.get_raw_text(adc.documents,join_annotations_with='|##|')
+        #extract vocabulary
+        document_tokens=self.get_annotation_texts(adc.documents)
+
+        vocabulary={}
+        for raw_doc in document_tokens:
+            for token in raw_doc:
+                if not token in vocabulary:
+                    vocabulary[token]=len(vocabulary)
+
+
+        self.__count_params={'ngram_range':(1,max_ngram),'min_df':min_tf,'tokenizer':TokenSplitter(),
+                             'token_pattern':'\\b\\w+\\b'} #'vocabulary':vocabulary}
         #tf_idf args: 'norm', 'smooth_idf', 'sublinear_tf', 'use_idf
         self.__tfidf_params=self.__wighting_type_to_tfidf_params(weighting_type)
         self.__tfidf_params['norm']='l2' if normalize_vectors else None
 
-
-        #set default vectorizer
+        #set default vectorizerl
         self.vectorizer =self._count_vectorizer() if weighting_type=='term_freq' else self._tfidf_vectorizer() #DictVectorizer(dtype=dtype, sparse=sparse)
 
         #set predefined controlled vocabulary
-        if vocabulary:
+        if predefined_vocabulary:
             vocab_vectorizer=CountVectorizer(ngram_range=(1,max_ngram))
-            vocab_vectorizer.fit(vocabulary)
+            vocab_vectorizer.fit(predefined_vocabulary)
             if True: #intersect vocabularies
-                raw_documents=self.get_raw_text(adc.documents)
+                #raw_documents=self.get_raw_text(adc.documents)
                 self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
                 feature_intersection=[term for term in self.vectorizer.get_feature_names()
                                       if term in vocab_vectorizer.vocabulary_]
+                #feature_intersection=[term for term in vocab_vectorizer.vocabulary_
+                #                      if term in self.__count_params['vocabulary']]
 
                 self.vectorizer.set_params(
                     vocabulary=dict([(a,i) for i,a in enumerate(feature_intersection)])) #set new vocabulary
@@ -229,12 +244,12 @@ class BowModelConstructor:
             else:
                 self.__count_params['vocabulary']=vocab_vectorizer.vocabulary_
         else:
-            raw_documents=self.get_raw_text(adc.documents)
             self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
 
 
         self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
 
+        #print self.vectorizer.get_feature_names()
 
 
     @staticmethod
@@ -248,6 +263,7 @@ class BowModelConstructor:
         elif weighting_type=='log_df_tf_idf':
             return {'use_idf':True,'smooth_idf':False,'sublinear_tf':True}
 
+
     def _vocab_to_idx(self):
         return self.__count_params['vocabulary']
 
@@ -259,16 +275,26 @@ class BowModelConstructor:
     def _count_vectorizer(self):
         return CountVectorizer(**self.__count_params)
     def _tfidf_vectorizer(self):
-        return TfidfVectorizer(**dict(self.__count_params.items()+self.__tfidf_params.items()))
+        return TfidfVectorizer(**dict(self.__count_params.items()
+                                      +self.__tfidf_params.items()
+                                      #+[['tokenizer',self.custom_tokenizer]]
+                                      ))
     def _tfidf_transformer(self):
         return TfidfTransformer(**self.__tfidf_params)
 
 
 
-    def get_raw_text(self,documents):
+    def get_raw_text(self,documents,join_annotations_with=" "):
         return [document.raw_text(selector=self._feature_name,
+                                  join_annotations_with=join_annotations_with,
                                   stop_word_feature_name=self._stop_word_feature_name)
                 for document in documents]
+
+    def get_annotation_texts(self,documents):
+        return [document.get_annotation_texts(selector=self._feature_name,
+                                  stop_word_feature_name=self._stop_word_feature_name)
+                for document in documents]
+
 
     def get_document_labels(self,adc,binary=False):
         '''
@@ -312,6 +338,14 @@ class BowModelConstructor:
         # private bool mKeepWordForms
         #     = false;
 
+class TokenSplitter(object):
+    '''Used for splitting tokens in BoW construction.'''
+    regex_parser=None
+
+    def __init__(self):
+        self.regex_parser=re.compile("^[A-Za-z0-9']+$")
+    def __call__(self, doc):
+        return [d for d in doc.split('|##|') if self.regex_parser.match(d)]
 
 class NltkCorpus():
     """ Wrapper for Nltk corpora. In Nltk 3.x Nltk corpora is not picklable.

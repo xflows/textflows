@@ -29,7 +29,7 @@ def construct_dataset_and_bow_model_constructor(input_dict): #TODO
             'normalize_vectors': input_dict['normalize_vectors']=='true', #true
             'max_ngram': int(input_dict['max_ngram_len']), #2
             'min_tf': int(input_dict['min_word_freq']),#5
-            'vocabulary': input_dict.get('vocabulary',None)}
+            'predefined_vocabulary': input_dict.get('vocabulary',None)}
 
     bow_model=BowModelConstructor(**args)
     bow_dataset=BowDataset.from_adc(adc,bow_model)
