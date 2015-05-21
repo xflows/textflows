@@ -62,10 +62,10 @@ def lbd_calculate_heuristics(input_dict):
     adc=input_dict['adc']
     bow_model=input_dict['bow_model']
 
-    raw_documents=bow_model.get_raw_text(adc.documents)
+    raw_documents=bow_model.get_raw_text(adc.documents,join_annotations_with='|##|')
     classes=bow_model.get_document_labels(adc,binary=True)
-
-    hc=HeuristicCalculations(raw_documents,classes,bow_model)
+    #stress_idx=bow_model.get_feature_names().index("stress")
+    hc=HeuristicCalculations(raw_documents,classes,bow_model)#,stress_idx=stress_idx)
     calcs=hc.calculate_heuristics(heuristic_names)
     return {'calcs': calcs}
 

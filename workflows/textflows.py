@@ -127,7 +127,7 @@ class BowDataset:
 
     @classmethod
     def from_adc(cls,adc,bow_model):
-        sparse_bow_matrix = bow_model.vectorizer.transform(bow_model.get_raw_text(adc.documents))
+        sparse_bow_matrix = bow_model.vectorizer.transform(bow_model.get_raw_text(adc.documents,join_annotations_with='|##|'))
         labels=bow_model.get_document_labels(adc)
 
         return cls(sparse_bow_matrix,labels)

@@ -21,12 +21,12 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
     __A_class = 1
     __C_class = 0
 
-    def __init__(self, raw_documents, classes,bow_model):
+    def __init__(self, raw_documents, classes,bow_model,stress_idx=None):
         # CALCULATE COUNT MATRIX FOR ENTIRE DATASET
         self._bow_model = bow_model
         self._count_matrix = bow_model._count_vectorizer().transform(raw_documents)
         self._classes=np.array(classes)
-
+        self.stress_idx=stress_idx
         #DEVIDE COUNT MATRIX BY CLASS
         idx_A = np.where(self._classes == self.__A_class)[0]
         idx_C = np.where(self._classes == self.__C_class)[0]
@@ -113,6 +113,9 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
         heuristics = [self.calculate_heuristics(heuristic_name) for heuristic_name in heuristic_names]
         name = "Vote(" + ",".join([heuristic.name for heuristic in heuristics]) + ")"
         voting_scores = [ h.votes() for h in heuristics]
+        #voting_pos = [ h.positions() for h in heuristics]
+        #stress_votes=[vs[self.stress_idx] for vs in voting_scores]
+        #stress_pos=[vs[self.stress_idx] for vs in voting_pos]
         scores=np.array(voting_scores).sum(axis=0)
         return BTermHeuristic(name, scores )
 
@@ -146,7 +149,9 @@ class BTermHeuristic:
 
     def votes(self):
         positions = self.positions()  #double argsort: position on in the spot of the element
-        return np.array(positions > len(positions) * 2 / 3.0, dtype=int)
+        #return np.array(positions >= positions[int(len(positions) * 2 / 3.0)-1],dtype=int)
+        #a=np.percentile(positions, 200./3)
+        return np.array(positions >= np.percentile(positions, 200./3),dtype=int)
 
     def positions(self):
         ''' Ranks scores, from the smallest to the largest score
