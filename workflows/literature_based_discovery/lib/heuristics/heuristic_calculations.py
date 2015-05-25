@@ -151,7 +151,8 @@ class BTermHeuristic:
         positions = self.positions()  #double argsort: position on in the spot of the element
         #return np.array(positions >= positions[int(len(positions) * 2 / 3.0)-1],dtype=int)
         #a=np.percentile(positions, 200./3)
-        return np.array(positions >= np.percentile(positions, 200./3),dtype=int)
+        non_zero_scores=np.array(self.scores>0,dtype=int)
+        return np.array(positions >= np.percentile(positions, 200./3),dtype=int)*non_zero_scores
 
     def positions(self):
         ''' Ranks scores, from the smallest to the largest score
