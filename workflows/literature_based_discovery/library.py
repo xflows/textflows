@@ -23,7 +23,13 @@ def lbd_select_ensemble_heuristic_post(postdata, input_dict, output_dict):
     return output_dict #{'heuristic_index': selected_heuristic}
 
 
-def lbd_heuristics_selection(input_dict):
+def lbd_frequency_based_heuristics_selection(input_dict):
+    return {'heuristics': [u'freq_doc', u'freq_ratio', u'freq_term']}
+def lbd_tfidf_based_heuristics_selection(input_dict):
+    return {'heuristics': [u'tfidf_avg', u'tfidf_sum']}
+def lbd_similarity_based_heuristics_selection(input_dict):
+    return {}
+def lbd_outlier_based_heuristics_selection(input_dict):
     return {}
 
 def lbd_heuristic_selection_post(postdata, input_dict, output_dict):
@@ -60,7 +66,7 @@ def lbd_ensemble_average_position(input_dict):
 def lbd_calculate_heuristics(input_dict):
     heuristic_names=input_dict.get('heuristics',[])
     adc=input_dict['adc']
-    bow_model=input_dict['bow_model']
+    bow_model=input_dict['bow_model_constructor']
 
     raw_documents=bow_model.get_raw_text(adc.documents,join_annotations_with='|##|')
     classes=bow_model.get_document_labels(adc,binary=True)
@@ -71,8 +77,8 @@ def lbd_calculate_heuristics(input_dict):
 
 def lbd_actual_and_predicted_values(input_dict):
     bterms=input_dict['bterms']
-    bow_model=input_dict['bow_model']
-    vocabulary=bow_model._vocab_to_idx()
+    bow_model_constructor=input_dict['bow_model_constructor']
+    vocabulary=bow_model_constructor._vocab_to_idx()
 
     actual_values=[0]*len(vocabulary)
     for bterm in bterms:

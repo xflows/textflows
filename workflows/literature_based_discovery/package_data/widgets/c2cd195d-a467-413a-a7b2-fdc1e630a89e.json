@@ -5,7 +5,7 @@
       "category": "d3a0f587-3911-437e-b123-622b6bbc3068", 
       "treeview_image": "", 
       "uid": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "literature_based_discovery", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "order": 20, 
       "name": "Calculate Term Heuristics Scores"
     }
@@ -63,13 +63,13 @@
     "fields": {
       "widget": "c2cd195d-a467-413a-a7b2-fdc1e630a89e", 
       "name": "Bag of Words Model", 
-      "short_name": "bwm", 
+      "short_name": "bmc", 
       "default": "", 
-      "description": "Bag of Words Model (BowModel) gathers utilities to build feature vectors from annotated document corpus.", 
+      "description": "Bag of Words Model Constructor (BowModelConstructor) gathers utilities to build feature vectors from annotated document corpus.", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "bow_model", 
+      "variable": "bow_model_constructor", 
       "parameter": false, 
       "order": 2, 
       "uid": "91ab0793-3dd2-4c02-917c-4ba446ad325d"

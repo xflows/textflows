@@ -37,7 +37,7 @@
       "parameter_type": null, 
       "variable": "dataset", 
       "parameter": false, 
-      "order": 5, 
+      "order": 4, 
       "uid": "15147d1e-ab3c-4423-ae2e-e5f84b3f761e"
     }
   }, 
@@ -71,7 +71,7 @@
       "parameter_type": "text", 
       "variable": "primary_heuristic_index", 
       "parameter": true, 
-      "order": 7, 
+      "order": 6, 
       "uid": "79ea5bb4-9330-4b39-b0b4-18b9fdc44d79"
     }
   }, 
@@ -88,7 +88,7 @@
       "parameter_type": null, 
       "variable": "heuristic_scores", 
       "parameter": false, 
-      "order": 3, 
+      "order": 8, 
       "uid": "8f49d621-e431-4013-bc78-a2dc0fa3dc65"
     }
   }, 
@@ -105,7 +105,7 @@
       "parameter_type": "text", 
       "variable": "crossbee_url", 
       "parameter": true, 
-      "order": 6, 
+      "order": 5, 
       "uid": "a07f8b62-0f76-480b-83d0-d37d768cabc8"
     }
   }, 
@@ -139,7 +139,7 @@
       "parameter_type": null, 
       "variable": "bterms", 
       "parameter": false, 
-      "order": 4, 
+      "order": 7, 
       "uid": "e4579d90-af40-4c24-8d5c-bd749a7b2a1f"
     }
   }, 

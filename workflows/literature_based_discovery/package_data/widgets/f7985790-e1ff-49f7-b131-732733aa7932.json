@@ -5,7 +5,7 @@
       "category": "d3a0f587-3911-437e-b123-622b6bbc3068", 
       "treeview_image": "", 
       "uid": "f7985790-e1ff-49f7-b131-732733aa7932", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "literature_based_discovery", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "order": 21, 
       "name": "Actual and Predicted Values"
     }
@@ -45,14 +45,14 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "f7985790-e1ff-49f7-b131-732733aa7932", 
-      "name": "Bag of Words Model", 
-      "short_name": "bwm", 
+      "name": "Bag of Words Model Constructor", 
+      "short_name": "bmc", 
       "default": "", 
-      "description": "Bag of Words Model (BowModel) gathers utilities to build feature vectors from annotated document corpus.", 
+      "description": "Bag of Words Model Constructor (BowModelConstructor) gathers utilities to build feature vectors from annotated document corpus.", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "bow_model", 
+      "variable": "bow_model_contructor", 
       "parameter": false, 
       "order": 1, 
       "uid": "561fafaa-7b34-4ad5-8d65-5ae120e8f730"
