@@ -47,8 +47,8 @@ def vipercharts_prepareCurveData(input_dict): #, subtype
 		negs = curve['actual'].count(0)
 		poss = curve['actual'].count(1)
 		if poss == 0 or negs == 0:
-			print "Class Error, zero poss or zero negs, only one class or other type error."
-			return []
+			raise Exception("Class Error, zero poss or zero negs, only one class or other type error.")
+			#return []
 		try:
 			ranks = curve['rank']
 		except:

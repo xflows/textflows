@@ -112,7 +112,8 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
     def calculate_ensemble_heuristic_votes(self,heuristic_names):
         heuristics = [self.calculate_heuristics(heuristic_name) for heuristic_name in heuristic_names]
         name = "Vote(" + ",".join([heuristic.name for heuristic in heuristics]) + ")"
-        voting_scores = [ h.votes() for h in heuristics]
+        terms_in_both_domains_count=np.count_nonzero(self._appear_in_all_domains())
+        voting_scores = [ h.votes(terms_in_both_domains_count) for h in heuristics]
         #voting_pos = [ h.positions() for h in heuristics]
         #stress_votes=[vs[self.stress_idx] for vs in voting_scores]
         #stress_pos=[vs[self.stress_idx] for vs in voting_pos]
@@ -147,12 +148,23 @@ class BTermHeuristic:
         self.scores = scores
         #self.votes=votes if votes else self._calculate_votes()
 
-    def votes(self):
+    def votes(self,num_of_terms_in_both_domains):
         positions = self.positions()  #double argsort: position on in the spot of the element
+        print num_of_terms_in_both_domains
+        print self.positions().shape[0]
+        top_terms_ratio=num_of_terms_in_both_domains/(3.*self.positions().shape[0])
+        print top_terms_ratio
         #return np.array(positions >= positions[int(len(positions) * 2 / 3.0)-1],dtype=int)
         #a=np.percentile(positions, 200./3)
-        non_zero_scores=np.array(self.scores>0,dtype=int)
-        return np.array(positions >= np.percentile(positions, 200./3),dtype=int)*non_zero_scores
+        #non_zero_scores=np.array(self.scores>0,dtype=int)
+        print 100*(1-top_terms_ratio)
+        print self.positions().shape[0]*(1-top_terms_ratio)
+        print int(self.positions().shape[0]*(1-top_terms_ratio))
+
+        print "dfd"
+        print np.percentile(positions, 100*(1-top_terms_ratio))
+        #return np.array(positions >= np.percentile(positions, 100*(1-top_terms_ratio)),dtype=int)#*non_zero_scores
+        return np.array(positions >= int(self.positions().shape[0]*(1-top_terms_ratio)),dtype=int)#*non_zero_scores
 
     def positions(self):
         ''' Ranks scores, from the smallest to the largest score

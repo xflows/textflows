@@ -84,7 +84,7 @@ def lbd_actual_and_predicted_values(input_dict):
     for bterm in bterms:
         if bterm in vocabulary:
             actual_values[vocabulary[bterm]]=1
-            print bterm
+            #print bterm
 
     heuristics=flatten(input_dict['heuristics'])
 
