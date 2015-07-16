@@ -52,7 +52,7 @@
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
-      "variable": "bow_model_contructor", 
+      "variable": "bow_model_constructor", 
       "parameter": false, 
       "order": 1, 
       "uid": "561fafaa-7b34-4ad5-8d65-5ae120e8f730"

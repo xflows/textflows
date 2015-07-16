@@ -21,10 +21,10 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
     __A_class = 1
     __C_class = 0
 
-    def __init__(self, raw_documents, classes,bow_model,stress_idx=None):
+    def __init__(self, raw_documents, classes,bow_model_constructor,stress_idx=None):
+        self._bow_model=bow_model_constructor
         # CALCULATE COUNT MATRIX FOR ENTIRE DATASET
-        self._bow_model = bow_model
-        self._count_matrix = bow_model._count_vectorizer().transform(raw_documents)
+        self._count_matrix = bow_model_constructor._count_vectorizer().transform(raw_documents)
         self._classes=np.array(classes)
         self.stress_idx=stress_idx
         #DEVIDE COUNT MATRIX BY CLASS
@@ -36,6 +36,8 @@ class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
         except ValueError:
             raise Exception("One of domains appears not to contain any documents. "+\
                   "This usually happens because of wrong class settings in the Construct Bow Model widget.")
+
+
 
 
     @memoized

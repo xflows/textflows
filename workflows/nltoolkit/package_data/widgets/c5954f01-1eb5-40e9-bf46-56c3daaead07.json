@@ -5,7 +5,7 @@
       "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
       "treeview_image": "", 
       "uid": "c5954f01-1eb5-40e9-bf46-56c3daaead07", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "order": 1, 
       "name": "Get Plain Texts"
     }
@@ -37,7 +37,7 @@
       "parameter_type": "checkbox", 
       "variable": "include_doc_id", 
       "parameter": true, 
-      "order": 4, 
+      "order": 5, 
       "uid": "140d997c-f946-414c-89a7-da6c7286351c"
     }
   }, 
@@ -47,14 +47,14 @@
       "widget": "c5954f01-1eb5-40e9-bf46-56c3daaead07", 
       "name": "Token Annotation", 
       "short_name": "str", 
-      "default": "TextBlock", 
+      "default": "Token", 
       "description": "Select token annotation.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "token_annotation", 
       "parameter": true, 
-      "order": 2, 
+      "order": 3, 
       "uid": "2d691648-7db3-4036-8ee2-2348ca221cee"
     }
   }, 
@@ -64,14 +64,14 @@
       "widget": "c5954f01-1eb5-40e9-bf46-56c3daaead07", 
       "name": "Delimiter for token concatenation", 
       "short_name": "str", 
-      "default": "", 
+      "default": " ", 
       "description": "Delimiter for token concatenation.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "delimiter", 
       "parameter": true, 
-      "order": 3, 
+      "order": 4, 
       "uid": "866aa635-8027-4e85-afda-fa2ac39becd2"
     }
   }, 
@@ -98,7 +98,7 @@
       "widget": "c5954f01-1eb5-40e9-bf46-56c3daaead07", 
       "name": "Feature Annotation", 
       "short_name": "str", 
-      "default": "TextBlock", 
+      "default": "Stem", 
       "description": "Select a feature annotation.", 
       "required": false, 
       "multi": false, 

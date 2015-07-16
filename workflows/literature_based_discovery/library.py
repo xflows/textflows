@@ -1,5 +1,6 @@
+import numpy as np
 from workflows.literature_based_discovery.lib.heuristics.heuristic_calculations import HeuristicCalculations
-from workflows.textflows import flatten
+from workflows.textflows import flatten, BowDataset
 
 
 def lbd_select_ensemble_heuristic(input_dict):
@@ -21,6 +22,28 @@ def lbd_select_ensemble_heuristic_post(postdata, input_dict, output_dict):
     output_dict['primary_heuristic_index']=int(postdata.get('heuristic_index',[-1])[0])
 
     return output_dict #{'heuristic_index': selected_heuristic}
+
+def lbd_only_terms_from_both_domains(input_dict):
+    adc=input_dict['adc']
+    bmc=input_dict['bow_model_constructor']
+
+    raw_documents=bmc.get_raw_text(adc.documents,join_annotations_with='|##|')
+    classes=bmc.get_document_labels(adc,binary=True)
+
+    hc=HeuristicCalculations(raw_documents,classes,bmc) #only creates counts for each domain
+    terms_in_both_domains_idx= np.where((hc._count_term_A() > 0) & (hc._count_term_C() > 0)==True)[0]
+    orig_vocabulary=bmc.get_feature_names()
+    terms_in_both_domains=[orig_vocabulary[i] for i in terms_in_both_domains_idx]
+
+    # if predefined_vocabulary:
+    #     vocab_vectorizer=CountVectorizer(ngram_range=(1,max_ngram))
+    #     vocab_vectorizer.fit(predefined_vocabulary)
+    #     self.set_new_vocabulary(vocab_vectorizer.vocabulary_,raw_documents)
+    bmc.set_new_vocabulary(terms_in_both_domains,raw_documents)
+
+    bow_dataset=BowDataset.from_adc(adc,bmc)
+
+    return {'bow_model_constructor': bmc,'bow_dataset': bow_dataset}
 
 
 def lbd_frequency_based_heuristics_selection(input_dict):

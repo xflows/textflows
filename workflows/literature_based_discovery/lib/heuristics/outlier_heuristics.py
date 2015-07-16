@@ -15,7 +15,7 @@ from sklearn.neighbors import KNeighborsClassifier, NearestCentroid
 class OutlierBasedHeuristicCalculations():
     @memoized
     def _d_cs_indices(self):
-        classifier=NearestCentroid()
+        classifier=NearestCentroid(metric='cosine')
         #classifier=KNeighborsClassifier(n_neighbors=5)
         return MisclassificationIndices.calculate(classifier,
                                                   BowDataset(self._tfidf_matrix(),self._classes),
@@ -61,7 +61,7 @@ class OutlierBasedHeuristicCalculations():
     @memoized
     def out_freq_cs(self):
         '''Term frequency in the Centroid Similarity outlier set'''
-        return self._count_term_D_cs()+0.000001
+        return self._count_term_D_cs()+10**-10
 
     @memoized
     def out_freq_rf(self):
@@ -71,7 +71,7 @@ class OutlierBasedHeuristicCalculations():
     @memoized
     def out_freq_svm(self):
         '''Term frequency in the Support Vector Machine outlier set'''
-        return self._count_term_D_svm()+0.000001
+        return self._count_term_D_svm()+10**-10
 
     @memoized
     def out_freq_sum(self):

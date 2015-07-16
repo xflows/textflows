@@ -95,7 +95,6 @@ class Document:
         except ValueError, e:
             return label_value
 
-
 class Annotation:
     def __init__(self, span_start, span_end, type, features=None):
         self.features=features or {}
@@ -208,13 +207,13 @@ class BowModelConstructor:
 
         raw_documents=self.get_raw_text(adc.documents,join_annotations_with='|##|')
         #extract vocabulary
-        document_tokens=self.get_annotation_texts(adc.documents)
+        #document_tokens=self.get_annotation_texts(adc.documents)
 
-        vocabulary={}
-        for raw_doc in document_tokens:
-            for token in raw_doc:
-                if not token in vocabulary:
-                    vocabulary[token]=len(vocabulary)
+        # vocabulary={}
+        # for raw_doc in document_tokens:
+        #     for token in raw_doc:
+        #         if not token in vocabulary:
+        #             vocabulary[token]=len(vocabulary)
 
 
         self.__count_params={'ngram_range':(1,max_ngram),'min_df':min_tf,'tokenizer':TokenSplitter(),
@@ -230,26 +229,25 @@ class BowModelConstructor:
         if predefined_vocabulary:
             vocab_vectorizer=CountVectorizer(ngram_range=(1,max_ngram))
             vocab_vectorizer.fit(predefined_vocabulary)
-            if True: #intersect vocabularies
-                #raw_documents=self.get_raw_text(adc.documents)
-                self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
-                feature_intersection=[term for term in self.vectorizer.get_feature_names()
-                                      if term in vocab_vectorizer.vocabulary_]
-                #feature_intersection=[term for term in vocab_vectorizer.vocabulary_
-                #                      if term in self.__count_params['vocabulary']]
-
-                self.vectorizer.set_params(
-                    vocabulary=dict([(a,i) for i,a in enumerate(feature_intersection)])) #set new vocabulary
-                self.vectorizer.fit(raw_documents)
-            else:
-                self.__count_params['vocabulary']=vocab_vectorizer.vocabulary_
+            self.set_new_vocabulary(vocab_vectorizer.vocabulary_,raw_documents)
         else:
             self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
-
-
-        self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
+            self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
 
         #print self.vectorizer.get_feature_names()
+
+    def set_new_vocabulary(self,vocabulary,raw_documents,intersect=True):
+        if intersect: #intersect vocabularies
+            self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
+            feature_intersection=[term for term in self.vectorizer.get_feature_names()
+                                  if term in vocabulary]
+
+            self.vectorizer.set_params(vocabulary=dict([(a,i) for i,a in enumerate(feature_intersection)])) #set new vocabulary
+            self.vectorizer.fit(raw_documents)
+            self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
+
+        else:
+            self.__count_params['vocabulary']=vocabulary
 
 
     @staticmethod

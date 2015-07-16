@@ -50,6 +50,7 @@ class FrequencyBasedHeuristicCalculations():
     def random(self):
         '''Random baseline heuristic'''
         #print self._count_matrix.shape
+        #return np.ones(self._count_matrix.shape[1])*np.random.random()
         return np.random.rand(self._count_matrix.shape[1])
 
     @memoized
