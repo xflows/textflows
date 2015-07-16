@@ -4,7 +4,7 @@ import json
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer, TfidfTransformer
 import nltk
-
+from collections import defaultdict
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
 
@@ -41,6 +41,27 @@ class Document:
 
     def __unicode__(self):
         return 'Name; {0}\nText: {1}' % (self.name, self.text)
+
+    def __getstate__(self):
+        state=self.__dict__.copy()
+        annotations=state.pop('annotations')
+        annotations_per_type=defaultdict(list)
+
+        for ann in annotations:
+            annotations_per_type[ann.type].append([ann.span_start,ann.span_end,ann.features])
+
+        state['annotations']=annotations_per_type
+        return json.dumps(state)
+
+    def __setstate__(self,value):
+        state=json.loads(value)
+        annotations_per_type=state.pop('annotations')
+        self.__dict__=state
+        state['annotations']=[]
+        for ann_type,annotations in annotations_per_type.items():
+            for ann in annotations:
+                self.annotations.append(Annotation(ann[0], ann[1], ann_type, ann[2]))
+
 
     def get_annotations_with_text(self, selector):
         """
