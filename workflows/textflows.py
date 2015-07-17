@@ -13,6 +13,7 @@ class DocumentCorpus:
     def __init__(self, documents,features):
         self.documents=documents
         self.features=features
+
     def __unicode__(self):
         #for i in itemDir:
         return 'Documents; {0}' % (self.documents)
@@ -31,6 +32,19 @@ class DocumentCorpus:
     def get_document_labels(self):
         return [doc.get_first_label() for doc in self.documents]
 
+    def __getstate__(self):
+        print "get state!!"
+        minimized_docs=[d.__minimize__() for d in self.documents]
+        return json.dumps([minimized_docs,self.features])
+
+    def __setstate__(self,value):
+        print "set state!!"
+        minimized_docs,self.features=json.loads(value)
+        self.documents=[Document.__from_minimized__(d) for d in minimized_docs]
+
+
+
+
 class Document:
     def __init__(self, name,text,annotations,features):
         self.annotations=annotations
@@ -42,7 +56,7 @@ class Document:
     def __unicode__(self):
         return 'Name; {0}\nText: {1}' % (self.name, self.text)
 
-    def __getstate__(self):
+    def __minimize__(self):
         state=self.__dict__.copy()
         annotations=state.pop('annotations')
         annotations_per_type=defaultdict(list)
@@ -50,17 +64,17 @@ class Document:
         for ann in annotations:
             annotations_per_type[ann.type].append([ann.span_start,ann.span_end,ann.features])
 
-        state['annotations']=annotations_per_type
-        return json.dumps(state)
+        state['annotations']=dict(annotations_per_type)
+        return state #json.dumps(state)
 
-    def __setstate__(self,value):
-        state=json.loads(value)
-        annotations_per_type=state.pop('annotations')
-        self.__dict__=state
-        state['annotations']=[]
-        for ann_type,annotations in annotations_per_type.items():
+    @classmethod
+    def __from_minimized__(cls,state):
+
+        all_annotations=[]
+        for ann_type,annotations in state['annotations'].items():
             for ann in annotations:
-                self.annotations.append(Annotation(ann[0], ann[1], ann_type, ann[2]))
+                all_annotations.append(Annotation(ann[0], ann[1], ann_type, ann[2]))
+        return cls(state['name'],state['text'],all_annotations,state['features'])
 
 
     def get_annotations_with_text(self, selector):
@@ -493,12 +507,12 @@ class SpanTokenizeMixin():
         Return the offsets of the tokens in *s*, as a sequence of ``(start, end)``
         tuples, by splitting the string at each successive match of *regexp*.
 
-            >>> from workflows.textflows import StanfordTokenizer
-            >>> s = '''Good muffins cost $3.88\nin New York.  Please buy me
-            ... two of them.\n\nThanks.'''
-            >>> list(StanfordTokenizer().span_tokenize(s))
-            [(0, 4), (5, 12), (13, 17), (18, 23), (24, 26), (27, 30), (31, 36),
-            (38, 44), (45, 48), (49, 51), (52, 55), (56, 58), (59, 64), (66, 73)]
+            #>>> from workflows.textflows import StanfordTokenizer
+            #>>> s = '''Good muffins cost $3.88\nin New York.  Please buy me
+            #... two of them.\n\nThanks.'''
+            #>>> list(StanfordTokenizer().span_tokenize(s))
+            #[(0, 4), (5, 12), (13, 17), (18, 23), (24, 26), (27, 30), (31, 36),
+            #(38, 44), (45, 48), (49, 51), (52, 55), (56, 58), (59, 64), (66, 73)]
 
         :param s: the string to be tokenized
         :type s: str
@@ -555,3 +569,13 @@ def simulate_cf_pickling(obj_to_pickle,compress_object=False):
 #python manage.py export_package workflows/nltoolkit/db/package_data.json nltoolkit
 #python manage.py export_package workflows/literature_based_discovery/db/package_data.json literature_based_discovery
 #python manage.py celery worker -l info
+
+
+
+if __name__=="__main__":
+    """quick test, pickling and depickling"""
+    from cPickle import dumps,loads
+    from base64 import b64encode, b64decode
+
+    dc=DocumentCorpus([Document("name","text",[Annotation(1,2,'token',{'stopword': True})],{})],{'created_at':'now'})
+    dc2=loads(b64decode(b64encode(dumps(dc))))
