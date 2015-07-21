@@ -118,10 +118,13 @@ class WidgetRunner():
         self.widget.save()
 
 class WorkflowRunner():
-    def __init__(self,workflow,clean=True,parent=None):
+    def __init__(self,workflow,clean=True,parent=None,target_widget=None):
         self.workflow = workflow
         self.connections = workflow.connections.all()
-        self.widgets = workflow.widgets.all().select_related('abstract_widget').prefetch_related('inputs','outputs')
+        self.widgets = workflow.widgets.all().select_related('abstract_widget')
+        if target_widget:
+            self.widgets = self.widgets.filter(id=target_widget.id) | target_widget.prerequisite_widgets() | target_widget.following_widgets()
+        self.widgets=self.widgets.prefetch_related('inputs','outputs').distinct()
         self.inputs = {}
         self.outputs = {}
         for w in self.widgets:

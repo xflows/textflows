@@ -679,6 +679,12 @@ class Widget(models.Model):
 
     progress = models.IntegerField(default=0)
 
+    def prerequisite_widgets(self):
+        return Widget.objects.filter(outputs__connections__input__widget=self)
+
+    def following_widgets(self):
+        return Widget.objects.filter(inputs__connections__output__widget=self)
+
     def import_from_json(self,json_data,input_conversion,output_conversion):
         self.x = json_data['x']
         self.y = json_data['y']
@@ -737,11 +743,7 @@ class Widget(models.Model):
             return False
 
     def ready_to_run(self):
-        cons = Connection.objects.filter(input__widget=self)
-        for c in cons:
-            if not c.output.widget.finished:
-                return False
-        return True
+        return self.prerequisite_widgets().filter(finished=False).count()==0
 
     def unfinish(self):
         self.reset_descendants()
@@ -806,7 +808,7 @@ class Widget(models.Model):
                 function_to_call = getattr(workflows.library,self.abstract_widget.action)
             input_dict = {}
             outputs = {}
-            for i in self.inputs.all():
+            for i in self.inputs.all().defer('value'):
                 """ we walk through all the inputs """
                 #gremo pogledat ce obstaja povezava in ce obstaja gremo value prebrat iz outputa
                 if not i.parameter:
@@ -845,7 +847,7 @@ class Widget(models.Model):
                 else:
                     Input.objects.filter(widget__workflow=self.workflow_link,parameter=False).update(value=None)
                     Output.objects.filter(widget__workflow=self.workflow_link).update(value=None)
-                    wr = WidgetRunner(self,workflow_runner=WorkflowRunner(self.workflow,clean=False),standalone=True)
+                    wr = WidgetRunner(self,workflow_runner=WorkflowRunner(self.workflow,clean=False,target_widget=self),standalone=True)
                     wr.run()
                     return
             except:
