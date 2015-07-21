@@ -24,7 +24,7 @@ class OutlierBasedHeuristicCalculations():
     def _d_rf_indices(self):
         classifier = RandomForestClassifier()
         return MisclassificationIndices.calculate(classifier,
-                                                  BowDataset(self._tfidf_matrix().toarray(),self._classes),
+                                                  BowDataset(self._tfidf_matrix(),self._classes),
                                                   n_folds=10)['inds']
     @memoized
     def _d_svm_indices(self):
