@@ -46,11 +46,11 @@ def perfeval_classification_statistics(input_dict):
     recall = metrics.recall_score(y_true, y_pred)
     f1 = metrics.f1_score(y_true, y_pred)
     confusion_matrix = metrics.confusion_matrix(y_true, y_pred)
+    auc = metrics.roc_auc_score(y_true, y_pred)
 
     # AUC is defined only for binary classes
-    if len(classes) == 2:
-        auc = metrics.auc_score(y_true, y_pred)
-    else:
-        auc = 'undefined for multiple classes'
+    #if len(classes) == 2:
+    #else:
+    #    auc = 'undefined for multiple classes' #
     return {'accuracy': accuracy, 'precision': precision, 'recall': recall, 
             'f1': f1, 'auc': auc, 'confusion_matrix': confusion_matrix}

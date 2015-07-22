@@ -988,7 +988,7 @@ def run_widget(request):
             try:
                 # find all required inputs
                 multi_satisfied = {}
-                for inp in w.inputs.filter(required=True,parameter=False):
+                for inp in w.inputs.filter(required=True,parameter=False).defer('value'):
                     if inp.connections.count()==0:
                         if inp.multi_id == 0:
                             raise Exception("The input "+str(inp)+" must have something connected to it in order to run.")
@@ -1142,7 +1142,7 @@ def visualize_widget(request):
             for o in w.outputs.all():
                 output_dict[o.variable]=o.value
             input_dict = {}
-            for i in w.inputs.all():
+            for i in w.inputs.all().defer('value'):
                 if not i.parameter:
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
@@ -1179,7 +1179,7 @@ def widget_results(request):
             import pprint
             input_dict = {}
             output_dict = {}
-            for i in w.inputs.all():
+            for i in w.inputs.all().defer('value'):
                 if not i.parameter:
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
@@ -1281,7 +1281,7 @@ def widget_interaction(request):
         if (w.workflow.user==request.user):
             input_dict = {}
             output_dict = {}
-            for i in w.inputs.all():
+            for i in w.inputs.all().defer('value'):
                 if not i.parameter:
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
@@ -1470,7 +1470,7 @@ def export_package(request, packages):
 def widget_inputs(request, widget_id):
     w = get_object_or_404(Widget, pk=widget_id)
     input_dict = {}
-    for i in w.inputs.all():
+    for i in w.inputs.all().defer('value'):
         if not i.parameter:
             if i.connections.count() > 0:
                 i.value = i.connections.all()[0].output.value
@@ -1506,7 +1506,7 @@ def widget_iframe(request, widget_id):
         for o in w.outputs.all():
             output_dict[o.variable]=o.value
         input_dict = {}
-        for i in w.inputs.all():
+        for i in w.inputs.all().defer('value'):
             if not i.parameter:
                 if i.connections.count() > 0:
                     i.value = i.connections.all()[0].output.value

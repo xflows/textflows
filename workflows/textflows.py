@@ -376,7 +376,7 @@ class TokenSplitter(object):
     regex_parser=None
 
     def __init__(self):
-        self.regex_parser=re.compile("^[A-Za-z0-9']+$")
+        self.regex_parser=re.compile("^[_A-Za-z0-9']+$")
     def __call__(self, doc):
         return [d for d in doc.split('|##|') if self.regex_parser.match(d)]
 
