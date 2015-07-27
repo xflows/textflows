@@ -25,15 +25,10 @@ def lexicology_mesh_filter_finished(postdata, input_dict, output_dict):
     import json
     from os.path import normpath, join, dirname
 
-    #widget_id = postdata.get('widget_id')[0]
     ngrams = input_dict.get('ngrams')
     print ngrams
     selected_categories=postdata.get('selected[]')
     terms_per_category=json.load(open(normpath(join(dirname(__file__),'data/mesh_terms_per_category.json'))))
-    # for k,v in terms_per_category.items():
-    #     terms_per_category[k]=list(v)
-    # import json
-    # json.dump(terms_per_category,open(normpath(join(dirname(__file__),'data/mesh_terms_per_category.json')),'w'))
 
     terms=set()
     for category in selected_categories:
@@ -48,12 +43,6 @@ def lexicology_mesh_filter_finished(postdata, input_dict, output_dict):
                     print grams
             else:
                 terms.add(term)
-    # import time
-    # unique_filename=time.strftime("%Y-%m-%d-%H-%M-%S")
-    # output_file_name="C:/Users/matic/workspace/iClowdFlow/mothra/public/files/1/terms_"+str(unique_filename)+".txt"
-    # with open(output_file_name,'w') as of:
-    #     for term in terms:
-    #         of.write("%s\n" % term)
 
     return {'term_list':list(terms)}
 

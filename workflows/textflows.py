@@ -250,7 +250,7 @@ class BowModelConstructor:
         #         if not token in vocabulary:
         #             vocabulary[token]=len(vocabulary)
 
-
+        #(?u)\\b\\w+\\b
         self.__count_params={'ngram_range':(1,max_ngram),'min_df':min_tf,'tokenizer':TokenSplitter(),
                              'token_pattern':'\\b\\w+\\b'} #'vocabulary':vocabulary}
         #tf_idf args: 'norm', 'smooth_idf', 'sublinear_tf', 'use_idf
@@ -262,7 +262,7 @@ class BowModelConstructor:
 
         #set predefined controlled vocabulary
         if predefined_vocabulary:
-            vocab_vectorizer=CountVectorizer(ngram_range=(1,max_ngram))
+            vocab_vectorizer=CountVectorizer(ngram_range=(1,max_ngram),tokenizer=lambda doc: [doc]) #every line represents a new token
             vocab_vectorizer.fit(predefined_vocabulary)
             self.set_new_vocabulary(vocab_vectorizer.vocabulary_,raw_documents)
         else:
@@ -378,6 +378,8 @@ class TokenSplitter(object):
     def __init__(self):
         self.regex_parser=re.compile("^[_A-Za-z0-9']+$")
     def __call__(self, doc):
+        if doc.startswith("Substance P"):
+            sdfasdfa=333
         return [d for d in doc.split('|##|') if self.regex_parser.match(d)]
 
 class NltkCorpus():

@@ -9,7 +9,7 @@ import numpy as np
 from misclassification_indices import MisclassificationIndices
 
 ###OUTLIER BASED HEURISITCS
-from sklearn.neighbors import KNeighborsClassifier, NearestCentroid
+from sklearn.neighbors import  NearestCentroid
 
 
 class OutlierBasedHeuristicCalculations():
