@@ -1,0 +1,725 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>TextFlows documentation &mdash; TextFlows documentation 1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="TextFlows documentation 1 documentation" href="#"/>
+        <link rel="next" title="Category Data In/Out" href="tf_user_doc.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="#" class="icon icon-home"> TextFlows documentation
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html">Category Data In/Out</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-latino">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-convert-corpus-to-xml-string">Widget: Convert Corpus to XML String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-convert-xml-string-to-corpus">Widget: Convert XML String to Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-get-plain-texts">Widget: Get Plain Texts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-load-document-corpus-from-file">Widget: Load Document Corpus From File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-load-document-corpus-from-string">Widget: Load Document Corpus From String</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id1">Widget: Get Plain Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-load-document-corpus">Widget: Load Document Corpus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id2">Widget: Load Document Corpus From String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id3">Widget: Load Document Corpus From File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-scikit-classifiers">Category Scikit_classifiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-create-integer-list">Widget: Create Integer List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-filter-integers">Widget: Filter Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-sum-integers">Widget: Sum Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-display-summation">Widget: Display Summation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-document-corpus">Category Document Corpus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id4">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-display-document-corpus">Widget: Display Document Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-statistics">Widget: Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-extract-feature">Widget: Extract Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-feature">Widget: Add Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-computed-feature">Widget: Add Computed Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-set-feature">Widget: Add Set Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-split">Widget: Split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-extract-documents">Widget: Extract Documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-merge-corpora">Widget: Merge Corpora</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id5">Widget: Add Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id6">Widget: Display Document Corpus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id7">Widget: Extract Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id8">Widget: Extract Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id9">Widget: Merge Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-nltk-document-corpus">Widget: NLTK Document Corpus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id10">Widget: Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id11">Widget: Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-add-computed-document-features">Widget: Add Computed Document Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-add-computed-token-features">Widget: Add Computed Token Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#id12">Category Latino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-tokenization">Category Tokenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id13">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#category-advanced">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-split-sentences-hub-text">Widget: Split Sentences Hub (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-tokenizer-hub-text">Widget: Tokenizer Hub (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-universal-multiple-tokenizer-hub">Widget: Universal Multiple Tokenizer Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-max-entropy-sentence-splitter">Widget: Max Entropy Sentence Splitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-split-sentences-hub">Widget: Split Sentences Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-max-entorpy-tokenizer">Widget: Max Entorpy Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-unicode-tokenizer">Widget: Unicode Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-regex-tokenizer">Widget: Regex Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-simple-tokenizer">Widget: Simple Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-tokenizer-hub">Widget: Tokenizer Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-nltk">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-line-tokenizer">Widget: Line Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id14">Widget: Regex Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-s-expression-tokenizer">Widget: S-Expression Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id15">Widget: Simple Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stanford-tokenizer">Widget: Stanford Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-text-tiling-tokenizer">Widget: Text Tiling Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-punkt-sentence-tokenizer">Widget: Punkt Sentence Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-treebank-word-tokenizer">Widget: Treebank Word Tokenizer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id16">Widget: Tokenizer Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-pos-tagging">Category POS Tagging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id17">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id18">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-pos-tagger-hub-text">Widget: POS Tagger Hub (Text)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-max-entropy-pos-tagger">Widget: Max Entropy POS Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-tagger-hub">Widget: POS Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id19">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-affix-tagger">Widget: POS Affix Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-brill-s-rule-based-tagger">Widget: POS Brill&#8217;s rule-based Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-classifier-based-tagger">Widget: POS Classifier-based Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-default-tagger">Widget: POS Default Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-n-gram-tagger">Widget: POS N-gram Tagger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id20">Widget: POS Tagger Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-extract-pos-tagger-name">Widget: Extract POS Tagger Name</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-bag-of-words">Category Bag of Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id21">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id22">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-model-text">Widget: Construct BOW Model (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-get-terms">Widget: Get Terms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-process-new-documents-text">Widget: Process New Documents (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-create-term-dataset">Widget: Create Term Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-model-and-dataset">Widget: Construct BOW Model and Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-parse-document-corpus">Widget: Parse Document Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-get-vocabulary-table">Widget: Get Vocabulary Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-create-dataset">Widget: Create Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-model">Widget: Construct BOW Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-dataset-and-bow-model-constructor">Widget: Construct BoW Dataset and BoW Model Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-create-bow-dataset-using-the-bow-model-constructor">Widget: Create BoW Dataset using the BoW Model Constructor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-stemming">Category Stemming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id23">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id24">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-stemming-tagger-hub-text">Widget: Stemming Tagger Hub (Text)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-lemma-tagger-lemmagen">Widget: Lemma Tagger LemmaGen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stem-tagger-snowball">Widget: Stem Tagger Snowball</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stemming-tagger-hub">Widget: Stemming Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id25">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-isri-stemmer">Widget: ISRI Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-regex-stemmer">Widget: Regex Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-rslp-stemmer">Widget: RSLP Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-snowball-stemmer">Widget: Snowball Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-wordnet-lemmatizer">Widget: WordNet Lemmatizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-lancaster-stemmer">Widget: Lancaster Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-porter-stemmer">Widget: Porter Stemmer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-stem-lemma-tagger-hub">Widget: Stem/Lemma Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-dataset">Category Dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id26">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-labels">Widget: Add Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-extract-labels">Widget: Extract Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-remove-labels">Widget: Remove Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id27">Widget: Split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-split-to-predefined-sets">Widget: Split to Predefined Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-dataset-to-object">Widget: Dataset to Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-object-to-dataset">Widget: Object to Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id28">Widget: Add Labels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-stop-words">Category Stop Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id29">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id30">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-tagger-hub-text">Widget: Stop Word Tagger Hub (Text)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-sets">Widget: Stop Word Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-tagger">Widget: Stop Word Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-tagger-hub">Widget: Stop Word Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id31">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id32">Widget: Stop Word Tagger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id33">Widget: Stop Word Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-similarity-matrix">Category Similarity Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id34">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-calculate-similarity-matrix">Widget: Calculate Similarity Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-convert-matrix-to-table">Widget: Convert Matrix to Table</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id35">Widget: Calculate Similarity Matrix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-clustering">Category Clustering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id36">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-kmeans-clusterer">Widget: KMeans Clusterer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-kmeans-fast-clusterer">Widget: KMeans Fast Clusterer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-hierarchical-bisecting-clusterer">Widget: Hierarchical Bisecting Clusterer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-clustering-hub">Widget: Clustering Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-clustering-results-info">Widget: Clustering Results Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-view-clusters">Widget: View Clusters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-scikit">Category Scikit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-k-means">Widget: k-Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id37">Widget: Clustering Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-classification">Category Classification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id38">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-nearest-centroid-classifier">Widget: Nearest Centroid Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-naive-bayes-classifier">Widget: Naive Bayes Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-binary-classifier">Widget: SVM Binary Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-multiclass-fast-classifier">Widget: SVM Multiclass Fast Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-majority-classifier">Widget: Majority Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-maximum-entropy-classifier">Widget: Maximum Entropy Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-maximum-entropy-fast-classifier">Widget: Maximum Entropy Fast Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-knn-classifier">Widget: Knn Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-knn-fast-classifier">Widget: Knn Fast Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-accuracy-claculation">Widget: Accuracy Claculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-cross-validation">Widget: Cross Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-cross-validation-predefined-splits">Widget: Cross Validation (Predefined Splits)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-multiple-splits-validation">Widget: Multiple Splits Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-predict-classification">Widget: Predict Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-prediction-info">Widget: Prediction Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-train-classifier-hub">Widget: Train Classifier Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-view-classifications">Widget: View Classifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id39">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id40">Widget: Naive Bayes Classifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id41">Category Scikit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-decision-tree-classifier">Widget: Decision Tree Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-gaussian-naive-bayes-classifier">Widget: Gaussian Naive Bayes Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-logistic-regression-classifier">Widget: Logistic regression Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-multinomial-naive-bayes-classifier">Widget: Multinomial Naive Bayes Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-classifier">Widget: SVM Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-linear-classifier">Widget: SVM Linear Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-k-nearest-neighbours-classifier">Widget: k-Nearest Neighbours Classifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-apply-classifier-hub">Widget: Apply Classifier Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id42">Widget: Train Classifier Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-extract-classifier-name">Widget: Extract Classifier Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-extract-actual-and-predicted-values">Widget: Extract Actual and Predicted Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-lexicology">Category Lexicology</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-controlled-vocabularies">Category Controlled Vocabularies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-mesh-vocabulary-builder">Widget: MeSH vocabulary builder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-helpers">Category Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-tagging">Category Tagging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-universal-multiple-tagger-hub">Widget: Universal Multiple Tagger Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-condition-tagger">Widget: Condition Tagger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-advanced-object-viewer">Widget: Advanced Object Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-random-cross-validation-sets">Widget: Random Cross Validation Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-random-sequential-validation-sets">Widget: Random Sequential Validation Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-advanced-object-to-string-converter">Widget: Advanced Object to String Converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-c-net-snippet">Widget: C#.NET Snippet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-display-table">Widget: Display Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-get-multi-set-indexes">Widget: Get Multi Set Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-flatten-string-hierarchy">Widget: Flatten String Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-generate-integer-range">Widget: Generate Integer Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-python-snippet">Widget: Python Snippet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-split-object">Widget: Split Object</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">TextFlows documentation</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li>TextFlows documentation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="textflows-documentation">
+<h1>TextFlows documentation<a class="headerlink" href="#textflows-documentation" title="Permalink to this headline">¶</a></h1>
+<p><strong>TextFlows</strong> is a special fork of the <a class="reference external" href="http://clowdflows.org">ClowdFlows project</a> focused on the workflows and widgets of the <a class="reference external" href="http://conceptcreationtechnology.eu/">EU project Text</a>.</p>
+<p><strong>A list of widget descriptions</strong>:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html">Category Data In/Out</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-latino">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-convert-corpus-to-xml-string">Widget: Convert Corpus to XML String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-convert-xml-string-to-corpus">Widget: Convert XML String to Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-get-plain-texts">Widget: Get Plain Texts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-load-document-corpus-from-file">Widget: Load Document Corpus From File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-load-document-corpus-from-string">Widget: Load Document Corpus From String</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id1">Widget: Get Plain Texts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-load-document-corpus">Widget: Load Document Corpus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id2">Widget: Load Document Corpus From String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id3">Widget: Load Document Corpus From File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-scikit-classifiers">Category Scikit_classifiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-create-integer-list">Widget: Create Integer List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-filter-integers">Widget: Filter Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-sum-integers">Widget: Sum Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-display-summation">Widget: Display Summation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-document-corpus">Category Document Corpus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id4">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-display-document-corpus">Widget: Display Document Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-statistics">Widget: Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-extract-feature">Widget: Extract Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-feature">Widget: Add Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-computed-feature">Widget: Add Computed Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-set-feature">Widget: Add Set Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-split">Widget: Split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-extract-documents">Widget: Extract Documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-merge-corpora">Widget: Merge Corpora</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id5">Widget: Add Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id6">Widget: Display Document Corpus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id7">Widget: Extract Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id8">Widget: Extract Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id9">Widget: Merge Corpora</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-nltk-document-corpus">Widget: NLTK Document Corpus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id10">Widget: Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id11">Widget: Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-add-computed-document-features">Widget: Add Computed Document Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-add-computed-token-features">Widget: Add Computed Token Features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#id12">Category Latino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-tokenization">Category Tokenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id13">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#category-advanced">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-split-sentences-hub-text">Widget: Split Sentences Hub (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-tokenizer-hub-text">Widget: Tokenizer Hub (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-universal-multiple-tokenizer-hub">Widget: Universal Multiple Tokenizer Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-max-entropy-sentence-splitter">Widget: Max Entropy Sentence Splitter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-split-sentences-hub">Widget: Split Sentences Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-max-entorpy-tokenizer">Widget: Max Entorpy Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-unicode-tokenizer">Widget: Unicode Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-regex-tokenizer">Widget: Regex Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-simple-tokenizer">Widget: Simple Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-tokenizer-hub">Widget: Tokenizer Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-nltk">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-line-tokenizer">Widget: Line Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id14">Widget: Regex Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-s-expression-tokenizer">Widget: S-Expression Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id15">Widget: Simple Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stanford-tokenizer">Widget: Stanford Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-text-tiling-tokenizer">Widget: Text Tiling Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-punkt-sentence-tokenizer">Widget: Punkt Sentence Tokenizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-treebank-word-tokenizer">Widget: Treebank Word Tokenizer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id16">Widget: Tokenizer Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-pos-tagging">Category POS Tagging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id17">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id18">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-pos-tagger-hub-text">Widget: POS Tagger Hub (Text)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-max-entropy-pos-tagger">Widget: Max Entropy POS Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-tagger-hub">Widget: POS Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id19">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-affix-tagger">Widget: POS Affix Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-brill-s-rule-based-tagger">Widget: POS Brill&#8217;s rule-based Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-classifier-based-tagger">Widget: POS Classifier-based Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-default-tagger">Widget: POS Default Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-pos-n-gram-tagger">Widget: POS N-gram Tagger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id20">Widget: POS Tagger Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-extract-pos-tagger-name">Widget: Extract POS Tagger Name</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-bag-of-words">Category Bag of Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id21">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id22">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-model-text">Widget: Construct BOW Model (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-get-terms">Widget: Get Terms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-process-new-documents-text">Widget: Process New Documents (Text)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-create-term-dataset">Widget: Create Term Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-model-and-dataset">Widget: Construct BOW Model and Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-parse-document-corpus">Widget: Parse Document Corpus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-get-vocabulary-table">Widget: Get Vocabulary Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-create-dataset">Widget: Create Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-model">Widget: Construct BOW Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-construct-bow-dataset-and-bow-model-constructor">Widget: Construct BoW Dataset and BoW Model Constructor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-create-bow-dataset-using-the-bow-model-constructor">Widget: Create BoW Dataset using the BoW Model Constructor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-stemming">Category Stemming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id23">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id24">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-stemming-tagger-hub-text">Widget: Stemming Tagger Hub (Text)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-lemma-tagger-lemmagen">Widget: Lemma Tagger LemmaGen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stem-tagger-snowball">Widget: Stem Tagger Snowball</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stemming-tagger-hub">Widget: Stemming Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id25">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-isri-stemmer">Widget: ISRI Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-regex-stemmer">Widget: Regex Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-rslp-stemmer">Widget: RSLP Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-snowball-stemmer">Widget: Snowball Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-wordnet-lemmatizer">Widget: WordNet Lemmatizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-lancaster-stemmer">Widget: Lancaster Stemmer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-porter-stemmer">Widget: Porter Stemmer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-stem-lemma-tagger-hub">Widget: Stem/Lemma Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-dataset">Category Dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id26">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-add-labels">Widget: Add Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-extract-labels">Widget: Extract Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-remove-labels">Widget: Remove Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id27">Widget: Split</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-split-to-predefined-sets">Widget: Split to Predefined Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-dataset-to-object">Widget: Dataset to Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-object-to-dataset">Widget: Object to Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id28">Widget: Add Labels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-stop-words">Category Stop Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id29">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id30">Category Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-tagger-hub-text">Widget: Stop Word Tagger Hub (Text)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-sets">Widget: Stop Word Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-tagger">Widget: Stop Word Tagger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-stop-word-tagger-hub">Widget: Stop Word Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id31">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id32">Widget: Stop Word Tagger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id33">Widget: Stop Word Tagger Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-similarity-matrix">Category Similarity Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id34">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-calculate-similarity-matrix">Widget: Calculate Similarity Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-convert-matrix-to-table">Widget: Convert Matrix to Table</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id35">Widget: Calculate Similarity Matrix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-clustering">Category Clustering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id36">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-kmeans-clusterer">Widget: KMeans Clusterer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-kmeans-fast-clusterer">Widget: KMeans Fast Clusterer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-hierarchical-bisecting-clusterer">Widget: Hierarchical Bisecting Clusterer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-clustering-hub">Widget: Clustering Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-clustering-results-info">Widget: Clustering Results Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-view-clusters">Widget: View Clusters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-scikit">Category Scikit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-k-means">Widget: k-Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id37">Widget: Clustering Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-classification">Category Classification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id38">Category Latino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-nearest-centroid-classifier">Widget: Nearest Centroid Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-naive-bayes-classifier">Widget: Naive Bayes Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-binary-classifier">Widget: SVM Binary Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-multiclass-fast-classifier">Widget: SVM Multiclass Fast Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-majority-classifier">Widget: Majority Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-maximum-entropy-classifier">Widget: Maximum Entropy Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-maximum-entropy-fast-classifier">Widget: Maximum Entropy Fast Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-knn-classifier">Widget: Knn Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-knn-fast-classifier">Widget: Knn Fast Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-accuracy-claculation">Widget: Accuracy Claculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-cross-validation">Widget: Cross Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-cross-validation-predefined-splits">Widget: Cross Validation (Predefined Splits)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-multiple-splits-validation">Widget: Multiple Splits Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-predict-classification">Widget: Predict Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-prediction-info">Widget: Prediction Info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-train-classifier-hub">Widget: Train Classifier Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-view-classifications">Widget: View Classifications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id39">Category Nltk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#id40">Widget: Naive Bayes Classifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id41">Category Scikit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-decision-tree-classifier">Widget: Decision Tree Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-gaussian-naive-bayes-classifier">Widget: Gaussian Naive Bayes Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-logistic-regression-classifier">Widget: Logistic regression Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-multinomial-naive-bayes-classifier">Widget: Multinomial Naive Bayes Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-classifier">Widget: SVM Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-svm-linear-classifier">Widget: SVM Linear Classifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-k-nearest-neighbours-classifier">Widget: k-Nearest Neighbours Classifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-apply-classifier-hub">Widget: Apply Classifier Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#id42">Widget: Train Classifier Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-extract-classifier-name">Widget: Extract Classifier Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-extract-actual-and-predicted-values">Widget: Extract Actual and Predicted Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-lexicology">Category Lexicology</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-controlled-vocabularies">Category Controlled Vocabularies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-mesh-vocabulary-builder">Widget: MeSH vocabulary builder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tf_user_doc.html#category-helpers">Category Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#category-tagging">Category Tagging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-universal-multiple-tagger-hub">Widget: Universal Multiple Tagger Hub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tf_user_doc.html#widget-condition-tagger">Widget: Condition Tagger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-advanced-object-viewer">Widget: Advanced Object Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-random-cross-validation-sets">Widget: Random Cross Validation Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-random-sequential-validation-sets">Widget: Random Sequential Validation Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-advanced-object-to-string-converter">Widget: Advanced Object to String Converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-c-net-snippet">Widget: C#.NET Snippet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-display-table">Widget: Display Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-get-multi-set-indexes">Widget: Get Multi Set Indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-flatten-string-hierarchy">Widget: Flatten String Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-generate-integer-range">Widget: Generate Integer Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-python-snippet">Widget: Python Snippet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tf_user_doc.html#widget-split-object">Widget: Split Object</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tf_user_doc.html" class="btn btn-neutral float-right" title="Category Data In/Out" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, xflows Team.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
