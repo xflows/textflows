@@ -1,9 +1,3 @@
-import mock, sys
-
-MOCK_MODULES = ['numpy']
-for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = mock.Mock()
-
 # -*- coding: utf-8 -*-
 #
 # cfdm_temp documentation build configuration file, created by
