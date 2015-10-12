@@ -32,3 +32,4 @@ fabfile.py
 celerybeat-schedule
 .coverage
 htmlcov
+workflows/nltoolkit/package_data/bing_api_key.json

@@ -1,4 +1,6 @@
+import urllib
 import requests
+from requests.auth import HTTPBasicAuth
 from workflows.textflows import *
 import os.path
 import time
@@ -71,29 +73,65 @@ def crawl_url_links(input_dict):
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
 
-def search_with_faroo(input_dict):
-    faroo_search="http://www.faroo.com/api?q={query}&start=1&length={length}&l=en&src=web&f=json&key={key}"
-    file_name="faroo.json"
+# def search_with_faroo(input_dict):
+#     faroo_search="http://www.faroo.com/api?q={query}&start=1&length={length}&l=en&src=web&f=json&key={key}"
+#     file_name="faroo.json"
+#
+#
+#     length=input_dict['length']
+#     keyword=input_dict['keyword']
+#
+#     urls=None
+#     if os.path.isfile(file_name):
+#         with open(file_name) as data_file:
+#             api=json.load(data_file)
+#             response=requests.get('GET',faroo_search.format(key=api, keyword=keyword, length=length))
+#
+#             if response.status_code==200:
+#                 print "jej"
+#             else:
+#                 raise StandardError(response.content())
+#
+#
+#
+#     else: #needs to be scraped
+#         raise StandardError("No Faroo API file specified")
+#
+#     return {'urls': urls}
 
+def search_with_bing(input_dict):
+    file_name="workflows/nltoolkit/package_data/bing_api_key.json"
 
-    length=input_dict['length']
-    keyword=input_dict['keyword']
+    limit=int(input_dict.get('limit','50'))
+    query=input_dict['query']
 
-    urls=None
+    if not query:
+        raise StandardError("Please specify some search keywords.")
+
+    urls=[]
     if os.path.isfile(file_name):
         with open(file_name) as data_file:
             api=json.load(data_file)
-            response=requests.get('GET',faroo_search.format(key=api, keyword=keyword, length=length))
+            query = '%27' + urllib.quote(query) + '%27'
 
-            if response.status_code==200:
-                print "jej"
-            else:
-                raise StandardError(response.content())
+            base_url = 'https://api.datamarket.azure.com/Bing/Search/Web'
+            url = base_url + '?Query=' + query + '&$top=' + str(limit) + '&$format=json'
 
+            # create credential for authentication
+            user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36"
 
+            auth = HTTPBasicAuth(api, api)
+            headers = {'User-Agent': user_agent}
 
-    else: #needs to be scraped
-        raise StandardError("No Faroo API file specified")
+            response_data = requests.get(url, headers=headers, auth = auth)
+            result_list = response_data.json()['d']['results']
+
+            for result in result_list:
+                #{u'Description': u'Reading the newest QubeGB reviews is a thing that could possibly be amazed for. This UK based communication firm gives a great choice of services to their customers.', u'Title': u'Kemi Anita Dasilva Ibru', u'Url': u'http://sfasf.com/', u'__metadata': {u'type': u'WebResult', u'uri': u"https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='sfasf'&$skip=0&$top=1"}, u'DisplayUrl': u'sfasf.com', u'ID': u'b5811fb0-d21d-4868-a4ee-be32e3eae759'}
+                urls.append(result['Url'])
+    else:
+        raise StandardError("Please create specify your Bing Api key in workflows/nltoolkit/package_data/bing_api_key.json")
+
 
     return {'urls': urls}
 
