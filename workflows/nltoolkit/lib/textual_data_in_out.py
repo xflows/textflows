@@ -1,6 +1,7 @@
 import urllib
 import requests
 from requests.auth import HTTPBasicAuth
+from requests.exceptions import ConnectionError
 from workflows.textflows import *
 import os.path
 import time
@@ -51,8 +52,11 @@ def crawl_url_links(input_dict):
     docs=[]
     titles=[]
     for url in urls:
-
-        r = requests.get(url)
+        print url
+        try:
+            r = requests.get(url)
+        except ConnectionError:
+            continue
         if r.status_code==200:
             html=r.text
             from boilerpipe.extract import Extractor
@@ -73,31 +77,36 @@ def crawl_url_links(input_dict):
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
 
-# def search_with_faroo(input_dict):
-#     faroo_search="http://www.faroo.com/api?q={query}&start=1&length={length}&l=en&src=web&f=json&key={key}"
-#     file_name="faroo.json"
-#
-#
-#     length=input_dict['length']
-#     keyword=input_dict['keyword']
-#
-#     urls=None
-#     if os.path.isfile(file_name):
-#         with open(file_name) as data_file:
-#             api=json.load(data_file)
-#             response=requests.get('GET',faroo_search.format(key=api, keyword=keyword, length=length))
-#
-#             if response.status_code==200:
-#                 print "jej"
-#             else:
-#                 raise StandardError(response.content())
-#
-#
-#
-#     else: #needs to be scraped
-#         raise StandardError("No Faroo API file specified")
-#
-#     return {'urls': urls}
+
+def search_with_faroo(input_dict):
+    faroo_search="http://www.faroo.com/api?q={query}&start=1&length={length}&l=en&src=web&f=json&key={key}"
+    file_name="workflows/nltoolkit/package_data/faroo_api_key.json"
+
+    limit=int(input_dict.get('limit','50'))
+    query=input_dict['query']
+
+    if not query:
+        raise StandardError("Please specify some search keywords.")
+
+    urls=[]
+    if os.path.isfile(file_name):
+        with open(file_name) as data_file:
+            api=json.load(data_file)
+            query = '%27' + urllib.quote(query) + '%27'
+
+            response=requests.get(faroo_search.format(key=api, query=query, length=limit))
+
+            if response.status_code==200:
+                results=json.loads(response.text)['results']
+                for result in results:
+                    urls.append(result['url'])
+            else:
+                raise StandardError(response.content())
+
+    else:
+        raise StandardError("Please create specify your Bing Api key in workflows/nltoolkit/package_data/faroo_api_key.json")
+
+    return {'urls': urls}
 
 def search_with_bing(input_dict):
     file_name="workflows/nltoolkit/package_data/bing_api_key.json"
