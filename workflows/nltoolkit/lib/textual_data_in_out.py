@@ -25,7 +25,7 @@ def load_adc(input_dict):
     tab_separated_title = input_dict['tab_separated_title'] == "true"
     leading_labels = input_dict['leading_labels'] == "true"
 
-    docs,titles, source, source_date=_process_input(input_text,leading_labels)
+    docs, source, source_date,titles=_process_input(input_text,leading_labels)
 
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     documents, labels = _process_adc(docs, tab_separated_title, leading_labels, titles)
