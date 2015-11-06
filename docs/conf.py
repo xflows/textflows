@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'TextFlows documentation'
-copyright = u'2015, xflows Team'
+copyright = u'2015, xFlows Team'
 author = u''
 
 # The version info for the project you're documenting, acts as replacement for

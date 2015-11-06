@@ -24,7 +24,10 @@ mothra-env/
 build/
 confs/
 fabfile.py
+
+#documentation
 docs/_build/
+docs/tf_user_doc.rst
 
 # SQLite
 /mothra/mothra.db
