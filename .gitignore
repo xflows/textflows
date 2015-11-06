@@ -24,6 +24,7 @@ mothra-env/
 build/
 confs/
 fabfile.py
+docs/_build/
 
 # SQLite
 /mothra/mothra.db
