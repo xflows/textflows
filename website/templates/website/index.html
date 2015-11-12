@@ -4,84 +4,225 @@
 
 {% block "container" %}
 
-  <header>
-  	<div class="container">
-   <div class="row">
-      <div class="col-lg-12">
-         <h1>TextFlows</h1>
-         <h3>Text mining workflows on the cloud.</h3>
-      </div>
-   </div>
-   <div class="row cf-buttons">
-      <div class="col-lg-12">
-         <button type="button" href="{% url 'editor' %}?tutorial=1" class="{% if not user.is_authenticated %}must_login{% else %}logged_in{% endif %} btn btn-primary btn-success btn-xlg">Try the tutorial</button>
-         <button type="button" href="{% url 'editor' %}" class="{% if not user.is_authenticated %}must_login{% else %}logged_in{% endif %} btn btn-primary btn-lg">Start working</button>
-         <button type="button" href="{% url 'existing workflows' %}" class="logged_in btn btn-primary btn-lg">Explore existing workflows</button>
-      </div>
-   </div>  
-   </div> 
-  </header>
+    <header class="fill">
+        <section id="sec-title">
 
-  </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>TextFlows</h1>
+
+                        <h3>Text mining workflows on the cloud.</h3>
+                    </div>
+                </div>
+                <div class="row cf-buttons">
+                    <div class="col-lg-12">
+                        <button type="button" href="{% url 'editor' %}?tutorial=1"
+                                class="{% if not user.is_authenticated %}must_login{% else %}logged_in{% endif %} btn btn-primary btn-success btn-xlg">
+                            Try the tutorial
+                        </button>
+                        <button type="button" href="{% url 'editor' %}"
+                                class="{% if not user.is_authenticated %}must_login{% else %}logged_in{% endif %} btn btn-primary btn-lg">
+                            Start working
+                        </button>
+                        <button type="button" href="{% url 'existing workflows' %}"
+                                class="logged_in btn btn-primary btn-lg">Explore existing workflows
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sec-about">
+            <div class="container">
+                <div class="col-lg-12">
+                    <h3 class="text-center"><b>TextFlows</b> is an open-source online platform for <b>composition</b>,
+                        <b>execution</b>,
+                        and
+                        <b>sharing</b>
+                        of interactive <b>text mining</b> and
+                        <b>natural language processing</b> workflows.
+
+
+                    </h3>
+                </div>
+            </div>
+        </section>
+
+    </header>
 
 
 
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-12">
-            <h1>What is TextFlows?</h1>
-             <p>TextFlows is a special fork of the <a href="http://clowdflows.org">ClowdFlows project</a> focused on the workflows and widgets of the <a href="http://conceptcreationtechnology.eu/">EU project Text</a>.</p>
-          </div>
-      </div>
 
-      <div class="row">
-        <div class="col-lg-12 columns">
-          <img src="{{STATIC_URL}}website-images/workflows.png" alt="a screenshot of three workflows">
+
+
+    <section id="sec-workflow-example">
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>
+                        TextFlows offers composition of executable graphical representations (workflows) of complex
+                        procedures by combining processing components from:
+
+                    </h3>
+                </div>
+            </div>
+            <div class="row spacer">
+                <div class="col-lg-6">
+                    <ul class="custom-bullet">
+                        <li>text mining</li>
+                        <li>natural language processing (NLP)</li>
+                        <li>machine learning</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="custom-bullet">
+                        <li>information retrieval (IR)</li>
+                        <li>information extraction (IE)</li>
+                        <li>knowledge management</li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
-      </div>
+    </section>
 
-      <hr>
 
-      <div class="row">
-        
-        <div class="col-sm-4 col-md-4 col-lg-4">
-          <h2 class="subheader">Work anywhere</h2>
-           <p>The non local nature of the application allows you to work anywhere at anytime! No installation required!</p>
-           <p>It's a web application, and your work is saved on the server.</p>
-       </div>
 
-        <div class="col-sm-4 col-md-4 col-lg-4">
-          <h2 class="subheader">Absolutely free</h2>
-           <p>You can use the platform for free! Just register and you're good to go!</p>
-       </div>
 
-        <div class="col-sm-4 col-md-4 col-lg-4">
+    <section id="sec-platform-features" class="dark-section">
+        <div class="container">
 
-          <h2 class="subheader">Powerful workflow controls</h2>
-          <p>Organize your workflows with powerful tools that allow packing workflows into workflow elements and even running them in <strong>for loops</strong>.</p>
+            <div class="row ">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <h3 class="">Visual programming</h3>
+
+                    <p>The graphical user interface used for constructing workflows follows a visual programming paradigm
+                        which simplifies the representation of complex procedures into a spatial arrangement of building
+                        blocks.
+                    </p>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+
+                    <h3 class="">Cloud based architecture</h3>
+
+                    <p>The cloud based nature of the platform offers distributed text processing on a cluster of machines,
+                        as well as the ability for you to work from anywhere at anytime. No installation required!
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="row spacer">
+                {% comment %}                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <h3 class="">Web services in workflows</h3>
+
+                    <p>Simply enter the WSDL URL of a webservice and use them as workflow elements.
+                        Connect them with other web services or provided workflow elements. </p>
+
+                </div>{% endcomment %}
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <h3 class="">Open source algorithms</h3>
+                    <p>Implementations of numerous open source algorithms and NLP libraries allow easy reproduction of
+                        text mining and NLP experiments.</p>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <h3 class="">Contribute and share your work</h3>
+
+                    <p>TextFlows offers a framework for sharing data and workflows, thus, making them available to a
+                        broad audience.
+                    </p>
+                </div>
+            </div>
         </div>
 
-      </div>
+    </section>
 
-      <div class="row">
-        <div class="col-sm-4 col-md-4 col-lg-4">
-          <h2 class="subheader">Web services in workflows</h2>
-           <p>Use WSDL webservices as workflow components.</p>
-           <p>Simply enter the WSDL URL of a webservice and use them as workflow elements. Connect them with other web services or provided workflow elements. </p>
+    <section id="sec-workflow-example">
+        <div class="container">
 
+            <h3 class="col-lg-12">Document preprocessing workflow example:</h3>
+
+            <div class="col-lg-12 text-center spacer">
+                <img id="front-page-workflow" src="{{ STATIC_URL }}website-images/exampleWorkflow.png"
+                     alt="a screenshot of a simple preprocessing workflow">
+            </div>
         </div>
-        <div class="col-sm-4 col-md-4 col-lg-4">
-          <h2 class="subheader">Data mining algorithms</h2>
-           <p>Unleash the power of data mining by using Weka's algorithms that have been exposed as WSDL web services. Construct trees, build models and experiment!</p>
-       </div>
 
-        <div class="col-sm-4 col-md-4 col-lg-4">
+    </section>
 
-          <h2 class="subheader">Contribute and share your work</h2>
-          <p>Have you constructed an interesting workflow? Share it with other people, so that they may use it to create or improve their workflows!</p>
+
+
+    <section id="sec-try-for-free" class="dark-section">
+        <div class="container">
+
+            <div class="row ">
+                <div class="col-sm-4 col-md-4 col-lg-12 text-center">
+                    <h3 class="">Try TextFlows for free!</h3>
+
+                    <p class="text-muted"> Just register and you're good to go!
+                    </p>
+                    <br/>
+
+                    <button type="button" href="{% url 'editor' %}?tutorial=1"
+                            class="{% if not user.is_authenticated %}must_login{% else %}logged_in{% endif %} btn btn-primary btn-xlg">
+                        Try the tutorial
+                    </button>
+                </div>
+
+
+            </div>
         </div>
-      </div>
-      <hr>
-    </div>
+
+
+    </section>
+    {% comment %}
+    <section id="sec-platform-features">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">Open source algorithms. <span class="text-muted">It'll blow your mind.</span>
+                    </h2>
+
+                    <p class="lead">Implementations of numerous open source algorithms and NLP libraries allow easy
+                        reproduction of
+                        text mining and NLP experiments.</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
+                         alt="Generic placeholder image">
+                </div>
+            </div>
+
+            <hr class="spacer">
+
+
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
+                         alt="Generic placeholder image">
+                </div>
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">Contribute and share your work. <span class="text-muted">ja valda.</span>
+                    </h2>
+
+                    <p class="lead">Have you constructed an interesting workflow? Share it with other people, so that
+                        they may use it
+                        to create or improve their workflows!</p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>{% endcomment %}
+
+
 
 {% endblock %}
