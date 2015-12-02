@@ -1130,7 +1130,7 @@ class Input(models.Model):
     order = models.PositiveIntegerField(default=1)
 
     class Meta:
-        ordering = ('order',)
+        ordering = ('order','pk')
 
     def import_from_json(self,json_data,input_conversion,output_conversion):
         self.name = json_data['name']
@@ -1296,7 +1296,7 @@ class Output(models.Model):
         return d
 
     class Meta:
-        ordering = ('order',)
+        ordering = ('order','pk')
 
     def __unicode__(self):
         return unicode(self.name)

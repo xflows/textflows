@@ -1,7 +1,9 @@
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin");
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Ubuntu', 'Helvetica Neue', Helvetica, Arial;
+
+  /*font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;*/
   font-weight: 300;
   font-style: normal;
   color: #222222;
@@ -25,8 +27,11 @@ body {
 
 header {
 	padding-top:50px;
-	padding-bottom:80px;
-	background-color: #008c0c;
+	padding-bottom:10px;
+	background-image: url('../../website-images/bOJgC1K.jpg');
+	background-size: cover;
+	/*background-color: #008c0c;
+*/
 	text-align:center;
 }
 
@@ -162,4 +167,58 @@ header h1 {
     width:100%;
     height:500px;
     font-family:monospace;
+}
+
+.spacer {
+    margin-top: 60px; /* define margin as you see fit */
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+
+.btn-primary{
+	color:#fff;
+	background-color: #084005;
+	border-color: #0a6107;
+}
+
+.btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary{
+	color:#fff;
+	background-color:#47a447;
+	border-color:#084905;
+}
+
+
+.btn-success{
+	color:#fff;
+	background-color: #053004;
+border-color: #0a6107;
+}
+
+.btn-success:hover,.btn-success:focus,.btn-success:active,.btn-success.active,.open .dropdown-toggle.btn-success{
+	color:#fff;
+	background-color:#47a447;
+	border-color:#084905
+}
+
+section {
+    margin: 150px 0;
+}
+
+.dark-section{
+	padding: 80px;
+	color: #c3c3c3;
+/*	background-color: #c36a13;*/
+	background-color: #000;
+border-color: #080808;
+}
+.dark-section h3,.dark-section h2{
+	color: white;
+}
+.fill {
+    min-height: 100%;
+    height: 100%;
 }

@@ -47,13 +47,13 @@ def lbd_only_terms_from_both_domains(input_dict):
 
 
 def lbd_frequency_based_heuristics_selection(input_dict):
-    return {'heuristics': [u'freq_doc', u'freq_ratio', u'freq_term']}
+    return {'heuristics': [u'freq_ratio']}
 def lbd_tfidf_based_heuristics_selection(input_dict):
-    return {'heuristics': [u'tfidf_avg', u'tfidf_sum']}
+    return {'heuristics': [u'tfidf_domn_sum']}
 def lbd_similarity_based_heuristics_selection(input_dict):
     return {}
 def lbd_outlier_based_heuristics_selection(input_dict):
-    return {}
+    return {'heuristics': [u'out_freq_rel_cs', u'out_freq_rel_rf', u'out_freq_rel_svm', u'out_freq_sum']}
 
 def lbd_heuristic_selection_post(postdata, input_dict, output_dict):
     widget_id = postdata.get('widget_id')[0]

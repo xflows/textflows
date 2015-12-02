@@ -1,9 +1,0 @@
-{
-  "model": "workflows.category", 
-  "fields": {
-    "name": "Scikit_classifiers", 
-    "parent": null, 
-    "order": 1, 
-    "uid": "1e366c76-9a29-4b3b-bcca-4089d89bc8ba"
-  }
-}

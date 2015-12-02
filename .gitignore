@@ -22,6 +22,12 @@ atlassian-ide-plugin.xml
 /mothra/backup
 mothra-env/
 build/
+confs/
+fabfile.py
+
+#documentation
+docs/_build/
+docs/tf_user_doc.rst
 
 # SQLite
 /mothra/mothra.db
@@ -30,3 +36,4 @@ build/
 celerybeat-schedule
 .coverage
 htmlcov
+workflows/nltoolkit/package_data/*_api_key.json

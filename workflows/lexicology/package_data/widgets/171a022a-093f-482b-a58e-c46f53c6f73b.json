@@ -5,7 +5,7 @@
       "category": "7b62f695-5ba6-4012-af8b-abe99b8771be", 
       "treeview_image": "", 
       "uid": "171a022a-093f-482b-a58e-c46f53c6f73b", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "lexicology", 
       "interaction_view": "lexicology_mesh_filter", 
       "has_progress_bar": false, 
@@ -19,9 +19,26 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": true, 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "order": 1, 
       "name": "MeSH vocabulary builder"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "171a022a-093f-482b-a58e-c46f53c6f73b", 
+      "name": "N-grams", 
+      "short_name": "ngr", 
+      "default": "", 
+      "description": "Construct n-grams subsets of words from a MeSH term", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "ngrams", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "f9376b46-7df0-4dca-9339-569589eb89e4"
     }
   }, 
   {

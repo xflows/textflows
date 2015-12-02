@@ -76,3 +76,31 @@
 .invisible {
     display: none;
 }
+
+#front-page-workflow {
+    width: 90%;
+    height: auto;
+}
+
+
+.custom-bullet {
+    font-size: 22px;
+    margin-left: 50px ;
+
+}
+
+.custom-bullet li {
+    display: block;
+}
+
+.custom-bullet li:before
+{
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    font-size: 18px;
+    float: left;
+    margin-top: 4px;
+    margin-left: -22px;
+    color: #CCCCCC;
+}

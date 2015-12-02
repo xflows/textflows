@@ -26,7 +26,7 @@ def lexicology_mesh_filter_finished(postdata, input_dict, output_dict):
     from os.path import normpath, join, dirname
 
     ngrams = input_dict.get('ngrams')
-    print ngrams
+
     selected_categories=postdata.get('selected[]')
     terms_per_category=json.load(open(normpath(join(dirname(__file__),'data/mesh_terms_per_category.json'))))
 
