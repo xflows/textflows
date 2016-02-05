@@ -1,4 +1,4 @@
-# Local installation of the Mothra project #
+# Local installation of the TextFlows platform #
 ## Prerequisites ##
 
 - python >= 2.5
@@ -13,13 +13,13 @@ If you're not using virtualenv or virtualenvwrapper you may skip this step.
 
 #### For virtualenvwrapper ####
 ```bash
-mkvirtualenv --no-site-packages mothra-env
+mkvirtualenv --no-site-packages textflows-env
 ```
 
 #### For virtualenv ####
 ```bash
-virtualenv --no-site-packages mothra-env
-cd mothra-env
+virtualenv --no-site-packages textflows-env
+cd textflows-env
 source bin/activate
 ```
 
@@ -27,12 +27,12 @@ source bin/activate
 Obtain the url to your git repository.
 
 ```bash
-git clone git@source.ijs.si:kt/mothra.git
+git clone git@github.com:xflows/textflows.git
 ```
 
 ### Install requirements ###
 ```bash
-cd mothra
+cd textflows
 pip install -r requirements.txt
 ```
 
