@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>TextFlows by xflows</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">TextFlows</h1>
+      <h2 class="project-tagline">TextFlows is an open-source online platform for composition, execution, and sharing of interactive text mining and natural language processing workflows. </h2>
+      <a href="https://github.com/xflows/textflows" class="btn">View on GitHub</a>
+      <a href="https://github.com/xflows/textflows/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/xflows/textflows/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="local-installation-of-the-textflows-platform" class="anchor" href="#local-installation-of-the-textflows-platform" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Local installation of the TextFlows platform</h1>
+
+<h2>
+<a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisites</h2>
+
+<ul>
+<li>python &gt;= 2.5</li>
+<li>pip</li>
+<li>virtualenv/wrapper (optional)</li>
+<li>python headers if you're compiling Pillow from source: you need the <code>python-dev</code> package on debian systems</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a id="creating-the-environment" class="anchor" href="#creating-the-environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating the environment</h3>
+
+<p>Create a virtual python environment for the project.
+If you're not using virtualenv or virtualenvwrapper you may skip this step.</p>
+
+<h4>
+<a id="for-virtualenvwrapper" class="anchor" href="#for-virtualenvwrapper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For virtualenvwrapper</h4>
+
+<div class="highlight highlight-source-shell"><pre>mkvirtualenv --no-site-packages textflows-env</pre></div>
+
+<h4>
+<a id="for-virtualenv" class="anchor" href="#for-virtualenv" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>For virtualenv</h4>
+
+<div class="highlight highlight-source-shell"><pre>virtualenv --no-site-packages textflows-env
+<span class="pl-c1">cd</span> textflows-env
+<span class="pl-c1">source</span> bin/activate</pre></div>
+
+<h3>
+<a id="clone-the-code" class="anchor" href="#clone-the-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Clone the code</h3>
+
+<p>Obtain the url to your git repository.</p>
+
+<div class="highlight highlight-source-shell"><pre>git clone git@github.com:xflows/textflows.git</pre></div>
+
+<h3>
+<a id="install-requirements" class="anchor" href="#install-requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install requirements</h3>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c1">cd</span> textflows
+pip install -r requirements.txt</pre></div>
+
+<h3>
+<a id="configure-project" class="anchor" href="#configure-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configure project</h3>
+
+<div class="highlight highlight-source-shell"><pre>cp mothra/__local_settings.py mothra/local_settings.py
+vi mothra/local_settings.py</pre></div>
+
+<h3>
+<a id="enable-workflow-packages" class="anchor" href="#enable-workflow-packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Enable workflow packages</h3>
+
+<p>Uncomment the packages that you need in <code>mothra/local_settings.py</code> in the <code>INSTALLED_APPS_WORKFLOWS_SUB</code> tuple.</p>
+
+<h3>
+<a id="sync-database" class="anchor" href="#sync-database" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sync database</h3>
+
+<p>Say "no" to creating a super-user when prompted. You'll create the user after migrations.</p>
+
+<div class="highlight highlight-source-shell"><pre>python manage.py syncdb --noinput</pre></div>
+
+<h3>
+<a id="migrate-database" class="anchor" href="#migrate-database" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Migrate database</h3>
+
+<div class="highlight highlight-source-shell"><pre>python manage.py migrate</pre></div>
+
+<h3>
+<a id="create-super-user" class="anchor" href="#create-super-user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create super-user</h3>
+
+<div class="highlight highlight-source-shell"><pre>python manage.py createsuperuser</pre></div>
+
+<h3>
+<a id="import-packages" class="anchor" href="#import-packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Import packages</h3>
+
+<div class="highlight highlight-source-shell"><pre>python manage.py import_all</pre></div>
+
+<h2>
+<a id="running" class="anchor" href="#running" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running</h2>
+
+<div class="highlight highlight-source-shell"><pre>python manage.py runserver</pre></div>
+
+<h2>
+<a id="running-with-debugger" class="anchor" href="#running-with-debugger" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running with debugger</h2>
+
+<div class="highlight highlight-source-shell"><pre>python manage.py runserver_plus</pre></div>
+
+<p>Open browser to <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/xflows/textflows">TextFlows</a> is maintained by <a href="https://github.com/xflows">xflows</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
