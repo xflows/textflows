@@ -1,4 +1,5 @@
 from scipy.stats import rankdata
+
 from workflows.textflows import flatten
 
 __author__ = 'matic'
@@ -11,12 +12,13 @@ from frequency_heuristics import FrequencyBasedHeuristicCalculations
 from tfidf_heuristics import TfIdfBasedHeuristicCalculations
 from similarity_heuristics import SimilarityBasedHeuristicCalculations
 from outlier_heuristics import OutlierBasedHeuristicCalculations
-
+from banded_matrix_heuristics import BandedMatrixBasedHeuristicCalculations
 
 class HeuristicCalculations(FrequencyBasedHeuristicCalculations,
                             TfIdfBasedHeuristicCalculations,
                             SimilarityBasedHeuristicCalculations,
                             OutlierBasedHeuristicCalculations,
+                            BandedMatrixBasedHeuristicCalculations
                             ):
     __A_class = 1
     __C_class = 0

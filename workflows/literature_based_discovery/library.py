@@ -54,7 +54,8 @@ def lbd_similarity_based_heuristics_selection(input_dict):
     return {}
 def lbd_outlier_based_heuristics_selection(input_dict):
     return {'heuristics': [u'out_freq_rel_cs', u'out_freq_rel_rf', u'out_freq_rel_svm', u'out_freq_sum']}
-
+def lbd_banded_matrix_based_heuristics_selection(input_dict):
+    return {'heuristics': [u'h1']}
 def lbd_heuristic_selection_post(postdata, input_dict, output_dict):
     widget_id = postdata.get('widget_id')[0]
     selected_heuristics=postdata.get('selected[]',[])
