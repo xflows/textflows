@@ -10,13 +10,14 @@ import nltk.tag.brill
 from nltk.tag.brill      import BrillTagger
 from nltk.tag.brill_trainer import BrillTaggerTrainer
 import re
-from workflows.textflows import LatinoObject
+from workflows.textflows import LatinoObject, NltkCorpus
 from nltk.tag.tnt        import TnT
 from nltk.tag.hunpos     import HunposTagger
 from nltk.tag.stanford   import StanfordTagger
 #from nltk.tag.crf        import MalletCRF
 from django.conf import settings
 from workflows.tasks import executeFunction
+from nltk.corpus import brown, treebank, nps_chat
 
 
 def pos_tagger_hub(input_dict):
@@ -45,19 +46,60 @@ from workflows.textflows import DocumentCorpus, LatinoObject
 
 def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
-
     tagger_name=tagger['object'].__class__.__name__ if not isinstance(tagger,LatinoObject) else tagger.name
-    tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
+    if 'chained' in tagger:
+        if tagger['chained'] == 1:
+            tagger_name = 'TaggerChain'
+    elif 'pretrained' in tagger:
+        if tagger['pretrained'] == 'true':
+            tagger_name = 'MaxentPosTagger-pretrained'
+        else:
+            tagger_name = 'MaxentPosTagger'
+    else:
+        tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
 
     return {'pos_tagger_name': tagger_name}
-
 
 
 def corpus_reader(corpus):
     if type(corpus)==DocumentCorpus:
         raise NotImplementedError
     else:
-        return corpus.tagged_sents()
+        tagged_posts = getattr(corpus, "tagged_posts", None)
+        if callable(tagged_posts):
+            return corpus.tagged_posts()
+        else:
+            return corpus.tagged_sents()
+
+
+def pos_tagger_evaluate(input_dict):
+    if input_dict['corpus_name'] == "brown":
+        corpus = brown.tagged_sents(categories='news')
+    elif input_dict['corpus_name'] == "treebank":
+        corpus = treebank.tagged_sents()
+    elif input_dict['corpus_name'] == "nps_chat":
+        corpus = nps_chat.tagged_posts()
+    else:
+        corpus = input_dict['ptb_corpus']
+    print len(corpus)
+    print('corpus zloadan')
+    tagger_dict = input_dict['pos_tagger']
+    tagger=tagger_dict['object']
+    print('tagger zloadan')
+    if input_dict['corpus_name'] == "custom":
+        #tagged_sents = tagger.tag_sents([w for (t, w) in sent]for sent in corpus)
+        sents = [[w for (t, w) in sent]for sent in corpus]
+        print ('narjen seznam')
+        tagged_sents = tagger.tag_sents(sents)
+        actual = [t for sent in corpus for (t, w) in sent]
+    else:
+        tagged_sents = tagger.tag_sents([w for (w, t) in sent]for sent in corpus)
+        actual = [t for sent in corpus for (w, t) in sent]
+    print 'tagizacija koncana'
+    predicted = [t for sent in tagged_sents for (w, t) in sent]
+    print 'finished'
+    return {'actual_and_predicted': [actual, predicted]}
+
 
 def nltk_default_pos_tagger(input_dict):
     """
@@ -109,7 +151,7 @@ def nltk_affix_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
 
-    tagged_corpus=corpus_reader(input_dict['training_corpus'])
+    tagged_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     affix_length=int(input_dict['affix_length'])
     min_stem_length=int(input_dict['min_stem_length'])
@@ -152,15 +194,16 @@ def nltk_ngram_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
 
-    training_corpus=corpus_reader(input_dict['training_corpus'])
+    training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     n=int(input_dict['n']) #default 2
     cutoff=int(input_dict['cutoff']) #default 0
 
     return {'pos_tagger': {
+                'chained': cutoff,
                 'function':'tag_sents',
                 'object': NgramTagger(n, train=training_corpus, model=None,
-                 backoff=backoff_tagger, cutoff=cutoff)
+                 backoff=backoff_tagger, cutoff=0)
             }
     }
 
@@ -208,13 +251,13 @@ TODO: odloci se katerega se obdrzi od naslednjih dveh
     :returns pos_tagger: A python dictionary containing the POS tagger
         object and its arguments.
     """
-    #training_corpus=corpus_reader(input_dict['training_corpus']) #TODO: should it stay or should it go
+    training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     classifier=None #(input_dict['classifier'])
     cutoff_prob=int(input_dict['cutoff_prob']) if input_dict['cutoff_prob'] else None
 
     import nltk
-    tagger_object=ClassifierBasedPOSTagger(train=nltk.corpus.brown.tagged_sents()[:5], classifier=classifier,
+    tagger_object=ClassifierBasedPOSTagger(train=training_corpus, classifier=classifier,
                  backoff=backoff_tagger, cutoff_prob=cutoff_prob)
     return {'pos_tagger': {
                 'function':'tag_sents',
@@ -256,7 +299,7 @@ def nltk_brill_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger
         object and its arguments.
     """
-    training_corpus=corpus_reader(input_dict['training_corpus'])[:1000]
+    training_corpus=corpus_reader(input_dict['training_corpus'])
     initial_tagger=input_dict['initial_tagger']['object'] if input_dict['initial_tagger'] else DefaultTagger('-None-')
     max_rules=int(input_dict['max_rules']) #default 200
     min_score=int(input_dict['min_score']) #default 2
@@ -274,5 +317,397 @@ def nltk_brill_pos_tagger(input_dict):
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': brill_tagger
+            }
+    }
+
+
+'''
+def brown_POS_to_treebank_POS():
+    conversions = {
+        'OD':'JJ', 'JJT':'JJS', 'JJS':'JJ',
+        '*':'RB', 'RBT':'RBS', 'WQL':'WRB', 
+        'QL':'RB', 'RN':'RB', 'CS':'IN',
+        'DTI':'DT', 'DTS':'DT', 'ABL':'PDT',
+        'ABN':'PDT', 'ABX':'DT (CC)', 'DTX':'DT (CC)',
+        'AT':'DT', 'AP':'JJ', 'PP$':'PRP$',
+        'PP$$':'PRP', 'NP':'NNP', 'NPS':'NNPS',
+        'NR':'NN, NNP, RB', 'PN':'NN', 'PPSS':'PRP',
+        'PPS':'PRP', 'PPO':'PRP', 'PPL':'PRP',
+        'PPLS':'PRP', 'WPS':'WP', 'WPO':'WP',
+        'VB':'VBP', 'DO':'VBP', 'DO':'VB',
+        'DOD':'VBD', 'DOZ':'VBZ', 'HV':'VBP',
+        'HV':'VB', 'HVD':'VBD', 'HVG':'VBG',
+        'HVN':'VBN', 'HVZ':'VBZ', 'BE':'VB',
+        'BED':'VBD', 'BEDZ':'VBD', 'BEG':'VBG',
+        'BEN':'VBN', 'BEZ':'VBZ', 'BEM':'VBP',
+        'BER':'VBP', 'IN':'TO', '$':'POS',
+        'UH':'UH', '.':'.', '.':':',
+        ':':':', ',':',', '--':'-',
+        'not':'$', '(FW-)':'FW', 'not':'SYM',
+        '':'LS',
+    }'''
+
+import time, os
+import re
+from collections import defaultdict
+
+from nltk import TaggerI, FreqDist, untag, config_megam
+from nltk.classify.maxent import MaxentClassifier
+                  
+
+class MaxentPosTagger(TaggerI):
+
+    """
+    MaxentPosTagger is a part-of-speech tagger based on Maximum Entropy models.
+    """
+    def train(self, train_sents, algorithm='megam', rare_word_cutoff=5,
+              rare_feat_cutoff=5, uppercase_letters='[A-Z]', trace=3,
+              **cutoffs):
+        self.uppercase_letters = uppercase_letters
+        self.word_freqdist = self.gen_word_freqs(train_sents)
+        self.featuresets = self.gen_featsets(train_sents,
+                rare_word_cutoff)
+        self.features_freqdist = self.gen_feat_freqs(self.featuresets)
+        self.cutoff_rare_feats(self.featuresets, rare_feat_cutoff)
+
+        t1 = time.time()
+        self.classifier = MaxentClassifier.train(self.featuresets, algorithm,
+                                                 trace, **cutoffs)
+        t2 = time.time()
+        if trace > 0:
+            print "time to train the classifier: {0}".format(round(t2-t1, 3))
+
+    def gen_feat_freqs(self, featuresets):
+        features_freqdist = defaultdict(int)
+        for (feat_dict, tag) in featuresets:
+            for (feature, value) in feat_dict.items():
+                features_freqdist[ ((feature, value), tag) ] += 1
+        return features_freqdist
+
+    def gen_word_freqs(self, train_sents):
+        word_freqdist = FreqDist()
+        for tagged_sent in train_sents:
+            for (word, _tag) in tagged_sent:
+                word_freqdist[word] += 1
+        return word_freqdist
+
+    def gen_featsets(self, train_sents, rare_word_cutoff):
+        featuresets = []
+        for tagged_sent in train_sents:
+            history = []
+            untagged_sent = untag(tagged_sent)
+            for (i, (_word, tag)) in enumerate(tagged_sent):
+                featuresets.append( (self.extract_feats(untagged_sent, i,
+                    history, rare_word_cutoff), tag) )
+                history.append(tag)
+        return featuresets
+
+
+    def cutoff_rare_feats(self, featuresets, rare_feat_cutoff):
+        never_cutoff_features = set(['w','t'])
+
+        for (feat_dict, tag) in featuresets:
+            for (feature, value) in feat_dict.items():
+                feat_value_tag = ((feature, value), tag)
+                if self.features_freqdist[feat_value_tag] < rare_feat_cutoff:
+                    if feature not in never_cutoff_features:
+                        feat_dict.pop(feature)
+
+
+    def extract_feats(self, sentence, i, history, rare_word_cutoff=5):
+        features = {}
+        hyphen = re.compile("-")
+        number = re.compile("\d")
+        uppercase = re.compile(self.uppercase_letters)
+
+        #get features: w-1, w-2, t-1, t-2.
+        #takes care of the beginning of a sentence
+        if i == 0: #first word of sentence
+            features.update({"w-1": "<START>", "t-1": "<START>",
+                             "w-2": "<START>", "t-2 t-1": "<START> <START>"})
+        elif i == 1: #second word of sentence
+            features.update({"w-1": sentence[i-1], "t-1": history[i-1],
+                             "w-2": "<START>",
+                             "t-2 t-1": "<START> %s" % (history[i-1])})
+        else:
+            features.update({"w-1": sentence[i-1], "t-1": history[i-1],
+                "w-2": sentence[i-2],
+                "t-2 t-1": "%s %s" % (history[i-2], history[i-1])})
+
+        #get features: w+1, w+2. takes care of the end of a sentence.
+        for inc in [1, 2]:
+            try:
+                features["w+%i" % (inc)] = sentence[i+inc]
+            except IndexError:
+                features["w+%i" % (inc)] = "<END>"
+
+        if self.word_freqdist[sentence[i]] >= rare_word_cutoff:
+            #additional features for 'non-rare' words
+            features["w"] = sentence[i]
+
+        else: #additional features for 'rare' or 'unseen' words
+            features.update({"suffix(1)": sentence[i][-1:],
+                "suffix(2)": sentence[i][-2:], "suffix(3)": sentence[i][-3:],
+                "suffix(4)": sentence[i][-4:], "prefix(1)": sentence[i][:1],
+                "prefix(2)": sentence[i][:2], "prefix(3)": sentence[i][:3],
+                "prefix(4)": sentence[i][:4]})
+            if hyphen.search(sentence[i]) != None:
+                #set True, if regex is found at least once
+                features["contains-hyphen"] = True
+            if number.search(sentence[i]) != None:
+                features["contains-number"] = True
+            if uppercase.search(sentence[i]) != None:
+                features["contains-uppercase"] = True
+
+        return features
+
+
+    def tag(self, sentence, rare_word_cutoff=5):
+        history = []
+        for i in xrange(len(sentence)):
+            featureset = self.extract_feats(sentence, i, history,
+                                               rare_word_cutoff)
+            tag = self.classifier.classify(featureset)
+            history.append(tag)
+        return zip(sentence, history)
+
+    def tag_sents(self, sentences):
+        return [self.tag(sent) for sent in sentences]
+
+
+def nltk_maxent_pos_tagger(input_dict):
+
+    if input_dict['pretrained'] == 'true':
+        
+        import types
+
+        def tag_sents(self, sentences):
+            return [self.tag(sent) for sent in sentences]
+
+
+        maxent_tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
+
+    else:
+        #this megam executable will only work on 64bit linux server
+        PATH_TO_MEGAM_EXECUTABLE = os.path.expanduser("/home/matej/textflows-env/bin/MEGAM/megam-64.opt")
+        nltk.config_megam(PATH_TO_MEGAM_EXECUTABLE)
+
+        maxent_tagger = MaxentPosTagger()
+        
+        training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
+        if training_corpus:
+            maxent_tagger.train(training_corpus)
+        else:
+            raise AttributeError
+
+    return {'pos_tagger': {
+                'function':'tag_sents',
+                'object': maxent_tagger,
+                'pretrained': input_dict['pretrained']
+            }
+    }
+
+
+import random
+from collections import defaultdict
+
+
+class AveragedPerceptron(object):
+
+
+    def __init__(self):
+        # Each feature gets its own weight vector, so weights is a dict-of-dicts
+        self.weights = {}
+        self.classes = set()
+        # The accumulated values, for the averaging. These will be keyed by
+        # feature/clas tuples
+        self._totals = defaultdict(int)
+        # The last time the feature was changed, for the averaging. Also
+        # keyed by feature/clas tuples
+        # (tstamps is short for timestamps)
+        self._tstamps = defaultdict(int)
+        # Number of instances seen
+        self.i = 0
+
+
+    def predict(self, features):
+        scores = defaultdict(float)
+        for feat, value in features.items():
+            if feat not in self.weights or value == 0:
+                continue
+            weights = self.weights[feat]
+            for label, weight in weights.items():
+                scores[label] += value * weight
+        # Do a secondary alphabetic sort, for stability
+        return max(self.classes, key=lambda label: (scores[label], label))
+
+
+    def update(self, truth, guess, features):
+        
+        def upd_feat(c, f, w, v):
+            param = (f, c)
+            self._totals[param] += (self.i - self._tstamps[param]) * w
+            self._tstamps[param] = self.i
+            self.weights[f][c] = w + v
+
+        self.i += 1
+        if truth == guess:
+            return None
+        for f in features:
+            weights = self.weights.setdefault(f, {})
+            upd_feat(truth, f, weights.get(truth, 0.0), 1.0)
+            upd_feat(guess, f, weights.get(guess, 0.0), -1.0)
+
+
+    def average_weights(self):
+       
+        for feat, weights in self.weights.items():
+            new_feat_weights = {}
+            for clas, weight in weights.items():
+                param = (feat, clas)
+                total = self._totals[param]
+                total += (self.i - self._tstamps[param]) * weight
+                averaged = round(total / self.i, 3)
+                if averaged:
+                    new_feat_weights[clas] = averaged
+            self.weights[feat] = new_feat_weights
+
+
+
+    def load(self, path):
+        self.weights = load(path)
+
+
+class PerceptronTagger(TaggerI):
+
+    START = ['-START-', '-START2-']
+    END = ['-END-', '-END2-']
+    
+    def __init__(self, load=True):
+        self.model = AveragedPerceptron()
+        self.tagdict = {}
+        self.classes = set()
+
+
+    def tag(self, tokens):
+        prev, prev2 = self.START
+        output = []
+        
+        context = self.START + [self.normalize(w) if len(w) > 0 else self.normalize('.') for w in tokens] + self.END
+        for i, word in enumerate(tokens):
+            if len(word) < 1:
+                word = '.' 
+            tag = self.tagdict.get(word)
+            if not tag:
+                features = self._get_features(i, word, context, prev, prev2)
+                tag = self.model.predict(features)
+            output.append((word, tag))
+            prev2 = prev
+            prev = tag
+
+        return output
+
+
+    def tag_sents(self, sentences):
+        return [self.tag(sent) for sent in sentences]
+
+
+    def train(self, sentences, save_loc=None, nr_iter=5):
+       
+        self._make_tagdict(sentences)
+        self.model.classes = self.classes
+        for iter_ in range(nr_iter):
+            c = 0
+            n = 0
+            sentences = list(sentences)
+            for sentence  in sentences:
+                words = [word for word,tag in sentence]
+                tags  = [tag for word,tag in sentence]
+                
+                prev, prev2 = self.START
+                context = self.START + [self.normalize(w) if len(w) > 0 else self.normalize('.') for w in words] \
+                                                                    + self.END
+                for i, word in enumerate(words):
+                    if len(word) < 1:
+                        word = '.'
+                    guess = self.tagdict.get(word)
+                    if not guess:
+                        feats = self._get_features(i, word, context, prev, prev2)
+                        guess = self.model.predict(feats)
+                        self.model.update(tags[i], guess, feats)
+                    prev2 = prev
+                    prev = guess
+                    c += guess == tags[i]
+                    n += 1
+            print sentences[:2]
+            random.shuffle(sentences)
+        self.model.average_weights()
+        
+        
+    def normalize(self, word):
+        if '-' in word and word[0] != '-':
+            return '!HYPHEN'
+        elif word.isdigit() and len(word) == 4:
+            return '!YEAR'
+        elif word[0].isdigit():
+            return '!DIGITS'
+        else:
+            return word.lower()
+
+
+    def _get_features(self, i, word, context, prev, prev2):
+        
+        def add(name, *args):
+            features[' '.join((name,) + tuple(args))] += 1
+
+        i += len(self.START)
+        features = defaultdict(int)
+        # It's useful to have a constant feature, which acts sort of like a prior
+        add('bias')
+        add('i suffix', word[-3:])
+        add('i pref1', word[0])
+        add('i-1 tag', prev)
+        add('i-2 tag', prev2)
+        add('i tag+i-2 tag', prev, prev2)
+        add('i word', context[i])
+        add('i-1 tag+i word', prev, context[i])
+        add('i-1 word', context[i-1])
+        add('i-1 suffix', context[i-1][-3:])
+        add('i-2 word', context[i-2])
+        add('i+1 word', context[i+1])
+        add('i+1 suffix', context[i+1][-3:])
+        add('i+2 word', context[i+2])
+        return features
+
+
+    def _make_tagdict(self, sentences):
+        counts = defaultdict(lambda: defaultdict(int))
+        for sentence in sentences:
+            for word, tag in sentence:
+                counts[word][tag] += 1
+                self.classes.add(tag)
+        freq_thresh = 20
+        ambiguity_thresh = 0.97
+        for word, tag_freqs in counts.items():
+            tag, mode = max(tag_freqs.items(), key=lambda item: item[1])
+            n = sum(tag_freqs.values())
+            # Don't add rare words to the tag dictionary
+            # Only add quite unambiguous words
+            if n >= freq_thresh and (mode / n) >= ambiguity_thresh:
+                self.tagdict[word] = tag
+
+
+    def _pc(n, d):
+        return (n / d) * 100
+
+
+def nltk_perceptron_pos_tagger(input_dict):
+    perceptron_tagger = PerceptronTagger(load=False)
+    training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
+    perceptron_tagger.train(training_corpus)
+
+    return {'pos_tagger': {
+                'function':'tag_sents',
+                'object': perceptron_tagger
             }
     }

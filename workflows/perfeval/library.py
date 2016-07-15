@@ -9,6 +9,7 @@ def benchmark(input_dict):
 def perfeval_classification_statistics(input_dict):
     from sklearn import metrics
     labels = input_dict['true_and_predicted_labels']
+    print input_dict.keys()
     pos_label = input_dict.get('pos_label', None)
 
     # Check if we have true and predicted labels for each fold
@@ -46,11 +47,12 @@ def perfeval_classification_statistics(input_dict):
     recall = metrics.recall_score(y_true, y_pred)
     f1 = metrics.f1_score(y_true, y_pred)
     confusion_matrix = metrics.confusion_matrix(y_true, y_pred)
-    auc = metrics.roc_auc_score(y_true, y_pred)
-
+    #auc = metrics.roc_auc_score(y_true, y_pred)
+    auc = 0.0
     # AUC is defined only for binary classes
     #if len(classes) == 2:
     #else:
     #    auc = 'undefined for multiple classes' #
+    print accuracy, precision, recall, f1, auc, confusion_matrix
     return {'accuracy': accuracy, 'precision': precision, 'recall': recall, 
             'f1': f1, 'auc': auc, 'confusion_matrix': confusion_matrix}

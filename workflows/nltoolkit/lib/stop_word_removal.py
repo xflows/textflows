@@ -64,6 +64,18 @@ def nltk_stop_word_tagger(input_dict):
                  'function':'tag',
                 }
     }
+
+
+class POSFilterTagger:
+    def __init__(self, pos_tags):
+        self.pos_tags = pos_tags
+        if type(pos_tags) in [str,unicode]:
+            self.pos_tags=self.pos_tags.split("\n")
+
+    def tag(self,token):
+        return "true" if (token.lower() if self.ignore_case else token) in self.stop_words else None
+
+
 # import nltk
 # # STOP_TYPES = ['DET', 'CNJ']
 # text = "I have a python module installed on my system."

@@ -81,7 +81,8 @@ class Document:
             return join_annotations_with.join(selected_subtexts)
 
     def get_first_label(self,label_feature_name="Labels"):
-        label_value=self.features.get(label_feature_name,None)
+        label_value=self.features.get(label_feature_name, None)
+        #label_value=self.features.get('Labels').lstrip('[').rstrip(']')
         #for klass in classes:
         #    if klass in self.features:
         #        return klass
@@ -89,7 +90,6 @@ class Document:
         if label_value==None:
             return ''
         try:
-            #print label_value
             true_value=json.loads(label_value)
             return true_value[0] if type(true_value)==list else label_value #if not a json list
         except ValueError, e:
@@ -132,7 +132,8 @@ class BowDataset:
         return cls(sparse_bow_matrix,labels)
 
     #def sparce_bow_matrix(self):
-    #    return self.sparse_bow_matrix()
+    #return self.sparse_bow_matrix()
+
     def dense_bow_matrix(self):
         return self.sparse_bow_matrix.toarray()
 
@@ -306,6 +307,7 @@ class BowModelConstructor:
             if binary:
                 uniq_res=list(set(res))
                 return [uniq_res.index(r) for r in res]
+            print res
             return res
         else:
             return None

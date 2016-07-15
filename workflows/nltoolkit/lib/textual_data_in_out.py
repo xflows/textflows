@@ -33,6 +33,38 @@ def load_adc(input_dict):
 
     return {"adc": DocumentCorpus(documents=documents, features=features)}
 
+
+def load_ptb_corpus(input_dict):
+    input_text = input_dict[u"input"]
+    leading_labels = False
+    docs, source, source_date,titles=_process_input(input_text,leading_labels)
+    tagged_sents = []
+    for doc in docs:
+        l = []
+        doc = doc.replace('\n', '')
+        sent = ""
+        depth = 0
+        for character in doc:
+            if character == '(':
+                depth = depth + 1
+            elif character == ')':
+                depth = depth - 1
+            sent += character
+            if depth == 0 and len(sent) > 0 and not sent.isspace():
+                l.append(sent)
+                sent = ""
+        for sent in l:
+            tagged_sent = []
+            match = re.findall(r'\(([^\(\)]*)\)',sent)
+            for m in match:
+                tagged_word = m.strip().split(" ")
+                if len(tagged_word) == 2:
+                    tagged_sent.append(tagged_word)
+            tagged_sents.append(tagged_sent)
+
+    return {"ptb_corpus": tagged_sents}
+
+
 def crawl_url_links(input_dict):
     """
     This widget takes either a list of url links or a string, where each url is in a separate line. For every inputted url,

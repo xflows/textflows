@@ -55,6 +55,6 @@ def document_to_text(path):
         return filename, unicode(re.sub("\r|\n", "", text).strip())
 
     else:
-        text = unicode(open(path, "r").read()).strip()
+        text = unicode(open(path, "r").read(), errors='replace').strip()
         return filename, text
 
