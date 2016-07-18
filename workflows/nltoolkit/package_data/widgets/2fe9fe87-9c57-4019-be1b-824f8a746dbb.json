@@ -1,0 +1,126 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
+      "treeview_image": "", 
+      "uid": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "This widgets can be used to evaluate NLTK POS taggers. Inputs are POS tagger and golden standard corpus", 
+      "static_image": "tag_pos_do_image.png", 
+      "action": "pos_tagger_evaluate", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "POS Tagger Evaluator"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "name": "PTB Document Corpus", 
+      "short_name": "ptb", 
+      "default": "", 
+      "description": "Corpus in penn treebank format", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "ptb_corpus", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "398a52d4-c96d-410c-826b-05916a6eae55"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "default": "", 
+      "description": "OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "pos_tagger", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "b236e3d2-909a-4c21-a728-64f9755cbf3e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "name": "Golden standard corpus", 
+      "short_name": "str", 
+      "default": "custom", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "corpus_name", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "c5ff3900-f0fe-4bab-b90a-254b5e5a01b0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "2fe9fe87-9c57-4019-be1b-824f8a746dbb", 
+      "name": "Actual and predicted labels", 
+      "short_name": "lst", 
+      "description": "List of actual and predicted labels (see help for details)", 
+      "variable": "actual_and_predicted", 
+      "order": 1, 
+      "uid": "5b9e0d41-415a-4685-9e84-50f162a7cb6f"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Treebank", 
+      "uid": "671ef7c6-01fe-4969-baf3-e6691229e304", 
+      "value": "treebank", 
+      "abstract_input": "c5ff3900-f0fe-4bab-b90a-254b5e5a01b0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "NPS chat", 
+      "uid": "76b3f999-bcde-465e-b850-cc75691421e8", 
+      "value": "nps_chat", 
+      "abstract_input": "c5ff3900-f0fe-4bab-b90a-254b5e5a01b0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Custom corpus", 
+      "uid": "ecce62c3-5ffe-41c0-8bf3-cf2718c8b5cc", 
+      "value": "custom", 
+      "abstract_input": "c5ff3900-f0fe-4bab-b90a-254b5e5a01b0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "Brown", 
+      "uid": "f5f35833-e245-4da9-81e8-e443377d098d", 
+      "value": "brown", 
+      "abstract_input": "c5ff3900-f0fe-4bab-b90a-254b5e5a01b0"
+    }
+  }
+]

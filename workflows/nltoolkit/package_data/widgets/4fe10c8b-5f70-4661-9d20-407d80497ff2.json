@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
+      "treeview_image": "", 
+      "uid": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Perceptron tagger from NLTK. It's the tagger NLTK 3.0 uses when 'nltk.pos_tag()'  function is called. ", 
+      "static_image": "tag_pos_image.png", 
+      "action": "nltk_perceptron_pos_tagger", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "NLTK perceptron tagger"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "default": "", 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "c2a9a12a-5d03-4cc7-9524-3ef2b737f34d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "4fe10c8b-5f70-4661-9d20-407d80497ff2", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the POS tagger ", 
+      "variable": "pos_tagger", 
+      "order": 1, 
+      "uid": "99f3d531-b733-46cd-a398-eccfe442b9ef"
+    }
+  }
+]

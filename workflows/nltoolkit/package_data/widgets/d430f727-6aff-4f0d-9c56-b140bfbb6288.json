@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
+      "treeview_image": "", 
+      "uid": "d430f727-6aff-4f0d-9c56-b140bfbb6288", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Maxent treebank tagger from NLTK. It's the tagger NLTK 2 uses when 'nltk.pos_tag()'  function is called. ", 
+      "static_image": "tag_pos_image.png", 
+      "action": "nltk_maxent_pos_tagger", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "NLTK maxent treebank tagger"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d430f727-6aff-4f0d-9c56-b140bfbb6288", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "default": "", 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "8d64c055-bcb5-49c8-a0e5-05a092816afd"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "d430f727-6aff-4f0d-9c56-b140bfbb6288", 
+      "name": "Pretrained", 
+      "short_name": "tra", 
+      "default": "", 
+      "description": "Choose whether to train this tagger on custom corpus or use an already trained model from nltk", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "checkbox", 
+      "variable": "pretrained", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "d75364be-ceaa-4d78-9a16-caf18adfd1bb"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "d430f727-6aff-4f0d-9c56-b140bfbb6288", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the POS tagger ", 
+      "variable": "pos_tagger", 
+      "order": 1, 
+      "uid": "0eed0176-d37e-4caa-a4de-ab2e4607f2c7"
+    }
+  }
+]

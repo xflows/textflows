@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
+      "treeview_image": "", 
+      "uid": "99ba101b-282e-42d1-85e7-9de886e502ad", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Loads corpus in Penn Treebank format with part of speech annotations. Corpus should be a directory with ptb or .txt files that has sentences written in the following format:\r\n(ROOT\r\n  (S\r\n    (S\r\n      (VP (VBG Making)\r\n        (NP (NNPS Skittles))))\r\n    (NP (NN vodka))\r\n    (VP (VBZ is)\r\n      (NP (DT a) (JJ fun) (NN way)\r\n        (S\r\n          (VP (TO to)\r\n            (VP (VB add)\r\n              (NP\r\n                (NP (DT a) (NN splash))\r\n                (PP (IN of)\r\n                  (NP (JJ fruity) (NN flavor)\r\n                    (CC and)\r\n                    (NN color))))\r\n              (PP (TO to)\r\n                (NP (JJ regular) (NN vodka))))))))\r\n    (. .)))\r\nThe widget returns a list of tokenized sentences with part of speech tags.", 
+      "static_image": "", 
+      "action": "load_ptb_corpus", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Load PTB Corpus"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "99ba101b-282e-42d1-85e7-9de886e502ad", 
+      "name": "Input", 
+      "short_name": "inp", 
+      "default": "", 
+      "description": "input should be a zipped directory of files or a file", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "input", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "2bf6d126-7548-4d34-9615-48175a7d3f21"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "99ba101b-282e-42d1-85e7-9de886e502ad", 
+      "name": "PTB document corpus", 
+      "short_name": "ptb", 
+      "description": "PTB document corpus", 
+      "variable": "ptb_corpus", 
+      "order": 1, 
+      "uid": "ff3f9661-7f26-4371-b5b8-10dd4fadd308"
+    }
+  }
+]
