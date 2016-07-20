@@ -47,17 +47,19 @@ from workflows.textflows import DocumentCorpus, LatinoObject
 def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
     tagger_name=tagger['object'].__class__.__name__ if not isinstance(tagger,LatinoObject) else tagger.name
+    tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
+    print tagger_name
+    print tagger['pretrained']
     if 'chained' in tagger:
         if tagger['chained'] == 1:
             tagger_name = 'TaggerChain'
     elif 'pretrained' in tagger:
         if tagger['pretrained'] == 'true':
-            tagger_name = 'MaxentPosTagger-pretrained'
-        else:
-            tagger_name = 'MaxentPosTagger'
-    else:
-        tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
-
+            if tagger_name == 'ClassifierBasedPOSTagger':
+                tagger_name = 'MaxentPosTagger-pretrained'
+            else:
+                tagger_name = 'PerceptronTagger-pretrained'
+        
     return {'pos_tagger_name': tagger_name}
 
 
@@ -476,25 +478,20 @@ class MaxentPosTagger(TaggerI):
 
 
 def nltk_maxent_pos_tagger(input_dict):
-
+    print input_dict['pretrained']
+    
     if input_dict['pretrained'] == 'true':
-        
-        import types
-
-        def tag_sents(self, sentences):
-            return [self.tag(sent) for sent in sentences]
-
-
         maxent_tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
 
     else:
+        print 'jej'
         #this megam executable will only work on 64bit linux server
         PATH_TO_MEGAM_EXECUTABLE = os.path.expanduser("/home/matej/textflows-env/bin/MEGAM/megam-64.opt")
         nltk.config_megam(PATH_TO_MEGAM_EXECUTABLE)
 
         maxent_tagger = MaxentPosTagger()
         
-        training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
+        training_corpus=corpus_reader(input_dict['training_corpus'])
         if training_corpus:
             maxent_tagger.train(training_corpus)
         else:
@@ -510,10 +507,16 @@ def nltk_maxent_pos_tagger(input_dict):
 
 import random
 from collections import defaultdict
+from nltk.data import find, load
 
 
 class AveragedPerceptron(object):
 
+    '''An averaged perceptron, as implemented by Matthew Honnibal.
+
+    See more implementation details here:
+        http://spacy.io/blog/part-of-speech-POS-tagger-in-python/
+    '''
 
     def __init__(self):
         # Each feature gets its own weight vector, so weights is a dict-of-dicts
@@ -531,6 +534,7 @@ class AveragedPerceptron(object):
 
 
     def predict(self, features):
+        '''Dot-product the features and current weights and return the best label.'''
         scores = defaultdict(float)
         for feat, value in features.items():
             if feat not in self.weights or value == 0:
@@ -543,7 +547,7 @@ class AveragedPerceptron(object):
 
 
     def update(self, truth, guess, features):
-        
+        '''Update the feature weights.'''
         def upd_feat(c, f, w, v):
             param = (f, c)
             self._totals[param] += (self.i - self._tstamps[param]) * w
@@ -560,7 +564,7 @@ class AveragedPerceptron(object):
 
 
     def average_weights(self):
-       
+        '''Average weights from all iterations.'''
         for feat, weights in self.weights.items():
             new_feat_weights = {}
             for clas, weight in weights.items():
@@ -573,30 +577,77 @@ class AveragedPerceptron(object):
             self.weights[feat] = new_feat_weights
 
 
+    def save(self, path):
+        '''Save the pickled model weights.'''
+        with open(path, 'wb') as fout:
+            return pickle.dump(dict(self.weights), fout)
+
 
     def load(self, path):
+        '''Load the pickled model weights.'''
         self.weights = load(path)
 
 
+
 class PerceptronTagger(TaggerI):
+
+    '''
+    Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal.
+    See more implementation details here:
+        http://spacy.io/blog/part-of-speech-POS-tagger-in-python/
+    
+    >>> from nltk.tag.perceptron import PerceptronTagger
+
+    Train the model 
+    
+    >>> tagger = PerceptronTagger(load=False)
+    
+    >>> tagger.train([[('today','NN'),('is','VBZ'),('good','JJ'),('day','NN')],
+    ... [('yes','NNS'),('it','PRP'),('beautiful','JJ')]])
+    
+    >>> tagger.tag(['today','is','a','beautiful','day'])
+    [('today', 'NN'), ('is', 'PRP'), ('a', 'PRP'), ('beautiful', 'JJ'), ('day', 'NN')]
+    
+    Use the pretrain model (the default constructor) 
+    
+    >>> pretrain = PerceptronTagger()
+    
+    >>> pretrain.tag('The quick brown fox jumps over the lazy dog'.split())
+    [('The', 'DT'), ('quick', 'JJ'), ('brown', 'NN'), ('fox', 'NN'), ('jumps', 'VBZ'), ('over', 'IN'), ('the', 'DT'), ('lazy', 'JJ'), ('dog', 'NN')]
+    
+    >>> pretrain.tag("The red cat".split())
+    [('The', 'DT'), ('red', 'JJ'), ('cat', 'NN')]
+    '''
 
     START = ['-START-', '-START2-']
     END = ['-END-', '-END2-']
     
     def __init__(self, load=True):
+        '''
+        :param load: Load the pickled model upon instantiation.
+        '''
         self.model = AveragedPerceptron()
         self.tagdict = {}
         self.classes = set()
+        if load:
+            PICKLE = "averaged_perceptron_tagger.pickle"
+            AP_MODEL_LOC = 'file:'+str(find('taggers/averaged_perceptron_tagger/'+PICKLE))
+            self.load(AP_MODEL_LOC)
 
 
     def tag(self, tokens):
+        '''
+        Tag tokenized sentences.
+        :params tokens: list of word
+        :type tokens: list(str)
+        '''
         prev, prev2 = self.START
         output = []
         
         context = self.START + [self.normalize(w) if len(w) > 0 else self.normalize('.') for w in tokens] + self.END
         for i, word in enumerate(tokens):
             if len(word) < 1:
-                word = '.' 
+                word = '.'
             tag = self.tagdict.get(word)
             if not tag:
                 features = self._get_features(i, word, context, prev, prev2)
@@ -608,18 +659,24 @@ class PerceptronTagger(TaggerI):
         return output
 
 
-    def tag_sents(self, sentences):
-        return [self.tag(sent) for sent in sentences]
+    def _pc(n, d):
+        return (n / d) * 100
+
 
 
     def train(self, sentences, save_loc=None, nr_iter=5):
-       
+        '''Train a model from sentences, and save it at ``save_loc``. ``nr_iter``
+        controls the number of Perceptron training iterations.
+
+        :param sentences: A list of (words, tags) tuples.
+        :param save_loc: If not ``None``, saves a pickled model in this location.
+        :param nr_iter: Number of training iterations.
+        '''
         self._make_tagdict(sentences)
         self.model.classes = self.classes
         for iter_ in range(nr_iter):
             c = 0
             n = 0
-            sentences = list(sentences)
             for sentence  in sentences:
                 words = [word for word,tag in sentence]
                 tags  = [tag for word,tag in sentence]
@@ -639,12 +696,33 @@ class PerceptronTagger(TaggerI):
                     prev = guess
                     c += guess == tags[i]
                     n += 1
-            print sentences[:2]
-            random.shuffle(sentences)
+            random.shuffle(list(sentences))
         self.model.average_weights()
+        # Pickle as a binary file
+        if save_loc is not None:
+            with open(save_loc, 'wb') as fout:
+                pickle.dump((self.model.weights, self.tagdict, self.classes), fout, -1)
         
+
+    def load(self, loc):
+        '''
+        :param loc: Load a pickled model at location.
+        :type loc: str 
+        '''
+
+        self.model.weights, self.tagdict, self.classes = load(loc)
+        self.model.classes = self.classes
         
+
     def normalize(self, word):
+        '''
+        Normalization used in pre-processing.
+        - All words are lower cased
+        - Digits in the range 1800-2100 are represented as !YEAR;
+        - Other digits are represented as !DIGITS
+
+        :rtype: str
+        '''
         if '-' in word and word[0] != '-':
             return '!HYPHEN'
         elif word.isdigit() and len(word) == 4:
@@ -654,9 +732,11 @@ class PerceptronTagger(TaggerI):
         else:
             return word.lower()
 
-
     def _get_features(self, i, word, context, prev, prev2):
-        
+        '''Map tokens into a feature representation, implemented as a
+        {hashable: float} dict. If the features change, a new model must be
+        trained.
+        '''
         def add(name, *args):
             features[' '.join((name,) + tuple(args))] += 1
 
@@ -679,8 +759,11 @@ class PerceptronTagger(TaggerI):
         add('i+2 word', context[i+2])
         return features
 
-
     def _make_tagdict(self, sentences):
+        '''
+        Make a tag dictionary for single-tag words.
+        :param sentences: A list of list of (word, tag) tuples.
+        '''
         counts = defaultdict(lambda: defaultdict(int))
         for sentence in sentences:
             for word, tag in sentence:
@@ -697,17 +780,19 @@ class PerceptronTagger(TaggerI):
                 self.tagdict[word] = tag
 
 
-    def _pc(n, d):
-        return (n / d) * 100
 
 
 def nltk_perceptron_pos_tagger(input_dict):
-    perceptron_tagger = PerceptronTagger(load=False)
-    training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
-    perceptron_tagger.train(training_corpus)
+    if input_dict['pretrained'] == 'true':
+        perceptron_tagger = PerceptronTagger()
+    else:    
+        perceptron_tagger = PerceptronTagger(load=False)
+        training_corpus=corpus_reader(input_dict['training_corpus'])
+        perceptron_tagger.train(training_corpus)
 
     return {'pos_tagger': {
                 'function':'tag_sents',
-                'object': perceptron_tagger
+                'object': perceptron_tagger,
+                'pretrained': input_dict['pretrained']
             }
     }
