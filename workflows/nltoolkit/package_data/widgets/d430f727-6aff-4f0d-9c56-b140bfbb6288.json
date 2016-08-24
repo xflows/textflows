@@ -42,23 +42,6 @@
     }
   }, 
   {
-    "model": "workflows.abstractinput", 
-    "fields": {
-      "widget": "d430f727-6aff-4f0d-9c56-b140bfbb6288", 
-      "name": "Pretrained", 
-      "short_name": "tra", 
-      "default": "", 
-      "description": "Choose whether to train this tagger on custom corpus or use an already trained model from nltk", 
-      "required": true, 
-      "multi": false, 
-      "parameter_type": "checkbox", 
-      "variable": "pretrained", 
-      "parameter": true, 
-      "order": 1, 
-      "uid": "d75364be-ceaa-4d78-9a16-caf18adfd1bb"
-    }
-  }, 
-  {
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "d430f727-6aff-4f0d-9c56-b140bfbb6288", 

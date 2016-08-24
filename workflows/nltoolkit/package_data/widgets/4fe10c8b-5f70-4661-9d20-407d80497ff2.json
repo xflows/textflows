@@ -32,7 +32,7 @@
       "short_name": "cor", 
       "default": "", 
       "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
-      "required": true, 
+      "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "training_corpus", 

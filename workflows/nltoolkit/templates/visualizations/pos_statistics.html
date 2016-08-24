@@ -1,0 +1,19 @@
+{% load url from future %}
+
+
+<div id="widgetvisualization-{{widget.pk}}" rel="{{widget.pk}}" class="widgetvisualizationdialog" title="{{widget.name}} visualization" width="300px" height="500px">
+
+    <div style="position:absolute; top:5px; left:75px;">
+        <p style="padding-top:5px; padding-bottom:10px; padding-left:25px"><b>Tag frequencies</b></p>
+        <ul>
+        {% for i,j in data %}
+
+           <li style="padding-top:3px;">
+               <p style="width:100px; float:left;"><b>{{i}}</b></p>
+               <p style="width:100px; float:left;">{{j}}%</p>
+            </li>
+
+        {% endfor %}
+        </ul>
+    </div>
+</div>

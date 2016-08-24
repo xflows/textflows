@@ -59,8 +59,10 @@ def load_ptb_corpus(input_dict):
             for m in match:
                 tagged_word = m.strip().split(" ")
                 if len(tagged_word) == 2:
+                    tagged_word = [tagged_word[1], tagged_word[0]]
                     tagged_sent.append(tagged_word)
             tagged_sents.append(tagged_sent)
+    print tagged_sents[0]
 
     return {"ptb_corpus": tagged_sents}
 
@@ -321,5 +323,10 @@ def get_plain_texts(input_dict):
 
 
 def display_document_corpus(input_dict):
+    #implemented in visualization_views.py
+    return {}
+    
+
+def display_pos_statistics(input_dict):
     #implemented in visualization_views.py
     return {}

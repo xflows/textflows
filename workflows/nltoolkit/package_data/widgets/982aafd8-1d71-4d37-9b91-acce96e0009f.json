@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
+      "treeview_image": "", 
+      "uid": "982aafd8-1d71-4d37-9b91-acce96e0009f", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Stanford POS tagger from coreNLP", 
+      "static_image": "tag_pos_image.png", 
+      "action": "stanford_pos_tagger", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Stanford POS tagger"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "982aafd8-1d71-4d37-9b91-acce96e0009f", 
+      "name": "POS Tagger", 
+      "short_name": "tgr", 
+      "description": "A python dictionary containing the POS tagger ", 
+      "variable": "pos_tagger", 
+      "order": 1, 
+      "uid": "2a971bbe-98af-4398-a4f0-4de8f262b155"
+    }
+  }
+]

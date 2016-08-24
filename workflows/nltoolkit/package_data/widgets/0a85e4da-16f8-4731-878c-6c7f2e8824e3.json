@@ -1,0 +1,44 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
+      "treeview_image": "", 
+      "uid": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Display POS statistics", 
+      "static_image": "view_adc_image.png", 
+      "action": "display_pos_statistics", 
+      "visualization_view": "display_pos_statistics", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Display POS statistics"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "d4ffbff2-8055-454b-99db-254a9f6264b6"
+    }
+  }
+]

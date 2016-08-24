@@ -235,7 +235,7 @@ class BowModelConstructor:
             self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
             self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
 
-        #print self.vectorizer.get_feature_names()
+        print self.vectorizer.get_feature_names()
 
     def set_new_vocabulary(self,vocabulary,raw_documents,intersect=True):
         if intersect: #intersect vocabularies
@@ -307,7 +307,6 @@ class BowModelConstructor:
             if binary:
                 uniq_res=list(set(res))
                 return [uniq_res.index(r) for r in res]
-            print res
             return res
         else:
             return None

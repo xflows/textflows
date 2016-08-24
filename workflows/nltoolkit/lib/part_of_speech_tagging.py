@@ -48,13 +48,8 @@ def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
     tagger_name=tagger['object'].__class__.__name__ if not isinstance(tagger,LatinoObject) else tagger.name
     tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
-    print tagger_name
-    print tagger['pretrained']
-    if 'chained' in tagger:
-        if tagger['chained'] == 1:
-            tagger_name = 'TaggerChain'
-    elif 'pretrained' in tagger:
-        if tagger['pretrained'] == 'true':
+    if 'pretrained' in tagger:
+        if tagger['pretrained']:
             if tagger_name == 'ClassifierBasedPOSTagger':
                 tagger_name = 'MaxentPosTagger-pretrained'
             else:
@@ -75,32 +70,26 @@ def corpus_reader(corpus):
 
 
 def pos_tagger_evaluate(input_dict):
-    if input_dict['corpus_name'] == "brown":
-        corpus = brown.tagged_sents(categories='news')
-    elif input_dict['corpus_name'] == "treebank":
-        corpus = treebank.tagged_sents()
-    elif input_dict['corpus_name'] == "nps_chat":
-        corpus = nps_chat.tagged_posts()
-    else:
-        corpus = input_dict['ptb_corpus']
+    corpus = input_dict['ptb_corpus']
     print len(corpus)
     print('corpus zloadan')
     tagger_dict = input_dict['pos_tagger']
     tagger=tagger_dict['object']
     print('tagger zloadan')
-    if input_dict['corpus_name'] == "custom":
-        #tagged_sents = tagger.tag_sents([w for (t, w) in sent]for sent in corpus)
-        sents = [[w for (t, w) in sent]for sent in corpus]
-        print ('narjen seznam')
-        tagged_sents = tagger.tag_sents(sents)
-        actual = [t for sent in corpus for (t, w) in sent]
-    else:
-        tagged_sents = tagger.tag_sents([w for (w, t) in sent]for sent in corpus)
-        actual = [t for sent in corpus for (w, t) in sent]
-    print 'tagizacija koncana'
-    predicted = [t for sent in tagged_sents for (w, t) in sent]
+    
+    corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
+    tagged_sents = tagger.tag_sents([w for (w, t) in sent if w] for sent in corpus)
+    actual = [t for sent in corpus for (w, t) in sent if w]
+    predicted = [t for sent in tagged_sents for (w, t) in sent if w]
+
     print 'finished'
     return {'actual_and_predicted': [actual, predicted]}
+
+
+def extract_ptb_from_nltk_corpus(input_dict):
+    tagged_sents = list(corpus_reader(input_dict['training_corpus']))
+    return {"ptb_corpus": tagged_sents}
+
 
 
 def nltk_default_pos_tagger(input_dict):
@@ -153,7 +142,7 @@ def nltk_affix_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
 
-    tagged_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
+    tagged_corpus=corpus_reader(input_dict['training_corpus'])
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     affix_length=int(input_dict['affix_length'])
     min_stem_length=int(input_dict['min_stem_length'])
@@ -196,13 +185,12 @@ def nltk_ngram_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
 
-    training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
+    training_corpus=corpus_reader(input_dict['training_corpus'])
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     n=int(input_dict['n']) #default 2
     cutoff=int(input_dict['cutoff']) #default 0
 
     return {'pos_tagger': {
-                'chained': cutoff,
                 'function':'tag_sents',
                 'object': NgramTagger(n, train=training_corpus, model=None,
                  backoff=backoff_tagger, cutoff=0)
@@ -478,13 +466,11 @@ class MaxentPosTagger(TaggerI):
 
 
 def nltk_maxent_pos_tagger(input_dict):
-    print input_dict['pretrained']
-    
-    if input_dict['pretrained'] == 'true':
+    if not input_dict['training_corpus']:
         maxent_tagger = nltk.data.load('taggers/maxent_treebank_pos_tagger/english.pickle')
-
+        pretrained = True
     else:
-        print 'jej'
+        pretrained = False
         #this megam executable will only work on 64bit linux server
         PATH_TO_MEGAM_EXECUTABLE = os.path.expanduser("/home/matej/textflows-env/bin/MEGAM/megam-64.opt")
         nltk.config_megam(PATH_TO_MEGAM_EXECUTABLE)
@@ -500,7 +486,7 @@ def nltk_maxent_pos_tagger(input_dict):
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': maxent_tagger,
-                'pretrained': input_dict['pretrained']
+                'pretrained': pretrained
             }
     }
 
@@ -780,12 +766,12 @@ class PerceptronTagger(TaggerI):
                 self.tagdict[word] = tag
 
 
-
-
 def nltk_perceptron_pos_tagger(input_dict):
-    if input_dict['pretrained'] == 'true':
+    if not input_dict['training_corpus']:
         perceptron_tagger = PerceptronTagger()
-    else:    
+        pretrained = True
+    else: 
+        pretrained = False   
         perceptron_tagger = PerceptronTagger(load=False)
         training_corpus=corpus_reader(input_dict['training_corpus'])
         perceptron_tagger.train(training_corpus)
@@ -793,6 +779,23 @@ def nltk_perceptron_pos_tagger(input_dict):
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': perceptron_tagger,
-                'pretrained': input_dict['pretrained']
+                'pretrained': pretrained
             }
     }
+
+
+from nltk.tag.stanford import StanfordPOSTagger
+
+def stanford_pos_tagger(input_dict):
+    stanford_dir = "/home/matej/textflows-env/"
+    modelfile = stanford_dir + 'english-bidirectional-distsim.tagger'
+    jarfile = stanford_dir + 'stanford-postagger.jar'
+    tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile)
+    return {'pos_tagger': {
+                'function':'tag_sents',
+                'object': tagger
+            }
+    }
+
+
+

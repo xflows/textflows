@@ -21,7 +21,7 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
     args=tagger_dict.get('args',[])
     kwargs=tagger_dict.get('kargs',{})
 
-    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count(), maxtasksperchild=1000)
 
     print "evo nas!!!"
     #parallel for document in adc.documents:

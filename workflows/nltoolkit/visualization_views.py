@@ -106,3 +106,38 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
     return view
 
 
+@login_required
+def display_pos_statistics(request, input_dict, output_dict, widget, narrow_doc='n'):
+    """
+    Display POS statistics, basicaly frequencies of specific tags
+    """
+    
+    pos_dict = {}
+    adc = input_dict['adc']
+    allPOS = 0
+    pos_list = []
+    for d in adc.documents:
+        print d.features
+        for a in d.annotations:
+            f = a.features
+            
+            if 'POS Tag' in f:
+                allPOS += 1
+                if f['POS Tag'] in pos_dict:
+                    pos_dict[f['POS Tag']] = pos_dict[f['POS Tag']] + 1
+                else:
+                    pos_dict[f['POS Tag']] = 1
+
+    allPOS = float(allPOS)
+    for pos, number in pos_dict.items():
+        pos_list.append((pos, float("{0:.2f}".format(float(number)/allPOS))))
+
+    pos_list = sorted(pos_list, key=lambda x: x[1], reverse=True)
+
+    
+    view = django.shortcuts.render(request, 'visualizations/pos_statistics.html', {'widget': widget,
+                                                                                               'data': pos_list,
+                                                                                               'narrow_doc': narrow_doc})
+    return view
+
+

@@ -9,7 +9,6 @@ def benchmark(input_dict):
 def perfeval_classification_statistics(input_dict):
     from sklearn import metrics
     labels = input_dict['true_and_predicted_labels']
-    print input_dict.keys()
     pos_label = input_dict.get('pos_label', None)
 
     # Check if we have true and predicted labels for each fold
