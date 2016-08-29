@@ -16,6 +16,7 @@ def tag_document(document,tagger,tagger_function,args,kwargs,input_annotation,ou
     return document
 
 def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation):
+    print(input_annotation, output_annotation)
     tagger=tagger_dict['object']
     tagger_function=tagger_dict['function']
     args=tagger_dict.get('args',[])

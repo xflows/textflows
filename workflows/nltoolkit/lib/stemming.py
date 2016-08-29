@@ -19,6 +19,34 @@ def stem_lemma_tagger_hub(input_dict):
         output_annotation = input_dict['output_feature']
         return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
 
+def lemmatizer_evaluate(input_dict):
+    corpus = input_dict['adc']
+    tagger_dict = input_dict['tagger']
+    tagger=tagger_dict['object']
+    tagger_function=tagger_dict['function']
+    input_annotation = unicode("Token", "utf-8")
+    output_annotation = unicode("Stem", "utf-8")
+    actual = []
+    predicted = []
+
+    #wordnet lemmatizer is used as silver standard
+    wn_lemmatizer = nltk.stem.wordnet.WordNetLemmatizer()
+    for document in corpus.documents:
+        if document.features['contentType'] == "Text":
+            if not document.text:
+                pass
+
+            for annotation,subtext in document.get_annotations_with_text(input_annotation): #all annotations of this type
+                if subtext:
+                    new_feature=getattr(tagger,tagger_function)(subtext)
+                    true_value = wn_lemmatizer.lemmatize(subtext)
+                    if new_feature!=None:
+                        actual.append(true_value)
+                        predicted.append(new_feature)
+
+    print 'finished'
+    return {'actual_and_predicted': [actual, predicted]}
+
 # STEMMERS
 def nltk_lancaster_stemmer(input_dict):
     """
