@@ -97,7 +97,7 @@
     "fields": {
       "widget": "1c53d314-dfee-46b8-8dd4-ce71f81ae780", 
       "name": "Skip Empty Lines", 
-      "short_name": "bool", 
+      "short_name": "bol", 
       "default": "true", 
       "description": "If true, empty lines in the input string are ignored (usefull also for eliminating a trailing newline in a document).", 
       "required": true, 

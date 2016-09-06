@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
+      "treeview_image": "", 
+      "uid": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "extract tagged sentences in nested lists format from NLTK corpus.", 
+      "static_image": "", 
+      "action": "extract_ptb_from_nltk_corpus", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "NLTK corpus to PTB format"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "name": "Training Corpus", 
+      "short_name": "cor", 
+      "default": "", 
+      "description": "A tagged corpus included with NLTK, such as treebank, brown, cess_esp, floresta, or an Annotated Document Corpus in the standard TextFlows' adc format", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "training_corpus", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "39c2917e-84fe-4c01-973f-54a631078856"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "name": "PTB document corpus", 
+      "short_name": "ptb", 
+      "description": "PTB document corpus", 
+      "variable": "ptb_corpus", 
+      "order": 1, 
+      "uid": "3ea38619-f510-43f7-a9c5-909f1e7e7600"
+    }
+  }
+]

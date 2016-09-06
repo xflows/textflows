@@ -1,0 +1,73 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "fb4fad1e-9c2f-454b-86af-3dc255ac9297", 
+      "treeview_image": "", 
+      "uid": "7e5b03c2-ede5-424b-a28c-ae7684dc1ea6", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "This widgets can be used to evaluate lemmatizers. Inputs are lemmatizer and a corpus on which you wish to evaluate lemmatizer", 
+      "static_image": "tag_pos_do_image.png", 
+      "action": "lemmatizer_evaluate", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Lemmatizer Evaluator"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "7e5b03c2-ede5-424b-a28c-ae7684dc1ea6", 
+      "name": "Lemmatizer", 
+      "short_name": "lem", 
+      "default": "", 
+      "description": "Lemmatizer to be avaluated", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "tagger", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "4bcdb6ee-7be3-4a58-9461-860889e4ee77"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "7e5b03c2-ede5-424b-a28c-ae7684dc1ea6", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "eade68b0-db08-4fe8-88e1-7264bfdb17bd"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "7e5b03c2-ede5-424b-a28c-ae7684dc1ea6", 
+      "name": "Actual and predicted labels", 
+      "short_name": "lst", 
+      "description": "List of actual and predicted labels (see help for details)", 
+      "variable": "actual_and_predicted", 
+      "order": 1, 
+      "uid": "d9958a71-a8ee-471b-872f-69aa563a366c"
+    }
+  }
+]
