@@ -21,6 +21,10 @@ if USE_CONCURRENCY:
 from workflows.tasks import executeWidgetFunction, executeWidgetProgressBar, executeWidgetStreaming, executeWidgetWithRequest, runWidget, executeWidgetPostInteract
 
 from workflows.engine import WidgetRunner, WorkflowRunner
+import resource
+import sys
+from pympler import asizeof
+from pympler import classtracker
 
 class WidgetException(Exception):
     pass
@@ -797,6 +801,8 @@ class Widget(models.Model):
     def proper_run(self,offline):
         """ This is the real start. """
         #print("proper_run_widget")
+        
+        print 'Memory usage before model run: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         if not self.ready_to_run():
             raise WidgetException("The prerequisites for running this widget have not been met.")
         self.running=True
@@ -809,15 +815,31 @@ class Widget(models.Model):
             input_dict = {}
             outputs = {}
             for i in self.inputs.all().defer('value'):
+                print 'Memory usage model input for loop: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+                print "size input: " + str(asizeof.asizeof(i))
                 """ we walk through all the inputs """
                 #gremo pogledat ce obstaja povezava in ce obstaja gremo value prebrat iz outputa
                 if not i.parameter:
                     """ if there is a connection than true and read the output value """
+                    print 'Memory usage model before connection count: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
+                        #print(i.value.__class__, i.value)
+                        
+                        print "value size: " + str(asizeof.asizeof(i.value))
+                        if i.value.__class__ == DocumentCorpus:
+                            print " document begin: " + str(asizeof.asizeof(i.value.documents))
+                            print " document begin annotations: " + str(asizeof.asizeof(i.value.documents[0].annotations))
+                            print " document begin name: " + str(asizeof.asizeof(i.value.documents[0].name))
+                            print " document begin text: " + str(asizeof.asizeof(i.value.documents[0].text))
+                            print " document begin features: " + str(asizeof.asizeof(i.value.documents[0].features))
+                            print " document begin len: " + str(len(i.value.documents))
+                        print 'Memory usage model input more con before save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                         i.save()
+                        print 'Memory usage model input more con after save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                     else:
                         i.value = None
+
                         i.save()
                 if i.multi_id == 0:
                     input_dict[i.variable]=i.value
@@ -827,6 +849,8 @@ class Widget(models.Model):
                     if not i.value==None:
                         input_dict[i.variable].append(i.value)
             start = time.time()
+            #return outputs
+            print 'Memory usage after model for loop: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             try:
                 if not self.abstract_widget is None:
                     """ again, if this objects is an abstract widget than true and check certain parameters,
@@ -844,6 +868,7 @@ class Widget(models.Model):
                     else:
                         """ else run abstract widget function """
                         outputs = function_to_call(input_dict)
+                    print 'Memory usage after model call function: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                 else:
                     Input.objects.filter(widget__workflow=self.workflow_link,parameter=False).update(value=None)
                     Output.objects.filter(widget__workflow=self.workflow_link).update(value=None)
@@ -859,20 +884,32 @@ class Widget(models.Model):
             elapsed = (time.time()-start)
             outputs['clowdflows_elapsed']=elapsed
             for o in self.outputs.all():
+                print 'Memory usage in for loop: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                 """ we walk through all the outputs """
                 if not self.abstract_widget is None:
                     """ if this object is an abstract widget than true and save output
                     else look for outputs in workflow """
                     try:
                         o.value = outputs[o.variable]
+                        print "value size end: " + str(asizeof.asizeof(o.value))
+                        if o.value.__class__ == DocumentCorpus:
+                            print " document end: " + str(asizeof.asizeof(o.value.documents))
+                            print " document end annotations: " + str(asizeof.asizeof(o.value.documents[0].annotations))
+                            print " document end name: " + str(asizeof.asizeof(o.value.documents[0].name))
+                            print " document end text: " + str(asizeof.asizeof(o.value.documents[0].text))
+                            print " document end features: " + str(asizeof.asizeof(o.value.documents[0].features))
+                            print " document end len: " + str(len(o.value.documents))
                     except:
                         pass
+                    print 'Memory usage before for loop save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                     o.save()
+                    print 'Memory usage after for loop save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                 else:
                     #gremo v outpute pogledat
                     if not self.workflow_link.is_for_loop():
                         o.value = o.inner_input.value
                         o.save()
+            print 'Memory usage after model for loop 2: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             if self.abstract_widget is None:
                 """ if object is widget than true and configure parameters """
                 self.finished=True
@@ -884,10 +921,13 @@ class Widget(models.Model):
                     self.finished=True
                     self.running=False
                     self.error=False
+                    print 'Memory usage before after for loop save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                     self.save()
+                    print 'Memory usage after after for loop save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             cons = Connection.objects.filter(output__widget=self)
             for c in cons:
                 c.input.widget.unfinish()
+            print 'Memory usage before model end: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             return outputs
         elif self.type == 'for_input':
             """ if object is an input widget for for loop than read all input values and finish """
@@ -972,9 +1012,11 @@ class Widget(models.Model):
                     """ if there is a connection than true and read the output value """
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
+                        print "value size for output: " + str(asizeof.asizeof(i.value))
                         i.save()
                         i.outer_output.value = i.value
                         i.outer_output.save()
+                        print "for output finished"
                         self.finished=True
             self.finished=True
             self.running=False

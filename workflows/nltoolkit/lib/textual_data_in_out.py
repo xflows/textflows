@@ -205,8 +205,7 @@ def load_mysql_document_corpus(input_dict):
         documents.append(Document(name=title,
                               features=features,
                               text=unicode(text),
-                              annotations=[Annotation(span_start=0,span_end=max(0, len(unicode(text)) - 1),
-                                                      type=u"TextBlock", features={})]))
+                              annotations=[(0, max(0, len(unicode(text)) - 1), u"TextBlock"), []]))
     c.close()
     features = {u"Source": 'MySQL DB: '+database_name, u"CorpusCreateDate": unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime())),
                 "Labels": json.dumps(list(labels)) }
@@ -289,10 +288,7 @@ def _process_adc(texts,  tab_separated_title, leading_labels, titles=[]):
             documents.append(Document(name=title,
                                       features=features,
                                       text=unicode(text),
-                                      annotations=[Annotation(span_start=0,
-                                                              span_end=max(0, len(unicode(text)) - 1),
-                                                              type=u"TextBlock",
-                                                              features={})]))
+                                      annotations=[(0, max(0, len(unicode(text)) - 1), u"TextBlock", [])]))
     return documents, list(corpus_labels)
 
 

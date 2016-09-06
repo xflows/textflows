@@ -34,7 +34,7 @@ def pos_tagger_hub(input_dict):
         output_annotation_name = input_dict['output_feature']
         for doc in adc.documents:
             for annotation in doc.get_annotations(element_annotation_name):
-                if not output_annotation_name in annotation.features:
+                if not doc.feature_exists(annotation.features, output_annotation_name):
                     print input_dict['pos_tagger'],annotation.features
                     print doc.features
                 else:

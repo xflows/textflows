@@ -2,6 +2,8 @@ from workflows.textflows import *
 import nltk
 from django.conf import settings
 from workflows.tasks import executeFunction
+import resource
+from pympler import asizeof
 
 
 def tokenizer_hub(input_dict):
@@ -19,6 +21,7 @@ def tokenizer_hub(input_dict):
 
     :returns adc: Annotated Document Corpus (workflows.textflows.DocumentCorpus)
     """
+    print 'Memory usage begin tokenization: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     tokenizer_dict = input_dict['tokenizer']
 
     if type(tokenizer_dict)!=dict:
@@ -39,12 +42,17 @@ def tokenizer_hub(input_dict):
                     pass
                 for annotation,subtext in document.get_annotations_with_text(input_annotation): #all annotations of this type
                     new_token_spans=tokenizer.span_tokenize(subtext,*args,**kwargs)
+                    if i == 0:
+                        print annotation, subtext
                     for starts_at,ends_at in new_token_spans:
-                        document.annotations.append(Annotation(annotation.span_start+starts_at,annotation.span_start+ends_at-1,output_annotation))
+                        document.annotations.append((annotation[0]+starts_at,annotation[0]+ends_at-1,output_annotation,[]))
+                    if i == 0:
+                        print "tokenization annotation size: " + str(asizeof.asizeof(document.annotations))
             if i%100==0:
                 print int((i+1)*1.0/docs_count*100)
             #widget.progress = int((i+1)*1.0/*100)
             #widget.save()
+        print 'Memory usage end tokenization: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         return {'adc': adc}
 
 

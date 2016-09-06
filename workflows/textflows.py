@@ -55,12 +55,14 @@ class Document:
         element_feature = False if len(selector_split) == 1 else selector_split[1].strip()
 
         for a in self.annotations:
-            if a.type == element_annotation:
+            if a[2] == element_annotation:
                 try:
                     if element_feature:
-                            text = a.features[element_feature]
+                        for name, value in a[3]:
+                            if name == element_feature:
+                                text = value
                     else:
-                        text = self.text[a.span_start:a.span_end+1]
+                        text = self.text[a[0]:a[1]+1]
                     annotations_with_text.append((a, text))
                 except KeyError:
                      #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
@@ -69,9 +71,16 @@ class Document:
     def get_annotations(self, selector):
         return [a[0] for a in self.get_annotations_with_text(selector)]
 
+
+    def feature_exists(self, features, feature_name):
+        for name, value in features:
+            if name == feature_name:
+                return True
+        return False
+
     def get_annotation_texts(self,selector,stop_word_feature_name="StopWord"):
         return [text for (ann,text) in self.get_annotations_with_text(selector)
-                               if not ann.features.has_key(stop_word_feature_name)]
+                               if not self.feature_exists(ann[3], stop_word_feature_name)]
 
     def raw_text(self,selector=None,stop_word_feature_name="StopWord",join_annotations_with=" "):
         if not selector:
@@ -95,7 +104,7 @@ class Document:
         except ValueError, e:
             return label_value
 
-class Annotation:
+'''class Annotation(): 
     def __init__(self, span_start, span_end, type, features=None):
         self.features=features or {}
         self.span_start=span_start
@@ -110,7 +119,7 @@ class Annotation:
     def __unicode__(self):
         return 'span_start: %d, span_ned: %d' % (self.span_start, self.span_end)
     def __str__(self):
-        return unicode(self).encode('utf-8')
+        return unicode(self).encode('utf-8')'''
 
 
 class BowDataset:
