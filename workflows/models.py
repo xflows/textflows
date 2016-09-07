@@ -827,13 +827,6 @@ class Widget(models.Model):
                         #print(i.value.__class__, i.value)
                         
                         print "value size: " + str(asizeof.asizeof(i.value))
-                        if i.value.__class__ == DocumentCorpus:
-                            print " document begin: " + str(asizeof.asizeof(i.value.documents))
-                            print " document begin annotations: " + str(asizeof.asizeof(i.value.documents[0].annotations))
-                            print " document begin name: " + str(asizeof.asizeof(i.value.documents[0].name))
-                            print " document begin text: " + str(asizeof.asizeof(i.value.documents[0].text))
-                            print " document begin features: " + str(asizeof.asizeof(i.value.documents[0].features))
-                            print " document begin len: " + str(len(i.value.documents))
                         print 'Memory usage model input more con before save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
                         i.save()
                         print 'Memory usage model input more con after save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
@@ -891,14 +884,7 @@ class Widget(models.Model):
                     else look for outputs in workflow """
                     try:
                         o.value = outputs[o.variable]
-                        print "value size end: " + str(asizeof.asizeof(o.value))
-                        if o.value.__class__ == DocumentCorpus:
-                            print " document end: " + str(asizeof.asizeof(o.value.documents))
-                            print " document end annotations: " + str(asizeof.asizeof(o.value.documents[0].annotations))
-                            print " document end name: " + str(asizeof.asizeof(o.value.documents[0].name))
-                            print " document end text: " + str(asizeof.asizeof(o.value.documents[0].text))
-                            print " document end features: " + str(asizeof.asizeof(o.value.documents[0].features))
-                            print " document end len: " + str(len(o.value.documents))
+                        #print "value size end: " + str(asizeof.asizeof(o.value))
                     except:
                         pass
                     print 'Memory usage before for loop save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
