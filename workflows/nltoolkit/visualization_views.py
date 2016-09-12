@@ -123,7 +123,6 @@ def display_pos_statistics(request, input_dict, output_dict, widget, narrow_doc=
             combo = ""
             for j in range(i, i + n):
                 f = d.annotations[j][3]
-                print f
                 for name, value in f:
                     if name == 'POS Tag':
                         if j > i:
