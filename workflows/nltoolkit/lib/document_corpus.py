@@ -115,7 +115,7 @@ def compute_new_token_features(annotations,new_feature_name,feature_computation)
                     break
             else:
                 new_feature_value=new_feature_value.replace("{"+feature+"}", "NULL")
-        annotation[3].append((new_feature_name, new_feature_value))
+        annotation[3] + ((new_feature_name, new_feature_value),)
 
 
 def split_documents_by_feature_value(input_dict):

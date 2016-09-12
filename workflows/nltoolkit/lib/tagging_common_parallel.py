@@ -1,5 +1,7 @@
 import multiprocessing
 from functools import partial
+from smaz import compress
+
 
 from workflows.textflows import *
 
@@ -74,7 +76,7 @@ def sentance_tag_a_document(doc,tagger,tagger_function,args,kwargs,
         new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
         for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
             for feature,annotation in izip(sentence_features,sentence_annotations):
-                annotation[3].append((output_annotation_name, feature[1]))
+                annotation[3].append((output_annotation_name, compress(feature[1])))
     return doc
 
 

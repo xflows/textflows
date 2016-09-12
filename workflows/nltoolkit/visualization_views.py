@@ -115,24 +115,33 @@ def display_pos_statistics(request, input_dict, output_dict, widget, narrow_doc=
     pos_dict = {}
     adc = input_dict['adc']
     allPOS = 0
+    n = 3
     pos_list = []
-    for d in adc.documents:
-        print d.features
-        for a in d.annotations:
-            f = a.features
-            
-            if 'POS Tag' in f:
+    for number, d in enumerate(adc.documents):
+        length = len(d.annotations)
+        for i in range(0, length - n + 1):
+            combo = ""
+            for j in range(i, i + n):
+                f = d.annotations[j][3]
+                print f
+                for name, value in f:
+                    if name == 'POS Tag':
+                        if j > i:
+                            combo += "_"
+                        combo += value
+                        break
+            if len(combo) > 0:
                 allPOS += 1
-                if f['POS Tag'] in pos_dict:
-                    pos_dict[f['POS Tag']] = pos_dict[f['POS Tag']] + 1
+                if combo in pos_dict:
+                    pos_dict[combo] = pos_dict[combo] + 1
                 else:
-                    pos_dict[f['POS Tag']] = 1
-
+                    pos_dict[combo] = 1
     allPOS = float(allPOS)
     for pos, number in pos_dict.items():
         pos_list.append((pos, float("{0:.2f}".format(float(number)/allPOS))))
 
-    pos_list = sorted(pos_list, key=lambda x: x[1], reverse=True)
+    pos_list = sorted(pos_list, key=lambda x: x[1], reverse=True)[:40]
+    print allPOS
 
     
     view = django.shortcuts.render(request, 'visualizations/pos_statistics.html', {'widget': widget,

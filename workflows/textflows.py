@@ -7,6 +7,7 @@ import nltk
 
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
+from collections import defaultdict
 
 
 class DocumentCorpus:
@@ -31,16 +32,33 @@ class DocumentCorpus:
     def get_document_labels(self):
         return [doc.get_first_label() for doc in self.documents]
 
+    '''def __getstate__(self):
+        print "get state!!"
+        minimized_docs=[d.__minimize__() for d in self.documents]
+        return json.dumps([minimized_docs,self.features])
+
+    def __setstate__(self,value):
+        print "set state!!"
+        minimized_docs,self.features=json.loads(value)
+        self.documents=[Document.__from_minimized__(d) for d in minimized_docs]'''
+
+
 class Document:
     def __init__(self, name,text,annotations,features):
         self.annotations=annotations
         self.features=features
         self.name=name
-
         self.text=text
 
     def __unicode__(self):
         return 'Name; {0}\nText: {1}' % (self.name, self.text)
+
+    def __minimize__(self):
+        return self.__dict__
+
+    @classmethod
+    def __from_minimized__(cls,state):
+        return cls(state['name'],state['text'],state['annotations'],state['features'])
 
     def get_annotations_with_text(self, selector):
         """
@@ -546,3 +564,11 @@ def simulate_cf_pickling(obj_to_pickle,compress_object=False):
 #python manage.py export_package workflows/nltoolkit/db/package_data.json nltoolkit
 #python manage.py export_package workflows/literature_based_discovery/db/package_data.json literature_based_discovery
 #python manage.py celery worker -l info
+
+if __name__=="__main__":
+    """quick test, pickling and depickling"""
+    from cPickle import dumps,loads
+    from base64 import b64encode, b64decode
+
+    dc=DocumentCorpus([Document("name","text",[(1,2,'token',[('stopword', True)])],{})],{'created_at':'now'})
+    dc2=loads(b64decode(b64encode(dumps(dc))))

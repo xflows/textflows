@@ -884,7 +884,7 @@ class Widget(models.Model):
                     else look for outputs in workflow """
                     try:
                         o.value = outputs[o.variable]
-                        #print "value size end: " + str(asizeof.asizeof(o.value))
+                        print "value size end: " + str(asizeof.asizeof(o.value))
                     except:
                         pass
                     print 'Memory usage before for loop save: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
