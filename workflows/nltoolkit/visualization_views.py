@@ -107,15 +107,16 @@ def document_page(request, widget_id, document_id, narrow_doc='n'):
 
 
 @login_required
-def display_pos_statistics(request, input_dict, output_dict, widget, narrow_doc='n'):
+def display_annotation_statistic(request, input_dict, output_dict, widget, narrow_doc='n'):
     """
     Display POS statistics, basicaly frequencies of specific tags
     """
     
     pos_dict = {}
     adc = input_dict['adc']
+    n = int(input_dict['n_gram'])
+    annotation_name = input_dict['annotation_name']
     allPOS = 0
-    n = 3
     pos_list = []
     for number, d in enumerate(adc.documents):
         length = len(d.annotations)
@@ -124,7 +125,7 @@ def display_pos_statistics(request, input_dict, output_dict, widget, narrow_doc=
             for j in range(i, i + n):
                 f = d.annotations[j][3]
                 for name, value in f:
-                    if name == 'POS Tag':
+                    if name == annotation_name:
                         if j > i:
                             combo += "_"
                         combo += value

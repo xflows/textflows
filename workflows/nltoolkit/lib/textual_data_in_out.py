@@ -323,6 +323,6 @@ def display_document_corpus(input_dict):
     return {}
     
 
-def display_pos_statistics(input_dict):
+def display_annotation_statistic(input_dict):
     #implemented in visualization_views.py
     return {}

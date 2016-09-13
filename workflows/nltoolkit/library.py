@@ -9,3 +9,4 @@ from lib.stop_word_removal import *
 from lib.stemming import *
 from lib.textual_data_in_out import *
 from lib.tokenization import *
+from lib.chunking import *

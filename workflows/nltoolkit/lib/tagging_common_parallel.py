@@ -23,25 +23,25 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
     args=tagger_dict.get('args',[])
     kwargs=tagger_dict.get('kargs',{})
 
-    #pool = multiprocessing.Pool(processes=multiprocessing.cpu_count(), maxtasksperchild=1000)
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count(), maxtasksperchild=1000)
 
     print "evo nas!!!"
-    #parallel for document in adc.documents:
-    adc.documents = [tag_document(document, tagger, tagger_function, args, kwargs, input_annotation, output_annotation) for document in adc.documents]
-    '''new_documents=pool.map(
-        partial(tag_document,
-                tagger=tagger,
-                tagger_function=tagger_function,
-                args=args,
-                kwargs=kwargs,
-                input_annotation=input_annotation,
-                output_annotation=output_annotation),
-        adc.documents,
-        100 #chunksize, constructs list of this size which are passed to pool workers
-    )
+    for document in adc.documents:
+    
+        new_documents=pool.map(
+            partial(tag_document,
+                    tagger=tagger,
+                    tagger_function=tagger_function,
+                    args=args,
+                    kwargs=kwargs,
+                    input_annotation=input_annotation,
+                    output_annotation=output_annotation),
+            adc.documents,
+            100 #chunksize, constructs list of this size which are passed to pool workers
+        )
     pool.close()
-    pool.join()'''
-    #adc.documents=new_documents #list(new_documents)
+    pool.join()
+    adc.documents=new_documents #list(new_documents)
 
     print "dijo!2!!"
 

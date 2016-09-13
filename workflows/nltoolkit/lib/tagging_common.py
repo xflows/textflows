@@ -14,7 +14,7 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
                 if subtext:
                     new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
                     if new_feature!=None:
-                        annotation.features[output_annotation]=new_feature
+                        annotation[3].append((output_annotation, new_feature))
     return {'adc': adc }
 
 
@@ -35,8 +35,8 @@ def universal_sentence_tagger_hub(input_dict):
         if doc.features['contentType'] == "Text":
             if not doc.text:
                 pass
-            group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0].span_start)
-            element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0].span_start)
+            group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0][0])
+            element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0][0])
 
             text_grouped=[] #text_groups= [['First','sentence',['Second','sentance']]
             annotations_grouped=[] #annotations_grouped= [[<Annotation span_start:0 span_ned:4>, <Annotation span_start:6 span_ned:11>],[...
@@ -46,7 +46,7 @@ def universal_sentence_tagger_hub(input_dict):
                 elements=[]
                 sentence_annotations=[]
                 #find elementary annotations 'contained' in the group_annotation
-                while i<len(element_annotations) and element_annotations[i][0].span_end<=group_annotation.span_end:
+                while i<len(element_annotations) and element_annotations[i][0][1]<=group_annotation[1]:
                     annotation=element_annotations[i][0]
                     text_block=element_annotations[i][1]
                     elements.append(text_block)
@@ -58,6 +58,6 @@ def universal_sentence_tagger_hub(input_dict):
             new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
             for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
                 for feature,annotation in izip(sentence_features,sentence_annotations):
-                    annotation.features[output_annotation_name]=feature[1] #[0:number_of_letters]
+                    annotation[3].append((output_annotation_name, feature[1])) #[0:number_of_letters]
 
     return {'adc': adc }
