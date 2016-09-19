@@ -4,6 +4,7 @@ from workflows.tasks import executeFunction
 import nltk
 from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
+from nltk.corpus import wordnet
 #from tagging_common_parallel import universal_word_tagger_hub
 
 
@@ -19,30 +20,46 @@ def stem_lemma_tagger_hub(input_dict):
         output_annotation = input_dict['output_feature']
         return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
 
-def lemmatizer_evaluate(input_dict):
-    corpus = input_dict['adc']
-    tagger_dict = input_dict['tagger']
-    tagger=tagger_dict['object']
-    tagger_function=tagger_dict['function']
-    input_annotation = unicode("Token", "utf-8")
-    output_annotation = unicode("Stem", "utf-8")
-    actual = []
+def lemmatizer_evaluate(input_dict, *args,**kwargs):
+    corpus = input_dict['ptb_corpus']
+    
+    print('corpus zloadan')
+    stemmer_dict = input_dict['tagger']
+    stemmer=stemmer_dict['object']
+    stemmer_function = stemmer_dict['function']
+    tagger_dict = input_dict['pos_tagger']
+    stemmer_name=stemmer.__class__.__name__ if not isinstance(stemmer,LatinoObject) else stemmer.name
+    stemmer_name=re.search(r'[A-Za-z\.0-9]+',stemmer_name).group() #extracts valid characters
+
+    morphy_tag = {'NN':wordnet.NOUN, 'NNS':wordnet.NOUN,
+                  'NNP':wordnet.NOUN, 'NNPS':wordnet.NOUN, 'JJ':wordnet.ADJ,
+                  'JJR':wordnet.ADJ, 'JJS':wordnet.ADJ, 'VB':wordnet.VERB,
+                  'VBD':wordnet.VERB, 'VBG':wordnet.VERB, 'VBN':wordnet.VERB,
+                  'VBP':wordnet.VERB, 'VBZ':wordnet.VERB,'RB':wordnet.ADV,
+                  'RBR':wordnet.ADV, 'RBS':wordnet.ADV}
+    if tagger_dict:
+        tagger=tagger_dict['object']
+    
+    corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
     predicted = []
+    if stemmer_name == 'WordNetLemmatizer':
+        tagged_sents = tagger.tag_sents([w for (w, t) in sent if w] for sent in corpus)
+        for sent in tagged_sents:
+            for word, pos in sent:
+                if pos in morphy_tag:
+                    predicted.append(stemmer.lemmatize(word, morphy_tag[pos]).lower())
+                else:
+                    predicted.append(stemmer.lemmatize(word).lower())
+    else:
+        for sent in corpus:
+            for w, t in sent:
+                predicted.append(getattr(stemmer, stemmer_function)(w.lower(), *args, **kwargs))
+    
+    corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
+    actual = [t.lower() for sent in corpus for (w, t) in sent if w]
 
-    #wordnet lemmatizer is used as silver standard
-    wn_lemmatizer = nltk.stem.wordnet.WordNetLemmatizer()
-    for document in corpus.documents:
-        if document.features['contentType'] == "Text":
-            if not document.text:
-                pass
-
-            for annotation,subtext in document.get_annotations_with_text(input_annotation): #all annotations of this type
-                if subtext:
-                    new_feature=getattr(tagger,tagger_function)(subtext)
-                    true_value = wn_lemmatizer.lemmatize(subtext)
-                    if new_feature!=None:
-                        actual.append(true_value)
-                        predicted.append(new_feature)
+    print actual[:100]
+    print predicted[:100]
 
     print 'finished'
     return {'actual_and_predicted': [actual, predicted]}
