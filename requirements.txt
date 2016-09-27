@@ -20,8 +20,8 @@ liac-arff==2.0.1
 networkx==1.9.1
 djangorestframework==3.0.3
 django-filter==0.9.1
-
-
+pattern==2.6
+textblob==0.11.1
 
 #data in/out package
 requests
