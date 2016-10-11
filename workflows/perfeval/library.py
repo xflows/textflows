@@ -1,5 +1,3 @@
-import resource
-
 def benchmark(input_dict):
     import time
     in_att = input_dict.get('in_att', None)
@@ -41,7 +39,6 @@ def perfeval_classification_statistics(input_dict):
 
     y_true = [class_to_int[lbl] for lbl in y_true]
     y_pred = [class_to_int[lbl] for lbl in y_pred]
-    print 'Memory usage begin class: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 
     accuracy = metrics.accuracy_score(y_true, y_pred)
     precision = metrics.precision_score(y_true, y_pred)
@@ -51,7 +48,6 @@ def perfeval_classification_statistics(input_dict):
     #THIS TAKES HUGE AMOUNTS OF RAM
     confusion_matrix = []#metrics.confusion_matrix(y_true, y_pred)
 
-    print 'Memory usage end class: %s (kb)' % resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     #auc = metrics.roc_auc_score(y_true, y_pred)
     auc = 0.0
     # AUC is defined only for binary classes

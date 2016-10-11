@@ -1,7 +1,5 @@
 import multiprocessing
 from functools import partial
-#from smaz import compress
-
 
 from workflows.textflows import *
 
@@ -14,7 +12,7 @@ def tag_document(document,tagger,tagger_function,args,kwargs,input_annotation,ou
             if subtext:
                 new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
                 if new_feature!=None:
-                    annotation[3].append((output_annotation, new_feature))
+                    annotation.features[output_annotation]=new_feature
     return document
 
 def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation):
@@ -26,19 +24,18 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count(), maxtasksperchild=1000)
 
     print "evo nas!!!"
-    for document in adc.documents:
-    
-        new_documents=pool.map(
-            partial(tag_document,
-                    tagger=tagger,
-                    tagger_function=tagger_function,
-                    args=args,
-                    kwargs=kwargs,
-                    input_annotation=input_annotation,
-                    output_annotation=output_annotation),
-            adc.documents,
-            100 #chunksize, constructs list of this size which are passed to pool workers
-        )
+    #parallel for document in adc.documents:
+    new_documents=pool.map(
+        partial(tag_document,
+                tagger=tagger,
+                tagger_function=tagger_function,
+                args=args,
+                kwargs=kwargs,
+                input_annotation=input_annotation,
+                output_annotation=output_annotation),
+        adc.documents,
+        100 #chunksize, constructs list of this size which are passed to pool workers
+    )
     pool.close()
     pool.join()
     adc.documents=new_documents #list(new_documents)
@@ -49,12 +46,11 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
 
 def sentance_tag_a_document(doc,tagger,tagger_function,args,kwargs,
                             element_annotation_name,group_annotation_name,output_annotation_name):
-
     if doc.features['contentType'] == "Text":
         if not doc.text:
             pass
-        group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0][0])
-        element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0][0])
+        group_annotations=sorted(doc.get_annotations_with_text(group_annotation_name),key=lambda x: x[0].span_start)
+        element_annotations=sorted(doc.get_annotations_with_text(element_annotation_name),key=lambda x: x[0].span_start)
 
         text_grouped=[] #text_groups= [['First','sentence',['Second','sentance']]
         annotations_grouped=[] #annotations_grouped= [[<Annotation span_start:0 span_ned:4>, <Annotation span_start:6 span_ned:11>],[...
@@ -64,7 +60,7 @@ def sentance_tag_a_document(doc,tagger,tagger_function,args,kwargs,
             elements=[]
             sentence_annotations=[]
             #find elementary annotations 'contained' in the group_annotation
-            while i<len(element_annotations) and element_annotations[i][0][1]<=group_annotation[1]:
+            while i<len(element_annotations) and element_annotations[i][0].span_end<=group_annotation.span_end:
                 annotation=element_annotations[i][0]
                 text_block=element_annotations[i][1]
                 elements.append(text_block)
@@ -76,7 +72,7 @@ def sentance_tag_a_document(doc,tagger,tagger_function,args,kwargs,
         new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
         for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
             for feature,annotation in izip(sentence_features,sentence_annotations):
-                annotation[3].append((output_annotation_name, feature[1]))
+                annotation.features[output_annotation_name]=feature[1]
     return doc
 
 
@@ -93,12 +89,10 @@ def universal_sentence_tagger_hub(input_dict):
     output_annotation_name = input_dict['output_feature']
     adc = input_dict['adc']
 
-
-    #pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
-    adc.documents = [sentance_tag_a_document(document, tagger, tagger_function, args, kwargs, element_annotation_name, group_annotation_name, output_annotation_name) for document in adc.documents]
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
     print "evo nas!!!"
     #parallel for document in adc.documents:
-    '''new_documents=pool.map(
+    new_documents=pool.map(
         partial(sentance_tag_a_document,
                 tagger=tagger,
                 tagger_function=tagger_function,
@@ -112,7 +106,7 @@ def universal_sentence_tagger_hub(input_dict):
     )
     pool.close()
     pool.join()
-    adc.documents=new_documents'''
+    adc.documents=new_documents
     print "dijo!!!"
     return {'adc': adc }
 

@@ -31,6 +31,7 @@ class DocumentCorpus:
     def get_document_labels(self):
         return [doc.get_first_label() for doc in self.documents]
 
+
 class Document:
     def __init__(self, name,text,annotations,features):
         self.annotations=annotations
@@ -65,9 +66,9 @@ class Document:
                      #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
                      pass
         return annotations_with_text
+
     def get_annotations(self, selector):
         return [a[0] for a in self.get_annotations_with_text(selector)]
-
 
     def get_annotation_texts(self,selector,stop_word_feature_name="StopWord"):
         return [text for (ann,text) in self.get_annotations_with_text(selector)
@@ -94,7 +95,8 @@ class Document:
         except ValueError, e:
             return label_value
 
-class Annotation: 
+
+class Annotation:
     def __init__(self, span_start, span_end, type, features=None):
         self.features=features or {}
         self.span_start=span_start
