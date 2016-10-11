@@ -815,9 +815,9 @@ class Widget(models.Model):
                     """ if there is a connection than true and read the output value """
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
+                        i.save()
                     else:
                         i.value = None
-
                         i.save()
                 if i.multi_id == 0:
                     input_dict[i.variable]=i.value
@@ -827,7 +827,6 @@ class Widget(models.Model):
                     if not i.value==None:
                         input_dict[i.variable].append(i.value)
             start = time.time()
-            #return outputs
             try:
                 if not self.abstract_widget is None:
                     """ again, if this objects is an abstract widget than true and check certain parameters,
