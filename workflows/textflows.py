@@ -31,7 +31,6 @@ class DocumentCorpus:
     def get_document_labels(self):
         return [doc.get_first_label() for doc in self.documents]
 
-
 class Document:
     def __init__(self, name,text,annotations,features):
         self.annotations=annotations
@@ -95,7 +94,7 @@ class Document:
         except ValueError, e:
             return label_value
 
-class Annotation(): 
+class Annotation: 
     def __init__(self, span_start, span_end, type, features=None):
         self.features=features or {}
         self.span_start=span_start
