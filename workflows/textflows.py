@@ -7,7 +7,6 @@ import nltk
 
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB, MultinomialNB
-from collections import defaultdict
 
 
 class DocumentCorpus:
@@ -32,16 +31,6 @@ class DocumentCorpus:
     def get_document_labels(self):
         return [doc.get_first_label() for doc in self.documents]
 
-    '''def __getstate__(self):
-        print "get state!!"
-        minimized_docs=[d.__minimize__() for d in self.documents]
-        return json.dumps([minimized_docs,self.features])
-
-    def __setstate__(self,value):
-        print "set state!!"
-        minimized_docs,self.features=json.loads(value)
-        self.documents=[Document.__from_minimized__(d) for d in minimized_docs]'''
-
 
 class Document:
     def __init__(self, name,text,annotations,features):
@@ -52,13 +41,6 @@ class Document:
 
     def __unicode__(self):
         return 'Name; {0}\nText: {1}' % (self.name, self.text)
-
-    def __minimize__(self):
-        return self.__dict__
-
-    @classmethod
-    def __from_minimized__(cls,state):
-        return cls(state['name'],state['text'],state['annotations'],state['features'])
 
     def get_annotations_with_text(self, selector):
         """
@@ -73,14 +55,12 @@ class Document:
         element_feature = False if len(selector_split) == 1 else selector_split[1].strip()
 
         for a in self.annotations:
-            if a[2] == element_annotation:
+            if a.type == element_annotation:
                 try:
                     if element_feature:
-                        for name, value in a[3]:
-                            if name == element_feature:
-                                text = value
+                        text = a.features[element_feature]
                     else:
-                        text = self.text[a[0]:a[1]+1]
+                        text = self.text[a.span_start:a.span_end+1]
                     annotations_with_text.append((a, text))
                 except KeyError:
                      #raise KeyError("The Annotation (%s) does not have feature named '%s'!" % (a.__str__(), element_feature))
@@ -90,15 +70,9 @@ class Document:
         return [a[0] for a in self.get_annotations_with_text(selector)]
 
 
-    def feature_exists(self, features, feature_name):
-        for name, value in features:
-            if name == feature_name:
-                return True
-        return False
-
     def get_annotation_texts(self,selector,stop_word_feature_name="StopWord"):
         return [text for (ann,text) in self.get_annotations_with_text(selector)
-                               if not self.feature_exists(ann[3], stop_word_feature_name)]
+                               if not ann.features.has_key(stop_word_feature_name)]
 
     def raw_text(self,selector=None,stop_word_feature_name="StopWord",join_annotations_with=" "):
         if not selector:
@@ -108,8 +82,7 @@ class Document:
             return join_annotations_with.join(selected_subtexts)
 
     def get_first_label(self,label_feature_name="Labels"):
-        label_value=self.features.get(label_feature_name, None)
-        #label_value=self.features.get('Labels').lstrip('[').rstrip(']')
+        label_value=self.features.get(label_feature_name,None)
         #for klass in classes:
         #    if klass in self.features:
         #        return klass
@@ -122,7 +95,7 @@ class Document:
         except ValueError, e:
             return label_value
 
-'''class Annotation(): 
+class Annotation(): 
     def __init__(self, span_start, span_end, type, features=None):
         self.features=features or {}
         self.span_start=span_start
@@ -137,7 +110,7 @@ class Document:
     def __unicode__(self):
         return 'span_start: %d, span_ned: %d' % (self.span_start, self.span_end)
     def __str__(self):
-        return unicode(self).encode('utf-8')'''
+        return unicode(self).encode('utf-8')
 
 
 class BowDataset:
@@ -160,7 +133,6 @@ class BowDataset:
 
     #def sparce_bow_matrix(self):
     #return self.sparse_bow_matrix()
-
     def dense_bow_matrix(self):
         return self.sparse_bow_matrix.toarray()
 
@@ -262,7 +234,7 @@ class BowModelConstructor:
             self.vectorizer.fit(raw_documents) #fit the vectorizer to the documents
             self.__count_params['vocabulary']=self.vectorizer.vocabulary_ #set the learned vocabulary also to future vectorizers
 
-        print self.vectorizer.get_feature_names()
+        #print self.vectorizer.get_feature_names()
 
     def set_new_vocabulary(self,vocabulary,raw_documents,intersect=True):
         if intersect: #intersect vocabularies
@@ -564,11 +536,3 @@ def simulate_cf_pickling(obj_to_pickle,compress_object=False):
 #python manage.py export_package workflows/nltoolkit/db/package_data.json nltoolkit
 #python manage.py export_package workflows/literature_based_discovery/db/package_data.json literature_based_discovery
 #python manage.py celery worker -l info
-
-if __name__=="__main__":
-    """quick test, pickling and depickling"""
-    from cPickle import dumps,loads
-    from base64 import b64encode, b64decode
-
-    dc=DocumentCorpus([Document("name","text",[(1,2,'token',[('stopword', True)])],{})],{'created_at':'now'})
-    dc2=loads(b64decode(b64encode(dumps(dc))))
