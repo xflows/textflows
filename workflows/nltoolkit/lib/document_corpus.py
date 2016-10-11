@@ -91,7 +91,7 @@ def add_computed_token_features(input_dict):
 
     adc=input_dict["adc"]
     for document in adc.documents:
-        compute_new_token_features(document.get_annotations(input_dict["annotation_name"]),input_dict["feature_name"],input_dict["feature_computation"])
+        compute_new_features(document.get_annotations(input_dict["annotation_name"]),input_dict["feature_name"],input_dict["feature_computation"])
 
     return {"adc":adc}
 
@@ -103,20 +103,6 @@ def compute_new_features(objs,new_feature_name,feature_computation):
             new_feature_value=new_feature_value.replace("{"+feature+"}",obj.features.get(feature, "NULL"))
         obj.features[new_feature_name]=new_feature_value
         
-
-def compute_new_token_features(annotations,new_feature_name,feature_computation):
-    features = re.findall(r"\{([\w\s]+)\}", feature_computation) #[mm.split(':')[0] for mm in m.groups()]
-    for annotation in annotations:
-        new_feature_value=copy.copy(feature_computation)
-        for feature in features:
-            for name, value in annotation[3]:
-                if feature == name:
-                    new_feature_value=new_feature_value.replace("{"+feature+"}", value)
-                    break
-            else:
-                new_feature_value=new_feature_value.replace("{"+feature+"}", "NULL")
-        annotation[3].append((new_feature_name, new_feature_value))
-
 
 def split_documents_by_feature_value(input_dict):
     """
