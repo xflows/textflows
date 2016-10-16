@@ -5,6 +5,7 @@ import nltk
 from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
+from pattern.text.en import parse
 #from tagging_common_parallel import universal_word_tagger_hub
 
 
@@ -48,8 +49,13 @@ def lemmatizer_evaluate(input_dict, *args,**kwargs):
             for word, pos in sent:
                 if pos in morphy_tag:
                     predicted.append(stemmer.lemmatize(word, morphy_tag[pos]).lower())
+                    has_pos = stemmer.lemmatize(word, morphy_tag[pos]).lower()
                 else:
                     predicted.append(stemmer.lemmatize(word).lower())
+                no_pos = stemmer.lemmatize(word).lower() 
+                if has_pos and has_pos != no_pos:
+                    print word, has_pos, no_pos
+                has_pos=None
     else:
         for sent in corpus:
             for w, t in sent:
@@ -57,9 +63,6 @@ def lemmatizer_evaluate(input_dict, *args,**kwargs):
     
     corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
     actual = [t.lower() for sent in corpus for (w, t) in sent if w]
-
-    print actual[:100]
-    print predicted[:100]
 
     print 'finished'
     return {'actual_and_predicted': [actual, predicted]}

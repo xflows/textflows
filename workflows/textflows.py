@@ -109,7 +109,7 @@ class Annotation:
         return '<Annotation span_start:%d span_ned:%d>' % (self.span_start, self.span_end)
 
     def __unicode__(self):
-        return 'span_start: %d, span_ned: %d' % (self.span_start, self.span_end)
+        return 'span_start: %d, span_end: %d' % (self.span_start, self.span_end)
     def __str__(self):
         return unicode(self).encode('utf-8')
 

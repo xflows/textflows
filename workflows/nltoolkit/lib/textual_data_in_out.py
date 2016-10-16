@@ -62,7 +62,6 @@ def load_ptb_corpus(input_dict):
                     tagged_word = [tagged_word[1], tagged_word[0]]
                     tagged_sent.append(tagged_word)
             tagged_sents.append(tagged_sent)
-    print tagged_sents[0]
 
     return {"ptb_corpus": tagged_sents}
 

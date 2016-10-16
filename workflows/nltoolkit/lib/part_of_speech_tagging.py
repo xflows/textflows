@@ -1,5 +1,5 @@
-#from tagging_common import universal_sentence_tagger_hub
-from tagging_common_parallel import universal_sentence_tagger_hub
+from tagging_common import universal_sentence_tagger_hub
+#from tagging_common_parallel import universal_sentence_tagger_hub
 #from nltk.tag.simplify   import (simplify_brown_tag, simplify_wsj_tag,
 #                                 simplify_indian_tag, simplify_alpino_tag,
 #                                 simplify_tag)
@@ -34,7 +34,7 @@ def pos_tagger_hub(input_dict):
         output_annotation_name = input_dict['output_feature']
         for doc in adc.documents:
             for annotation in doc.get_annotations(element_annotation_name):
-                if not doc.feature_exists(annotation.features, output_annotation_name):
+                if not output_annotation_name in annotation.features:
                     print input_dict['pos_tagger'],annotation.features
                     print doc.features
                 else:
@@ -48,7 +48,7 @@ def extract_pos_tagger_name(input_dict):
     tagger=input_dict['pos_tagger']
     tagger_name=tagger['object'].__class__.__name__ if not isinstance(tagger,LatinoObject) else tagger.name
     tagger_name=re.search(r'[A-Za-z\.0-9]+',tagger_name).group() #extracts valid characters
-    if 'pretrained' in tagger:
+    if not isinstance(tagger,LatinoObject) and 'pretrained' in tagger:
         if tagger['pretrained']:
             if tagger_name == 'ClassifierBasedPOSTagger':
                 tagger_name = 'MaxentPosTagger-pretrained'

@@ -118,18 +118,19 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
     annotation_name = input_dict['annotation_name']
     allPOS = 0
     pos_list = []
-    for number, d in enumerate(adc.documents):
-        length = len(d.annotations)
+    for doc in adc.documents:
+        annotations = doc.get_annotations_with_text(annotation_name)
+        length = len(annotations)
+        print annotations
         for i in range(0, length - n + 1):
             combo = ""
             for j in range(i, i + n):
-                f = d.annotations[j][3]
-                for name, value in f:
-                    if name == annotation_name:
-                        if j > i:
-                            combo += "_"
-                        combo += value
-                        break
+                print annotations[j]
+                _, value = annotations[j]
+                if j > i:
+                    combo += "_"
+                combo += value
+                        
             if len(combo) > 0:
                 allPOS += 1
                 if combo in pos_dict:

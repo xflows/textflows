@@ -102,7 +102,7 @@ def compute_new_features(objs,new_feature_name,feature_computation):
         for feature in features:
             new_feature_value=new_feature_value.replace("{"+feature+"}",obj.features.get(feature, "NULL"))
         obj.features[new_feature_name]=new_feature_value
-        
+
 
 def split_documents_by_feature_value(input_dict):
     """
