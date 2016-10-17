@@ -5,7 +5,8 @@ import nltk
 from workflows.textflows import *
 from tagging_common import universal_word_tagger_hub
 from nltk.corpus import wordnet
-from pattern.text.en import parse
+from pattern.vector import stem, PORTER, LEMMA
+from textblob import Word
 #from tagging_common_parallel import universal_word_tagger_hub
 
 
@@ -23,8 +24,6 @@ def stem_lemma_tagger_hub(input_dict):
 
 def lemmatizer_evaluate(input_dict, *args,**kwargs):
     corpus = input_dict['ptb_corpus']
-    
-    print('corpus zloadan')
     stemmer_dict = input_dict['tagger']
     stemmer=stemmer_dict['object']
     stemmer_function = stemmer_dict['function']
@@ -43,7 +42,8 @@ def lemmatizer_evaluate(input_dict, *args,**kwargs):
     
     corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
     predicted = []
-    if stemmer_name == 'WordNetLemmatizer':
+    print ('ime', stemmer_name)
+    if tagger_dict and stemmer_name == 'WordNetLemmatizer':
         tagged_sents = tagger.tag_sents([w for (w, t) in sent if w] for sent in corpus)
         for sent in tagged_sents:
             for word, pos in sent:
@@ -198,6 +198,7 @@ def nltk_snowball_stemmer(input_dict):
             }}
 
 
+
 def nltk_wordnet_lemmatizer(input_dict):
     """
     WordNet Lemmatizer
@@ -207,7 +208,59 @@ def nltk_wordnet_lemmatizer(input_dict):
     return {'tagger':
                 {'object': nltk.stem.wordnet.WordNetLemmatizer(),
                  'function': 'lemmatize',
+                 'arguments': ''
                 }}
+
+
+class Pattern_lemmatizer:
+    def lemmatize(self, word):
+        return stem(word, stemmer = LEMMA)
+
+
+def pattern_lemmatizer(input_dict):
+    """
+    WordNet Lemmatizer
+    Lemmatize using WordNet's built-in morphy function.
+    Returns the input word unchanged if it cannot be found in WordNet.
+    """
+    return {'tagger':
+                {'object': Pattern_lemmatizer(),
+                 'function': 'lemmatize',
+                }}
+
+
+class Pattern_porter_stemmer:
+    def stem(self, word):
+        return stem(word, stemmer = PORTER)
+
+
+def pattern_porter_stemmer(input_dict):
+    """
+    WordNet Lemmatizer
+    Lemmatize using WordNet's built-in morphy function.
+    Returns the input word unchanged if it cannot be found in WordNet.
+    """
+    return {'tagger':
+                {'object': Pattern_porter_stemmer(),
+                 'function': 'stem',
+                }}
+
+class Textblob_lemmatizer:
+    def lemmatize(self, word):
+        return Word(word).lemmatize()
+
+
+def textblob_lemmatizer(input_dict):
+    """
+    WordNet Lemmatizer
+    Lemmatize using WordNet's built-in morphy function.
+    Returns the input word unchanged if it cannot be found in WordNet.
+    """
+    return {'tagger':
+                {'object': Textblob_lemmatizer(),
+                 'function': 'lemmatize',
+                }}
+
 
 
 
