@@ -19,53 +19,9 @@ def stem_lemma_tagger_hub(input_dict):
         adc = input_dict['adc']
         tagger_dict = input_dict['tagger']
         input_annotation = input_dict['element_annotation']
+        pos_annotation = input_dict['pos_annotation']
         output_annotation = input_dict['output_feature']
-        return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation)
-
-def lemmatizer_evaluate(input_dict, *args,**kwargs):
-    corpus = input_dict['ptb_corpus']
-    stemmer_dict = input_dict['tagger']
-    stemmer=stemmer_dict['object']
-    stemmer_function = stemmer_dict['function']
-    tagger_dict = input_dict['pos_tagger']
-    stemmer_name=stemmer.__class__.__name__ if not isinstance(stemmer,LatinoObject) else stemmer.name
-    stemmer_name=re.search(r'[A-Za-z\.0-9]+',stemmer_name).group() #extracts valid characters
-
-    morphy_tag = {'NN':wordnet.NOUN, 'NNS':wordnet.NOUN,
-                  'NNP':wordnet.NOUN, 'NNPS':wordnet.NOUN, 'JJ':wordnet.ADJ,
-                  'JJR':wordnet.ADJ, 'JJS':wordnet.ADJ, 'VB':wordnet.VERB,
-                  'VBD':wordnet.VERB, 'VBG':wordnet.VERB, 'VBN':wordnet.VERB,
-                  'VBP':wordnet.VERB, 'VBZ':wordnet.VERB,'RB':wordnet.ADV,
-                  'RBR':wordnet.ADV, 'RBS':wordnet.ADV}
-    if tagger_dict:
-        tagger=tagger_dict['object']
-    
-    corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
-    predicted = []
-    print ('ime', stemmer_name)
-    if tagger_dict and stemmer_name == 'WordNetLemmatizer':
-        tagged_sents = tagger.tag_sents([w for (w, t) in sent if w] for sent in corpus)
-        for sent in tagged_sents:
-            for word, pos in sent:
-                if pos in morphy_tag:
-                    predicted.append(stemmer.lemmatize(word, morphy_tag[pos]).lower())
-                    has_pos = stemmer.lemmatize(word, morphy_tag[pos]).lower()
-                else:
-                    predicted.append(stemmer.lemmatize(word).lower())
-                no_pos = stemmer.lemmatize(word).lower() 
-                if has_pos and has_pos != no_pos:
-                    print word, has_pos, no_pos
-                has_pos=None
-    else:
-        for sent in corpus:
-            for w, t in sent:
-                predicted.append(getattr(stemmer, stemmer_function)(w.lower(), *args, **kwargs))
-    
-    corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
-    actual = [t.lower() for sent in corpus for (w, t) in sent if w]
-
-    print 'finished'
-    return {'actual_and_predicted': [actual, predicted]}
+        return universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation,pos_annotation)
 
 # STEMMERS
 def nltk_lancaster_stemmer(input_dict):
@@ -198,6 +154,24 @@ def nltk_snowball_stemmer(input_dict):
             }}
 
 
+class WordnetLemmatizer:
+    def __init__(self):
+        self.lemmatizer = nltk.stem.wordnet.WordNetLemmatizer()
+        self.morphy_tag = {'NN':wordnet.NOUN, 'NNS':wordnet.NOUN,
+                  'NNP':wordnet.NOUN, 'NNPS':wordnet.NOUN, 'JJ':wordnet.ADJ,
+                  'JJR':wordnet.ADJ, 'JJS':wordnet.ADJ, 'VB':wordnet.VERB,
+                  'VBD':wordnet.VERB, 'VBG':wordnet.VERB, 'VBN':wordnet.VERB,
+                  'VBP':wordnet.VERB, 'VBZ':wordnet.VERB,'RB':wordnet.ADV,
+                  'RBR':wordnet.ADV, 'RBS':wordnet.ADV}
+    
+    def lemmatize(self, lemma, **kwargs):
+        if kwargs:
+            pos_tag = kwargs.values()[0]
+            if pos_tag in self.morphy_tag:
+                return self.lemmatizer.lemmatize(lemma, self.morphy_tag[pos_tag])
+        return self.lemmatizer.lemmatize(lemma)
+
+
 
 def nltk_wordnet_lemmatizer(input_dict):
     """
@@ -206,13 +180,13 @@ def nltk_wordnet_lemmatizer(input_dict):
     Returns the input word unchanged if it cannot be found in WordNet.
     """
     return {'tagger':
-                {'object': nltk.stem.wordnet.WordNetLemmatizer(),
+                {'object': WordnetLemmatizer(),
                  'function': 'lemmatize',
                  'arguments': ''
                 }}
 
 
-class Pattern_lemmatizer:
+class PatternLemmatizer:
     def lemmatize(self, word):
         return stem(word, stemmer = LEMMA)
 
@@ -224,12 +198,12 @@ def pattern_lemmatizer(input_dict):
     Returns the input word unchanged if it cannot be found in WordNet.
     """
     return {'tagger':
-                {'object': Pattern_lemmatizer(),
+                {'object': PatternLemmatizer(),
                  'function': 'lemmatize',
                 }}
 
 
-class Pattern_porter_stemmer:
+class PatternPorterStemmer:
     def stem(self, word):
         return stem(word, stemmer = PORTER)
 
@@ -241,11 +215,11 @@ def pattern_porter_stemmer(input_dict):
     Returns the input word unchanged if it cannot be found in WordNet.
     """
     return {'tagger':
-                {'object': Pattern_porter_stemmer(),
+                {'object': PatternPorterStemmer(),
                  'function': 'stem',
                 }}
 
-class Textblob_lemmatizer:
+class TextblobLemmatizer:
     def lemmatize(self, word):
         return Word(word).lemmatize()
 
@@ -257,7 +231,7 @@ def textblob_lemmatizer(input_dict):
     Returns the input word unchanged if it cannot be found in WordNet.
     """
     return {'tagger':
-                {'object': Textblob_lemmatizer(),
+                {'object': TextblobLemmatizer(),
                  'function': 'lemmatize',
                 }}
 

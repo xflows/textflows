@@ -69,23 +69,6 @@ def corpus_reader(corpus):
             return corpus.tagged_sents()
 
 
-def pos_tagger_evaluate(input_dict):
-    corpus = input_dict['ptb_corpus']
-    print len(corpus)
-    print('corpus zloadan')
-    tagger_dict = input_dict['pos_tagger']
-    tagger=tagger_dict['object']
-    print('tagger zloadan')
-    
-    corpus = [[(w, t) for (w, t) in sent if not " " in w and not "_" in w] for sent in corpus]
-    tagged_sents = tagger.tag_sents([w for (w, t) in sent if w] for sent in corpus)
-    actual = [t for sent in corpus for (w, t) in sent if w]
-    predicted = [t for sent in tagged_sents for (w, t) in sent if w]
-
-    print 'finished'
-    return {'actual_and_predicted': [actual, predicted]}
-
-
 def extract_ptb_from_nltk_corpus(input_dict):
     tagged_sents = list(corpus_reader(input_dict['training_corpus']))
     return {"ptb_corpus": tagged_sents}
