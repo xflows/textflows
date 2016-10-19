@@ -32,8 +32,6 @@ class DocumentCorpus:
     def get_document_labels(self):
         return [doc.get_first_label() for doc in self.documents]
 
-<<<<<<< HEAD
-=======
     def __getstate__(self):
         print "get state!!"
         minimized_docs=[d.__minimize__() for d in self.documents]
@@ -44,9 +42,6 @@ class DocumentCorpus:
         minimized_docs,self.features=json.loads(value)
         self.documents=[Document.__from_minimized__(d) for d in minimized_docs]
 
-
-
->>>>>>> pickle_as_json
 
 class Document:
     def __init__(self, name,text,annotations,features):
