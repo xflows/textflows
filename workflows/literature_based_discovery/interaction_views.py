@@ -3,6 +3,7 @@ from lib.heuristics.frequency_heuristics import FrequencyBasedHeuristicCalculati
 from lib.heuristics.tfidf_heuristics import TfIdfBasedHeuristicCalculations
 from lib.heuristics.outlier_heuristics import OutlierBasedHeuristicCalculations
 from lib.heuristics.similarity_heuristics import SimilarityBasedHeuristicCalculations
+from lib.heuristics.banded_matrix_heuristics import BandedMatrixBasedHeuristicCalculations
 from workflows.textflows import flatten
 
 
@@ -20,6 +21,10 @@ def lbd_similarity_heuristics(request, input_dict, output_dict, widget):
 
 def lbd_outlier_heuristics(request, input_dict, output_dict, widget):
     heuristics=extract_heuristic_names_and_descriptions(OutlierBasedHeuristicCalculations)
+    return render(request, 'interactions/lbd_select_heuristics.html',  {'heuristics': heuristics, 'widget':widget})
+
+def lbd_banded_matrix_heuristics(request, input_dict, output_dict, widget):
+    heuristics=extract_heuristic_names_and_descriptions(BandedMatrixBasedHeuristicCalculations)
     return render(request, 'interactions/lbd_select_heuristics.html',  {'heuristics': heuristics, 'widget':widget})
 
 def lbd_select_ensemble_heuristic(request, input_dict, output_dict, widget):
