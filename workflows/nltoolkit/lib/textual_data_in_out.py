@@ -30,7 +30,7 @@ def load_adc(input_dict):
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     documents, labels = _process_adc(docs, tab_separated_title, leading_labels, titles)
     features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": json.dumps(labels)}
-
+    
     return {"adc": DocumentCorpus(documents=documents, features=features)}
 
 
@@ -64,6 +64,43 @@ def load_ptb_corpus(input_dict):
             tagged_sents.append(tagged_sent)
 
     return {"ptb_corpus": tagged_sents}
+
+
+def ptb_to_adc_converter(input_dict):
+    corpus = input_dict['ptb_corpus']
+    annotation_feature = input_dict['annotation_name']
+    annotations = []
+    string_list = []
+    docs = []
+    title = u"Document1"
+    features = {u"contentType": u"Text", u"sourceFileLine": '1'}
+    position = 0
+    for i, sentence in enumerate(corpus):
+        print i
+        sentence_start = position
+        for word, tag in sentence:
+            string_list.append(word)
+            word_length = len(word)
+            annotation_features = {annotation_feature: tag}
+            annotation = Annotation(position, position + word_length - 1, "Token", annotation_features)
+            annotations.append(annotation)
+            position = position + word_length + 1
+        annotation = Annotation(sentence_start, position , "Sentence")
+        annotations.append(annotation)
+    annotation = Annotation(0, position , "TextBlock")
+    annotations.append(annotation)
+    rawtext = " ".join(string_list)
+    document = Document(title, rawtext, annotations, features)
+    docs.append(document)
+    source = "list"
+    source_date = "unknown"
+    corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
+    features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": []}
+    adc = DocumentCorpus(documents=docs, features=features)
+    for doc in adc.documents:
+        print doc.get_annotations_with_text("Token")[:100]
+        print len(doc.annotations)
+    return {"adc": adc}
 
 
 def crawl_url_links(input_dict):

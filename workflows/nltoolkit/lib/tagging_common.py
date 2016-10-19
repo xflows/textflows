@@ -61,3 +61,16 @@ def universal_sentence_tagger_hub(input_dict):
                     annotation.features[output_annotation_name]=feature[1] #[0:number_of_letters]
 
     return {'adc': adc }
+
+def extract_actual_and_predicted_features(input_dict):
+    actual_adc = input_dict['actual']
+    predicted_adc = input_dict['predicted']
+    annotation_name = input_dict['annotation']
+    predicted = []
+    actual = []
+    for doc in actual_adc.documents:
+        actual.expand(doc.get_annotations(annotation_name))
+
+    for doc in predicted_adc.documents:
+        predicted.expand(doc.get_annotations(annotation_name))
+    return {'actual_and_predicted': [actual, predicted]}
