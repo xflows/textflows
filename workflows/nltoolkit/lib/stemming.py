@@ -155,7 +155,8 @@ def nltk_snowball_stemmer(input_dict):
 
 
 class WordnetLemmatizer:
-    def __init__(self):
+    def __init__(self, pos_annotation):
+        self.pos_annotation = pos_annotation
         self.lemmatizer = nltk.stem.wordnet.WordNetLemmatizer()
         self.morphy_tag = {'NN':wordnet.NOUN, 'NNS':wordnet.NOUN,
                   'NNP':wordnet.NOUN, 'NNPS':wordnet.NOUN, 'JJ':wordnet.ADJ,
@@ -165,8 +166,8 @@ class WordnetLemmatizer:
                   'RBR':wordnet.ADV, 'RBS':wordnet.ADV}
     
     def lemmatize(self, lemma, **kwargs):
-        if kwargs:
-            pos_tag = kwargs.values()[0]
+        if kwargs and self.pos_annotation:
+            pos_tag = kwargs[self.pos_annotation]
             if pos_tag in self.morphy_tag:
                 return self.lemmatizer.lemmatize(lemma, self.morphy_tag[pos_tag])
         return self.lemmatizer.lemmatize(lemma)
@@ -179,8 +180,10 @@ def nltk_wordnet_lemmatizer(input_dict):
     Lemmatize using WordNet's built-in morphy function.
     Returns the input word unchanged if it cannot be found in WordNet.
     """
+
+    pos_annotation = input_dict['pos_annotation']
     return {'tagger':
-                {'object': WordnetLemmatizer(),
+                {'object': WordnetLemmatizer(pos_annotation),
                  'function': 'lemmatize',
                  'arguments': ''
                 }}

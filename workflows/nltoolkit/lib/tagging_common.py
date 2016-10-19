@@ -14,7 +14,7 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
                 if subtext:
                     if pos_annotation:
                         if pos_annotation in annotation.features:
-                            kwargs['pos_tag'] = annotation.features[pos_annotation]
+                            kwargs[pos_annotation] = annotation.features[pos_annotation]
                     new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
                     if new_feature!=None:
                         annotation.features[output_annotation]=new_feature
