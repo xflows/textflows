@@ -42,8 +42,14 @@ INSTALLED_APPS_WORKFLOWS_SUB = (
     #'workflows.noise',
     #'workflows.vipercharts',
     #'workflows.MUSE',
+    #'workflows.MUSE_v3',
     #'workflows.hbp',
-    )
+)
+
+INSTALLED_APPS_EXTERNAL_PACKAGES = (
+    #'rdm.db',
+    #'rdm.wrappers'
+)
 
 BROKER_URL = 'django://'
 CELERY_ALWAYS_EAGER = True

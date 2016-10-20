@@ -3,6 +3,7 @@ import workflows.library
 import time
 import random
 from workflows.tasks import *
+from django.conf import settings
 
 class WidgetRunner():
     def __init__(self,widget,workflow_runner,standalone=False):
