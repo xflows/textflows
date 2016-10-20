@@ -97,9 +97,6 @@ def ptb_to_adc_converter(input_dict):
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": []}
     adc = DocumentCorpus(documents=docs, features=features)
-    for doc in adc.documents:
-        print doc.get_annotations_with_text("Token")[:100]
-        print len(doc.annotations)
     return {"adc": adc}
 
 

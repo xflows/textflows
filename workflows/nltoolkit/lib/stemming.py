@@ -185,7 +185,6 @@ def nltk_wordnet_lemmatizer(input_dict):
     return {'tagger':
                 {'object': WordnetLemmatizer(pos_annotation),
                  'function': 'lemmatize',
-                 'arguments': ''
                 }}
 
 
