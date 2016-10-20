@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "treeview_image": "", 
+      "uid": "f0b5550a-83a6-41a2-9e51-92c8fe1b48a3", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Pattern Lemmatizer\r\n    \r\nLemmatize using Pattern's library built-in stem function.", 
+      "static_image": "tag_stem_image.png", 
+      "action": "pattern_lemmatizer", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 5, 
+      "name": "Pattern Lemmatizer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "f0b5550a-83a6-41a2-9e51-92c8fe1b48a3", 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "description": "", 
+      "variable": "tagger", 
+      "order": 1, 
+      "uid": "0c79df1f-7f82-4250-8df5-e5c438d755ed"
+    }
+  }
+]

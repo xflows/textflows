@@ -93,6 +93,23 @@
     }
   }, 
   {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
+      "name": "POS Annotation", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "System.String", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "pos_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "dd28a4a7-9a40-4943-b023-68a5e2ff75bb"
+    }
+  }, 
+  {
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 

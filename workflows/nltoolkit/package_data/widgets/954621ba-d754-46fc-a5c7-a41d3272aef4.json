@@ -1,0 +1,56 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "45090e07-d869-4fb2-990a-dd108b1063cc", 
+      "treeview_image": "", 
+      "uid": "954621ba-d754-46fc-a5c7-a41d3272aef4", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TODO", 
+      "static_image": "tag_pos_image.png", 
+      "action": "regex_parser", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Regex parser"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "954621ba-d754-46fc-a5c7-a41d3272aef4", 
+      "name": "Grammar", 
+      "short_name": "str", 
+      "default": "\"NP: {<DT>?<JJ>*<NN>}\"", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "grammar", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "b698fe85-e7cb-4d5e-9c97-ff5d2f99b65a"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "954621ba-d754-46fc-a5c7-a41d3272aef4", 
+      "name": "regex chunker", 
+      "short_name": "chn", 
+      "description": "regex chunker", 
+      "variable": "chunker", 
+      "order": 1, 
+      "uid": "d144bbc4-e88f-4fb9-b145-999ee39edc66"
+    }
+  }
+]

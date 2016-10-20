@@ -1,0 +1,107 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "45090e07-d869-4fb2-990a-dd108b1063cc", 
+      "treeview_image": "", 
+      "uid": "ad11d1fd-4dbc-4ff5-a434-306c199e0362", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TODO", 
+      "static_image": "tag_pos_do_image.png", 
+      "action": "chunking_hub", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Chunking Hub"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ad11d1fd-4dbc-4ff5-a434-306c199e0362", 
+      "name": "Output Feature Name", 
+      "short_name": "str", 
+      "default": "Chunk", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "output_feature", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "202c81ab-d9c8-4a49-8c41-4975a7fa658a"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ad11d1fd-4dbc-4ff5-a434-306c199e0362", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "30322551-5a47-4542-a811-7eda3062d5ce"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ad11d1fd-4dbc-4ff5-a434-306c199e0362", 
+      "name": "Chunker", 
+      "short_name": "chn", 
+      "default": "", 
+      "description": "TODO", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "chunker", 
+      "parameter": false, 
+      "order": 2, 
+      "uid": "8ec2af7e-06d2-4418-a747-c02d5f75810a"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "ad11d1fd-4dbc-4ff5-a434-306c199e0362", 
+      "name": "Input Feature Name", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "input_feature", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "b29f8fa0-b1f8-4b01-a9b6-383586480c6d"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "ad11d1fd-4dbc-4ff5-a434-306c199e0362", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "cded8ae2-2518-420a-a8ff-662ca07c57bc"
+    }
+  }
+]

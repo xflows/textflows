@@ -5,7 +5,7 @@
       "category": "017444c3-afd0-4300-9766-bedeaef10765", 
       "treeview_image": "", 
       "uid": "c8472428-1050-4f54-9a5e-e910c692415d", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,9 +19,26 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "order": 5, 
       "name": "WordNet Lemmatizer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "c8472428-1050-4f54-9a5e-e910c692415d", 
+      "name": "POS Annotation", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "System.String", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "pos_annotation", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "7544c60c-37f7-4e46-a3b7-ef9600eb0841"
     }
   }, 
   {

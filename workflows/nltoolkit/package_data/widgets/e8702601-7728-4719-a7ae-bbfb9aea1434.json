@@ -65,7 +65,7 @@
       "name": "Templates", 
       "short_name": "tmp", 
       "default": "brill24", 
-      "description": "Templates to be used in training TODO: meaning?!\r\n\r\nOptions:\r\n- nltkdemo18:\r\n    Return 18 templates, from the original nltk demo, in multi-feature syntax\r\n- nltkdemo18plus:\r\n    Return 18 templates, from the original nltk demo, and additionally a few\r\n    multi-feature ones (the motivation is easy comparison with nltkdemo18)\r\n- brill24:\r\n    Return 24 templates of the seminal TBL paper, Brill (1995)\r\n- fntbl37:\r\n    Return 37 templates taken from the postagging task of the\r\n    fntbl distribution http://www.cs.jhu.edu/~rflorian/fntbl/\r\n    (37 is after excluding a handful which do not condition on Pos[0];\r\n    fntbl can do that but the current nltk implementation cannot.)", 
+      "description": "Templates to be used in training TODO: meaning?!\r\n\r\nOptions:\r\n\r\n- nltkdemo18:\r\n    Return 18 templates, from the original nltk demo, in multi-feature syntax\r\n- nltkdemo18plus:\r\n    Return 18 templates, from the original nltk demo, and additionally a few\r\n    multi-feature ones (the motivation is easy comparison with nltkdemo18)\r\n- brill24:\r\n    Return 24 templates of the seminal TBL paper, Brill (1995)\r\n- fntbl37:\r\n    Return 37 templates taken from the postagging task of the\r\n    fntbl distribution http://www.cs.jhu.edu/~rflorian/fntbl/\r\n    (37 is after excluding a handful which do not condition on Pos[0];\r\n    fntbl can do that but the current nltk implementation cannot.)", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 

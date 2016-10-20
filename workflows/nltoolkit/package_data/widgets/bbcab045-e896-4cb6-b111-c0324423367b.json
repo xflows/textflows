@@ -5,7 +5,7 @@
       "category": "46050a99-188d-40e1-90e5-0c1912059fa7", 
       "treeview_image": "", 
       "uid": "bbcab045-e896-4cb6-b111-c0324423367b", 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": true, 
+      "is_streaming": false, 
       "order": 2, 
       "name": "Train Classifier Hub"
     }

@@ -2,7 +2,7 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "2e5cfc0a-c916-45b3-b53f-c3234a408bbd", 
+      "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
       "uid": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
       "windows_queue": false, 
@@ -12,8 +12,8 @@
       "image": "", 
       "description": "Display POS statistics", 
       "static_image": "view_adc_image.png", 
-      "action": "display_pos_statistics", 
-      "visualization_view": "display_pos_statistics", 
+      "action": "display_annotation_statistic", 
+      "visualization_view": "display_annotation_statistic", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
@@ -21,7 +21,24 @@
       "interactive": false, 
       "is_streaming": false, 
       "order": 1, 
-      "name": "Display POS statistics"
+      "name": "Display annotation statistic"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "N-grams", 
+      "short_name": "str", 
+      "default": "POS tag", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "n_gram", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "6dba408f-2af4-4ffa-a97d-60f56d4dfdd5"
     }
   }, 
   {
@@ -37,8 +54,70 @@
       "parameter_type": null, 
       "variable": "adc", 
       "parameter": false, 
-      "order": 1, 
+      "order": 3, 
       "uid": "d4ffbff2-8055-454b-99db-254a9f6264b6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Annotation name", 
+      "short_name": "str", 
+      "default": "POS tag", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_name", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "f65f68fd-af7e-4dac-a2ed-a0bd4bd25a17"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "3", 
+      "uid": "07dd3396-b23b-424c-aa95-04b8630a5075", 
+      "value": "3", 
+      "abstract_input": "6dba408f-2af4-4ffa-a97d-60f56d4dfdd5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "5", 
+      "uid": "19ae52d2-fd86-45e9-90b1-22e6128e3d96", 
+      "value": "5", 
+      "abstract_input": "6dba408f-2af4-4ffa-a97d-60f56d4dfdd5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "4", 
+      "uid": "92b90df7-970f-4f38-b2c1-f13bc6ff917d", 
+      "value": "4", 
+      "abstract_input": "6dba408f-2af4-4ffa-a97d-60f56d4dfdd5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "2", 
+      "uid": "93e9c8aa-51c4-47b2-b485-744289ac1593", 
+      "value": "2", 
+      "abstract_input": "6dba408f-2af4-4ffa-a97d-60f56d4dfdd5"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "1", 
+      "uid": "c2d031b6-af17-43a2-9b85-01fbfe0e7c1d", 
+      "value": "1", 
+      "abstract_input": "6dba408f-2af4-4ffa-a97d-60f56d4dfdd5"
     }
   }
 ]

@@ -1,0 +1,9 @@
+{
+  "model": "workflows.category", 
+  "fields": {
+    "name": "Chunking", 
+    "parent": null, 
+    "order": 6, 
+    "uid": "45090e07-d869-4fb2-990a-dd108b1063cc"
+  }
+}
