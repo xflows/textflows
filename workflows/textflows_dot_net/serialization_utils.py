@@ -66,12 +66,9 @@ def ToNetObj(data):
     import LatinoInterfaces
     #if hasattr(data, "netObj"):
     #    return data.netObj
-    print('tonetobject')
     if isinstance(data,LatinoObject):
-        print('latinoObject')
         return data.load()
     if isinstance(data, dict):
-        print('dict')
         if not len(data):
             return System.Collections.Generic.Dictionary[System.Object,System.Object]()
         else:
@@ -92,7 +89,6 @@ def ToNetObj(data):
                     pass
             return System.Object()
     if isinstance(data, list):
-        print('list')
         if not len(data):
             return System.Collections.Generic.List[System.Object]()
         else:
@@ -110,7 +106,6 @@ def ToNetObj(data):
                     pass
             return System.Object()
     if isinstance(data, tuple):
-        print('tupple')
         if not len(data):
             return System.Collections.Generic.LinkedList[System.Object]()
         else:
@@ -129,27 +124,21 @@ def ToNetObj(data):
             return System.Object()
     if MAP_TO_PYTHON_OBJECTS:
         if isinstance(data,Document): #name,text,annotations,features
-            print('document')
             d=Latino.Workflows.TextMining.Document(data.name,data.text)
             latino_object_set_feature_values(d,data.features)
             d.AddAnnotations(ToNetObj(data.annotations))
 
             return d
         elif isinstance(data,Annotation):
-            print(data.type)
             a=Latino.Workflows.TextMining.Annotation(data.span_start,data.span_end,data.type)
-            print('do kle dela')
             latino_object_set_feature_values(a,data.features)
-            print('before return')
             return a
         elif isinstance(data,DocumentCorpus):
-            print('adc')
             d=LatinoInterfaces.DocumentCorpus()
             d.AddRange(ToNetObj(data.documents))
             latino_object_set_feature_values(d,data.features)
             return d
         elif isinstance(data,BowDataset):
-            print('bow')
             cx=data.sparse_bow_matrix.tocoo() #A sparse matrix in COOrdinate format.
 
             if data.labels and cx.shape[0]!=len(data.labels):
@@ -166,7 +155,6 @@ def ToNetObj(data):
 
             return ds
         elif isinstance(data,DictionaryProbDist):
-            print('prob')
             p=Latino.Model.Prediction[System.Double]()
             genType = p.GetType().GetGenericTypeDefinition()
             KeyDats=[]
@@ -180,7 +168,6 @@ def ToNetObj(data):
             # probs=dict([(keyDat.Dat,keyDat.Key) for keyDat in data.Inner])
             # return DictionaryProbDist(prob_dict=probs)
             return p
-    print('returning data')
     return data
 
 def latino_object_set_feature_values(latinoObj,features):
