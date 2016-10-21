@@ -1,4 +1,5 @@
 from workflows.textflows import *
+import inspect
 
 def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation, pos_annotation=None):
     tagger=tagger_dict['object']
@@ -14,7 +15,9 @@ def universal_word_tagger_hub(adc,tagger_dict,input_annotation,output_annotation
                 if subtext:
                     if pos_annotation:
                         if pos_annotation in annotation.features:
-                            kwargs[pos_annotation] = annotation.features[pos_annotation]
+                            method = getattr(tagger,tagger_function)
+                            if inspect.getargspec(method)[2] == 'kwargs':
+                                kwargs[pos_annotation] = annotation.features[pos_annotation]
                     new_feature=getattr(tagger,tagger_function)(subtext,*args,**kwargs)
                     if new_feature!=None:
                         annotation.features[output_annotation]=new_feature

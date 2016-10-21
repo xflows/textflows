@@ -121,11 +121,9 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
     for doc in adc.documents:
         annotations = doc.get_annotations_with_text(annotation_name)
         length = len(annotations)
-        print annotations
         for i in range(0, length - n + 1):
             combo = ""
             for j in range(i, i + n):
-                print annotations[j]
                 _, value = annotations[j]
                 if j > i:
                     combo += "_"
@@ -142,9 +140,6 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
         pos_list.append((pos, float("{0:.2f}".format(float(number)/allPOS))))
 
     pos_list = sorted(pos_list, key=lambda x: x[1], reverse=True)[:40]
-    print allPOS
-
-    
     view = django.shortcuts.render(request, 'visualizations/pos_statistics.html', {'widget': widget,
                                                                                                'data': pos_list,
                                                                                                'narrow_doc': narrow_doc})

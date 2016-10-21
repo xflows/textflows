@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "45090e07-d869-4fb2-990a-dd108b1063cc", 
+      "treeview_image": "", 
+      "uid": "7a06c214-b7ab-40ef-947f-73f5648aefa1", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TODO", 
+      "static_image": "tag_pos_image.png", 
+      "action": "classifier_based_parser", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 1, 
+      "name": "Classifier based parser"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "7a06c214-b7ab-40ef-947f-73f5648aefa1", 
+      "name": "classifier based chunker", 
+      "short_name": "chn", 
+      "description": "classifier based chunker", 
+      "variable": "chunker", 
+      "order": 1, 
+      "uid": "cf514394-7714-44a9-a111-171ae54c9c16"
+    }
+  }
+]

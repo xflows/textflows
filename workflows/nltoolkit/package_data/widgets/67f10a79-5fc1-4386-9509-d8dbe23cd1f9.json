@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "treeview_image": "", 
+      "uid": "67f10a79-5fc1-4386-9509-d8dbe23cd1f9", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "Porter stemmer from Pattern library.", 
+      "static_image": "tag_stem_image.png", 
+      "action": "pattern_porter_stemmer", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 5, 
+      "name": "Pattern Porter Stemmer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "67f10a79-5fc1-4386-9509-d8dbe23cd1f9", 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "description": "", 
+      "variable": "tagger", 
+      "order": 1, 
+      "uid": "5abaecc9-3c1b-488f-bd1a-073b9c200434"
+    }
+  }
+]

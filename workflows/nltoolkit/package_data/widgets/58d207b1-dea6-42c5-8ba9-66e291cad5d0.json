@@ -1,0 +1,39 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "017444c3-afd0-4300-9766-bedeaef10765", 
+      "treeview_image": "", 
+      "uid": "58d207b1-dea6-42c5-8ba9-66e291cad5d0", 
+      "windows_queue": false, 
+      "package": "nltoolkit", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "TextBlob Lemmatizer\r\n    \r\nLemmatize using a lemmatizer from library TextBlob.", 
+      "static_image": "tag_stem_image.png", 
+      "action": "textblob_lemmatizer", 
+      "visualization_view": "", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "is_streaming": false, 
+      "order": 5, 
+      "name": "TextBlob Lemmatizer"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "58d207b1-dea6-42c5-8ba9-66e291cad5d0", 
+      "name": "Stemmer (Tagger)", 
+      "short_name": "tgr", 
+      "description": "", 
+      "variable": "tagger", 
+      "order": 1, 
+      "uid": "0ab6b2fd-48c0-4b26-99bc-54a68d88ef58"
+    }
+  }
+]
