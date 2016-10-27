@@ -36,7 +36,6 @@ def universal_sentence_tagger_hub(input_dict):
     output_annotation_name = input_dict['output_feature']
     adc = input_dict['adc']
 
-
     for doc in adc.documents:
         if doc.features['contentType'] == "Text":
             if not doc.text:
@@ -60,7 +59,6 @@ def universal_sentence_tagger_hub(input_dict):
                     i+=1
                 text_grouped.append(elements)
                 annotations_grouped.append(sentence_annotations)
-
             new_features=getattr(tagger,tagger_function)(text_grouped,*args,**kwargs)
             for sentence_features, sentence_annotations in izip(new_features,annotations_grouped):
                 for feature,annotation in izip(sentence_features,sentence_annotations):

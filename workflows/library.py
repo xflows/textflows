@@ -700,7 +700,10 @@ def eval_bar_chart(input_dict):
     return {}
     
 def eval_to_table(input_dict):
-    return {}   
+    return {}  
+
+def eval_to_2d_table(input_dict):
+    return {}    
     
 def data_table(input_dict):
     return {}

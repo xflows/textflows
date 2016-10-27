@@ -154,6 +154,20 @@ def eval_bar_chart_view(request,input_dict,output_dict,widget):
 def eval_to_table_view(request,input_dict,output_dict,widget):
     return render(request, 'visualizations/eval_to_table.html',{'widget':widget,'input_dict':input_dict,'output_dict':output_dict})
 
+def eval_to_2d_table_view(request,input_dict,output_dict,widget):
+    table_header_list = ['algorithm']
+    table_data_list = ['']
+    metric = input_dict['evaluation_metric']
+    for inner in input_dict['eval_results'][0]:
+        table_header_list.append(inner['y_name'])
+    for inner in input_dict['eval_results']:
+        table_row = [inner[0]['name']]
+        for obj in inner:
+            table_row.append(obj[metric])
+        table_data_list.append(table_row)
+    data = [table_header_list, table_data_list]
+    return render(request, 'visualizations/eval_to_2d_table.html',{'widget':widget,'data':data,'output_dict':output_dict})
+
 def data_table_view(request,input_dict,output_dict,widget):
     #import orange
     data = input_dict['data']

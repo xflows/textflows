@@ -18,6 +18,7 @@ from nltk.tag.stanford   import StanfordTagger
 from django.conf import settings
 from workflows.tasks import executeFunction
 from nltk.corpus import brown, treebank, nps_chat
+from nltk.tag.stanford import StanfordPOSTagger
 
 
 def pos_tagger_hub(input_dict):
@@ -58,19 +59,29 @@ def extract_pos_tagger_name(input_dict):
     return {'pos_tagger_name': tagger_name}
 
 
-def corpus_reader(corpus):
+def corpus_reader(corpus, chunk):
     if type(corpus)==DocumentCorpus:
         raise NotImplementedError
     else:
         tagged_posts = getattr(corpus, "tagged_posts", None)
         if callable(tagged_posts):
-            return corpus.tagged_posts()
+            if chunk[-1] == '%':
+                index = (float(chunk[:-1])/100) * len(corpus.tagged_posts())
+            else:
+                index = int(chunk)
+            return corpus.tagged_posts()[:int(index)]
         else:
-            return corpus.tagged_sents()
+            if chunk[-1] == '%':
+                index = (float(chunk[:-1])/100) * len(corpus.tagged_sents())
+            else:
+                index = int(chunk)
+            return corpus.tagged_sents()[:int(index)]
 
 
 def extract_ptb_from_nltk_corpus(input_dict):
-    tagged_sents = list(corpus_reader(input_dict['training_corpus']))
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    tagged_sents = list(corpus_reader(corpus, chunk))
     return {"ptb_corpus": tagged_sents}
 
 
@@ -124,8 +135,9 @@ def nltk_affix_pos_tagger(input_dict):
 
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
-
-    tagged_corpus=corpus_reader(input_dict['training_corpus'])
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus=corpus_reader(corpus, chunk)
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     affix_length=int(input_dict['affix_length'])
     min_stem_length=int(input_dict['min_stem_length'])
@@ -134,7 +146,7 @@ def nltk_affix_pos_tagger(input_dict):
 
     return {'pos_tagger': {
                 'function':'tag_sents',
-                'object': AffixTagger(tagged_corpus, affix_length=affix_length, cutoff=cutoff,
+                'object': AffixTagger(training_corpus, affix_length=affix_length, cutoff=cutoff,
                          min_stem_length=min(min_stem_length, 2), backoff=backoff_tagger)
         }
     }
@@ -167,8 +179,9 @@ def nltk_ngram_pos_tagger(input_dict):
 
     :returns pos_tagger: A python dictionary containing the POS tagger object and its arguments.
     """
-
-    training_corpus=corpus_reader(input_dict['training_corpus'])
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus=corpus_reader(corpus, chunk)
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     n=int(input_dict['n']) #default 2
     cutoff=int(input_dict['cutoff']) #default 0
@@ -224,7 +237,9 @@ TODO: odloci se katerega se obdrzi od naslednjih dveh
     :returns pos_tagger: A python dictionary containing the POS tagger
         object and its arguments.
     """
-    training_corpus=corpus_reader(input_dict['training_corpus'])[:8500]
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus=corpus_reader(corpus, chunk)
     backoff_tagger=input_dict['backoff_tagger']['object'] if input_dict['backoff_tagger'] else DefaultTagger('-None-')
     classifier=None #(input_dict['classifier'])
     cutoff_prob=int(input_dict['cutoff_prob']) if input_dict['cutoff_prob'] else None
@@ -272,11 +287,13 @@ def nltk_brill_pos_tagger(input_dict):
     :returns pos_tagger: A python dictionary containing the POS tagger
         object and its arguments.
     """
-    training_corpus=corpus_reader(input_dict['training_corpus'])
-    initial_tagger=input_dict['initial_tagger']['object'] if input_dict['initial_tagger'] else DefaultTagger('-None-')
-    max_rules=int(input_dict['max_rules']) #default 200
-    min_score=int(input_dict['min_score']) #default 2
-    deterministic=True
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    training_corpus = corpus_reader(corpus, chunk)
+    initial_tagger = input_dict['initial_tagger']['object'] if input_dict['initial_tagger'] else DefaultTagger('-None-')
+    max_rules = int(input_dict['max_rules']) #default 200
+    min_score = int(input_dict['min_score']) #default 2
+    deterministic = True
 
     templates = getattr(nltk.tag.brill,input_dict['templates'])()
 
@@ -292,33 +309,6 @@ def nltk_brill_pos_tagger(input_dict):
                 'object': brill_tagger
             }
     }
-
-
-'''
-def brown_POS_to_treebank_POS():
-    conversions = {
-        'OD':'JJ', 'JJT':'JJS', 'JJS':'JJ',
-        '*':'RB', 'RBT':'RBS', 'WQL':'WRB', 
-        'QL':'RB', 'RN':'RB', 'CS':'IN',
-        'DTI':'DT', 'DTS':'DT', 'ABL':'PDT',
-        'ABN':'PDT', 'ABX':'DT (CC)', 'DTX':'DT (CC)',
-        'AT':'DT', 'AP':'JJ', 'PP$':'PRP$',
-        'PP$$':'PRP', 'NP':'NNP', 'NPS':'NNPS',
-        'NR':'NN, NNP, RB', 'PN':'NN', 'PPSS':'PRP',
-        'PPS':'PRP', 'PPO':'PRP', 'PPL':'PRP',
-        'PPLS':'PRP', 'WPS':'WP', 'WPO':'WP',
-        'VB':'VBP', 'DO':'VBP', 'DO':'VB',
-        'DOD':'VBD', 'DOZ':'VBZ', 'HV':'VBP',
-        'HV':'VB', 'HVD':'VBD', 'HVG':'VBG',
-        'HVN':'VBN', 'HVZ':'VBZ', 'BE':'VB',
-        'BED':'VBD', 'BEDZ':'VBD', 'BEG':'VBG',
-        'BEN':'VBN', 'BEZ':'VBZ', 'BEM':'VBP',
-        'BER':'VBP', 'IN':'TO', '$':'POS',
-        'UH':'UH', '.':'.', '.':':',
-        ':':':', ',':',', '--':'-',
-        'not':'$', '(FW-)':'FW', 'not':'SYM',
-        '':'LS',
-    }'''
 
 import time, os
 import re
@@ -454,13 +444,14 @@ def nltk_maxent_pos_tagger(input_dict):
         pretrained = True
     else:
         pretrained = False
-        #this megam executable will only work on 64bit linux server
-        PATH_TO_MEGAM_EXECUTABLE = os.path.expanduser("/home/matej/textflows-env/bin/MEGAM/megam-64.opt")
+        #this megam executable will only work on 64bit windows
+        PATH_TO_MEGAM_EXECUTABLE = os.path.expanduser("C:\\work\\textflows-env\\MEGAM\\megam.exe")
         nltk.config_megam(PATH_TO_MEGAM_EXECUTABLE)
 
         maxent_tagger = MaxentPosTagger()
-        
-        training_corpus=corpus_reader(input_dict['training_corpus'])
+        chunk = input_dict['training_corpus']['chunk']
+        corpus = input_dict['training_corpus']['corpus']
+        training_corpus=corpus_reader(corpus, chunk)
         if training_corpus:
             maxent_tagger.train(training_corpus)
         else:
@@ -482,7 +473,6 @@ from nltk.data import find, load
 class AveragedPerceptron(object):
 
     '''An averaged perceptron, as implemented by Matthew Honnibal.
-
     See more implementation details here:
         http://spacy.io/blog/part-of-speech-POS-tagger-in-python/
     '''
@@ -566,7 +556,6 @@ class PerceptronTagger(TaggerI):
         http://spacy.io/blog/part-of-speech-POS-tagger-in-python/
     
     >>> from nltk.tag.perceptron import PerceptronTagger
-
     Train the model 
     
     >>> tagger = PerceptronTagger(load=False)
@@ -636,7 +625,6 @@ class PerceptronTagger(TaggerI):
     def train(self, sentences, save_loc=None, nr_iter=5):
         '''Train a model from sentences, and save it at ``save_loc``. ``nr_iter``
         controls the number of Perceptron training iterations.
-
         :param sentences: A list of (words, tags) tuples.
         :param save_loc: If not ``None``, saves a pickled model in this location.
         :param nr_iter: Number of training iterations.
@@ -689,7 +677,6 @@ class PerceptronTagger(TaggerI):
         - All words are lower cased
         - Digits in the range 1800-2100 are represented as !YEAR;
         - Other digits are represented as !DIGITS
-
         :rtype: str
         '''
         if '-' in word and word[0] != '-':
@@ -756,7 +743,9 @@ def nltk_perceptron_pos_tagger(input_dict):
     else: 
         pretrained = False   
         perceptron_tagger = PerceptronTagger(load=False)
-        training_corpus=corpus_reader(input_dict['training_corpus'])
+        chunk = input_dict['training_corpus']['chunk']
+        corpus = input_dict['training_corpus']['corpus']
+        training_corpus=corpus_reader(corpus, chunk)
         perceptron_tagger.train(training_corpus)
 
     return {'pos_tagger': {
@@ -766,14 +755,15 @@ def nltk_perceptron_pos_tagger(input_dict):
             }
     }
 
-
-from nltk.tag.stanford import StanfordPOSTagger
+import os
+java_path = "C:\Program Files\java\jdk1.7.0_79\\bin\java.exe"
+os.environ['JAVAHOME'] = java_path
 
 def stanford_pos_tagger(input_dict):
-    stanford_dir = "/home/matej/textflows-env/"
+    stanford_dir = "C:\\work\\textflows-env\\"
     modelfile = stanford_dir + 'english-bidirectional-distsim.tagger'
     jarfile = stanford_dir + 'stanford-postagger.jar'
-    tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile)
+    tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile, java_options='-mx4000m')
     return {'pos_tagger': {
                 'function':'tag_sents',
                 'object': tagger

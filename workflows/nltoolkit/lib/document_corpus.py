@@ -6,7 +6,7 @@ import re
 
 def nltk_corpus(input_dict):
     """Returns the nltk.corpus for the selected corpus name"""
-    return {'corpus': NltkCorpus(input_dict['corpus_name'])}
+    return {'corpus': {'corpus': NltkCorpus(input_dict['corpus_name']), 'chunk': input_dict['chunk']}}
 
 
 def statistics(input_dict):
@@ -185,4 +185,8 @@ def merge_corpora(input_dict):
             adc.documents.append(document)
 
     return {"adc": adc}
+
+
+def extract_adc_name(input_dict):
+    return {'y_name' : input_dict['adc'].features['Source']}
 

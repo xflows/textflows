@@ -39,6 +39,10 @@ def load_ptb_corpus(input_dict):
     leading_labels = False
     docs, source, source_date,titles=_process_input(input_text,leading_labels)
     tagged_sents = []
+    if "." in source:
+        name = source.split('.')[0]
+    else:
+        name = source
     for doc in docs:
         l = []
         doc = doc.replace('\n', '')
@@ -63,11 +67,11 @@ def load_ptb_corpus(input_dict):
                     tagged_sent.append(tagged_word)
             tagged_sents.append(tagged_sent)
 
-    return {"ptb_corpus": tagged_sents}
+    return {"ptb_corpus": [name, tagged_sents]}
 
 
 def ptb_to_adc_converter(input_dict):
-    corpus = input_dict['ptb_corpus']
+    corpus = input_dict['ptb_corpus'][1]
     annotation_feature = input_dict['annotation_name']
     annotations = []
     string_list = []
@@ -104,7 +108,7 @@ def ptb_to_adc_converter(input_dict):
     rawtext = " ".join(string_list)
     document = Document(title, rawtext, annotations, features)
     docs.append(document)
-    source = "list"
+    source = input_dict['ptb_corpus'][0]
     source_date = "unknown"
     corpus_date = unicode(time.strftime("%d.%m.%Y %H:%M:%S", time.localtime()))
     features = {u"Source": source, u"SourceDate": source_date, u"CorpusCreateDate": corpus_date, "Labels": []}

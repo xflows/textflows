@@ -1,0 +1,106 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "category": "ed2728bc-3fd5-4244-9876-f6a757d1b922", 
+      "treeview_image": "", 
+      "uid": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
+      "is_streaming": false, 
+      "package": "perfeval", 
+      "interaction_view": "", 
+      "has_progress_bar": false, 
+      "image": "", 
+      "description": "", 
+      "static_image": "", 
+      "action": "eval_to_2d_table", 
+      "visualization_view": "eval_to_2d_table_view", 
+      "streaming_visualization_view": "", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "wsdl": "", 
+      "interactive": false, 
+      "windows_queue": false, 
+      "order": 5, 
+      "name": "Evaluation Results to 2d Table"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
+      "name": "Evaluation metric", 
+      "short_name": "str", 
+      "default": "accuracy", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "evaluation_metric", 
+      "parameter": true, 
+      "order": 1, 
+      "uid": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
+      "name": "Evaluation Results", 
+      "short_name": "evr", 
+      "default": "", 
+      "description": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "eval_results", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "4d28f295-2ef5-4b06-b604-cdba79d0d212"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "precision", 
+      "uid": "8166d2c5-0856-4540-9bf8-4535d016f59b", 
+      "value": "precision", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "accuracy", 
+      "uid": "97278e6a-d711-4d32-a9e1-ef4e1be72eb3", 
+      "value": "accuracy", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "recall", 
+      "uid": "a7f51eb5-b8be-4894-87b7-113d145956f4", 
+      "value": "recall", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "auc", 
+      "uid": "b6ff08bd-74b3-408f-933a-6f1dca0fbdd6", 
+      "value": "auc", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "fscore", 
+      "uid": "da41b6ce-ded0-4adb-8c91-8f61fa29693a", 
+      "value": "fscore", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+    }
+  }
+]

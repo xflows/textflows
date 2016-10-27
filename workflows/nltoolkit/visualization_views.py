@@ -2,6 +2,8 @@ import django.template.loader
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from workflows.models import Widget
+import nltk
+from nltk.collocations import *
 
 @login_required
 def display_document_corpus(request, input_dict, output_dict, widget, narrow_doc='n'):
@@ -111,37 +113,71 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
     """
     Display POS statistics, basicaly frequencies of specific tags
     """
-    
-    pos_dict = {}
+
     adc = input_dict['adc']
     n = int(input_dict['n_gram'])
     annotation_name = input_dict['annotation_name']
-    allPOS = 0
-    pos_list = []
-    for doc in adc.documents:
-        annotations = doc.get_annotations_with_text(annotation_name)
-        length = len(annotations)
-        for i in range(0, length - n + 1):
-            combo = ""
-            for j in range(i, i + n):
-                _, value = annotations[j]
-                if j > i:
-                    combo += "_"
-                combo += value
-                        
-            if len(combo) > 0:
-                allPOS += 1
-                if combo in pos_dict:
-                    pos_dict[combo] = pos_dict[combo] + 1
-                else:
-                    pos_dict[combo] = 1
-    allPOS = float(allPOS)
-    for pos, number in pos_dict.items():
-        pos_list.append((pos, float("{0:.2f}".format(float(number)/allPOS))))
+    stat_type = input_dict['stat_type']
+    allAnnotations = 0
+    result_list = []
+    print(stat_type)
+    if stat_type == 'frequency':
+        annotation_dict = {}
+        for doc in adc.documents:
+            if stat_type == 'frequency':
+                annotations = doc.get_annotations_with_text(annotation_name)
+                length = len(annotations)
+                for i in range(0, length - n + 1):
+                    combo = ""
+                    for j in range(i, i + n):
+                        _, value = annotations[j]
+                        if j > i:
+                            combo += "_"
+                        combo += value
+                                
+                    if len(combo) > 0:
+                        allAnnotations += 1
+                        if combo in annotation_dict:
+                            annotation_dict[combo] = annotation_dict[combo] + 1
+                        else:
+                            annotation_dict[combo] = 1
+                title = "Annotation frequency"
+        
+        allAnnotations = float(allAnnotations)
+        for pos, number in annotation_dict.items():
+            result_list.append((pos, "{0:.2f}".format(float(number)/allAnnotations)))
 
-    pos_list = sorted(pos_list, key=lambda x: x[1], reverse=True)[:40]
+        result_list = sorted(result_list, key=lambda x: x[1], reverse=True)[:40]
+
+    else:
+        all_annotations = []
+        for doc in adc.documents:
+            annotations = doc.get_annotations_with_text(annotation_name)
+            for annotation in annotations:
+                _, value = annotation
+                all_annotations.append(value)
+
+        if stat_type == 'pmi_bigrams':
+            bigram_measures = nltk.collocations.BigramAssocMeasures()
+            finder = BigramCollocationFinder.from_words(all_annotations)
+            best = finder.score_ngrams(bigram_measures.pmi)[:40]
+            for tags, score in best:
+                tag1, tag2 = tags
+                result_list.append((tag1 + " " + tag2, "{0:.2f}".format(score)))
+            title = "Bigrams PMI"
+
+
+        elif stat_type == 'pmi_trigrams':
+            trigram_measures = nltk.collocations.TrigramAssocMeasures()
+            finder = TrigramCollocationFinder.from_words(all_annotations)
+            best = finder.score_ngrams(trigram_measures.pmi)[:40]
+            for tags, score in best:
+                tag1, tag2, tag3 = tags
+                result_list.append((tag1 + " " + tag2 + " " + tag3, "{0:.2f}".format(score)))
+            title = "Trigrams PMI"
+        
     view = django.shortcuts.render(request, 'visualizations/pos_statistics.html', {'widget': widget,
-                                                                                               'data': pos_list,
+                                                                                               'data': [result_list, title],
                                                                                                'narrow_doc': narrow_doc})
     return view
 

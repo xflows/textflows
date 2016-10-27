@@ -65,7 +65,6 @@ def extract_actual_and_predicted_features(input_dict):
     annotation_predicted = input_dict['annotation_predicted']
     predicted = []
     actual = []
-    print(annotation_actual, annotation_predicted)
     for doc in adc.documents:
         actual.extend(doc.get_annotation_texts(annotation_actual))
         predicted.extend(doc.get_annotation_texts(annotation_predicted))

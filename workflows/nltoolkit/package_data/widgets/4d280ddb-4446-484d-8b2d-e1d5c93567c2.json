@@ -5,7 +5,7 @@
       "category": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
       "treeview_image": "", 
       "uid": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "order": 1, 
       "name": "NLTK Document Corpus"
     }
@@ -39,6 +39,23 @@
       "parameter": true, 
       "order": 1, 
       "uid": "9e3c98c0-69f9-40ee-b11d-cc86c0531606"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "4d280ddb-4446-484d-8b2d-e1d5c93567c2", 
+      "name": "Corpus Chunk", 
+      "short_name": "str", 
+      "default": "100%", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "chunk", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "bccff022-db6c-4a5a-bd1b-c078521584af"
     }
   }, 
   {
