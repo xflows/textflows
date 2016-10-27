@@ -68,3 +68,11 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 USE_WINDOWS_QUEUE = False
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
