@@ -1,5 +1,5 @@
 import re
-from workflows.textflows import flatten
+from ..helpers import flatten
 
 
 def vipercharts_create_integers(input_dict):

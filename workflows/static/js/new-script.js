@@ -1087,7 +1087,7 @@ function updateWidgetListeners() {
             var y = parseInt($(this).css('top'));
             var x = parseInt($(this).css('left'));
 
-                      
+
             $(".ui-selected").each(function() {
                 //get the offset first
                 var selectedY = parseInt($(this).css('top'));
@@ -1116,8 +1116,8 @@ function updateWidgetListeners() {
             }
 
             var y = parseInt($(this).css('top'));
-            var x = parseInt($(this).css('left'));  
-                      
+            var x = parseInt($(this).css('left'));
+
             $(".ui-selected").each(function() {
                 //get the offset first
                 $(this).css('top',y+offsetsY[$(this).attr('rel')]);
@@ -1147,7 +1147,7 @@ function updateWidgetListeners() {
                 var x = parseInt($(this).css('left'));
                 $.post(url['save-position'], { "widget_id": $(this).attr('rel'), "x": x, "y": y } );
 
-                
+
                })
 
 
@@ -1156,7 +1156,7 @@ function updateWidgetListeners() {
                 var x = parseInt($(this).css('left'));
                 $.post(url['save-position'], { "widget_id": $(this).attr('rel'), "x": x, "y": y } );
                }
-               
+
                 redrawLines();
 
         }}

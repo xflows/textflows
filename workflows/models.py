@@ -8,7 +8,6 @@ import time
 import random
 
 from picklefield.fields import PickledObjectField
-from workflows.textflows import DocumentCorpus
 
 from workflows.thumbs import ThumbnailField
 
