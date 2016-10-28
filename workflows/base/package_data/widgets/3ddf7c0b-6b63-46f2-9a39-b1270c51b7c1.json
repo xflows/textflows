@@ -62,6 +62,23 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "3ddf7c0b-6b63-46f2-9a39-b1270c51b7c1", 
+      "name": "Y Name", 
+      "short_name": "y", 
+      "default": "", 
+      "description": "", 
+      "required": false, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "y_name", 
+      "parameter": false, 
+      "order": 8, 
+      "uid": "35bf2c48-df1d-43e3-8813-df8a5e76edb6"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "3ddf7c0b-6b63-46f2-9a39-b1270c51b7c1", 
       "name": "F score", 
       "short_name": "f", 
       "default": "", 

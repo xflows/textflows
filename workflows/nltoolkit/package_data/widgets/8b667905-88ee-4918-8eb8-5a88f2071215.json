@@ -48,7 +48,7 @@
       "name": "Annotation name", 
       "short_name": "str", 
       "default": "POS tag", 
-      "description": "System.String", 
+      "description": "Give the name to the annotations from the Penn Treebank Format, for example, 'POS tag' or 'Lemma'. This annotation will be tagged in the ADC corpus under this name.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 

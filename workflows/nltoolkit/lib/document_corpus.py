@@ -9,6 +9,16 @@ def nltk_corpus(input_dict):
     return {'corpus': {'corpus': NltkCorpus(input_dict['corpus_name']), 'chunk': input_dict['chunk']}}
 
 
+def extract_nltk_corpus_name(input_dict):
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    name = "NLTK corpus " + str(chunk)
+    match = re.search(r"(\\\\|/)(\w+)'", str(corpus))
+    if match:
+        name = match.group(2) + " " + str(chunk)
+    return {'name': name}
+
+
 def statistics(input_dict):
     """
     Statistics of Annotated Document Corpus.

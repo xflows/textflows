@@ -48,7 +48,7 @@
       "name": "Corpus Chunk", 
       "short_name": "str", 
       "default": "100%", 
-      "description": "System.String", 
+      "description": "Define the chunk of the corpus you want. You can define the chunk as percentage(e.g. '80%') of the corpus you would like or you can define the number of sentences from the beggining of the corpus. For example, value '1000' will return first 1000 sentences in the corpus.\r\n\r\nYou can also define the chunk you want to discard. For example '^80%' will discard first 80% of the corpus and return last 20% of the corpus. '^1000' will discard first 1000 sentences of the corpus and return the rest of the corpus.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 

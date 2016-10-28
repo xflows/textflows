@@ -10,7 +10,7 @@
       "interaction_view": "", 
       "has_progress_bar": false, 
       "image": "", 
-      "description": "Takes as an input classifier predictions and the ADC object, the predictions were made on. Outputs a combined list of actual and predicted values which can be used e.g. by the Classification Statistics widget.", 
+      "description": "Takes as an input a ADC object with already defined actual and predicted features that can be compared.  Outputs a combined list of actual and predicted values which can be used e.g. by the Classification Statistics widget.", 
       "static_image": "", 
       "action": "extract_actual_and_predicted_values", 
       "visualization_view": "", 

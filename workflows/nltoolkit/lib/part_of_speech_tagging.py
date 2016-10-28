@@ -9,7 +9,6 @@ from nltk.tag.sequential import (DefaultTagger, NgramTagger, AffixTagger,
 import nltk.tag.brill
 from nltk.tag.brill      import BrillTagger
 from nltk.tag.brill_trainer import BrillTaggerTrainer
-import re
 from workflows.textflows import LatinoObject, NltkCorpus
 from nltk.tag.tnt        import TnT
 from nltk.tag.hunpos     import HunposTagger
@@ -18,6 +17,9 @@ from nltk.tag.stanford   import StanfordTagger
 from django.conf import settings
 from workflows.tasks import executeFunction
 from nltk.corpus import brown, treebank, nps_chat
+from nltk.tag.stanford import StanfordPOSTagger
+import os
+import re
 
 
 def pos_tagger_hub(input_dict):
@@ -63,17 +65,25 @@ def corpus_reader(corpus, chunk):
         raise NotImplementedError
     else:
         tagged_posts = getattr(corpus, "tagged_posts", None)
+        reverse = False
+        if chunk[0] == '^':
+            reverse = True
+            chunk = chunk[1:]
         if callable(tagged_posts):
             if chunk[-1] == '%':
                 index = (float(chunk[:-1])/100) * len(corpus.tagged_posts())
             else:
                 index = int(chunk)
+            if reverse:
+                return corpus.tagged_posts()[int(index):]
             return corpus.tagged_posts()[:int(index)]
         else:
             if chunk[-1] == '%':
                 index = (float(chunk[:-1])/100) * len(corpus.tagged_sents())
             else:
                 index = int(chunk)
+            if reverse:
+                return corpus.tagged_sents()[int(index):]
             return corpus.tagged_sents()[:int(index)]
 
 
@@ -746,7 +756,6 @@ def nltk_perceptron_pos_tagger(input_dict):
             }
     }
 
-import os
 java_path = "C:\Program Files\java\jdk1.7.0_79\\bin\java.exe"
 os.environ['JAVAHOME'] = java_path
 

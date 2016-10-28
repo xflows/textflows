@@ -3,13 +3,13 @@
     "model": "workflows.abstractwidget", 
     "fields": {
       "category": "ed2728bc-3fd5-4244-9876-f6a757d1b922", 
-      "treeview_image": "", 
+      "treeview_image": "treeview/results-table.png", 
       "uid": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
       "is_streaming": false, 
       "package": "perfeval", 
       "interaction_view": "", 
       "has_progress_bar": false, 
-      "image": "", 
+      "image": "images/results-table.png", 
       "description": "", 
       "static_image": "", 
       "action": "eval_to_2d_table", 
@@ -31,7 +31,7 @@
       "name": "Evaluation metric", 
       "short_name": "str", 
       "default": "accuracy", 
-      "description": "System.String", 
+      "description": "Choose the evaluation measurement you would like to show in the table.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
@@ -54,7 +54,7 @@
       "parameter_type": null, 
       "variable": "eval_results", 
       "parameter": false, 
-      "order": 1, 
+      "order": 2, 
       "uid": "4d28f295-2ef5-4b06-b604-cdba79d0d212"
     }
   }, 
