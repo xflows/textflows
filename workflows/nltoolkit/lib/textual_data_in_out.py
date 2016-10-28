@@ -3,6 +3,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 from requests.exceptions import ConnectionError
 from workflows.textflows import *
+from part_of_speech_tagging import corpus_reader
 import os.path
 import time
 import re
@@ -94,12 +95,13 @@ def ptb_to_adc_converter(input_dict):
 
         sentence_start = position
         for word, tag in sentence:
-            string_list.append(word)
-            word_length = len(word)
-            annotation_features = {annotation_feature: tag}
-            annotation = Annotation(position, position + word_length - 1, "Token", annotation_features)
-            annotations.append(annotation)
-            position = position + word_length + 1
+            if len(word) > 0:
+                string_list.append(word)
+                word_length = len(word)
+                annotation_features = {annotation_feature: tag}
+                annotation = Annotation(position, position + word_length - 1, "Token", annotation_features)
+                annotations.append(annotation)
+                position = position + word_length + 1
         if position > sentence_start:
             annotation = Annotation(sentence_start, position - 1, "Sentence")
             annotations.append(annotation)
@@ -115,6 +117,21 @@ def ptb_to_adc_converter(input_dict):
     adc = DocumentCorpus(documents=docs, features=features)
 
     return {"adc": adc}
+
+
+def nltk_corpus_to_adc(input_dict):
+    chunk = input_dict['training_corpus']['chunk']
+    corpus = input_dict['training_corpus']['corpus']
+    annotation_feature = input_dict['annotation_name']
+    name = "NLTK corpus"
+    match = re.search(r"(\\\\|/)(\w+)'", str(corpus))
+    if match:
+        name = match.group(2) + " corpus"
+   
+    print str(corpus)
+    print name
+    corpus_dict = {"ptb_corpus": [name, list(corpus_reader(corpus, chunk))], 'annotation_name': annotation_feature}
+    return ptb_to_adc_converter(corpus_dict)
 
 
 def crawl_url_links(input_dict):

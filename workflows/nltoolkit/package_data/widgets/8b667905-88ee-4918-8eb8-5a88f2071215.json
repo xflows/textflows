@@ -5,23 +5,23 @@
       "category": "e86a1f09-5966-4d0d-8220-d3f991f1b24c", 
       "treeview_image": "", 
       "uid": "8b667905-88ee-4918-8eb8-5a88f2071215", 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
       "image": "", 
       "description": "extract tagged sentences in nested lists format from NLTK corpus.", 
       "static_image": "", 
-      "action": "extract_ptb_from_nltk_corpus", 
+      "action": "nltk_corpus_to_adc", 
       "visualization_view": "", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "order": 1, 
-      "name": "NLTK corpus to PTB format"
+      "name": "NLTK corpus to ADC format"
     }
   }, 
   {
@@ -42,13 +42,30 @@
     }
   }, 
   {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8b667905-88ee-4918-8eb8-5a88f2071215", 
+      "name": "Annotation name", 
+      "short_name": "str", 
+      "default": "POS tag", 
+      "description": "System.String", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_name", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "ff1c6c3a-3878-4932-b41f-daed68021aad"
+    }
+  }, 
+  {
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "8b667905-88ee-4918-8eb8-5a88f2071215", 
-      "name": "PTB document corpus", 
-      "short_name": "ptb", 
-      "description": "PTB document corpus", 
-      "variable": "ptb_corpus", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus", 
+      "variable": "adc", 
       "order": 1, 
       "uid": "3ea38619-f510-43f7-a9c5-909f1e7e7600"
     }

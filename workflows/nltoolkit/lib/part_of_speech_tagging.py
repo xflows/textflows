@@ -18,7 +18,6 @@ from nltk.tag.stanford   import StanfordTagger
 from django.conf import settings
 from workflows.tasks import executeFunction
 from nltk.corpus import brown, treebank, nps_chat
-from nltk.tag.stanford import StanfordPOSTagger
 
 
 def pos_tagger_hub(input_dict):
@@ -76,14 +75,6 @@ def corpus_reader(corpus, chunk):
             else:
                 index = int(chunk)
             return corpus.tagged_sents()[:int(index)]
-
-
-def extract_ptb_from_nltk_corpus(input_dict):
-    chunk = input_dict['training_corpus']['chunk']
-    corpus = input_dict['training_corpus']['corpus']
-    tagged_sents = list(corpus_reader(corpus, chunk))
-    return {"ptb_corpus": tagged_sents}
-
 
 
 def nltk_default_pos_tagger(input_dict):
