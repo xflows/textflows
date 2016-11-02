@@ -115,33 +115,32 @@ def display_annotation_statistic(request, input_dict, output_dict, widget, narro
     """
 
     adc = input_dict['adc']
-    n = int(input_dict['n_gram'])
     annotation_name = input_dict['annotation_name']
     stat_type = input_dict['stat_type']
     allAnnotations = 0
     result_list = []
     print(stat_type)
-    if stat_type == 'frequency':
+    if stat_type[0].isdigit():
+        n = int(stat_type[0])
         annotation_dict = {}
         for doc in adc.documents:
-            if stat_type == 'frequency':
-                annotations = doc.get_annotations_with_text(annotation_name)
-                length = len(annotations)
-                for i in range(0, length - n + 1):
-                    combo = ""
-                    for j in range(i, i + n):
-                        _, value = annotations[j]
-                        if j > i:
-                            combo += "_"
-                        combo += value
-                                
-                    if len(combo) > 0:
-                        allAnnotations += 1
-                        if combo in annotation_dict:
-                            annotation_dict[combo] = annotation_dict[combo] + 1
-                        else:
-                            annotation_dict[combo] = 1
-                title = "Annotation frequency"
+            annotations = doc.get_annotations_with_text(annotation_name)
+            length = len(annotations)
+            for i in range(0, length - n + 1):
+                combo = ""
+                for j in range(i, i + n):
+                    _, value = annotations[j]
+                    if j > i:
+                        combo += "_"
+                    combo += value
+                            
+                if len(combo) > 0:
+                    allAnnotations += 1
+                    if combo in annotation_dict:
+                        annotation_dict[combo] = annotation_dict[combo] + 1
+                    else:
+                        annotation_dict[combo] = 1
+            title = "Annotation frequency"
         
         allAnnotations = float(allAnnotations)
         for pos, number in annotation_dict.items():

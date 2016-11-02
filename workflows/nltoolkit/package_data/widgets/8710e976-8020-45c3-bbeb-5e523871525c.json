@@ -79,6 +79,23 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
+      "name": "POS Annotation", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "Name of Part of Speech annotation in ADC corpus if ADC corpus contains part of speech tags. Used by wordnet lemmatizer which uses POS tags for lemma prediction.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "pos_annotation", 
+      "parameter": true, 
+      "order": 4, 
+      "uid": "87df8f8d-ecbe-4319-9622-dd505dfbd7d9"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "8710e976-8020-45c3-bbeb-5e523871525c", 
       "name": "Output Feature Name", 
       "short_name": "str", 
       "default": "Stem", 

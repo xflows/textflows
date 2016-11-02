@@ -300,9 +300,6 @@ class WorkflowRunner():
                     output_train = folds[i][0]
                 elif input_type == 'DocumentCorpus':
                     train_indices, test_indices= folds[i]
-                    print "engine"
-                    print("TRAIN:", train_indices, "TEST:", test_indices)
-
                     output_train, output_test = document_corpus.split(train_indices,test_indices)
                 else:
                     output_train = folds[:i] + folds[i+1:]

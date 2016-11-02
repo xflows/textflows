@@ -25,6 +25,23 @@
     }
   }, 
   {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "c8472428-1050-4f54-9a5e-e910c692415d", 
+      "name": "POS Annotation", 
+      "short_name": "str", 
+      "default": "POS Tag", 
+      "description": "Define the name of the part of speech annotations form ADC corpus that wordnet lemmatizer will use when trying to lemmatize words.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "pos_annotation", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "37048c2c-0177-48d4-b122-2c017c9ef1c4"
+    }
+  }, 
+  {
     "model": "workflows.abstractoutput", 
     "fields": {
       "widget": "c8472428-1050-4f54-9a5e-e910c692415d", 

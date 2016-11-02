@@ -10,10 +10,10 @@
       "interaction_view": "", 
       "has_progress_bar": false, 
       "image": "", 
-      "description": "Display POS statistics", 
+      "description": "Display statistic (frequency and PMI) for specific annotation or annotation sequence in ADC corpus", 
       "static_image": "view_adc_image.png", 
-      "action": "display_pos_statistics", 
-      "visualization_view": "display_pos_statistics", 
+      "action": "display_annotation_statistic", 
+      "visualization_view": "display_annotation_statistic", 
       "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
@@ -21,7 +21,121 @@
       "interactive": false, 
       "windows_queue": false, 
       "order": 1, 
-      "name": "Display POS statistics"
+      "name": "Display annotation statistic"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "default": "", 
+      "description": "Annotated Document Corpus (workflows.textflows.DocumentCorpus)", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 1, 
+      "uid": "75d57dba-1c76-4982-9362-23b41c0b37c0"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Statistic type", 
+      "short_name": "str", 
+      "default": "1-gram frequency", 
+      "description": "Choose what kind of statistics you would like to show", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "stat_type", 
+      "parameter": true, 
+      "order": 2, 
+      "uid": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "Annotation name", 
+      "short_name": "str", 
+      "default": "Token/POS Tag", 
+      "description": "Choose annotation", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "text", 
+      "variable": "annotation_name", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "d2f1b218-7805-40e2-8caf-02d6760785c3"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "PMI of trigrams", 
+      "uid": "27922e8e-9348-499f-906e-f51c90aa1d0f", 
+      "value": "pmi_trigrams", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "5-gram frequency", 
+      "uid": "30058ce2-83f3-47bb-9226-3d31176713f4", 
+      "value": "5-gram frequency", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "3-gram frequency", 
+      "uid": "3c9fae7f-458d-49fd-b811-2879106023d2", 
+      "value": "3-gram frequency", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "PMI of bigrams", 
+      "uid": "9ca86893-039d-4824-bb63-3c89e3c8a650", 
+      "value": "pmi_bigrams", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "4-gram frequency", 
+      "uid": "a5533066-55b6-47e1-9b04-959d0a05ae31", 
+      "value": "4-gram frequency", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "1-gram frequency", 
+      "uid": "d3124c05-f011-4aa7-9c54-c9a885a27dee", 
+      "value": "1-gram frequency", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "2-gram frequency", 
+      "uid": "d54524ee-2552-4e33-9cec-042a3446feb7", 
+      "value": "2-gram frequency", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
     }
   }
 ]

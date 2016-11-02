@@ -5,7 +5,7 @@
       "category": "4b74b12d-4767-45b1-9bb3-8872234b01fe", 
       "treeview_image": "", 
       "uid": "b9f4f51e-26c1-40bd-82a9-022e319e6b22", 
-      "windows_queue": false, 
+      "is_streaming": false, 
       "package": "nltoolkit", 
       "interaction_view": "", 
       "has_progress_bar": false, 
@@ -19,7 +19,7 @@
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "is_streaming": false, 
+      "windows_queue": false, 
       "order": 1, 
       "name": "PTB To ADC Converter"
     }
@@ -47,8 +47,8 @@
       "widget": "b9f4f51e-26c1-40bd-82a9-022e319e6b22", 
       "name": "Annotation name", 
       "short_name": "str", 
-      "default": "POS tag", 
-      "description": "System.String", 
+      "default": "POS Tag", 
+      "description": "Give the name to the annotations from the Penn Treebank Format, for example, 'POS Tag' or 'Lemma'. This annotation will be tagged in the ADC corpus under this name.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 

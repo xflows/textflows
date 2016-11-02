@@ -127,6 +127,18 @@
     }
   }, 
   {
+    "model": "workflows.abstractoutput", 
+    "fields": {
+      "widget": "0bbbae31-49fc-40a4-a565-187c4c5f1575", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "description": "Annotated Document Corpus", 
+      "variable": "adc", 
+      "order": 1, 
+      "uid": "4e2038f4-2f9a-4248-aca7-335ce0fc57f7"
+    }
+  }, 
+  {
     "model": "workflows.abstractoption", 
     "fields": {
       "name": "3", 
