@@ -7,6 +7,8 @@ PUBLIC_DIR = os.path.join(PROJECT_DIR, 'public')
 BACKUP_DIR = os.path.join(PROJECT_DIR, 'backup')
 
 DEBUG = False
+ALLOWED_HOSTS=['localhost']
+
 TEMPLATE_DEBUG = True
 
 ADMINS = (

@@ -47,8 +47,9 @@ INSTALLED_APPS_WORKFLOWS_SUB = (
 )
 
 INSTALLED_APPS_EXTERNAL_PACKAGES = (
-    #'rdm.db',
-    #'rdm.wrappers'
+    # 'tf_core.nltoolkit',
+    # 'tf_latino.latino',
+    # 'tf_literature_based_discovery',
 )
 
 BROKER_URL = 'django://'
@@ -60,8 +61,6 @@ SECRET_KEY = '*f$)twxl*rdk*o@^j%^0f0r#z7=kkyw=-2v*rjdnon_j==1uw@'
 if DEBUG:
     # Show emails in the console during developement.
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-CACHES = {}
 
 import sys
 reload(sys)
