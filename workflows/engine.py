@@ -329,6 +329,7 @@ class WorkflowRunner():
 
     def save(self):
         for w in self.widgets:
+            print w.name
             for i in w.inputs.all():
                 i.save(force_update=True)
             for o in w.outputs.all():

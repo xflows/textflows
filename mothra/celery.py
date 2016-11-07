@@ -30,3 +30,9 @@ def test_task():
     print "test!"
     return 1
 
+
+@app.task()
+def sum_task(a,b):
+    return a+b
+
+

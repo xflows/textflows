@@ -10,7 +10,7 @@ router.register(r'inputs', api_views.InputViewSet, base_name='input')
 router.register(r'outputs', api_views.OutputViewSet, base_name='output')
 
 
-urlpatterns = patterns('',
+urlpatterns =[
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-)
+]
