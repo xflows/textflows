@@ -28,6 +28,23 @@
     "model": "workflows.abstractinput", 
     "fields": {
       "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
+      "name": "N-gram", 
+      "short_name": "str", 
+      "default": "1", 
+      "description": "Choose what kind of n-gram features you would like to score.", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "select", 
+      "variable": "n_gram", 
+      "parameter": true, 
+      "order": 3, 
+      "uid": "48c5c9f0-2302-43d0-9b46-f689d0f5f063"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
       "name": "Annotated Document Corpus", 
       "short_name": "adc", 
       "default": "", 
@@ -47,7 +64,7 @@
       "widget": "0a85e4da-16f8-4731-878c-6c7f2e8824e3", 
       "name": "Statistic type", 
       "short_name": "str", 
-      "default": "1-gram frequency", 
+      "default": "frequency", 
       "description": "Choose what kind of statistics you would like to show", 
       "required": true, 
       "multi": false, 
@@ -78,6 +95,15 @@
   {
     "model": "workflows.abstractoption", 
     "fields": {
+      "name": "Chi square test", 
+      "uid": "", 
+      "value": "chi_square_test", 
+      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
       "name": "PMI of trigrams", 
       "uid": "27922e8e-9348-499f-906e-f51c90aa1d0f", 
       "value": "pmi_trigrams", 
@@ -87,19 +113,28 @@
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "5-gram frequency", 
-      "uid": "30058ce2-83f3-47bb-9226-3d31176713f4", 
-      "value": "5-gram frequency", 
-      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+      "name": "2", 
+      "uid": "39beea0e-6363-4b1d-86cc-ff4bd6001013", 
+      "value": "2", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "3-gram frequency", 
-      "uid": "3c9fae7f-458d-49fd-b811-2879106023d2", 
-      "value": "3-gram frequency", 
-      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+      "name": "6", 
+      "uid": "612f2d64-ce12-4644-ad6d-485341b9fcae", 
+      "value": "6", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "1", 
+      "uid": "8e741644-47c6-443a-a44b-3f559382dfe1", 
+      "value": "1", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063"
     }
   }, 
   {
@@ -114,28 +149,37 @@
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "4-gram frequency", 
-      "uid": "a5533066-55b6-47e1-9b04-959d0a05ae31", 
-      "value": "4-gram frequency", 
-      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
-    }
-  }, 
-  {
-    "model": "workflows.abstractoption", 
-    "fields": {
-      "name": "1-gram frequency", 
+      "name": "frequency", 
       "uid": "d3124c05-f011-4aa7-9c54-c9a885a27dee", 
-      "value": "1-gram frequency", 
+      "value": "frequency", 
       "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "2-gram frequency", 
-      "uid": "d54524ee-2552-4e33-9cec-042a3446feb7", 
-      "value": "2-gram frequency", 
-      "abstract_input": "a721b27b-3576-44ab-8039-7f7827e6067e"
+      "name": "5", 
+      "uid": "ec21fcc3-f4bb-4281-b75e-0f342802b3c5", 
+      "value": "5", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "4", 
+      "uid": "f3bfb8aa-efc4-4bee-9cca-aebd35bc2572", 
+      "value": "4", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063"
+    }
+  }, 
+  {
+    "model": "workflows.abstractoption", 
+    "fields": {
+      "name": "3", 
+      "uid": "f3d0e14f-793d-449c-95ab-c0bfa806d684", 
+      "value": "3", 
+      "abstract_input": "48c5c9f0-2302-43d0-9b46-f689d0f5f063"
     }
   }
 ]

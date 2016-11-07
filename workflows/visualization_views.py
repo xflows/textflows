@@ -165,7 +165,7 @@ def eval_to_2d_table_view(request,input_dict,output_dict,widget):
         for obj in inner:
             table_row.append(obj[metric])
         table_data_list.append(table_row)
-    data = [table_header_list, table_data_list]
+    data = [table_header_list, table_data_list, metric]
     return render(request, 'visualizations/eval_to_2d_table.html',{'widget':widget,'data':data,'output_dict':output_dict})
 
 def data_table_view(request,input_dict,output_dict,widget):

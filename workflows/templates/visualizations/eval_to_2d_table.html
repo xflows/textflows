@@ -11,7 +11,14 @@
     {% for item in data.1 %}
     <tr class="tablerow{{widget.pk}}">
         {% for metric in item %}
-        <td class="tablecellcenter"> {{metric}} </td>
+        <td class="tablecellcenter" style="min-width: 50px">
+            {% if forloop.counter != 1 %}{{metric|floatformat:"2"}}
+                {% if data.2 == 'accuracy'%}
+                %
+                {% endif%}
+            {% else %}{{metric}}
+            {% endif %}
+        </td>
         {% endfor %}
     </tr>
     {% endfor %}

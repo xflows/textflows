@@ -127,9 +127,6 @@ def nltk_corpus_to_adc(input_dict):
     match = re.search(r"(\\\\|/)(\w+)'", str(corpus))
     if match:
         name = match.group(2) + " corpus"
-   
-    print str(corpus)
-    print name
     corpus_dict = {"ptb_corpus": [name, list(corpus_reader(corpus, chunk))], 'annotation_name': annotation_feature}
     return ptb_to_adc_converter(corpus_dict)
 
