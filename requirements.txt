@@ -21,11 +21,11 @@ networkx==1.9.1
 djangorestframework==3.4.0
 django-filter==0.9.1
 
-
-
 #data in/out package
 requests
 MySQL-python #mysql import widget
 boilerpipe
 pdfminer==20140328
 docx==0.2.4
+
+pattern==2.6

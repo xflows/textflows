@@ -54,3 +54,19 @@ def perfeval_classification_statistics(input_dict):
     #    auc = 'undefined for multiple classes' #
     return {'accuracy': accuracy, 'precision': precision, 'recall': recall, 
             'f1': f1, 'auc': auc, 'confusion_matrix': confusion_matrix}
+
+
+def extract_actual_and_predicted_features(input_dict):
+    adc = input_dict['adc']
+    annotation_actual = input_dict['annotation_actual']
+    annotation_predicted = input_dict['annotation_predicted']
+    predicted = []
+    actual = []
+    for doc in adc.documents:
+        actual.extend(doc.get_annotation_texts(annotation_actual))
+        predicted.extend(doc.get_annotation_texts(annotation_predicted))
+    return {'actual_and_predicted': [actual, predicted]}
+
+
+def eval_to_2d_table(input_dict):
+    return {}    
