@@ -37,3 +37,7 @@ celerybeat-schedule
 .coverage
 htmlcov
 workflows/nltoolkit/package_data/*_api_key.json
+
+#external packages
+/tf_core
+/tf_latino

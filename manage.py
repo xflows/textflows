@@ -11,7 +11,7 @@ if __name__ == '__main__':
     import os
     if os.getenv("COMPUTERNAME") == "MATEJ-PC":
         import clr
-        sys.path.append("C:\\work\\textflows\\workflows\\textflows_dot_net\\bin")
+        sys.path.append("C:\\work\\tf_latino\\tf_latino\\lib\\bin")
         import LatinoInterfaces
 
     execute_from_command_line(sys.argv)
