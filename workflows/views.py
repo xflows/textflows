@@ -478,6 +478,8 @@ def add_for(request):
                 input.short_name = 'for'
                 input.variable = 'For'
                 input.inner_output = output
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -494,6 +496,8 @@ def add_for(request):
                 input.short_name = 'for'
                 input.variable = 'For'
                 input.widget = widget
+                input.required = False
+                input.parameter = False
                 input.save()
                 output = Output()
                 output.widget = workflow.widget
@@ -562,6 +566,8 @@ def add_cv(request):
                 input.variable = 'CVD'
                 input.inner_output = output
                 input.order = 1
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -581,6 +587,8 @@ def add_cv(request):
                 input.variable = 'CVF'
                 input.inner_output = output
                 input.order = 2
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -599,6 +607,8 @@ def add_cv(request):
                 input.variable = 'CVS'
                 input.order = 3
                 input.inner_output = output
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -616,6 +626,8 @@ def add_cv(request):
                 input.short_name = 'res'
                 input.variable = 'Res'
                 input.widget = widget
+                input.required = False
+                input.parameter = False
                 input.save()
                 output = Output()
                 output.widget = workflow.widget
@@ -672,6 +684,8 @@ def add_input(request):
                 input.short_name = 'inp'
                 input.variable = variable_name
                 input.inner_output = output
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -712,6 +726,8 @@ def add_output(request):
                 input.short_name = 'out'
                 input.variable = variable_name
                 input.widget = widget
+                input.required = False
+                input.parameter = False
                 input.save()
                 output = Output()
                 output.widget = workflow.widget

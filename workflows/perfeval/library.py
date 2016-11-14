@@ -41,17 +41,21 @@ def perfeval_classification_statistics(input_dict):
     y_true = [class_to_int[lbl] for lbl in y_true]
     y_pred = [class_to_int[lbl] for lbl in y_pred]
 
-    accuracy = metrics.accuracy_score(y_true, y_pred)
-    precision = metrics.precision_score(y_true, y_pred)
-    recall = metrics.recall_score(y_true, y_pred)
-    f1 = metrics.f1_score(y_true, y_pred)
-    confusion_matrix = metrics.confusion_matrix(y_true, y_pred)
-    auc = metrics.roc_auc_score(y_true, y_pred)
+     # AUC is defined only for binary classes
+    if len(classes) == 2:
+        auc = metrics.roc_auc_score(y_true, y_pred)
+        avg = 'binary'
+    else:
+        avg = 'weighted'
+        auc = 'undefined for multiple classes' #
 
-    # AUC is defined only for binary classes
-    #if len(classes) == 2:
-    #else:
-    #    auc = 'undefined for multiple classes' #
+    accuracy = metrics.accuracy_score(y_true, y_pred)
+    precision = metrics.precision_score(y_true, y_pred, average=avg)
+    recall = metrics.recall_score(y_true, y_pred, average=avg)
+    f1 = metrics.f1_score(y_true, y_pred, average=avg)
+    confusion_matrix = []#metrics.confusion_matrix(y_true, y_pred)
+
+   
     return {'accuracy': accuracy, 'precision': precision, 'recall': recall, 
             'f1': f1, 'auc': auc, 'confusion_matrix': confusion_matrix}
 
