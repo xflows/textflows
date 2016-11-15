@@ -16,12 +16,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         packages = []
-        extern_packages = []
         for app in settings.INSTALLED_APPS:
             if 'workflows.' in app:
                 packages.append(app)
-            elif app in settings.INSTALLED_APPS_EXTERNAL_PACKAGES:
-                extern_packages.append(app)
 
         for package in packages:
             package_name = package.split('workflows.')[1]
@@ -30,5 +27,6 @@ class Command(BaseCommand):
 
         
             
-        self.stdout.write("Exporting nltoolkit package \n")
-        export_package('tf_core.nltoolkit',self.stdout, dest_folder='C:\\work\\textflows\\tf_core\\nltoolkit')
+        #temporary fix
+        #self.stdout.write("Exporting nltoolkit package \n")
+        #export_package('tf_core.nltoolkit',self.stdout, dest_folder='C:\\work\\textflows\\tf_core\\nltoolkit')

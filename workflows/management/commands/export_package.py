@@ -75,8 +75,6 @@ def export_package(package_name,writer,dest_folder=None):
     style = color_style()
 
     external = package_name in settings.INSTALLED_APPS_EXTERNAL_PACKAGES
-    if external:
-        package_name= package_name.split('.')[1]
 
     if external and not dest_folder:
         raise CommandError("You must provide a destination folder when exporting external packages.")

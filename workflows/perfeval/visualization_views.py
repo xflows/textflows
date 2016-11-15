@@ -12,10 +12,10 @@ def eval_to_2d_table_view(request,input_dict,output_dict,widget):
     table_header_list = ['algorithm']
     table_data_list = ['']
     metric = input_dict['evaluation_metric']
-    for inner in input_dict['eval_results'][0]:
-        table_header_list.append(inner['y_name'])
+    for x in input_dict['eval_results'][0]:
+        table_header_list.append(x['name'])
     for inner in input_dict['eval_results']:
-        table_row = [inner[0]['name']]
+        table_row = [inner[0]['y_name']]
         for obj in inner:
             table_row.append(obj[metric])
         table_data_list.append(table_row)
