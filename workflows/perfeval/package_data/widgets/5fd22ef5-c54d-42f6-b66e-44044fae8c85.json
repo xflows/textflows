@@ -4,24 +4,24 @@
     "fields": {
       "category": "ed2728bc-3fd5-4244-9876-f6a757d1b922", 
       "treeview_image": "treeview/results-table.png", 
-      "uid": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
+      "name": "Evaluation Results to 2d Table", 
       "is_streaming": false, 
-      "package": "perfeval", 
+      "uid": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
       "interaction_view": "", 
-      "has_progress_bar": false, 
       "image": "images/results-table.png", 
-      "description": "", 
+      "package": "perfeval", 
       "static_image": "", 
-      "action": "eval_to_2d_table", 
+      "windows_queue": false, 
+      "post_interact_action": "", 
       "visualization_view": "eval_to_2d_table_view", 
       "streaming_visualization_view": "", 
-      "post_interact_action": "", 
+      "action": "eval_to_2d_table", 
       "wsdl_method": "", 
       "wsdl": "", 
       "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 5, 
-      "name": "Evaluation Results to 2d Table"
+      "description": "Table that can be used in workflows with nested loops. You can define names on x and y axis. You can also choose the evaluation metrics that you want to show from a dropdown menu."
     }
   }, 
   {
@@ -30,15 +30,15 @@
       "widget": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
       "name": "Evaluation metric", 
       "short_name": "str", 
+      "uid": "3ecf3e02-4451-478c-be46-f478ddad54f0", 
       "default": "accuracy", 
-      "description": "Choose the evaluation measurement you would like to show in the table.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "evaluation_metric", 
       "parameter": true, 
       "order": 1, 
-      "uid": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+      "description": "Choose the evaluation measurement you would like to show in the table."
     }
   }, 
   {
@@ -47,60 +47,60 @@
       "widget": "5fd22ef5-c54d-42f6-b66e-44044fae8c85", 
       "name": "Evaluation Results", 
       "short_name": "evr", 
+      "uid": "4d28f295-2ef5-4b06-b604-cdba79d0d212", 
       "default": "", 
-      "description": "", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "eval_results", 
       "parameter": false, 
       "order": 2, 
-      "uid": "4d28f295-2ef5-4b06-b604-cdba79d0d212"
+      "description": ""
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "precision", 
       "uid": "8166d2c5-0856-4540-9bf8-4535d016f59b", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0", 
       "value": "precision", 
-      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+      "name": "precision"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "accuracy", 
       "uid": "97278e6a-d711-4d32-a9e1-ef4e1be72eb3", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0", 
       "value": "accuracy", 
-      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+      "name": "accuracy"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "recall", 
       "uid": "a7f51eb5-b8be-4894-87b7-113d145956f4", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0", 
       "value": "recall", 
-      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+      "name": "recall"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "auc", 
       "uid": "b6ff08bd-74b3-408f-933a-6f1dca0fbdd6", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0", 
       "value": "auc", 
-      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+      "name": "auc"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "fscore", 
       "uid": "da41b6ce-ded0-4adb-8c91-8f61fa29693a", 
+      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0", 
       "value": "fscore", 
-      "abstract_input": "3ecf3e02-4451-478c-be46-f478ddad54f0"
+      "name": "fscore"
     }
   }
 ]
