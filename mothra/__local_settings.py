@@ -75,3 +75,10 @@ CACHES = {
     }
 }
 
+#MEGAM executable path
+MEGAM_EXECUTABLE_PATH = "C:\\work\\textflows-env\\MEGAM\\megam.exe"
+
+#Paths to Stanford pos tagger model and jar
+STANFORD_POS_TAGGER_MODEL = "C:\\work\\textflows-env\\english-bidirectional-distsim.tagger"
+STANFORD_POS_TAGGER_JAR = "C:\\work\\textflows-env\\stanford-postagger.jar"
+
