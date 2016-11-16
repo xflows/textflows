@@ -11,7 +11,7 @@ unidecode==0.04.13
 django-jsonview==1.0.0
 django-celery==3.1.17
 ladon==0.8.9
-nltk==3.0.5
+nltk==3.2.1
 django-discover-runner==1.0
 numpy
 scipy
