@@ -595,8 +595,8 @@ class AbstractInput(models.Model):
     description = models.TextField(blank=True)
     variable = models.CharField(max_length=50,help_text='The variable attribute of both the input and the output are important because this is how the data will be accessed in the python function that is executed when the widget runs.')
     widget = models.ForeignKey(AbstractWidget,related_name="inputs")
-    required = models.BooleanField()
-    parameter = models.BooleanField()
+    required = models.BooleanField(default=False)
+    parameter = models.BooleanField(default=False)
     multi = models.BooleanField(default=False,help_text='Inputs with this flag set will behave like this: whenever a connection is added to this input another input will be created on the fly that accepts the same data. In the action function, this will be represented as a list.')
     default = models.TextField(blank=True)
     PARAMETER_CHOICES = (
@@ -1112,8 +1112,8 @@ class Input(models.Model):
     description = models.TextField(blank=True,null=True)
     variable = models.CharField(max_length=50)
     widget = models.ForeignKey(Widget,related_name="inputs")
-    required = models.BooleanField()
-    parameter = models.BooleanField()
+    required = models.BooleanField(default=False)
+    parameter = models.BooleanField(default=False)
     value = PickledObjectField(null=True)
     multi_id = models.IntegerField(default=0)
     inner_output = models.ForeignKey('Output',related_name="outer_input_rel",blank=True,null=True) #za subprocess
