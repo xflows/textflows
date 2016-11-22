@@ -1,6 +1,0 @@
--r requirements.txt
-raven
-psycopg2
-django-celery==2.5.5
-django-celery-with-redis==2.5
-
