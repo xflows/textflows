@@ -60,6 +60,7 @@ urlpatterns += [
     url(r'^widget-progress/', workflow_views.widget_progress, name='widget progress'),
 
     url(r'^copy-workflow/(?P<workflow_id>[0-9]+)/$', workflow_views.copy_workflow, name='copy workflow'),
+    url(r'^copy-workflow-warn/(?P<workflow_id>[0-9]+)/$', workflow_views.copy_workflow_warn, name='copy workflow warn'),
 
     url(r'^workflow-url/', workflow_views.workflow_url, name='workflow url'),
 

@@ -14,7 +14,7 @@ class WidgetRunner():
         self.inner_workflow_runner = None
         self.standalone = standalone
         if self.standalone:
-            for w in self.workflow_runner.widgets:
+            for w in self.workflow_runner.widgets: #TODO ask JK
                 if w.id == self.widget.id:
                     self.widget = w
                     break
@@ -37,11 +37,16 @@ class WidgetRunner():
                         input_dict['wsdl_method']=self.widget.abstract_widget.wsdl_method
                     if self.widget.abstract_widget.windows_queue and settings.USE_WINDOWS_QUEUE:
                         if self.widget.abstract_widget.has_progress_bar:
-                            outputs = executeWidgetProgressBar.apply_async([self.widget,input_dict],queue="windows").wait()
+                            outputs = executeWidgetProgressBar.apply_async([self.widget,input_dict],queue="windows").wait(timeout=20)
                         elif self.widget.abstract_widget.is_streaming:
                             outputs = executeWidgetStreaming.apply_async([self.widget,input_dict],queue="windows").wait()
                         else:
-                            outputs = executeWidgetFunction.apply_async([self.widget,input_dict],queue="windows").wait()
+                            print "before celery wait"
+                            res = executeWidgetFunction.apply_async([self.widget,input_dict],queue="windows")
+                            print "wwe have res"
+                            outputs=res.wait()
+                            print "after celery wait"
+
                     else:
                         if self.widget.abstract_widget.has_progress_bar:
                             outputs = function_to_call(input_dict,self.widget)
@@ -65,15 +70,15 @@ class WidgetRunner():
             for o in self.widget.outputs.all():
                 o.value = self.workflow_runner.parent.inputs[o.outer_input_id].value
         elif self.widget.type == 'output':
-            input_dict = self.get_input_dictionary()
+            # input_dict = self.get_input_dictionary()
             for i in self.widget.inputs.all():
                 self.workflow_runner.parent.outputs[i.outer_output_id].value = i.value
         elif self.widget.type == 'for_output':
-            input_dict = self.get_input_dictionary()
+            # input_dict = self.get_input_dictionary()
             for i in self.widget.inputs.all():
                 self.workflow_runner.parent.outputs[i.outer_output_id].value.append(i.value)
         elif self.widget.type == 'cv_output':
-            input_dict = self.get_input_dictionary()
+            # input_dict = self.get_input_dictionary()
             for i in self.widget.inputs.all():
                 self.workflow_runner.parent.outputs[i.outer_output_id].value.append(i.value)
 
@@ -323,9 +328,12 @@ class WorkflowRunner():
                 proper_output.value = output_test
                 fi.finished=True # set the input widget as finished
                 self.run_all_unfinished_widgets()
+
         else:
             self.run_all_unfinished_widgets()
-        self.save()
+        if user_wants_to_save:
+
+            self.save()
 
     def save(self):
         for w in self.widgets:

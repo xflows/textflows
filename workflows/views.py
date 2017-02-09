@@ -1436,6 +1436,12 @@ def copy_workflow(request,workflow_id):
     return redirect('editor')
 
 @login_required
+def copy_workflow_warn(request,workflow_id):
+    w = get_object_or_404(Workflow, pk=workflow_id)
+    return render(request,'copy_workflow_warn.html', {"workflow": w})
+
+
+@login_required
 def workflow_url(request):
     if request.is_ajax() or DEBUG:
         if request.user.userprofile.active_workflow is None:

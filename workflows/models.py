@@ -500,6 +500,10 @@ class Workflow(models.Model):
 
     @models.permalink
     def get_copy_url(self):
+        return ('copy workflow warn', [str(self.id)])
+
+    @models.permalink
+    def get_perform_copy_url(self):
         return ('copy workflow', [str(self.id)])
 
     @models.permalink
@@ -814,10 +818,9 @@ class Widget(models.Model):
                     """ if there is a connection than true and read the output value """
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
-                        i.save()
                     else:
                         i.value = None
-                        i.save()
+                    i.save()
                 if i.multi_id == 0:
                     input_dict[i.variable]=i.value
                 else:
@@ -827,7 +830,7 @@ class Widget(models.Model):
                         input_dict[i.variable].append(i.value)
             start = time.time()
             try:
-                if not self.abstract_widget is None:
+                if self.abstract_widget:
                     """ again, if this objects is an abstract widget than true and check certain parameters,
                     else check if is_for_loop"""
                     if self.abstract_widget.wsdl != '':
