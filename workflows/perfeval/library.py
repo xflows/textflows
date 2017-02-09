@@ -67,8 +67,12 @@ def extract_actual_and_predicted_features(input_dict):
     predicted = []
     actual = []
     for doc in adc.documents:
-        actual.extend(doc.get_annotation_texts(annotation_actual))
-        predicted.extend(doc.get_annotation_texts(annotation_predicted))
+        actual.extend(doc.get_annotation_texts('Token/' + annotation_actual))
+        predicted.extend(doc.get_annotation_texts('Token/' + annotation_predicted))
+    if 'lowercase' in input_dict and input_dict['lowercase']:
+        for i in range(len(predicted)):
+            predicted[i] = predicted[i].lower()
+            actual[i] = actual[i].lower()
     return {'actual_and_predicted': [actual, predicted]}
 
 
