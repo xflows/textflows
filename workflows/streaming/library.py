@@ -6,6 +6,8 @@ Streaming widgets librarby
 '''
 
 from workflows.security import safeOpen
+from workflows.streaming.tripletclient import TripletClient
+
 
 def streaming_add_neutral_zone(input_dict):
     import copy
@@ -295,13 +297,27 @@ def streaming_triplet_wordnet_lemmatizer(input_dict,widget,stream=None):
         new_triplets.append(new_triplet)
     output_dict = {}
     output_dict['triplets']=new_triplets
-    return output_dict    
+    return output_dict
+
+
+def streaming_triplet_extraction_2(input_dict, widget, stream=None):
+    output_dict = {}
+    text = input_dict['text']
+    t = TripletClient()
+    triplets = t.reverb(text)
+    new_triplets = []
+    for extraction in triplets['extractions']:
+        triplet = [extraction['arg1'].lower(), extraction['relNorm'].lower(), extraction['arg2'].lower()]
+        new_triplets.append(triplet)
+    output_dict['triplets'] = new_triplets
+    return output_dict
+
 
 def streaming_triplet_extraction(input_dict,widget,stream=None):
     from pysimplesoap.client import SoapClient, SoapFault
     import pysimplesoap
     import re
-    client = SoapClient(location = "http://95.87.154.167:8008/",action = 'http://95.87.154.167:8008/',namespace = "http://example.com/tweetsentiment.wsdl",soap_ns='soap',trace = False,ns = False)
+    client = SoapClient(location = "http://95.87.154.23:8008/",action = 'http://95.87.154.23:8008/',namespace = "http://example.com/tweetsentiment.wsdl",soap_ns='soap',trace = False,ns = False)
     pysimplesoap.client.TIMEOUT = 36000
 
     text = input_dict['text']

@@ -42,8 +42,15 @@ INSTALLED_APPS_WORKFLOWS_SUB = (
     #'workflows.noise',
     #'workflows.vipercharts',
     #'workflows.MUSE',
+    #'workflows.MUSE_v3',
     #'workflows.hbp',
-    )
+)
+
+INSTALLED_APPS_EXTERNAL_PACKAGES = (
+    # 'tf_core.nltoolkit',
+    # 'tf_latino.latino',
+    # 'tf_literature_based_discovery',
+)
 
 BROKER_URL = 'django://'
 CELERY_ALWAYS_EAGER = True
@@ -55,10 +62,27 @@ if DEBUG:
     # Show emails in the console during developement.
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-CACHES = {}
-
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
 USE_WINDOWS_QUEUE = False
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
+
+# tf_latino package widgets (windows only)
+# LATINO_BIN_PATH = "C:\\work\\tf_latino\\tf_latino\\lib\\bin"
+
+#MEGAM executable path
+# MEGAM_EXECUTABLE_PATH = "C:\\work\\textflows-env\\MEGAM\\megam.exe"
+
+#Paths to Stanford pos tagger model and jar
+# STANFORD_POS_TAGGER_MODEL = "C:\\work\\textflows-env\\english-bidirectional-distsim.tagger"
+# STANFORD_POS_TAGGER_JAR = "C:\\work\\textflows-env\\stanford-postagger.jar"
+

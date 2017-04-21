@@ -41,16 +41,44 @@ def perfeval_classification_statistics(input_dict):
     y_true = [class_to_int[lbl] for lbl in y_true]
     y_pred = [class_to_int[lbl] for lbl in y_pred]
 
-    accuracy = metrics.accuracy_score(y_true, y_pred)
-    precision = metrics.precision_score(y_true, y_pred)
-    recall = metrics.recall_score(y_true, y_pred)
-    f1 = metrics.f1_score(y_true, y_pred)
-    confusion_matrix = metrics.confusion_matrix(y_true, y_pred)
-    auc = metrics.roc_auc_score(y_true, y_pred)
+     # AUC is defined only for binary classes
+    if len(classes) == 2:
+        auc = metrics.roc_auc_score(y_true, y_pred)
+        avg = 'binary'
+    else:
+        avg = 'weighted'
+        auc = 'undefined for multiple classes' #
 
-    # AUC is defined only for binary classes
-    #if len(classes) == 2:
-    #else:
-    #    auc = 'undefined for multiple classes' #
+    accuracy = metrics.accuracy_score(y_true, y_pred)
+    precision = metrics.precision_score(y_true, y_pred, average=avg)
+    recall = metrics.recall_score(y_true, y_pred, average=avg)
+    f1 = metrics.f1_score(y_true, y_pred, average=avg)
+    confusion_matrix = []#metrics.confusion_matrix(y_true, y_pred)
+
+   
     return {'accuracy': accuracy, 'precision': precision, 'recall': recall, 
             'f1': f1, 'auc': auc, 'confusion_matrix': confusion_matrix}
+
+
+def extract_actual_and_predicted_features(input_dict):
+    adc = input_dict['adc']
+    annotation_actual = input_dict['annotation_actual']
+    annotation_predicted = input_dict['annotation_predicted']
+    if not annotation_actual.startswith('Token/'):
+        annotation_actual = 'Token/' + annotation_actual
+    if not annotation_predicted.startswith('Token/'):
+        annotation_predicted = 'Token/' + annotation_predicted
+    predicted = []
+    actual = []
+    for doc in adc.documents:
+        actual.extend(doc.get_annotation_texts(annotation_actual))
+        predicted.extend(doc.get_annotation_texts(annotation_predicted))
+    if 'lowercase' in input_dict and input_dict['lowercase']:
+        for i in range(len(predicted)):
+            predicted[i] = predicted[i].lower()
+            actual[i] = actual[i].lower()
+    return {'actual_and_predicted': [actual, predicted]}
+
+
+def eval_to_2d_table(input_dict):
+    return {}    

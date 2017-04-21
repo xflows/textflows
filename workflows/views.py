@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponse
 from django.contrib import messages
 from django.core import serializers
-from django.utils import simplejson
+import json as simplejson
 from workflows.urls import *
 from workflows.helpers import *
 import workflows.interaction_views
@@ -81,7 +81,7 @@ def open_workflow(request,workflow_id):
 
 @login_required
 def widget_progress(request):
-    w = get_object_or_404(Widget, pk=request.GET['widget_id'])
+    w = get_object_or_404(Widget, pk=request.POST['widget_id'])
     if w.running:
         return HttpResponse(w.progress)
     else:
@@ -478,6 +478,8 @@ def add_for(request):
                 input.short_name = 'for'
                 input.variable = 'For'
                 input.inner_output = output
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -494,6 +496,8 @@ def add_for(request):
                 input.short_name = 'for'
                 input.variable = 'For'
                 input.widget = widget
+                input.required = False
+                input.parameter = False
                 input.save()
                 output = Output()
                 output.widget = workflow.widget
@@ -562,6 +566,8 @@ def add_cv(request):
                 input.variable = 'CVD'
                 input.inner_output = output
                 input.order = 1
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -581,6 +587,8 @@ def add_cv(request):
                 input.variable = 'CVF'
                 input.inner_output = output
                 input.order = 2
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -599,6 +607,8 @@ def add_cv(request):
                 input.variable = 'CVS'
                 input.order = 3
                 input.inner_output = output
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -616,6 +626,8 @@ def add_cv(request):
                 input.short_name = 'res'
                 input.variable = 'Res'
                 input.widget = widget
+                input.required = False
+                input.parameter = False
                 input.save()
                 output = Output()
                 output.widget = workflow.widget
@@ -659,18 +671,21 @@ def add_input(request):
                 widget.name = 'Input'
                 widget.type = 'input'
                 widget.save()
+                variable_name = 'Input'+str(widget.pk)
                 output = Output()
                 output.name = 'Input'
                 output.short_name = 'inp'
-                output.variable = 'Input'
+                output.variable = variable_name
                 output.widget = widget
                 output.save()
                 input = Input()
                 input.widget = workflow.widget
                 input.name = 'Input'
                 input.short_name = 'inp'
-                input.variable = 'Input'
+                input.variable = variable_name
                 input.inner_output = output
+                input.required = False
+                input.parameter = False
                 input.save()
                 output.outer_input = input
                 output.save()
@@ -705,17 +720,20 @@ def add_output(request):
                 widget.name = 'Output'
                 widget.type = 'output'
                 widget.save()
+                variable_name = 'Output'+str(widget.pk)
                 input = Input()
                 input.name = 'Output'
                 input.short_name = 'out'
-                input.variable = 'Output'
+                input.variable = variable_name
                 input.widget = widget
+                input.required = False
+                input.parameter = False
                 input.save()
                 output = Output()
                 output.widget = workflow.widget
                 output.name = 'Output'
                 output.short_name = 'out'
-                output.variable = 'Output'
+                output.variable = variable_name
                 output.inner_input = input
                 output.save()
                 input.outer_output = output
@@ -1175,7 +1193,7 @@ def widget_results(request):
         return s
     if request.is_ajax() or DEBUG:
         w = get_object_or_404(Widget, pk=request.POST['widget_id'])
-        if (w.workflow.user==request.user):
+        if request.user == w.workflow.user:
             import pprint
             input_dict = {}
             output_dict = {}
@@ -1416,6 +1434,12 @@ def copy_workflow(request,workflow_id):
     else:
         return HttpResponse(status=400)
     return redirect('editor')
+
+@login_required
+def copy_workflow_warn(request,workflow_id):
+    w = get_object_or_404(Workflow, pk=workflow_id)
+    return render(request,'copy_workflow_warn.html', {"workflow": w})
+
 
 @login_required
 def workflow_url(request):

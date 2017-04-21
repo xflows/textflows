@@ -7,7 +7,7 @@ PUBLIC_DIR = os.path.join(PROJECT_DIR, 'public')
 BACKUP_DIR = os.path.join(PROJECT_DIR, 'backup')
 
 DEBUG = False
-TEMPLATE_DEBUG = True
+ALLOWED_HOSTS=['localhost']
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -75,11 +75,31 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+            ],
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.request',
+            ],
+            'debug': True,
+            'loaders': [
+                 'django.template.loaders.filesystem.Loader',
+                 'django.template.loaders.app_directories.Loader',
+            ]
+        },
+    },
+]
+
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware', # must be first
@@ -101,22 +121,6 @@ ROOT_URLCONF = 'mothra.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mothra.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_DIR, 'templates'),
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.request',
-)
 
 FIXTURE_DIRS = (
     os.path.join(PROJECT_DIR, 'fixtures'),
@@ -174,13 +178,14 @@ INSTALLED_APPS_DEFAULT = (
     #'kombu.transport.django',
     'discover_runner',
     'rest_framework',
-    'south',
+    #'south',
     #'debug_toolbar',
     )
 
 INSTALLED_APPS_WORKFLOWS_SUB = ()
+INSTALLED_APPS_EXTERNAL_PACKAGES = ()
 
-TEST_RUNNER = 'discover_runner.DiscoverRunner'
+# TEST_RUNNER = 'discover_runner.DiscoverRunner'
 
 USE_WINDOWS_QUEUE = True
 
@@ -197,13 +202,14 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)    
 }
 
-TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS
-
-TEMPLATES_FOLDER = os.path.join(PROJECT_DIR, 'templates')
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
 
 PROJECT_FOLDER = PROJECT_DIR
-
-TEMPLATE_DIRS = (TEMPLATES_FOLDER,)
 
 AUTH_PROFILE_MODULE = 'workflows.UserProfile'
 
@@ -225,4 +231,5 @@ except NameError:
 
 INSTALLED_APPS = \
     INSTALLED_APPS_DEFAULT +\
-    INSTALLED_APPS_WORKFLOWS_SUB
+    INSTALLED_APPS_WORKFLOWS_SUB +\
+    INSTALLED_APPS_EXTERNAL_PACKAGES

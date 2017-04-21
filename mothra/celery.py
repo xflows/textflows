@@ -2,8 +2,8 @@ from __future__ import absolute_import
 
 import os
 
+import sys
 from celery import Celery
-
 from django.conf import settings
 
 # set the default Django settings module for the 'celery' program.
@@ -20,6 +20,12 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 #     CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend',
 # )
 
+if hasattr(settings, "LATINO_BIN_PATH"):
+    import clr
+    sys.path.append(settings.LATINO_BIN_PATH)
+    import LatinoInterfaces
+
+
 
 @app.task(bind=True)
 def debug_task(self):
@@ -29,4 +35,10 @@ def debug_task(self):
 def test_task():
     print "test!"
     return 1
+
+
+@app.task()
+def sum_task(a,b):
+    return a+b
+
 

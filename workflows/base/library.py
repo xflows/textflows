@@ -1,4 +1,5 @@
 import cPickle
+import json
 
 def base_concatenate_lists(input_dict):
     lists = input_dict['lists']
@@ -178,7 +179,8 @@ def base_extract_results(input_dict):
     accuracy = input_dict['accuracy'] * 100 # ViperCharts expects percentages
     runtime = input_dict['runtime']
     name = input_dict['name']
-    results = {'fbeta':1,'fscore':fscore,'name': name,'precision': precision,'recall': recall,'auc': auc,'accuracy': accuracy,'runtime': runtime}
+    y_name = input_dict.get('y_name')
+    results = {'fbeta':1,'fscore':fscore,'name': name,'precision': precision,'recall': recall,'auc': auc,'accuracy': accuracy,'runtime': runtime, 'y_name': y_name}
     output_dict = {}
     output_dict['results']=results
     return output_dict
@@ -219,3 +221,14 @@ def base_average_list(input_dict):
         average = None
 
     return {'average': average}
+
+def base_js_snippet(input_dict):
+    return {'out': None}
+
+def base_js_snippet_finished(postdata, input_dict, output_dict):
+    try:
+        out_list = json.loads(postdata['out'][0])
+        out = out_list[0]
+    except:
+        raise Exception("Problem de-serializing the output.")
+    return {'out': out}

@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
+
 
 def signuplogin(request):
     if request.method == 'POST':
@@ -37,7 +39,7 @@ def signuplogin(request):
             if tuser is not None:
                 return ajaxresponse(request, 'TAKEN')
             else:
-                new_user = User.objects.create_user(uname, mail, passw)
+                new_user = User.objects.create_user(uname, mail, passw, last_login = timezone.now() )
 
                 user = authenticate(username=uname, password=passw)
                 login(request, user)

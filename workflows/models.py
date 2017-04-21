@@ -8,7 +8,6 @@ import time
 import random
 
 from picklefield.fields import PickledObjectField
-from workflows.textflows import DocumentCorpus
 
 from workflows.thumbs import ThumbnailField
 
@@ -501,6 +500,10 @@ class Workflow(models.Model):
 
     @models.permalink
     def get_copy_url(self):
+        return ('copy workflow warn', [str(self.id)])
+
+    @models.permalink
+    def get_perform_copy_url(self):
         return ('copy workflow', [str(self.id)])
 
     @models.permalink
@@ -596,8 +599,8 @@ class AbstractInput(models.Model):
     description = models.TextField(blank=True)
     variable = models.CharField(max_length=50,help_text='The variable attribute of both the input and the output are important because this is how the data will be accessed in the python function that is executed when the widget runs.')
     widget = models.ForeignKey(AbstractWidget,related_name="inputs")
-    required = models.BooleanField()
-    parameter = models.BooleanField()
+    required = models.BooleanField(default=False)
+    parameter = models.BooleanField(default=False)
     multi = models.BooleanField(default=False,help_text='Inputs with this flag set will behave like this: whenever a connection is added to this input another input will be created on the fly that accepts the same data. In the action function, this will be represented as a list.')
     default = models.TextField(blank=True)
     PARAMETER_CHOICES = (
@@ -815,10 +818,9 @@ class Widget(models.Model):
                     """ if there is a connection than true and read the output value """
                     if i.connections.count() > 0:
                         i.value = i.connections.all()[0].output.value
-                        i.save()
                     else:
                         i.value = None
-                        i.save()
+                    i.save()
                 if i.multi_id == 0:
                     input_dict[i.variable]=i.value
                 else:
@@ -828,7 +830,7 @@ class Widget(models.Model):
                         input_dict[i.variable].append(i.value)
             start = time.time()
             try:
-                if not self.abstract_widget is None:
+                if self.abstract_widget:
                     """ again, if this objects is an abstract widget than true and check certain parameters,
                     else check if is_for_loop"""
                     if self.abstract_widget.wsdl != '':
@@ -1113,8 +1115,8 @@ class Input(models.Model):
     description = models.TextField(blank=True,null=True)
     variable = models.CharField(max_length=50)
     widget = models.ForeignKey(Widget,related_name="inputs")
-    required = models.BooleanField()
-    parameter = models.BooleanField()
+    required = models.BooleanField(default=False)
+    parameter = models.BooleanField(default=False)
     value = PickledObjectField(null=True)
     multi_id = models.IntegerField(default=0)
     inner_output = models.ForeignKey('Output',related_name="outer_input_rel",blank=True,null=True) #za subprocess

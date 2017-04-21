@@ -1,9 +1,0 @@
-{
-  "model": "workflows.category", 
-  "fields": {
-    "name": "Latino", 
-    "parent": "d41c87c3-c0c9-4073-8328-d4c6d5e8f185", 
-    "order": 1, 
-    "uid": "48fb3ce2-11ef-4afc-ab1e-aec6f1d6d055"
-  }
-}

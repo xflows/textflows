@@ -1,0 +1,37 @@
+<div id="widgetvisualization-{{widget.pk}}" width="600" height="1000" rel="{{widget.pk}}" class="widgetvisualizationdialog" title="{{widget.name}} results">
+
+<div id="widget-eval-to-table-{{widget.pk}}" style=" margin: 0 auto">
+<table class="datasetTable">
+    <tr>
+        {% for item in data.0 %}
+        <th class="tablecellcenter"> {{item}} </th>
+        {% endfor %}
+        
+    </tr>
+    {% for item in data.1 %}
+    <tr class="tablerow{{widget.pk}}">
+        {% for metric in item %}
+        <td class="tablecellcenter" style="min-width: 50px">
+            {% if forloop.counter != 1 %}{{metric|floatformat:"2"}}
+                {% if data.2 == 'accuracy'%}
+                %
+                {% endif%}
+            {% else %}{{metric}}
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+</div>
+<script>
+$(document).ready(function(){
+    seth = 150 + {{data.1|length}}*26
+	height = seth > $(window).height()*0.8 ? $(window).height()*0.8 : seth;
+	//alert(' h: '+height+" windowh: "+$(window).height());
+	
+	$("div#widgetvisualization-"+{{widget.pk}}).attr("height", height);
+})
+</script>

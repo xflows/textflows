@@ -1,4 +1,3 @@
-from workflows.literature_based_discovery.lib.heuristics.misclassification_indices import MisclassificationIndices
 from workflows.security import safeOpen
 import json
 import sys
@@ -492,7 +491,9 @@ def harf(input_dict):
 # CLASSIFICATION NOISE FILTER
 
 def classification_filter(input_dict, widget):
-    import noiseAlgorithms4lib    
+    import noiseAlgorithms4lib
+    from tf_literature_based_discovery.lib.heuristics.misclassification_indices import MisclassificationIndices
+
     output_dict = {}
     output_dict['noise_dict']= MisclassificationIndices.calculate(input_dict['learner'],input_dict['data'],
                                                                   n_folds=int(input_dict['k_folds'])) \

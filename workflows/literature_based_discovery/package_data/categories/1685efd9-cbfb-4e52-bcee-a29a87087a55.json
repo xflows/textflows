@@ -1,9 +1,0 @@
-{
-  "model": "workflows.category", 
-  "fields": {
-    "name": "Term ranking and Exploration", 
-    "parent": "23a64dd1-2764-4e22-90c5-f395da1c7dae", 
-    "order": 4, 
-    "uid": "1685efd9-cbfb-4e52-bcee-a29a87087a55"
-  }
-}

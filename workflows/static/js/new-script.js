@@ -522,11 +522,11 @@ function resetWorkflow() {
 }
 
 function updateProgressBar(widgetId) {
-     $.get(url['widget-progress'], { 'widget_id':widgetId }, function(data) {
+     $.post(url['widget-progress'], { 'widget_id':widgetId }, function(data) {
         if (data!="-1") {
             $(".widget"+widgetId+"progressbar").css('width',data+'%');
             if (data!="100") {
-                setTimeout("updateProgressBar("+widgetId+")",1000);
+                setTimeout("updateProgressBar("+widgetId+")",2000);
             } else {
                 unfinishDescendants(widgetId);
                 $(".statusimage"+widgetId).hide()
@@ -1075,9 +1075,29 @@ function updateWidgetListeners() {
         }
     });
 
+    var offsetsY = [];
+    var offsetsX = [];
+
     $(".canvas div.widget").draggable({
-        multiple: true,
+        multiple: false,
         handle: "div.widgetcenter, img.widgetimage",
+        start: function() {
+            var currentWidget = $(this);
+
+            var y = parseInt($(this).css('top'));
+            var x = parseInt($(this).css('left'));
+
+
+            $(".ui-selected").each(function() {
+                //get the offset first
+                var selectedY = parseInt($(this).css('top'));
+                var selectedX = parseInt($(this).css('left'));
+                var offsetY = selectedY-y;
+                var offsetX = selectedX-x;
+                offsetsY[$(this).attr('rel')]=offsetY;
+                offsetsX[$(this).attr('rel')]=offsetX;
+            });
+        },
         drag: function() {
             // this function exectues every time the mouse moves and the user is holding down the left mouse button
             for (c in connections) {
@@ -1095,13 +1115,16 @@ function updateWidgetListeners() {
 
             }
 
+            var y = parseInt($(this).css('top'));
+            var x = parseInt($(this).css('left'));
 
+            $(".ui-selected").each(function() {
+                //get the offset first
+                $(this).css('top',y+offsetsY[$(this).attr('rel')]);
+                $(this).css('left',x+offsetsX[$(this).attr('rel')]);
+            });
 
             resizeSvg();
-
-            /*var y = parseInt($(this).css('top'));
-            var x = parseInt($(this).css('left'));*/
-
 
 
         },
@@ -1124,7 +1147,7 @@ function updateWidgetListeners() {
                 var x = parseInt($(this).css('left'));
                 $.post(url['save-position'], { "widget_id": $(this).attr('rel'), "x": x, "y": y } );
 
-                
+
                })
 
 
@@ -1133,13 +1156,13 @@ function updateWidgetListeners() {
                 var x = parseInt($(this).css('left'));
                 $.post(url['save-position'], { "widget_id": $(this).attr('rel'), "x": x, "y": y } );
                }
-               
+
                 redrawLines();
 
         }}
     );
 
-    $(".canvas div.widget").click(function(e) {
+    $(".canvas div.widget").mousedown(function(e) {
         selectedWidget = $(this).attr('rel');
         if (!(e.ctrlKey || e.metaKey || e.shiftKey))
         {

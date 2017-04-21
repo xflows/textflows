@@ -1,0 +1,17 @@
+{% extends "website/base.html" %}
+
+{% block "container" %}
+    {% if workflow.user == request.user or workflow.public %}
+        <div style="height:50vh;width:100vw;background-image: url('https://media.giphy.com/media/xTiTnjZAjQipGn9JFS/giphy.gif');background-size: cover;">
+            <h2 style="text-align: center; color: #e6e6e6;padding-top: 30px;">Copying workflow. Please wait!</h2>
+            <h4 style="text-align: center; color: #e6e6e6;">(Large workflows can take up-to 30 minutes to copy.)</h4>
+        </div>
+
+
+        <script type="text/javascript">
+            window.location='{{workflow.get_perform_copy_url}}';
+        </script>
+    {% else %}
+        This workflow is private.
+    {% endif %}
+{% endblock %}
