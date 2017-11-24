@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
-      "treeview_image": "", 
       "uid": "b0c86eed-6ce9-4c0d-b896-706b7810b173", 
-      "is_streaming": false, 
-      "package": "scikit_classifiers", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "The multinomial Naive Bayes classifier is suitable for classification with discrete features (e.g., word counts for text classification). The multinomial distribution normally requires integer feature counts. However, in practice, fractional counts such as tf-idf may also work.", 
+      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "classifier_naive_bayes_image.png", 
       "action": "sc_multinomial_nb", 
+      "wsdl": "", 
+      "name": "Multinomial Naive Bayes Classifier", 
+      "package": "scikit_classifiers", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Multinomial Naive Bayes Classifier"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "b0c86eed-6ce9-4c0d-b896-706b7810b173", 
       "name": "Fit prior", 
       "short_name": "fpr", 
+      "uid": "0b52c6d6-724c-4b8a-831a-71f66548eff3", 
       "default": "", 
-      "description": "Whether to learn class prior probabilities or not.\r\n        If false, a uniform prior will be used.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
       "variable": "fit_prior", 
       "parameter": true, 
       "order": 1, 
-      "uid": "0b52c6d6-724c-4b8a-831a-71f66548eff3"
+      "description": "Whether to learn class prior probabilities or not.\r\n        If false, a uniform prior will be used."
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "b0c86eed-6ce9-4c0d-b896-706b7810b173", 
       "name": "Alpha", 
       "short_name": "alp", 
+      "uid": "5004eb4f-a852-4a88-a51b-1c2cca8f6427", 
       "default": "1.0", 
-      "description": "Additive (Laplace/Lidstone) smoothing parameter (0 for no smoothing). ", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "alpha", 
       "parameter": true, 
       "order": 1, 
-      "uid": "5004eb4f-a852-4a88-a51b-1c2cca8f6427"
+      "description": "Additive (Laplace/Lidstone) smoothing parameter (0 for no smoothing). "
     }
   }, 
   {
@@ -64,10 +65,10 @@
       "widget": "b0c86eed-6ce9-4c0d-b896-706b7810b173", 
       "name": "Classifier", 
       "short_name": "csf", 
-      "description": "", 
       "variable": "classifier", 
+      "uid": "99ef0e30-5970-430f-a62b-3c436d543c4d", 
       "order": 1, 
-      "uid": "99ef0e30-5970-430f-a62b-3c436d543c4d"
+      "description": ""
     }
   }
 ]

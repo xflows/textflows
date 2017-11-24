@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
-      "treeview_image": "treeview/pickle.png", 
       "uid": "1f6bd626-331e-4ac3-b55f-cec8fcd8fd9e", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "images/pickle.png", 
-      "description": "Transform a ClowdFlows (or a Python) object into a format that can be stored.",
+      "description": "Transform a ClowdFlows (or a Python) object into a format that can be stored.", 
+      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "treeview/pickle.png", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "pickle.png", 
       "action": "pickle_object", 
+      "wsdl": "", 
+      "name": "Pickle object", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 6, 
-      "name": "Pickle object"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "1f6bd626-331e-4ac3-b55f-cec8fcd8fd9e", 
       "name": "object", 
       "short_name": "obj", 
+      "uid": "3a319eaf-52fb-4cd0-b1b6-78d8a807b892", 
       "default": "", 
-      "description": "", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "object", 
       "parameter": false, 
       "order": 0, 
-      "uid": "3a319eaf-52fb-4cd0-b1b6-78d8a807b892"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "1f6bd626-331e-4ac3-b55f-cec8fcd8fd9e", 
       "name": "pickled object", 
       "short_name": "obj", 
-      "description": "", 
       "variable": "pickled_object", 
+      "uid": "1c47c99e-5ba3-4bcf-8f67-56ebb8c97374", 
       "order": 1, 
-      "uid": "1c47c99e-5ba3-4bcf-8f67-56ebb8c97374"
+      "description": ""
     }
   }
 ]

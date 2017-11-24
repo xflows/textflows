@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "bbf1e628-8be6-4178-8d93-765de278c0e4", 
-      "treeview_image": "treeview/File.png", 
       "uid": "ff26380c-dd36-47c4-92ec-4526e199abbc", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "images/File.png", 
-      "description": "Reads a file residing on the ClowdFlows server and outputs its contents.",
+      "description": "Reads a file residing on the ClowdFlows server and outputs its contents.", 
+      "category": "bbf1e628-8be6-4178-8d93-765de278c0e4", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "treeview/File.png", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "File.png", 
       "action": "file_to_string", 
+      "wsdl": "", 
+      "name": "File to string", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "File to string"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "ff26380c-dd36-47c4-92ec-4526e199abbc", 
       "name": "File", 
       "short_name": "fil", 
+      "uid": "81742f96-f3c3-470a-af08-8afc54b6ff30", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "file", 
       "parameter": false, 
       "order": 0, 
-      "uid": "81742f96-f3c3-470a-af08-8afc54b6ff30"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "ff26380c-dd36-47c4-92ec-4526e199abbc", 
       "name": "String", 
       "short_name": "str", 
-      "description": "", 
       "variable": "string", 
+      "uid": "4ca351ce-9b2f-4466-be15-b47f8cc37a84", 
       "order": 1, 
-      "uid": "4ca351ce-9b2f-4466-be15-b47f8cc37a84"
+      "description": ""
     }
   }
 ]

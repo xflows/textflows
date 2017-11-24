@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
-      "treeview_image": "treeview/482063585452602669.png", 
       "uid": "eddf42f0-826c-4a64-a9c5-7af53e8b08e5", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "images/482063585452602669.png", 
       "description": "Logs the moment of the signal passing this widget (widget beeing run). If there is datetime in the input, it also outputs timespan difference between current time and input datetime.", 
+      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "treeview/482063585452602669.png", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "482063585452602669.png", 
       "action": "stopwatch", 
+      "wsdl": "", 
+      "name": "Stopwatch", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 9, 
-      "name": "Stopwatch"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "eddf42f0-826c-4a64-a9c5-7af53e8b08e5", 
       "name": "Signal", 
       "short_name": "sgn", 
+      "uid": "3d89935f-e3cb-4c7a-a941-abe5627fb1bc", 
       "default": "", 
-      "description": "Signal that triggers stopwatch.", 
       "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "signal", 
       "parameter": false, 
       "order": 1, 
-      "uid": "3d89935f-e3cb-4c7a-a941-abe5627fb1bc"
+      "description": "Signal that triggers stopwatch."
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "eddf42f0-826c-4a64-a9c5-7af53e8b08e5", 
       "name": "Datetime", 
       "short_name": "dt", 
+      "uid": "7d99a31a-af1f-4c9a-8487-28a24da85bf9", 
       "default": "", 
-      "description": "Datetime, based on which the timespan is calcualted.", 
       "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "time_in", 
       "parameter": false, 
       "order": 2, 
-      "uid": "7d99a31a-af1f-4c9a-8487-28a24da85bf9"
+      "description": "Datetime, based on which the timespan is calcualted."
     }
   }, 
   {
@@ -64,10 +65,10 @@
       "widget": "eddf42f0-826c-4a64-a9c5-7af53e8b08e5", 
       "name": "Datetime", 
       "short_name": "dt", 
-      "description": "Datetime when the signal passed this widget (when this widget was run).", 
       "variable": "time_out", 
+      "uid": "0e82f9e6-91d6-48a1-b0fd-ffcc8fdb7693", 
       "order": 2, 
-      "uid": "0e82f9e6-91d6-48a1-b0fd-ffcc8fdb7693"
+      "description": "Datetime when the signal passed this widget (when this widget was run)."
     }
   }, 
   {
@@ -76,10 +77,10 @@
       "widget": "eddf42f0-826c-4a64-a9c5-7af53e8b08e5", 
       "name": "Signal", 
       "short_name": "sgn", 
-      "description": "Unchanged signal from the input.", 
       "variable": "signal_out", 
+      "uid": "1559b8db-ca70-451a-a844-0eda8957db48", 
       "order": 1, 
-      "uid": "1559b8db-ca70-451a-a844-0eda8957db48"
+      "description": "Unchanged signal from the input."
     }
   }, 
   {
@@ -88,10 +89,10 @@
       "widget": "eddf42f0-826c-4a64-a9c5-7af53e8b08e5", 
       "name": "Elapsed Time", 
       "short_name": "spn", 
-      "description": "Timespan between input time and time of triggering.", 
       "variable": "time_span", 
+      "uid": "7865362b-7e67-4174-8335-107abf6d2c08", 
       "order": 3, 
-      "uid": "7865362b-7e67-4174-8335-107abf6d2c08"
+      "description": "Timespan between input time and time of triggering."
     }
   }
 ]

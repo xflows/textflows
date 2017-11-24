@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
-      "treeview_image": "", 
       "uid": "a49766ca-d6ad-4183-8885-721e86217a1c", 
-      "is_streaming": false, 
-      "package": "scikit_classifiers", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "A decision tree is a decision support tool that uses a tree-like graph or model of decisions and their possible consequences, including chance event outcomes, resource costs, and utility.", 
+      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "scikit_Tree-icon.png", 
       "action": "sc_decision_tree", 
+      "wsdl": "", 
+      "name": "Decision Tree Classifier", 
+      "package": "scikit_classifiers", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Decision Tree Classifier"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "a49766ca-d6ad-4183-8885-721e86217a1c", 
       "name": "Max features", 
       "short_name": "mxf", 
+      "uid": "3e4ce114-9637-4889-b163-e74c641c460d", 
       "default": "auto", 
-      "description": "The number of features to consider when looking for the best split:\r\nIf int, then consider max_features features at each split.\r\nIf float, then max_features is a percentage and int(max_features * n_features) features are considered at each split.\r\nIf \u201cauto\u201d, then max_features=sqrt(n_features).\r\nIf \u201csqrt\u201d, then max_features=sqrt(n_features).\r\nIf \u201clog2\u201d, then max_features=log2(n_features).\r\nIf None, then max_features=n_features.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "max_features", 
       "parameter": true, 
       "order": 1, 
-      "uid": "3e4ce114-9637-4889-b163-e74c641c460d"
+      "description": "The number of features to consider when looking for the best split:\r\nIf int, then consider max_features features at each split.\r\nIf float, then max_features is a percentage and int(max_features * n_features) features are considered at each split.\r\nIf \u201cauto\u201d, then max_features=sqrt(n_features).\r\nIf \u201csqrt\u201d, then max_features=sqrt(n_features).\r\nIf \u201clog2\u201d, then max_features=log2(n_features).\r\nIf None, then max_features=n_features."
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "a49766ca-d6ad-4183-8885-721e86217a1c", 
       "name": "Max depth ", 
       "short_name": "mxd", 
+      "uid": "a8a60a8b-dc57-48ad-a724-487e28751987", 
       "default": "100", 
-      "description": "The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all leaves contain less than min_samples_split samples. ", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "max_depth", 
       "parameter": true, 
       "order": 2, 
-      "uid": "a8a60a8b-dc57-48ad-a724-487e28751987"
+      "description": "The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all leaves contain less than min_samples_split samples. "
     }
   }, 
   {
@@ -64,10 +65,10 @@
       "widget": "a49766ca-d6ad-4183-8885-721e86217a1c", 
       "name": "Classifier", 
       "short_name": "csf", 
-      "description": "", 
       "variable": "classifier", 
+      "uid": "1b63f0a1-0588-40dc-aaa8-79470bc0a1fa", 
       "order": 1, 
-      "uid": "1b63f0a1-0588-40dc-aaa8-79470bc0a1fa"
+      "description": ""
     }
   }
 ]

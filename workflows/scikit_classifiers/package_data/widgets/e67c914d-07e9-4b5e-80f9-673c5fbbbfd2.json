@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
-      "treeview_image": "", 
       "uid": "e67c914d-07e9-4b5e-80f9-673c5fbbbfd2", 
-      "is_streaming": false, 
-      "package": "scikit_classifiers", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "Logistic regression, despite its name, is a linear model for classification rather than regression. Logistic regression is also known in the literature as logit regression, maximum-entropy classification (MaxEnt) or the log-linear classifier. In this model, the probabilities describing the possible outcomes of a single trial are modeled using a logistic function.", 
+      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "scikit_LogisticRegression.png", 
       "action": "sc_logreg", 
+      "wsdl": "", 
+      "name": "Logistic regression Classifier", 
+      "package": "scikit_classifiers", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Logistic regression Classifier"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "e67c914d-07e9-4b5e-80f9-673c5fbbbfd2", 
       "name": "C", 
       "short_name": "ccc", 
+      "uid": "2869f6df-0431-4a87-8790-7236d78fcc88", 
       "default": "1.0", 
-      "description": "Inverse of regularization strength; must be a positive float. Like in support vector machines, smaller values specify stronger regularization.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "C", 
       "parameter": true, 
       "order": 2, 
-      "uid": "2869f6df-0431-4a87-8790-7236d78fcc88"
+      "description": "Inverse of regularization strength; must be a positive float. Like in support vector machines, smaller values specify stronger regularization."
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "e67c914d-07e9-4b5e-80f9-673c5fbbbfd2", 
       "name": "Penalty", 
       "short_name": "pen", 
+      "uid": "293f61a4-d662-4d1c-914e-0fa0d0786912", 
       "default": "l1", 
-      "description": "Used to specify the norm used in the penalization.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "penalty", 
       "parameter": true, 
       "order": 1, 
-      "uid": "293f61a4-d662-4d1c-914e-0fa0d0786912"
+      "description": "Used to specify the norm used in the penalization."
     }
   }, 
   {
@@ -64,28 +65,28 @@
       "widget": "e67c914d-07e9-4b5e-80f9-673c5fbbbfd2", 
       "name": "Classifier", 
       "short_name": "csf", 
-      "description": "", 
       "variable": "classifier", 
+      "uid": "78830a40-559b-4375-911f-6afd1348e757", 
       "order": 1, 
-      "uid": "78830a40-559b-4375-911f-6afd1348e757"
+      "description": ""
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "l2", 
       "uid": "48f1dce5-ece5-436d-a23a-b899fff7e6c7", 
+      "abstract_input": "293f61a4-d662-4d1c-914e-0fa0d0786912", 
       "value": "l2", 
-      "abstract_input": "293f61a4-d662-4d1c-914e-0fa0d0786912"
+      "name": "l2"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "l1", 
       "uid": "ac1b9369-dbf7-4172-a4fd-fd9ccde768b4", 
+      "abstract_input": "293f61a4-d662-4d1c-914e-0fa0d0786912", 
       "value": "l1", 
-      "abstract_input": "293f61a4-d662-4d1c-914e-0fa0d0786912"
+      "name": "l1"
     }
   }
 ]

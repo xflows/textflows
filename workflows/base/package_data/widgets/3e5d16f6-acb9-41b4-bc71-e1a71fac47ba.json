@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
-      "treeview_image": "treeview/Task-List-icon.png", 
       "uid": "3e5d16f6-acb9-41b4-bc71-e1a71fac47ba", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "images/Task-List-icon.png", 
-      "description": "Creates a tuple structure of arbitrary length, by using provided elements.",
+      "description": "Creates a tuple structure of arbitrary length, by using provided elements.", 
+      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "treeview/Task-List-icon.png", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "Task-List-icon.png", 
       "action": "create_tuple", 
+      "wsdl": "", 
+      "name": "Create Tuple", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Create Tuple"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "3e5d16f6-acb9-41b4-bc71-e1a71fac47ba", 
       "name": "Element", 
       "short_name": "el", 
+      "uid": "49c5792d-b75d-47c9-8539-3dc12193b16b", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": true, 
       "parameter_type": null, 
       "variable": "elements", 
       "parameter": false, 
       "order": 0, 
-      "uid": "49c5792d-b75d-47c9-8539-3dc12193b16b"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "3e5d16f6-acb9-41b4-bc71-e1a71fac47ba", 
       "name": "Tuple", 
       "short_name": "tup", 
-      "description": "", 
       "variable": "tuple", 
+      "uid": "7f6874cd-681b-4ad3-996b-cc8b5c994727", 
       "order": 1, 
-      "uid": "7f6874cd-681b-4ad3-996b-cc8b5c994727"
+      "description": ""
     }
   }
 ]

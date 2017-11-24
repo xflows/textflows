@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "9b145e48-9cc0-4a24-9ac7-0df48e879361", 
-      "treeview_image": "treeview/d914a910.png", 
       "uid": "e898b974-bafa-4b67-8918-b47b801e063e", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "images/d914a910.png", 
       "description": "Adds two integers", 
+      "category": "9b145e48-9cc0-4a24-9ac7-0df48e879361", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "treeview/d914a910.png", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "d914a910.png", 
       "action": "add_integers", 
+      "wsdl": "", 
+      "name": "Add integers", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Add integers"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "e898b974-bafa-4b67-8918-b47b801e063e", 
       "name": "Integer 2", 
       "short_name": "int", 
+      "uid": "0bd80a21-e628-48c6-b3d8-58e8121e4711", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "integer2", 
       "parameter": false, 
       "order": 0, 
-      "uid": "0bd80a21-e628-48c6-b3d8-58e8121e4711"
+      "description": ""
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "e898b974-bafa-4b67-8918-b47b801e063e", 
       "name": "Integer 1", 
       "short_name": "int", 
+      "uid": "d46b4d0e-cc22-48f9-9947-4bbb754d8991", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "integer1", 
       "parameter": false, 
       "order": 0, 
-      "uid": "d46b4d0e-cc22-48f9-9947-4bbb754d8991"
+      "description": ""
     }
   }, 
   {
@@ -64,10 +65,10 @@
       "widget": "e898b974-bafa-4b67-8918-b47b801e063e", 
       "name": "Integer", 
       "short_name": "int", 
-      "description": "", 
       "variable": "integer", 
+      "uid": "da76c9e0-d374-4455-a708-6b5de8023f57", 
       "order": 1, 
-      "uid": "da76c9e0-d374-4455-a708-6b5de8023f57"
+      "description": ""
     }
   }
 ]
