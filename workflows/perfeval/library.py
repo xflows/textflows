@@ -77,10 +77,26 @@ def extract_actual_and_predicted_features(input_dict):
     for doc in adc.documents:
         actual.extend(doc.get_annotation_texts(annotation_actual))
         predicted.extend(doc.get_annotation_texts(annotation_predicted))
+
+    #remove NONE tags
+    filtered_predicted = []
+    filtered_actual = []
+    for i in range(len(predicted)):
+        if actual[i] == u'-NONE-' and predicted[i] != u'-NONE-':
+            pass
+            #print(predicted[i], actual[i])
+        else:
+            filtered_predicted.append(predicted[i])
+            filtered_actual.append(actual[i])
+
+    actual = filtered_actual
+    predicted = filtered_predicted
+
     if 'lowercase' in input_dict and input_dict['lowercase']:
         for i in range(len(predicted)):
             predicted[i] = predicted[i].lower()
             actual[i] = actual[i].lower()
+    
     return {'actual_and_predicted': [actual, predicted]}
 
 
