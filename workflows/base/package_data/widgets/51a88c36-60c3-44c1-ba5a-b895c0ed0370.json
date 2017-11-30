@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
-      "treeview_image": "treeview/482063585452602669.png", 
       "uid": "51a88c36-60c3-44c1-ba5a-b895c0ed0370", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": true, 
+      "has_file": false, 
       "image": "images/482063585452602669.png", 
       "description": "Delays for a certain amount of seconds", 
+      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "treeview/482063585452602669.png", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "482063585452602669.png", 
       "action": "delay", 
+      "wsdl": "", 
+      "name": "Delay", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": true, 
       "order": 3, 
-      "name": "Delay"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "51a88c36-60c3-44c1-ba5a-b895c0ed0370", 
       "name": "Time", 
       "short_name": "tim", 
+      "uid": "1a463ddc-289a-4250-ae41-9f7a3eb81881", 
       "default": "10", 
-      "description": "Time in seconds", 
       "required": false, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "time", 
       "parameter": true, 
       "order": 0, 
-      "uid": "1a463ddc-289a-4250-ae41-9f7a3eb81881"
+      "description": "Time in seconds"
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "51a88c36-60c3-44c1-ba5a-b895c0ed0370", 
       "name": "Data", 
       "short_name": "dat", 
+      "uid": "c6ddfb2b-a04a-448e-a853-8b4e13d4ccdf", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "data", 
       "parameter": false, 
       "order": 0, 
-      "uid": "c6ddfb2b-a04a-448e-a853-8b4e13d4ccdf"
+      "description": ""
     }
   }, 
   {
@@ -64,10 +65,10 @@
       "widget": "51a88c36-60c3-44c1-ba5a-b895c0ed0370", 
       "name": "Data", 
       "short_name": "dat", 
-      "description": "", 
       "variable": "data", 
+      "uid": "b5233bb9-11f4-49d4-8c12-cd5476d1dc13", 
       "order": 1, 
-      "uid": "b5233bb9-11f4-49d4-8c12-cd5476d1dc13"
+      "description": ""
     }
   }
 ]

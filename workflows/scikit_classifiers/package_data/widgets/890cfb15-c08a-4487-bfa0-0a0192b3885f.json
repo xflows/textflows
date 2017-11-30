@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
-      "treeview_image": "", 
       "uid": "890cfb15-c08a-4487-bfa0-0a0192b3885f", 
-      "is_streaming": false, 
-      "package": "scikit_classifiers", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "Implementation of Support Vector Machine classifier using libsvm: the kernel can be non-linear but its SMO algorithm does not scale to large number of samples as LinearSVC does. Furthermore SVC multi-class mode is implemented using one vs one scheme while LinearSVC uses one vs the rest.", 
+      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "classifier_svm_image.png", 
       "action": "sc_svc", 
+      "wsdl": "", 
+      "name": "SVM Classifier", 
+      "package": "scikit_classifiers", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "SVM Classifier"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "890cfb15-c08a-4487-bfa0-0a0192b3885f", 
       "name": "Kernel", 
       "short_name": "ker", 
+      "uid": "78abb5f8-3ed5-49f1-995d-7dfb81977a79", 
       "default": "rbf", 
-      "description": "Specifies the kernel type to be used in the algorithm. It must be one of \u2018linear\u2019, \u2018poly\u2019, \u2018rbf\u2019, \u2018sigmoid\u2019, \u2018precomputed\u2019 or a callable. If none is given, \u2018rbf\u2019 will be used. If a callable is given it is used to precompute the kernel matrix.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "kernel", 
       "parameter": true, 
       "order": 3, 
-      "uid": "78abb5f8-3ed5-49f1-995d-7dfb81977a79"
+      "description": "Specifies the kernel type to be used in the algorithm. It must be one of \u2018linear\u2019, \u2018poly\u2019, \u2018rbf\u2019, \u2018sigmoid\u2019, \u2018precomputed\u2019 or a callable. If none is given, \u2018rbf\u2019 will be used. If a callable is given it is used to precompute the kernel matrix."
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "890cfb15-c08a-4487-bfa0-0a0192b3885f", 
       "name": "Degree", 
       "short_name": "deg", 
+      "uid": "96d70c8f-8da5-4c84-88be-f2f447c1b715", 
       "default": "3", 
-      "description": "Degree of the polynomial kernel function (\u2018poly\u2019). Ignored by all other kernels.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "degree", 
       "parameter": true, 
       "order": 2, 
-      "uid": "96d70c8f-8da5-4c84-88be-f2f447c1b715"
+      "description": "Degree of the polynomial kernel function (\u2018poly\u2019). Ignored by all other kernels."
     }
   }, 
   {
@@ -64,15 +65,15 @@
       "widget": "890cfb15-c08a-4487-bfa0-0a0192b3885f", 
       "name": "C", 
       "short_name": "ccc", 
+      "uid": "a88c330e-f55a-4ca9-9c7f-c818651b42a4", 
       "default": "1.0", 
-      "description": "Penalty parameter C of the error term.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "C", 
       "parameter": true, 
       "order": 1, 
-      "uid": "a88c330e-f55a-4ca9-9c7f-c818651b42a4"
+      "description": "Penalty parameter C of the error term."
     }
   }, 
   {
@@ -81,55 +82,55 @@
       "widget": "890cfb15-c08a-4487-bfa0-0a0192b3885f", 
       "name": "Classifier", 
       "short_name": "csf", 
-      "description": "", 
       "variable": "classifier", 
+      "uid": "350f1806-86ef-46f4-8027-0b2d0fb13e74", 
       "order": 1, 
-      "uid": "350f1806-86ef-46f4-8027-0b2d0fb13e74"
+      "description": ""
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "linear", 
       "uid": "2d008858-03a0-4b4d-b3d8-af2c4210075e", 
+      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79", 
       "value": "linear", 
-      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79"
+      "name": "linear"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "poly", 
       "uid": "2d463c16-e4f5-40d3-a752-c881abe075f1", 
+      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79", 
       "value": "poly", 
-      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79"
+      "name": "poly"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "rbf", 
       "uid": "875652ff-d962-4544-a081-3bb829cbae04", 
+      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79", 
       "value": "rbf", 
-      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79"
+      "name": "rbf"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "sigmoid", 
       "uid": "c780c9c3-b981-4dba-947f-93dbb3ac6f45", 
+      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79", 
       "value": "sigmoid", 
-      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79"
+      "name": "sigmoid"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "precomputed", 
       "uid": "c9f66639-75db-48b1-972e-012408da741e", 
+      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79", 
       "value": "precomputed", 
-      "abstract_input": "78abb5f8-3ed5-49f1-995d-7dfb81977a79"
+      "name": "precomputed"
     }
   }
 ]

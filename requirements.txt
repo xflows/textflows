@@ -28,3 +28,5 @@ MySQL-python #mysql import widget
 boilerpipe
 pdfminer==20140328
 docx==0.2.4
+pattern
+python-crfsuite

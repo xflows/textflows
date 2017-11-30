@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
-      "treeview_image": "", 
       "uid": "8c747432-07e8-4b29-a657-9fec2a284791", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "Safe evaluation of strings.", 
+      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "", 
       "action": "base_safe_eval_string", 
+      "wsdl": "", 
+      "name": "Evaluate string", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Evaluate string"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "8c747432-07e8-4b29-a657-9fec2a284791", 
       "name": "Input string", 
       "short_name": "str", 
+      "uid": "8436f5de-560f-427d-bb3e-b5e3774b56e7", 
       "default": "", 
-      "description": "String to evaluate", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "data", 
       "parameter": false, 
       "order": 1, 
-      "uid": "8436f5de-560f-427d-bb3e-b5e3774b56e7"
+      "description": "String to evaluate"
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "8c747432-07e8-4b29-a657-9fec2a284791", 
       "name": "Object", 
       "short_name": "obj", 
-      "description": "Result of evaluation", 
       "variable": "evaluation_result", 
+      "uid": "68a67e71-8973-41e8-9f22-991f9f46ff26", 
       "order": 1, 
-      "uid": "68a67e71-8973-41e8-9f22-991f9f46ff26"
+      "description": "Result of evaluation"
     }
   }
 ]

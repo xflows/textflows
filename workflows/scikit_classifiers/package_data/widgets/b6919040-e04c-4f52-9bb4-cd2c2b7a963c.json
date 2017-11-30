@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
-      "treeview_image": "", 
       "uid": "b6919040-e04c-4f52-9bb4-cd2c2b7a963c", 
-      "is_streaming": false, 
-      "package": "scikit_classifiers", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "Similar to Support Vector Classification with parameter kernel=\u2019linear\u2019, but implemented in terms of liblinear rather than libsvm, so it has more flexibility in the choice of penalties and loss functions and should scale better (to large numbers of samples).", 
+      "category": "cb54c8a7-2681-47ed-8321-2ab093d32662", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "classifier_svm_image.png", 
       "action": "sc_linear_svc", 
+      "wsdl": "", 
+      "name": "SVM Linear Classifier", 
+      "package": "scikit_classifiers", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "SVM Linear Classifier"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "b6919040-e04c-4f52-9bb4-cd2c2b7a963c", 
       "name": "Loss", 
       "short_name": "lss", 
+      "uid": "119c1119-8669-4194-9ba5-89550cfa6d96", 
       "default": "l2", 
-      "description": "Specifies the loss function. \u2018l1\u2019 is the hinge loss (standard SVM) while \u2018l2\u2019 is the squared hinge loss.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "loss", 
       "parameter": true, 
       "order": 2, 
-      "uid": "119c1119-8669-4194-9ba5-89550cfa6d96"
+      "description": "Specifies the loss function. \u2018l1\u2019 is the hinge loss (standard SVM) while \u2018l2\u2019 is the squared hinge loss."
     }
   }, 
   {
@@ -47,15 +48,15 @@
       "widget": "b6919040-e04c-4f52-9bb4-cd2c2b7a963c", 
       "name": "C", 
       "short_name": "ccc", 
+      "uid": "2d4cbcee-9ca4-4db2-ad5f-aa86aa5e91cb", 
       "default": "1.0", 
-      "description": "Penalty parameter C of the error term.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "text", 
       "variable": "C", 
       "parameter": true, 
       "order": 1, 
-      "uid": "2d4cbcee-9ca4-4db2-ad5f-aa86aa5e91cb"
+      "description": "Penalty parameter C of the error term."
     }
   }, 
   {
@@ -64,15 +65,15 @@
       "widget": "b6919040-e04c-4f52-9bb4-cd2c2b7a963c", 
       "name": "Multi class", 
       "short_name": "mlc", 
+      "uid": "319161b1-be5d-4260-8a8c-583083804e60", 
       "default": "ovr", 
-      "description": "Determines the multi-class strategy if y contains more than two classes. ovr trains n_classes one-vs-rest classifiers, while crammer_singer optimizes a joint objective over all classes. While crammer_singer is interesting from an theoretical perspective as it is consistent it is seldom used in practice and rarely leads to better accuracy and is more expensive to compute. If crammer_singer is choosen, the options loss, penalty and dual will be ignored.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "multi_class", 
       "parameter": true, 
       "order": 4, 
-      "uid": "319161b1-be5d-4260-8a8c-583083804e60"
+      "description": "Determines the multi-class strategy if y contains more than two classes. ovr trains n_classes one-vs-rest classifiers, while crammer_singer optimizes a joint objective over all classes. While crammer_singer is interesting from an theoretical perspective as it is consistent it is seldom used in practice and rarely leads to better accuracy and is more expensive to compute. If crammer_singer is choosen, the options loss, penalty and dual will be ignored."
     }
   }, 
   {
@@ -81,15 +82,15 @@
       "widget": "b6919040-e04c-4f52-9bb4-cd2c2b7a963c", 
       "name": "Penalty", 
       "short_name": "pen", 
+      "uid": "78a41810-b898-4990-bd8d-bd05ba6544da", 
       "default": "l2", 
-      "description": "Specifies the norm used in the penalization. The \u2018l2\u2019 penalty is the standard used in SVC. The \u2018l1\u2019 leads to coef_ vectors that are sparse.", 
       "required": true, 
       "multi": false, 
       "parameter_type": "select", 
       "variable": "penalty", 
       "parameter": true, 
       "order": 3, 
-      "uid": "78a41810-b898-4990-bd8d-bd05ba6544da"
+      "description": "Specifies the norm used in the penalization. The \u2018l2\u2019 penalty is the standard used in SVC. The \u2018l1\u2019 leads to coef_ vectors that are sparse."
     }
   }, 
   {
@@ -98,64 +99,64 @@
       "widget": "b6919040-e04c-4f52-9bb4-cd2c2b7a963c", 
       "name": "Classifier", 
       "short_name": "csf", 
-      "description": "", 
       "variable": "classifier", 
+      "uid": "a15c4049-0dea-4b81-a073-1d96926313ab", 
       "order": 1, 
-      "uid": "a15c4049-0dea-4b81-a073-1d96926313ab"
+      "description": ""
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "l1", 
       "uid": "402c61c1-f2e4-4a2c-969e-ac0751fbc8c5", 
+      "abstract_input": "119c1119-8669-4194-9ba5-89550cfa6d96", 
       "value": "l1", 
-      "abstract_input": "119c1119-8669-4194-9ba5-89550cfa6d96"
+      "name": "l1"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "l2", 
       "uid": "5fd8b8dd-8b3b-4996-ba83-ae2dfa9c8a4c", 
+      "abstract_input": "119c1119-8669-4194-9ba5-89550cfa6d96", 
       "value": "l2", 
-      "abstract_input": "119c1119-8669-4194-9ba5-89550cfa6d96"
+      "name": "l2"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "crammer singer", 
       "uid": "6ab05b2c-7706-4b89-ab64-1beb161c1085", 
+      "abstract_input": "319161b1-be5d-4260-8a8c-583083804e60", 
       "value": "crammer_singer", 
-      "abstract_input": "319161b1-be5d-4260-8a8c-583083804e60"
+      "name": "crammer singer"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "l2", 
       "uid": "a93af0bc-1654-4891-bea9-51cb93cf44f1", 
+      "abstract_input": "78a41810-b898-4990-bd8d-bd05ba6544da", 
       "value": "l2", 
-      "abstract_input": "78a41810-b898-4990-bd8d-bd05ba6544da"
+      "name": "l2"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "ovr", 
       "uid": "aa692bd8-730f-49f9-b800-4430d07edbc9", 
+      "abstract_input": "319161b1-be5d-4260-8a8c-583083804e60", 
       "value": "ovr", 
-      "abstract_input": "319161b1-be5d-4260-8a8c-583083804e60"
+      "name": "ovr"
     }
   }, 
   {
     "model": "workflows.abstractoption", 
     "fields": {
-      "name": "l1", 
       "uid": "db887f99-13c5-4f19-9b44-ac2ed41155fa", 
+      "abstract_input": "78a41810-b898-4990-bd8d-bd05ba6544da", 
       "value": "l1", 
-      "abstract_input": "78a41810-b898-4990-bd8d-bd05ba6544da"
+      "name": "l1"
     }
   }
 ]

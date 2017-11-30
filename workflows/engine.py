@@ -47,6 +47,8 @@ class WidgetRunner():
                             outputs = function_to_call(input_dict,self.widget)
                         elif self.widget.abstract_widget.is_streaming:
                             outputs = function_to_call(input_dict,self.widget,None)
+                        elif self.widget.abstract_widget.has_file:
+                            outputs = function_to_call(input_dict,self.widget)
                         else:
                             outputs = function_to_call(input_dict)
                 else:

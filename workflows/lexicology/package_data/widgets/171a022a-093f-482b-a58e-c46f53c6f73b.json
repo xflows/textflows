@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "7b62f695-5ba6-4012-af8b-abe99b8771be", 
-      "treeview_image": "", 
       "uid": "171a022a-093f-482b-a58e-c46f53c6f73b", 
-      "windows_queue": false, 
-      "package": "lexicology", 
-      "interaction_view": "lexicology_mesh_filter", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "Constructs vocabulary from selected top categories in MeSH hierarchy.", 
+      "category": "7b62f695-5ba6-4012-af8b-abe99b8771be", 
+      "interaction_view": "lexicology_mesh_filter", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "", 
       "action": "lexicology_mesh_filter", 
+      "wsdl": "", 
+      "name": "MeSH vocabulary builder", 
+      "package": "lexicology", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "lexicology_mesh_filter_finished", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": true, 
-      "is_streaming": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "MeSH vocabulary builder"
+      "interactive": true
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "171a022a-093f-482b-a58e-c46f53c6f73b", 
       "name": "N-grams", 
       "short_name": "ngr", 
+      "uid": "f9376b46-7df0-4dca-9339-569589eb89e4", 
       "default": "", 
-      "description": "Construct n-grams subsets of words from a MeSH term", 
       "required": true, 
       "multi": false, 
       "parameter_type": "checkbox", 
       "variable": "ngrams", 
       "parameter": true, 
       "order": 1, 
-      "uid": "f9376b46-7df0-4dca-9339-569589eb89e4"
+      "description": "Construct n-grams subsets of words from a MeSH term"
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "171a022a-093f-482b-a58e-c46f53c6f73b", 
       "name": "List of MeSH terms", 
       "short_name": "msh", 
-      "description": "List of MeSH terms.", 
       "variable": "term_list", 
+      "uid": "0b894c08-5bb2-455d-b4e9-74137f6b2245", 
       "order": 1, 
-      "uid": "0b894c08-5bb2-455d-b4e9-74137f6b2245"
+      "description": "List of MeSH terms."
     }
   }
 ]

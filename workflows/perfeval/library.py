@@ -28,6 +28,10 @@ def perfeval_classification_statistics(input_dict):
         raise Exception('Wrong input structure, this widget accepts labels in the form: [y_true, y_pred]')
     
     y_true, y_pred = labels
+
+    for i, tag in enumerate(y_true):
+        if tag != y_pred[i]:
+            print(tag, y_pred[i])
     
     classes = set()
     classes.update(y_true + y_pred)
@@ -73,10 +77,26 @@ def extract_actual_and_predicted_features(input_dict):
     for doc in adc.documents:
         actual.extend(doc.get_annotation_texts(annotation_actual))
         predicted.extend(doc.get_annotation_texts(annotation_predicted))
+
+    #remove NONE tags
+    filtered_predicted = []
+    filtered_actual = []
+    for i in range(len(predicted)):
+        if actual[i] == u'-NONE-' and predicted[i] != u'-NONE-':
+            pass
+            #print(predicted[i], actual[i])
+        else:
+            filtered_predicted.append(predicted[i])
+            filtered_actual.append(actual[i])
+
+    actual = filtered_actual
+    predicted = filtered_predicted
+
     if 'lowercase' in input_dict and input_dict['lowercase']:
         for i in range(len(predicted)):
             predicted[i] = predicted[i].lower()
             actual[i] = actual[i].lower()
+    
     return {'actual_and_predicted': [actual, predicted]}
 
 

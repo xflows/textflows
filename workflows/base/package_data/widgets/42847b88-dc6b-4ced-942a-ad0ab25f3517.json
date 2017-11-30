@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
-      "treeview_image": "", 
       "uid": "42847b88-dc6b-4ced-942a-ad0ab25f3517", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
-      "description": "Appends the contents of the second list to the end of the first list.",
+      "description": "Appends the contents of the second list to the end of the first list.", 
+      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "", 
       "action": "base_concatenate_lists", 
+      "wsdl": "", 
+      "name": "Concatenate lists", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Concatenate lists"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "42847b88-dc6b-4ced-942a-ad0ab25f3517", 
       "name": "Lists", 
       "short_name": "lst", 
+      "uid": "e4c412d3-b6b0-438e-8ec8-5362c6de5223", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": true, 
       "parameter_type": null, 
       "variable": "lists", 
       "parameter": false, 
       "order": 1, 
-      "uid": "e4c412d3-b6b0-438e-8ec8-5362c6de5223"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "42847b88-dc6b-4ced-942a-ad0ab25f3517", 
       "name": "List", 
       "short_name": "lst", 
-      "description": "", 
       "variable": "list", 
+      "uid": "75dd2246-5b92-4119-9e04-0daed307d099", 
       "order": 1, 
-      "uid": "75dd2246-5b92-4119-9e04-0daed307d099"
+      "description": ""
     }
   }
 ]

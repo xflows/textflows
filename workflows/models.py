@@ -541,6 +541,7 @@ class AbstractWidget(models.Model):
 
     has_progress_bar = models.BooleanField(default=False,help_text='The flag has progress bar determines if the widget implements a progress bar.')
     is_streaming = models.BooleanField(default=False,help_text='The is streaming flag is currently under construction, please do not use it yet.')
+    has_file = models.BooleanField(default=False,help_text='The has file flag is currently under construction, please do not use it yet.')
 
     order = models.PositiveIntegerField(default=1,help_text='The Order determines the order in which the widget will be displayed in the repository. This is set automatically when sorting widgets in a single category from the admin.')
 
@@ -843,6 +844,9 @@ class Widget(models.Model):
                     elif self.abstract_widget.is_streaming:
                         """ if abstrac widget is a stream """
                         outputs = function_to_call(input_dict,self,None)
+                    elif self.abstract_widget.has_file:
+                        """ if abstrac widget is a stream """
+                        outputs = function_to_call(input_dict,self)
                     else:
                         """ else run abstract widget function """
                         outputs = function_to_call(input_dict)

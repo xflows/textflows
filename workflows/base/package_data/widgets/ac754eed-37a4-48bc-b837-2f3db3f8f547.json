@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
-      "treeview_image": "", 
       "uid": "ac754eed-37a4-48bc-b837-2f3db3f8f547", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "Ravels and removes empty sublists from the input list. Useful in for loops.", 
+      "category": "01ad639d-acb8-45c0-bc5e-bc8739bb4c95", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "", 
       "action": "base_ravel_list", 
+      "wsdl": "", 
+      "name": "Ravel list", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 1, 
-      "name": "Ravel list"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "ac754eed-37a4-48bc-b837-2f3db3f8f547", 
       "name": "List", 
       "short_name": "lst", 
+      "uid": "c35deb32-ca39-435a-b859-50e4c94a7c74", 
       "default": "", 
-      "description": "Input list", 
       "required": true, 
       "multi": false, 
       "parameter_type": null, 
       "variable": "input_list", 
       "parameter": false, 
       "order": 1, 
-      "uid": "c35deb32-ca39-435a-b859-50e4c94a7c74"
+      "description": "Input list"
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "ac754eed-37a4-48bc-b837-2f3db3f8f547", 
       "name": "List", 
       "short_name": "lst", 
-      "description": "Output list", 
       "variable": "clean_list", 
+      "uid": "27187dd2-3ce4-4abe-bfec-f96288c342f3", 
       "order": 1, 
-      "uid": "27187dd2-3ce4-4abe-bfec-f96288c342f3"
+      "description": "Output list"
     }
   }
 ]

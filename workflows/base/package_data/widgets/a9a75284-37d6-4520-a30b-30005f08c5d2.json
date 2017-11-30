@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "bbf1e628-8be6-4178-8d93-765de278c0e4", 
-      "treeview_image": "", 
       "uid": "a9a75284-37d6-4520-a30b-30005f08c5d2", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
-      "description": "Uploads a big file to the ClowdFlows server.",
+      "description": "Uploads a big file to the ClowdFlows server.", 
+      "category": "bbf1e628-8be6-4178-8d93-765de278c0e4", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "", 
       "action": "base_load_big_file", 
+      "wsdl": "", 
+      "name": "Load big file", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": false, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 2, 
-      "name": "Load big file"
+      "interactive": false
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "a9a75284-37d6-4520-a30b-30005f08c5d2", 
       "name": "File", 
       "short_name": "fil", 
+      "uid": "9d55262f-eb97-423f-b875-2b8ab02e6f82", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": false, 
       "parameter_type": "bigfile", 
       "variable": "file", 
       "parameter": true, 
       "order": 1, 
-      "uid": "9d55262f-eb97-423f-b875-2b8ab02e6f82"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "a9a75284-37d6-4520-a30b-30005f08c5d2", 
       "name": "File", 
       "short_name": "fil", 
-      "description": "", 
       "variable": "file", 
+      "uid": "e2edda87-dcc6-401b-910f-f6fcfc2ed076", 
       "order": 1, 
-      "uid": "e2edda87-dcc6-401b-910f-f6fcfc2ed076"
+      "description": ""
     }
   }
 ]

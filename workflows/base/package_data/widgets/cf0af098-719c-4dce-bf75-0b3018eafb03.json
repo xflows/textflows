@@ -2,26 +2,27 @@
   {
     "model": "workflows.abstractwidget", 
     "fields": {
-      "category": "9b145e48-9cc0-4a24-9ac7-0df48e879361", 
-      "treeview_image": "", 
       "uid": "cf0af098-719c-4dce-bf75-0b3018eafb03", 
-      "is_streaming": false, 
-      "package": "base", 
-      "interaction_view": "filter_integers", 
-      "has_progress_bar": false, 
+      "has_file": false, 
       "image": "", 
       "description": "Filters some integers", 
+      "category": "9b145e48-9cc0-4a24-9ac7-0df48e879361", 
+      "interaction_view": "filter_integers", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
       "static_image": "", 
       "action": "filter_integers", 
+      "wsdl": "", 
+      "name": "Filter integers", 
+      "package": "base", 
       "visualization_view": "", 
-      "streaming_visualization_view": "", 
       "post_interact_action": "filter_integers_post", 
       "wsdl_method": "", 
-      "wsdl": "", 
-      "interactive": true, 
-      "windows_queue": false, 
+      "has_progress_bar": false, 
       "order": 4, 
-      "name": "Filter integers"
+      "interactive": true
     }
   }, 
   {
@@ -30,15 +31,15 @@
       "widget": "cf0af098-719c-4dce-bf75-0b3018eafb03", 
       "name": "Integer List", 
       "short_name": "int", 
+      "uid": "7358ad8b-b3e7-4d19-98e1-749444b6686d", 
       "default": "", 
-      "description": "", 
       "required": false, 
       "multi": true, 
       "parameter_type": null, 
       "variable": "integers", 
       "parameter": false, 
       "order": 0, 
-      "uid": "7358ad8b-b3e7-4d19-98e1-749444b6686d"
+      "description": ""
     }
   }, 
   {
@@ -47,10 +48,10 @@
       "widget": "cf0af098-719c-4dce-bf75-0b3018eafb03", 
       "name": "Integer list", 
       "short_name": "int", 
-      "description": "", 
       "variable": "integers", 
+      "uid": "ca868bfc-19db-49c1-babe-9ae5694478e4", 
       "order": 1, 
-      "uid": "ca868bfc-19db-49c1-babe-9ae5694478e4"
+      "description": ""
     }
   }
 ]
