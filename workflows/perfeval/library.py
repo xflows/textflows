@@ -28,10 +28,6 @@ def perfeval_classification_statistics(input_dict):
         raise Exception('Wrong input structure, this widget accepts labels in the form: [y_true, y_pred]')
     
     y_true, y_pred = labels
-
-    for i, tag in enumerate(y_true):
-        if tag != y_pred[i]:
-            print(tag, y_pred[i])
     
     classes = set()
     classes.update(y_true + y_pred)
