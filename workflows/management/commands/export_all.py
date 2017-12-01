@@ -28,5 +28,5 @@ class Command(BaseCommand):
         
             
         #temporary fix
-        self.stdout.write("Exporting nltoolkit package \n")
-        export_package('tf_core.nltoolkit',self.stdout, dest_folder='C:\\work\\textflows\\tf_core\\nltoolkit')
+        #self.stdout.write("Exporting nltoolkit package \n")
+        #export_package('tf_core.nltoolkit',self.stdout, dest_folder='C:\\work\\textflows\\tf_core\\nltoolkit')

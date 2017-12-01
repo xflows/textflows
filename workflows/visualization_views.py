@@ -1,6 +1,8 @@
 import sys
+import pandas as pd
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
+from collections import defaultdict
 
 from workflows import module_importer
 def setattr_local(name, value, package):
@@ -293,3 +295,28 @@ def tree_visualization(request, input_dict, output_dict, widget):
     jsonJ = treeToJSON(tc.tree)
     
     return render(request, 'visualizations/tree_visualization.html', {'widget':widget, 'input_dict':input_dict, 'json':jsonJ})
+
+
+def adc_to_csv(request,input_dict,output_dict,widget):
+    from mothra.settings import MEDIA_ROOT
+    from workflows.helpers import ensure_dir
+    destination = MEDIA_ROOT+'/'+str(request.user.id)+'/'+str(widget.id)+'.csv'
+    ensure_dir(destination)
+    f = open(destination,'w')
+
+    adc = input_dict['adc']
+    ann = input_dict['ann']
+    df = defaultdict(list) 
+
+    for doc in adc.documents:
+        for annotation in ann.split('\n'):
+            annotation = annotation.strip() 
+            df[annotation].extend(doc.get_annotation_texts(annotation))
+
+    df = pd.DataFrame(df, columns=df.keys())
+    df.to_csv(destination, sep='\t', encoding='utf-8')
+
+
+    filename = str(request.user.id)+'/'+str(widget.id)+'.csv'
+    output_dict['filename'] = filename
+    return render(request, 'visualizations/adc_to_csv.html',{'widget':widget,'input_dict':input_dict,'output_dict':output_dict})

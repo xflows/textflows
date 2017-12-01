@@ -734,6 +734,9 @@ def odt_to_arff(input_dict):
 def string_to_file(input_dict):
     return {}
 
+def adc_to_csv(input_dict):
+    return {}
+
 def alter_table(input_dict):
     return {'altered_data' : None}
 

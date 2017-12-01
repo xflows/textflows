@@ -1,0 +1,62 @@
+[
+  {
+    "model": "workflows.abstractwidget", 
+    "fields": {
+      "uid": "7107d55f-4e29-4c91-b3b9-e4c3f9236949", 
+      "has_file": false, 
+      "image": "", 
+      "description": "Download selected ADC annotations as a CSV file.", 
+      "category": "bbf1e628-8be6-4178-8d93-765de278c0e4", 
+      "interaction_view": "", 
+      "streaming_visualization_view": "", 
+      "treeview_image": "", 
+      "is_streaming": false, 
+      "windows_queue": false, 
+      "static_image": "1688041475.png", 
+      "action": "adc_to_csv", 
+      "wsdl": "", 
+      "name": "ADC to CSV", 
+      "package": "base", 
+      "visualization_view": "adc_to_csv", 
+      "post_interact_action": "", 
+      "wsdl_method": "", 
+      "has_progress_bar": false, 
+      "order": 4, 
+      "interactive": false
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "7107d55f-4e29-4c91-b3b9-e4c3f9236949", 
+      "name": "Annotations", 
+      "short_name": "ann", 
+      "uid": "1db02293-e526-4daa-aa3b-0adcf4b97207", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": "textarea", 
+      "variable": "ann", 
+      "parameter": true, 
+      "order": 1, 
+      "description": "Define annotations you want to include in a csv file, one per line"
+    }
+  }, 
+  {
+    "model": "workflows.abstractinput", 
+    "fields": {
+      "widget": "7107d55f-4e29-4c91-b3b9-e4c3f9236949", 
+      "name": "Annotated Document Corpus", 
+      "short_name": "adc", 
+      "uid": "724a2796-fcef-4a1c-942c-f3379146bca7", 
+      "default": "", 
+      "required": true, 
+      "multi": false, 
+      "parameter_type": null, 
+      "variable": "adc", 
+      "parameter": false, 
+      "order": 0, 
+      "description": ""
+    }
+  }
+]
