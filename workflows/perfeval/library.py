@@ -78,6 +78,7 @@ def extract_actual_and_predicted_features(input_dict):
         actual.extend(doc.get_annotation_texts(annotation_actual))
         predicted.extend(doc.get_annotation_texts(annotation_predicted))
 
+    '''
     #remove NONE tags
     filtered_predicted = []
     filtered_actual = []
@@ -91,6 +92,7 @@ def extract_actual_and_predicted_features(input_dict):
 
     actual = filtered_actual
     predicted = filtered_predicted
+    '''
 
     if 'lowercase' in input_dict and input_dict['lowercase']:
         for i in range(len(predicted)):
